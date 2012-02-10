@@ -52,8 +52,7 @@ There are no data in the database and there are no settings. Therefore, the inst
 
 
 ## Screenshots
-
-1. Example Screenshot (WordPress 3.3)
+![Example Screenshot (WordPress 3.3)](https://github.com/bueltge/Debug-Objects/blob/master/screenshot-1.png "Example Screenshot (WordPress 3.3)")
 
 
 ## Other Notes
