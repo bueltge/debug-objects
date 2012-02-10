@@ -99,9 +99,7 @@ if ( ! class_exists( 'Debug_Objects_Debug_Hooks' ) ) {
 								)
 							$output .= '(object) ' . get_class( $function['function'][0] ) . ' :: ' . $function['function'][1];
 						
-						else if( is_string( $function['function'][0] ) && 
-								 'closure' !== strtolower( get_class( $function['function'][0] ) )
-								)
+						else if( is_string( $function['function'][0] ) )
 							$output .= $function['function'][0] . ' :: ' . $function['function'][1];
 						
 						else
