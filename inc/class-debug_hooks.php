@@ -93,7 +93,7 @@ if ( ! class_exists( 'Debug_Objects_Debug_Hooks' ) ) {
 						
 						if ( is_string( $function['function'] ) )
 							$output .= $function['function'];
-						
+						// @see https://github.com/jeremeamia/super_closure/blob/master/SuperClosure.class.php
 						else if ( $function['function'] instanceOf Closure )
 							$output .= '(object) <a href="http://php.net/manual/en/functions.anonymous.php" title="read more about Closures on php.net">Closure, Anonymous functions</a>';
 						
