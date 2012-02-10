@@ -2,11 +2,9 @@
 The WordPress Plugin *Debug Objects* provides a large number of information: query, cache, constants, hooks, functions and many more.
 
 ## Description
-
 The Plugin Debug Objects provides the user, which has the appropriate rights, normally the administrator, a large number of information: query, cache, constants, hooks, functions and many many more. Values and content get displayed at the frontend and backend of the blog, to analyze errors but also to better understand and develop with/for WordPress.
 
 ### The Plugin provides in various tabs information to:
-
 * PHP
 * Memory usage
 * Load Time
@@ -36,14 +34,11 @@ There are no data in the database and there are no settings. Therefore, the inst
 
 
 ## Installation
-
 ### Requirements
-
 * WordPress (also Multisite) version 3.3 and later (tested at 3.3)
 * PHP 5.2.4
 
 ### Installation
-
 1. Unpack the download-package
 1. Upload the file to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
@@ -61,6 +56,14 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 
 ### Translations
 The plugin comes with various translations, please refer to the [WordPress Codex](http://codex.wordpress.org/Installing_WordPress_in_Your_Language "Installing WordPress in Your Language") for more information about activating the translation. If you want to help to translate the plugin to your language, please have a look at the .pot file which contains all defintions and may be used with a [gettext](http://www.gnu.org/software/gettext/) editor like [Poedit](http://www.poedit.net/) (Windows).
+
+### Contact & Feedback
+The plugin is designed and developed by me (Frank Bültge)
+
+Please let me know if you like the plugin or you hate it or whatever ... Please fork it, add an issue for ideas and bugs.
+
+### Disclaimer
+I'm German and my English might be gruesome here and there. So please be patient with me and let me know of typos or grammatical farts. Thanks
 
 ## Changelog
 
