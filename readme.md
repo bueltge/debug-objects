@@ -5,6 +5,7 @@ The WordPress Plugin *Debug Objects* provides a large number of information: que
 The Plugin Debug Objects provides the user, which has the appropriate rights, normally the administrator, a large number of information: query, cache, constants, hooks, functions and many many more. Values and content get displayed at the frontend and backend of the blog, to analyze errors but also to better understand and develop with/for WordPress.
 
 *The Plugin provides in various tabs information to:*
+
 * PHP
 * Memory usage
 * Load Time
