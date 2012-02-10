@@ -1,0 +1,530 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Debug Objects\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-12 19:30+0100\n"
+"PO-Revision-Date: 2010-04-13 16:05+0900\n"
+"Last-Translator: Fumito MIZUNO <mizuno@php-web.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: debug_objects.php:116
+msgid "Windows XP"
+msgstr "Windows XP"
+
+#: debug_objects.php:118
+msgid "Windows 2000"
+msgstr "Windows 2000"
+
+#: debug_objects.php:122
+msgid "Windows ME"
+msgstr "Windows ME"
+
+#: debug_objects.php:124
+msgid "Windows 98"
+msgstr "Windows 98"
+
+#: debug_objects.php:126
+msgid "Windows 95"
+msgstr "Windows 95"
+
+#: debug_objects.php:129
+msgid "Macintosh"
+msgstr "Macintosh"
+
+#: debug_objects.php:131
+msgid "Linux"
+msgstr "Linux"
+
+#: debug_objects.php:135
+#: debug_objects.php:142
+#: debug_objects.php:149
+#: debug_objects.php:156
+#: debug_objects.php:163
+#: debug_objects.php:170
+#: debug_objects.php:177
+#: debug_objects.php:184
+#: debug_objects.php:191
+#: debug_objects.php:231
+#: debug_objects.php:236
+#: debug_objects.php:241
+#: debug_objects.php:246
+#: debug_objects.php:251
+#: debug_objects.php:265
+#: debug_objects.php:270
+#: debug_objects.php:281
+#: debug_objects.php:286
+#: debug_objects.php:297
+#: debug_objects.php:302
+#: debug_objects.php:307
+#: debug_objects.php:312
+#: debug_objects.php:317
+#: debug_objects.php:322
+#: debug_objects.php:327
+#: debug_objects.php:332
+#: debug_objects.php:337
+#: debug_objects.php:515
+#: debug_objects.php:524
+#: debug_objects.php:531
+#: debug_objects.php:538
+#: debug_objects.php:545
+#: debug_objects.php:552
+#: debug_objects.php:560
+msgid "Undefined"
+msgstr "未定義"
+
+#: debug_objects.php:137
+#: debug_objects.php:144
+#: debug_objects.php:151
+#: debug_objects.php:158
+#: debug_objects.php:165
+#: debug_objects.php:172
+#: debug_objects.php:179
+#: debug_objects.php:186
+#: debug_objects.php:193
+msgid "OFF"
+msgstr "オフ"
+
+#: debug_objects.php:139
+msgid "s"
+msgstr "s"
+
+#: debug_objects.php:153
+#: debug_objects.php:160
+#: debug_objects.php:167
+#: debug_objects.php:174
+#: debug_objects.php:181
+#: debug_objects.php:188
+#: debug_objects.php:195
+msgid "ON"
+msgstr "オン"
+
+#: debug_objects.php:198
+msgid "PHP Version &amp; System"
+msgstr "PHP バージョン &amp; システム"
+
+#: debug_objects.php:201
+msgid "PHP version:"
+msgstr "PHP バージョン:"
+
+#: debug_objects.php:202
+msgid "Server:"
+msgstr "サーバ:"
+
+#: debug_objects.php:203
+msgid "Server SW:"
+msgstr "サーバ SW:"
+
+#: debug_objects.php:204
+msgid "http User Agent:"
+msgstr "http ユーザーエージェント:"
+
+#: debug_objects.php:205
+msgid "OS version:"
+msgstr "OS バージョン:"
+
+#: debug_objects.php:206
+msgid "Memory usage:"
+msgstr "メモリ使用量:"
+
+#: debug_objects.php:207
+msgid "Memory limit, PHP Configuration"
+msgstr "メモリ容量, PHP 設定"
+
+#: debug_objects.php:208
+msgid "Memory percent:"
+msgstr "メモリ使用率:"
+
+#: debug_objects.php:211
+msgid "WordPress Informations"
+msgstr "WordPress 情報"
+
+#: debug_objects.php:213
+msgid "Version:"
+msgstr "バージョン:"
+
+#: debug_objects.php:214
+msgid "Language, constant"
+msgstr "言語, 定数"
+
+#: debug_objects.php:215
+msgid "Language folder, constant"
+msgstr "言語フォルダ, 定数"
+
+#: debug_objects.php:216
+msgid "Content URL, constant"
+msgstr "wp-content URL, 定数"
+
+#: debug_objects.php:217
+msgid "Content folder, constant"
+msgstr "wp-content フォルダ, 定数"
+
+#: debug_objects.php:218
+msgid "Memory limit, constant"
+msgstr "メモリ容量, 定数"
+
+#: debug_objects.php:219
+msgid "Post revision, constant"
+msgstr "投稿リビジョン, 定数"
+
+#: debug_objects.php:220
+msgid "Save queries, constant"
+msgstr "クエリ保存, 定数"
+
+#: debug_objects.php:221
+msgid "Debug option, constant"
+msgstr "デバッグオプション, 定数"
+
+#: debug_objects.php:222
+msgid "SSL Login, constant"
+msgstr "SSL ログイン, 定数"
+
+#: debug_objects.php:223
+msgid "Concatenate scripts, constant"
+msgstr "スクリプトの結合, 定数"
+
+#: debug_objects.php:224
+msgid "Compress scripts, constant"
+msgstr "スクリプトの圧縮, 定数"
+
+#: debug_objects.php:225
+msgid "Compress stylesheet, constant"
+msgstr "スタイルシートの圧縮, 定数"
+
+#: debug_objects.php:226
+msgid "Enforce GZIP, constant"
+msgstr "GZIP の強制, 定数"
+
+#: debug_objects.php:227
+msgid "Autosave interval, constant"
+msgstr "自動保存期間, 定数"
+
+#: debug_objects.php:255
+msgid "WordPress Cookie Informations"
+msgstr "WordPress Cookie 情報"
+
+#: debug_objects.php:257
+msgid "Cookie domain, constant"
+msgstr "Cookie ドメイン, 定数"
+
+#: debug_objects.php:258
+#: debug_objects.php:293
+msgid "Cookie path, constant"
+msgstr "Cookie パス, 定数"
+
+#: debug_objects.php:259
+msgid "Site cookie path, constant"
+msgstr "Site Cookie パス, 定数"
+
+#: debug_objects.php:260
+msgid "Plugin cookie path, constant"
+msgstr "Plugin Cookie パス, 定数"
+
+#: debug_objects.php:261
+msgid "Admin cookie path, constant"
+msgstr "Admin Cookie パス, 定数"
+
+#: debug_objects.php:274
+msgid "WordPress File Permissions Informations"
+msgstr "WordPress ファイルパーミッション情報"
+
+#: debug_objects.php:276
+msgid "File Permissions, constant"
+msgstr "ファイルパーミッション, 定数"
+
+#: debug_objects.php:277
+msgid "DIR Permissions, constant"
+msgstr "ディレクトリパーミッション, 定数"
+
+#: debug_objects.php:290
+msgid "WordPress Custom User &amp; Usermeta Tables"
+msgstr "WordPress Custom User &amp; Usermeta テーブル"
+
+#: debug_objects.php:292
+msgid "Custom User Table, constant"
+msgstr "Custom User テーブル, 定数"
+
+#: debug_objects.php:341
+msgid "WordPress FTP/SSH Informations"
+msgstr "WordPress FTP/SSH 情報"
+
+#: debug_objects.php:343
+msgid "Forces the filesystem method, constant"
+msgstr "ファイルシステムメソッドの強制, 定数"
+
+#: debug_objects.php:344
+msgid "Path to root install directory, constant"
+msgstr "ルートインストールディレクトリのパス, 定数"
+
+#: debug_objects.php:345
+msgid "Absoluth path to wp-content dorectory, constant"
+msgstr "wp-content ディレクトリの絶対パス, 定数"
+
+#: debug_objects.php:346
+msgid "Absoluth path tp plugin directory, constant"
+msgstr "Plugin ディレクトリの絶対パス, 定数"
+
+#: debug_objects.php:347
+msgid "Absoluth path to SSH public key, constant"
+msgstr "SSH 公開鍵の絶対パス, 定数"
+
+#: debug_objects.php:348
+msgid "Absoluth path to SSH private key, constant"
+msgstr "SSH 秘密鍵の絶対パス, 定数"
+
+#: debug_objects.php:349
+msgid "FTP or SSH username, constant"
+msgstr "FTP あるいは SSH ユーザ名, 定数"
+
+#: debug_objects.php:350
+msgid "FTP or SSH password, constant"
+msgstr "FTP あるいは SSH パスワード, 定数"
+
+#: debug_objects.php:351
+msgid "Hostname, constant"
+msgstr "ホスト名, 定数"
+
+#: debug_objects.php:354
+msgid "WordPress Query Informations"
+msgstr "WordPress クエリ情報"
+
+#: debug_objects.php:356
+msgid "Queries: "
+msgstr "クエリ:"
+
+#: debug_objects.php:356
+msgid "See more Details with my plugin"
+msgstr "プラグインの詳細を見る"
+
+#: debug_objects.php:357
+msgid "Timer stop: "
+msgstr "停止時間:"
+
+#: debug_objects.php:370
+msgid "The Conditional Tags can be used in your Template files to change what content is displayed and how that content is displayed on a particular page depending on what conditions that page matches. You see on this view the condition of all possible tags."
+msgstr "条件分岐タグは、テンプレートファイルで、どんなコンテンツをどのように表示するかを、ページがどういう条件に合致するかによって、変えることができます。全ての利用可能なタグの条件を見ることができます。"
+
+#: debug_objects.php:373
+#: debug_objects.php:376
+#: debug_objects.php:379
+#: debug_objects.php:382
+#: debug_objects.php:385
+#: debug_objects.php:388
+#: debug_objects.php:391
+#: debug_objects.php:394
+#: debug_objects.php:397
+#: debug_objects.php:400
+#: debug_objects.php:403
+#: debug_objects.php:406
+#: debug_objects.php:409
+#: debug_objects.php:412
+#: debug_objects.php:415
+#: debug_objects.php:418
+#: debug_objects.php:421
+#: debug_objects.php:424
+#: debug_objects.php:427
+#: debug_objects.php:430
+#: debug_objects.php:433
+#: debug_objects.php:436
+#: debug_objects.php:439
+#: debug_objects.php:442
+#: debug_objects.php:445
+#: debug_objects.php:448
+#: debug_objects.php:451
+msgid "Documentation in Codex"
+msgstr "Codex ドキュメント"
+
+#: debug_objects.php:373
+#: debug_objects.php:376
+#: debug_objects.php:379
+#: debug_objects.php:382
+#: debug_objects.php:385
+#: debug_objects.php:388
+#: debug_objects.php:391
+#: debug_objects.php:394
+#: debug_objects.php:397
+#: debug_objects.php:400
+#: debug_objects.php:403
+#: debug_objects.php:406
+#: debug_objects.php:409
+#: debug_objects.php:412
+#: debug_objects.php:415
+#: debug_objects.php:418
+#: debug_objects.php:421
+#: debug_objects.php:424
+#: debug_objects.php:427
+#: debug_objects.php:430
+#: debug_objects.php:433
+#: debug_objects.php:436
+#: debug_objects.php:439
+#: debug_objects.php:442
+#: debug_objects.php:445
+#: debug_objects.php:448
+#: debug_objects.php:451
+msgid "is"
+msgstr "is"
+
+#: debug_objects.php:374
+#: debug_objects.php:377
+#: debug_objects.php:380
+#: debug_objects.php:383
+#: debug_objects.php:386
+#: debug_objects.php:389
+#: debug_objects.php:392
+#: debug_objects.php:395
+#: debug_objects.php:398
+#: debug_objects.php:401
+#: debug_objects.php:404
+#: debug_objects.php:407
+#: debug_objects.php:410
+#: debug_objects.php:413
+#: debug_objects.php:416
+#: debug_objects.php:419
+#: debug_objects.php:422
+#: debug_objects.php:425
+#: debug_objects.php:428
+#: debug_objects.php:431
+#: debug_objects.php:434
+#: debug_objects.php:437
+#: debug_objects.php:440
+#: debug_objects.php:443
+#: debug_objects.php:446
+#: debug_objects.php:449
+#: debug_objects.php:452
+msgid "no"
+msgstr "no"
+
+#: debug_objects.php:509
+msgid "Theme Values"
+msgstr "テーマ値"
+
+#: debug_objects.php:511
+msgid "Current theme name:"
+msgstr "現在のテーマ名:"
+
+#: debug_objects.php:518
+msgid "Current theme title:"
+msgstr "現在のテーマのタイトル:"
+
+#: debug_objects.php:520
+msgid "Current theme uri:"
+msgstr "現在のテーマの URI:"
+
+#: debug_objects.php:527
+msgid "Current theme description:"
+msgstr "現在のテーマの説明:"
+
+#: debug_objects.php:534
+msgid "Current theme author:"
+msgstr "現在のテーマの作者:"
+
+#: debug_objects.php:541
+msgid "Current theme version:"
+msgstr "現在のテーマのバージョン:"
+
+#: debug_objects.php:548
+msgid "Current theme template:"
+msgstr "現在のテーマテンプレート:"
+
+#: debug_objects.php:555
+msgid "Current theme status:"
+msgstr "現在のテーマの状態:"
+
+#: debug_objects.php:556
+msgid "Current theme tags:"
+msgstr "現在のテーマのタグ:"
+
+#: debug_objects.php:564
+msgid "Current theme:"
+msgstr "現在のテーマ:"
+
+#: debug_objects.php:565
+msgid "Current theme directory:"
+msgstr "現在のテーマのディレクトリ:"
+
+#: debug_objects.php:566
+msgid "Current stylesheet:"
+msgstr "現在のスタイルシート:"
+
+#: debug_objects.php:567
+msgid "Current stylesheet directory:"
+msgstr "現在のスタイルシートのディレクトリ:"
+
+#: debug_objects.php:568
+msgid "Current template path, constant"
+msgstr "現在のテンプレートパス, 定数"
+
+#: debug_objects.php:569
+msgid "Current stylesheet path, constant"
+msgstr "現在のスタイルシートパス, 定数"
+
+#: debug_objects.php:572
+msgid "Current template file"
+msgstr "現在のテンプレートファイル"
+
+#: debug_objects.php:591
+msgid "Simple WordPress Hooks &amp; Filters Insight"
+msgstr "WordPress フック &amp; フィルターの簡易調査"
+
+#: debug_objects.php:606
+msgid "Priority"
+msgstr "優先度"
+
+#: debug_objects.php:622
+msgid "View data"
+msgstr "データを見る"
+
+#: debug_objects.php:644
+msgid "Hooks total:"
+msgstr "フック数:"
+
+#: debug_objects.php:644
+msgid "Register filter/actions total:"
+msgstr "フィルター/アクション登録数:"
+
+#: debug_objects.php:738
+#: debug_objects.php:749
+msgid "Objects total:"
+msgstr "オブジェクト数:"
+
+#: debug_objects.php:774
+msgid "by Frank B&uuml;ltge"
+msgstr "作 Frank B&uuml;ltge"
+
+#: debug_objects.php:775
+msgid "&raquo; Deactivate after analysis!"
+msgstr "&raquo; 分析後は無効化してください。"
+
+#: debug_objects.php:780
+msgid "PHP, Memory &amp; WordPress"
+msgstr "PHP, メモリ &amp; WordPress"
+
+#: debug_objects.php:781
+msgid "Conditional Tags"
+msgstr "条件分岐タグ"
+
+#: debug_objects.php:782
+msgid "Theme &amp; Template"
+msgstr "テーマ &amp; テンプレート"
+
+#: debug_objects.php:784
+msgid "Cache"
+msgstr "キャッシュ"
+
+#: debug_objects.php:786
+msgid "Hooks &amp; Filter"
+msgstr "フック &amp; フィルター"
+
+#: debug_objects.php:787
+msgid "Constants"
+msgstr "定数"
+
+#: debug_objects.php:789
+msgid "Queries"
+msgstr "クエリ"
+

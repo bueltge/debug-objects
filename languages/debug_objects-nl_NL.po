@@ -1,0 +1,632 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Debug Objects v1.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-12 19:30+0100\n"
+"PO-Revision-Date: 2010-12-15 08:59+0100\n"
+"Last-Translator: Rene <info@wpwebshop.com>\n"
+"Language-Team: Translation by WordPressWebshop.com <info@wpwebshop.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-Language: Dutch\n"
+"X-Poedit-Country: NETHERLANDS\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# @ debug_objects
+#: debug_objects.php:143
+msgid "Windows XP"
+msgstr "Windows XP"
+
+# @ debug_objects
+#: debug_objects.php:145
+msgid "Windows 2000"
+msgstr "Windows 2000"
+
+# @ debug_objects
+#: debug_objects.php:149
+msgid "Windows ME"
+msgstr "Windows ME"
+
+# @ debug_objects
+#: debug_objects.php:151
+msgid "Windows 98"
+msgstr "Windows 98"
+
+# @ debug_objects
+#: debug_objects.php:153
+msgid "Windows 95"
+msgstr "Windows 95"
+
+# @ debug_objects
+#: debug_objects.php:156
+msgid "Macintosh"
+msgstr "Macintosh"
+
+# @ debug_objects
+#: debug_objects.php:158
+msgid "Linux"
+msgstr "Linux"
+
+# @ debug_objects
+#: debug_objects.php:162
+#: debug_objects.php:169
+#: debug_objects.php:176
+#: debug_objects.php:183
+#: debug_objects.php:190
+#: debug_objects.php:197
+#: debug_objects.php:204
+#: debug_objects.php:211
+#: debug_objects.php:218
+#: debug_objects.php:258
+#: debug_objects.php:263
+#: debug_objects.php:268
+#: debug_objects.php:273
+#: debug_objects.php:278
+#: debug_objects.php:292
+#: debug_objects.php:297
+#: debug_objects.php:308
+#: debug_objects.php:313
+#: debug_objects.php:324
+#: debug_objects.php:329
+#: debug_objects.php:334
+#: debug_objects.php:339
+#: debug_objects.php:344
+#: debug_objects.php:349
+#: debug_objects.php:354
+#: debug_objects.php:359
+#: debug_objects.php:364
+#: debug_objects.php:545
+#: debug_objects.php:554
+#: debug_objects.php:561
+#: debug_objects.php:568
+#: debug_objects.php:575
+#: debug_objects.php:582
+#: debug_objects.php:590
+msgid "Undefined"
+msgstr "Ongedefinieerd"
+
+# @ debug_objects
+#: debug_objects.php:164
+#: debug_objects.php:171
+#: debug_objects.php:178
+#: debug_objects.php:185
+#: debug_objects.php:192
+#: debug_objects.php:199
+#: debug_objects.php:206
+#: debug_objects.php:213
+#: debug_objects.php:220
+msgid "OFF"
+msgstr "Niet actief"
+
+# @ debug_objects
+#: debug_objects.php:166
+msgid "s"
+msgstr "s"
+
+# @ debug_objects
+#: debug_objects.php:180
+#: debug_objects.php:187
+#: debug_objects.php:194
+#: debug_objects.php:201
+#: debug_objects.php:208
+#: debug_objects.php:215
+#: debug_objects.php:222
+msgid "ON"
+msgstr "Actief"
+
+# @ debug_objects
+#: debug_objects.php:225
+msgid "PHP Version &amp; System"
+msgstr "PHP versie &amp; Systeem"
+
+# @ debug_objects
+#: debug_objects.php:228
+msgid "PHP version:"
+msgstr "PHP versie:"
+
+# @ debug_objects
+#: debug_objects.php:229
+msgid "Server:"
+msgstr "Server:"
+
+# @ debug_objects
+#: debug_objects.php:230
+msgid "Server SW:"
+msgstr "Server SW:"
+
+# @ debug_objects
+#: debug_objects.php:231
+msgid "http User Agent:"
+msgstr "http User Agent:"
+
+# @ debug_objects
+#: debug_objects.php:232
+msgid "OS version:"
+msgstr "OS versie:"
+
+# @ debug_objects
+#: debug_objects.php:233
+msgid "Memory usage:"
+msgstr "Geheugen gebruik:"
+
+# @ debug_objects
+#: debug_objects.php:234
+msgid "Memory limit, PHP Configuration"
+msgstr "Geheugen limiet, PHP Configuratie"
+
+# @ debug_objects
+#: debug_objects.php:235
+msgid "Memory percent:"
+msgstr "Geheugen percentage:"
+
+# @ debug_objects
+#: debug_objects.php:238
+msgid "WordPress Informations"
+msgstr "WordPress Informatie"
+
+# @ debug_objects
+#: debug_objects.php:240
+msgid "Version:"
+msgstr "Versie:"
+
+# @ debug_objects
+#: debug_objects.php:241
+msgid "Language, constant"
+msgstr "Taal, constante"
+
+# @ debug_objects
+#: debug_objects.php:242
+msgid "Language folder, constant"
+msgstr "Taal folder, constante"
+
+# @ debug_objects
+#: debug_objects.php:243
+msgid "Content URL, constant"
+msgstr "Content URL, constante"
+
+# @ debug_objects
+#: debug_objects.php:244
+msgid "Content folder, constant"
+msgstr "Content folder, constante"
+
+# @ debug_objects
+#: debug_objects.php:245
+msgid "Memory limit, constant"
+msgstr "Geheugen limiet, constante"
+
+# @ debug_objects
+#: debug_objects.php:246
+msgid "Post revision, constant"
+msgstr "Bericht revisie, constante"
+
+# @ debug_objects
+#: debug_objects.php:247
+msgid "Save queries, constant"
+msgstr "Opslaan queries, constante"
+
+# @ debug_objects
+#: debug_objects.php:248
+msgid "Debug option, constant"
+msgstr "Debug optie, constante"
+
+# @ debug_objects
+#: debug_objects.php:249
+msgid "SSL Login, constant"
+msgstr "SSL Login, constante"
+
+# @ debug_objects
+#: debug_objects.php:250
+msgid "Concatenate scripts, constant"
+msgstr "Aaneenschakelen scripts, constante"
+
+# @ debug_objects
+#: debug_objects.php:251
+msgid "Compress scripts, constant"
+msgstr "Comprimeren scripts, constante"
+
+# @ debug_objects
+#: debug_objects.php:252
+msgid "Compress stylesheet, constant"
+msgstr "Comprimeren stylesheet, constante"
+
+# @ debug_objects
+#: debug_objects.php:253
+msgid "Enforce GZIP, constant"
+msgstr "Forceer GZIP, constante"
+
+# @ debug_objects
+#: debug_objects.php:254
+msgid "Autosave interval, constant"
+msgstr "Autosave interval, constante"
+
+# @ debug_objects
+#: debug_objects.php:282
+msgid "WordPress Cookie Informations"
+msgstr "WordPress Cookie Informatie"
+
+# @ debug_objects
+#: debug_objects.php:284
+msgid "Cookie domain, constant"
+msgstr "Cookie domein, constante"
+
+# @ debug_objects
+#: debug_objects.php:285
+#: debug_objects.php:320
+msgid "Cookie path, constant"
+msgstr "Cookie pad, constante"
+
+# @ debug_objects
+#: debug_objects.php:286
+msgid "Site cookie path, constant"
+msgstr "Website cookie pad, constante"
+
+# @ debug_objects
+#: debug_objects.php:287
+msgid "Plugin cookie path, constant"
+msgstr "Plugin cookie pad, constante"
+
+# @ debug_objects
+#: debug_objects.php:288
+msgid "Admin cookie path, constant"
+msgstr "Admin cookie pad, constante"
+
+# @ debug_objects
+#: debug_objects.php:301
+msgid "WordPress File Permissions Informations"
+msgstr "WordPress Bestand Permissies Informatie"
+
+# @ debug_objects
+#: debug_objects.php:303
+msgid "File Permissions, constant"
+msgstr "Bestand Permissies, constante"
+
+# @ debug_objects
+#: debug_objects.php:304
+msgid "DIR Permissions, constant"
+msgstr "DIR Permissies, constante"
+
+# @ debug_objects
+#: debug_objects.php:317
+msgid "WordPress Custom User &amp; Usermeta Tables"
+msgstr "WordPress Aangepaste Gebruiker &amp; Gebruiker Meta Tabellen"
+
+# @ debug_objects
+#: debug_objects.php:319
+msgid "Custom User Table, constant"
+msgstr "Aangepaste Gebruiker Tabel, constante"
+
+# @ debug_objects
+#: debug_objects.php:368
+msgid "WordPress FTP/SSH Informations"
+msgstr "WordPress FTP/SSH Informatie"
+
+# @ debug_objects
+#: debug_objects.php:370
+msgid "Forces the filesystem method, constant"
+msgstr "Forceert de bestandssysteem methode, constante"
+
+# @ debug_objects
+#: debug_objects.php:371
+msgid "Path to root install directory, constant"
+msgstr "Pad naar de root installatie directory, constante"
+
+# @ debug_objects
+#: debug_objects.php:372
+msgid "Absoluth path to wp-content dorectory, constant"
+msgstr "Absoluut pad naar wp-content directory, constante"
+
+# @ debug_objects
+#: debug_objects.php:373
+msgid "Absoluth path tp plugin directory, constant"
+msgstr "Absoluut pad naar plugin directory, constante"
+
+# @ debug_objects
+#: debug_objects.php:374
+msgid "Absoluth path to SSH public key, constant"
+msgstr "Absoluut pad naar SSH publieke sleutel, constante"
+
+# @ debug_objects
+#: debug_objects.php:375
+msgid "Absoluth path to SSH private key, constant"
+msgstr "Absoluut pad naar SSH privé sleutel, constante"
+
+# @ debug_objects
+#: debug_objects.php:376
+msgid "FTP or SSH username, constant"
+msgstr "FTP of SSH gebruikersnaam, constante"
+
+# @ debug_objects
+#: debug_objects.php:377
+msgid "FTP or SSH password, constant"
+msgstr "FTP or SSH wachtwoord, constante"
+
+# @ debug_objects
+#: debug_objects.php:378
+msgid "Hostname, constant"
+msgstr "Hostnaam, constante"
+
+# @ debug_objects
+#: debug_objects.php:381
+msgid "WordPress Query Informations"
+msgstr "WordPress Query Informatie"
+
+# @ debug_objects
+#: debug_objects.php:385
+msgid "See more Details with my plugin"
+msgstr "Meer details met deze plugin"
+
+# @ debug_objects
+#: debug_objects.php:400
+msgid "The Conditional Tags can be used in your Template files to change what content is displayed and how that content is displayed on a particular page depending on what conditions that page matches. You see on this view the condition of all possible tags."
+msgstr "De Conditionele Tags kunnen gebruikt worden in je sjabloon bestanden om te veranderen welke content weergegeven wordt en hoe de content weergegeven wordt op een willekeurige pagina, afhankelijk van de condities die overeenkomen met de pagina. Je ziet op dit scherm de condities van alle mogelijke tags."
+
+# @ debug_objects
+#: debug_objects.php:403
+#: debug_objects.php:406
+#: debug_objects.php:409
+#: debug_objects.php:412
+#: debug_objects.php:415
+#: debug_objects.php:418
+#: debug_objects.php:421
+#: debug_objects.php:424
+#: debug_objects.php:427
+#: debug_objects.php:430
+#: debug_objects.php:433
+#: debug_objects.php:436
+#: debug_objects.php:439
+#: debug_objects.php:442
+#: debug_objects.php:445
+#: debug_objects.php:448
+#: debug_objects.php:451
+#: debug_objects.php:454
+#: debug_objects.php:457
+#: debug_objects.php:460
+#: debug_objects.php:463
+#: debug_objects.php:466
+#: debug_objects.php:469
+#: debug_objects.php:472
+#: debug_objects.php:475
+#: debug_objects.php:478
+#: debug_objects.php:481
+msgid "Documentation in Codex"
+msgstr "Documentatie in Codex"
+
+# @ debug_objects
+#: debug_objects.php:403
+#: debug_objects.php:406
+#: debug_objects.php:409
+#: debug_objects.php:412
+#: debug_objects.php:415
+#: debug_objects.php:418
+#: debug_objects.php:421
+#: debug_objects.php:424
+#: debug_objects.php:427
+#: debug_objects.php:430
+#: debug_objects.php:433
+#: debug_objects.php:436
+#: debug_objects.php:439
+#: debug_objects.php:442
+#: debug_objects.php:445
+#: debug_objects.php:448
+#: debug_objects.php:451
+#: debug_objects.php:454
+#: debug_objects.php:457
+#: debug_objects.php:460
+#: debug_objects.php:463
+#: debug_objects.php:466
+#: debug_objects.php:469
+#: debug_objects.php:472
+#: debug_objects.php:475
+#: debug_objects.php:478
+#: debug_objects.php:481
+msgid "is"
+msgstr "is"
+
+# @ debug_objects
+#: debug_objects.php:404
+#: debug_objects.php:407
+#: debug_objects.php:410
+#: debug_objects.php:413
+#: debug_objects.php:416
+#: debug_objects.php:419
+#: debug_objects.php:422
+#: debug_objects.php:425
+#: debug_objects.php:428
+#: debug_objects.php:431
+#: debug_objects.php:434
+#: debug_objects.php:437
+#: debug_objects.php:440
+#: debug_objects.php:443
+#: debug_objects.php:446
+#: debug_objects.php:449
+#: debug_objects.php:452
+#: debug_objects.php:455
+#: debug_objects.php:458
+#: debug_objects.php:461
+#: debug_objects.php:464
+#: debug_objects.php:467
+#: debug_objects.php:470
+#: debug_objects.php:473
+#: debug_objects.php:476
+#: debug_objects.php:479
+#: debug_objects.php:482
+msgid "no"
+msgstr "nee"
+
+# @ debug_objects
+#: debug_objects.php:539
+msgid "Theme Values"
+msgstr "Sjabloon Waarden"
+
+# @ debug_objects
+#: debug_objects.php:541
+msgid "Current theme name:"
+msgstr "Huidige sjabloon naam:"
+
+# @ debug_objects
+#: debug_objects.php:548
+msgid "Current theme title:"
+msgstr "Huidige sjabloon titel:"
+
+# @ debug_objects
+#: debug_objects.php:550
+msgid "Current theme uri:"
+msgstr "Huidige sjabloon URI:"
+
+# @ debug_objects
+#: debug_objects.php:557
+msgid "Current theme description:"
+msgstr "Huidige sjabloon omschrijving:"
+
+# @ debug_objects
+#: debug_objects.php:564
+msgid "Current theme author:"
+msgstr "Huidige sjabloon auteur:"
+
+# @ debug_objects
+#: debug_objects.php:571
+msgid "Current theme version:"
+msgstr "Huidige sjabloon versie:"
+
+# @ debug_objects
+#: debug_objects.php:578
+msgid "Current theme template:"
+msgstr "Huidige sjabloon template:"
+
+# @ debug_objects
+#: debug_objects.php:585
+msgid "Current theme status:"
+msgstr "Huidige sjabloon status:"
+
+# @ debug_objects
+#: debug_objects.php:586
+msgid "Current theme tags:"
+msgstr "Huidige sjabloon tags:"
+
+# @ debug_objects
+#: debug_objects.php:594
+msgid "Current theme:"
+msgstr "Huidig sjabloon:"
+
+# @ debug_objects
+#: debug_objects.php:595
+msgid "Current theme directory:"
+msgstr "Huidige sjabloon directory:"
+
+# @ debug_objects
+#: debug_objects.php:596
+msgid "Current stylesheet:"
+msgstr "Huidige stylesheet:"
+
+# @ debug_objects
+#: debug_objects.php:597
+msgid "Current stylesheet directory:"
+msgstr "Huidige stylesheet directory:"
+
+# @ debug_objects
+#: debug_objects.php:598
+msgid "Current template path, constant"
+msgstr "Huidig sjabloon pad, constante"
+
+# @ debug_objects
+#: debug_objects.php:599
+msgid "Current stylesheet path, constant"
+msgstr "Huidig stylesheet pad, constante"
+
+# @ debug_objects
+#: debug_objects.php:603
+msgid "Current template file"
+msgstr "Huidig template bestand"
+
+# @ debug_objects
+#: debug_objects.php:623
+msgid "Simple WordPress Hooks &amp; Filters Insight"
+msgstr "Inzicht Simpele WordPress Hooks &amp; Filters"
+
+# @ debug_objects
+#: debug_objects.php:638
+msgid "Priority"
+msgstr "Prioriteit"
+
+# @ debug_objects
+#: debug_objects.php:654
+msgid "View data"
+msgstr "Weergave data"
+
+# @ debug_objects
+#: debug_objects.php:676
+msgid "Hooks total:"
+msgstr "Hooks totaal:"
+
+# @ debug_objects
+#: debug_objects.php:676
+msgid "Register filter/actions total:"
+msgstr "Registratie totaal filter/acties:"
+
+# @ debug_objects
+#: debug_objects.php:782
+#: debug_objects.php:793
+msgid "Objects total:"
+msgstr "Totaal objects:"
+
+# @ debug_objects
+#: debug_objects.php:818
+msgid "by Frank B&uuml;ltge"
+msgstr "door Frank B&uuml;ltge"
+
+# @ debug_objects
+#: debug_objects.php:819
+msgid "&raquo; Deactivate after analysis!"
+msgstr "&raquo; Deactiveren na analyse!"
+
+# @ debug_objects
+#: debug_objects.php:824
+msgid "PHP, Memory &amp; WordPress"
+msgstr "PHP, Geheugen &amp; WordPress"
+
+# @ debug_objects
+#: debug_objects.php:825
+msgid "Conditional Tags"
+msgstr "Conditionele Tags"
+
+# @ debug_objects
+#: debug_objects.php:826
+msgid "Theme &amp; Template"
+msgstr "Sjabloon &amp; Template"
+
+# @ debug_objects
+#: debug_objects.php:828
+msgid "Cache"
+msgstr "Cache"
+
+# @ debug_objects
+#: debug_objects.php:830
+msgid "Hooks &amp; Filter"
+msgstr "Hooks &amp; Filter"
+
+# @ debug_objects
+#: debug_objects.php:831
+msgid "Constants"
+msgstr "Constanten"
+
+# @ debug_objects
+#: debug_objects.php:833
+msgid "Queries"
+msgstr "Queries"
+
+# @ debug_objects
+#: debug_objects.php:383
+msgid "Queries:"
+msgstr "Queries:"
+
+# @ debug_objects
+#: debug_objects.php:387
+msgid "Timer stop:"
+msgstr "Timer Stop:"
+

@@ -1,0 +1,1 @@
+function toggle(a){var b=document.getElementById(a);if(b.style.display!="block"){b.style.display="block"}else{b.style.display="none"}}(function(a){a(function(){a("#debugobjectstabs").tabs({cache:true,cookie:{expires:7}})});a("#wpadminbar").click(function(){a("html, body").animate({scrollTop:0},100)});a("#wpadminbar li").click(function(a){a.stopPropagation()})})(jQuery)

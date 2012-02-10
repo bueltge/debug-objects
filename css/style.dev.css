@@ -1,0 +1,111 @@
+/* Begin Debug Objects CSS */
+#debugobjects * {
+	margin: 0;
+	font-size: 12px;
+}
+
+div#debugobjects {
+	left: 1%;
+	right: 1%;
+	margin: 30px 10px;
+	font-size: 12px !important; /* fix for all themes */
+	color: #fff;
+	text-align: left;
+	z-index: 999;
+}
+
+div#debugobjectstabs {
+	padding: 10px;
+}
+
+div#debugobjectstabs, .ui-corner-all {
+	border: 1px solid #DFDFDF;
+	border-radius: 3px;
+}
+
+
+div#debugobjects ol li {
+	margin: 5px 0 5px 15px;
+}
+
+div#debugobjects #memory ul, div#debugobjects #conditional_tags ul, 
+div#debugobjects #hooks ul, div#debugobjects #template ul, 
+div#debugobjects #cache ul, div#debugobjects #constants ul,
+div#debugobjects #queries ul {
+	list-style-type: disc;
+}
+
+div#debugobjects #constants ul li,
+div#debugobjects #queries ul {
+	padding: 10px;
+	margin: 10px;
+}
+
+div#debugobjects h4, div#debugobjects h4 a, .h4 {
+	color: #000;
+	font-weight: 900;
+	line-height: 2em;
+}
+
+div#debugobjects #memory li a, div#debugobjects #conditional_tags li a, div#debugobjects #debughooks li a, div#debugobjects #template li a, #debugobjects table td span {
+	color: #114477;
+	text-decoration: underline;
+}
+
+div#debugobjects #memory li a:hover, div#debugobjects #conditional_tags li a:hover, div#debugobjects #debughooks li a:hover, div#debugobjects #template li a:hover {
+	color: #fff;
+	background: #114477;
+	text-decoration: none;
+}
+
+div#debugobjects .alternate, div#debugobjects .alt {
+	background: #e6e6e6;
+}
+
+div#debugobjects #memory li, div#debugobjects #conditional_tags li, div#debugobjects #debughooks li li {
+	padding: 3px 5px;
+}
+
+div#debugobjects table {
+	width: 100%;
+}
+
+div#debugobjects ul li:hover, div#debugobjects ol li:hover,
+div#debugobjects tr:hover {
+	background: #D54E21;
+}
+
+div#debugobjects li.none_list {
+	list-style-type: none;
+}
+
+#hook_table table, #hook_table th {
+	width: 100%;
+	border: 1px solid #DADADA;
+}
+
+#hook_table th {
+	font-weight: 900;
+	padding: 5px 0;
+}
+
+#hook_table td {
+	border: 1px solid #DADADA;
+	padding: 2px 0;
+	vertical-align:top;
+	overflow:hidden;
+}
+
+#debugqueries {
+	display: none !important;
+}
+
+.high_query_time {
+	border: 2px solid orange;
+}
+
+.big_query_time {
+	border: 2px solid red;
+}
+
+/* End Debug Objects CSS */

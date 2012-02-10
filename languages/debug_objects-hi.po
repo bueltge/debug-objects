@@ -1,0 +1,531 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Debug Objects\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-12 19:30+0100\n"
+"PO-Revision-Date: 2010-08-11 11:56+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Language: Hindi\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: debug_objects.php:116
+msgid "Windows XP"
+msgstr ""
+
+#: debug_objects.php:118
+msgid "Windows 2000"
+msgstr ""
+
+#: debug_objects.php:122
+msgid "Windows ME"
+msgstr ""
+
+#: debug_objects.php:124
+msgid "Windows 98"
+msgstr ""
+
+#: debug_objects.php:126
+msgid "Windows 95"
+msgstr ""
+
+#: debug_objects.php:129
+msgid "Macintosh"
+msgstr ""
+
+#: debug_objects.php:131
+msgid "Linux"
+msgstr ""
+
+#: debug_objects.php:135
+#: debug_objects.php:142
+#: debug_objects.php:149
+#: debug_objects.php:156
+#: debug_objects.php:163
+#: debug_objects.php:170
+#: debug_objects.php:177
+#: debug_objects.php:184
+#: debug_objects.php:191
+#: debug_objects.php:231
+#: debug_objects.php:236
+#: debug_objects.php:241
+#: debug_objects.php:246
+#: debug_objects.php:251
+#: debug_objects.php:265
+#: debug_objects.php:270
+#: debug_objects.php:281
+#: debug_objects.php:286
+#: debug_objects.php:297
+#: debug_objects.php:302
+#: debug_objects.php:307
+#: debug_objects.php:312
+#: debug_objects.php:317
+#: debug_objects.php:322
+#: debug_objects.php:327
+#: debug_objects.php:332
+#: debug_objects.php:337
+#: debug_objects.php:515
+#: debug_objects.php:524
+#: debug_objects.php:531
+#: debug_objects.php:538
+#: debug_objects.php:545
+#: debug_objects.php:552
+#: debug_objects.php:560
+msgid "Undefined"
+msgstr "अपरिभाषित"
+
+#: debug_objects.php:137
+#: debug_objects.php:144
+#: debug_objects.php:151
+#: debug_objects.php:158
+#: debug_objects.php:165
+#: debug_objects.php:172
+#: debug_objects.php:179
+#: debug_objects.php:186
+#: debug_objects.php:193
+msgid "OFF"
+msgstr "बंद"
+
+#: debug_objects.php:139
+msgid "s"
+msgstr ""
+
+#: debug_objects.php:153
+#: debug_objects.php:160
+#: debug_objects.php:167
+#: debug_objects.php:174
+#: debug_objects.php:181
+#: debug_objects.php:188
+#: debug_objects.php:195
+msgid "ON"
+msgstr "सक्रिय"
+
+#: debug_objects.php:198
+msgid "PHP Version &amp; System"
+msgstr "PHP  अधिकृत और प्रणाली"
+
+#: debug_objects.php:201
+msgid "PHP version:"
+msgstr "PHP  अधिकृत:"
+
+#: debug_objects.php:202
+msgid "Server:"
+msgstr "परिसेवक:"
+
+#: debug_objects.php:203
+msgid "Server SW:"
+msgstr "परिसेवक सॉफ्टवेयर:"
+
+#: debug_objects.php:204
+msgid "http User Agent:"
+msgstr "http उपयोगकर्ता एजेंट:"
+
+#: debug_objects.php:205
+msgid "OS version:"
+msgstr "प्रचालन तंत्र अधिकृत:"
+
+#: debug_objects.php:206
+msgid "Memory usage:"
+msgstr "स्मृति के उपयोग:"
+
+#: debug_objects.php:207
+msgid "Memory limit, PHP Configuration"
+msgstr "स्मृति सीमा PHP विकल्प"
+
+#: debug_objects.php:208
+msgid "Memory percent:"
+msgstr "स्मृति प्रतिशत:"
+
+#: debug_objects.php:211
+msgid "WordPress Informations"
+msgstr "WordPress सूचना"
+
+#: debug_objects.php:213
+msgid "Version:"
+msgstr "अधिकृत:"
+
+#: debug_objects.php:214
+msgid "Language, constant"
+msgstr "भाषा अचल"
+
+#: debug_objects.php:215
+msgid "Language folder, constant"
+msgstr "भाषा फ़ोल्डर अचल"
+
+#: debug_objects.php:216
+msgid "Content URL, constant"
+msgstr "wp-content URL, अचल"
+
+#: debug_objects.php:217
+msgid "Content folder, constant"
+msgstr "wp-content फ़ोल्डर अचल"
+
+#: debug_objects.php:218
+msgid "Memory limit, constant"
+msgstr "स्मृति सीमा अचल"
+
+#: debug_objects.php:219
+msgid "Post revision, constant"
+msgstr "लेख संशोधन अचल"
+
+#: debug_objects.php:220
+msgid "Save queries, constant"
+msgstr "प्रश्नों को बचाने के अचल"
+
+#: debug_objects.php:221
+msgid "Debug option, constant"
+msgstr "विकल्प डिबग अचल"
+
+#: debug_objects.php:222
+msgid "SSL Login, constant"
+msgstr "ssl लॉगिन अचल"
+
+#: debug_objects.php:223
+msgid "Concatenate scripts, constant"
+msgstr "सिलसिला मिलाना कंस्टन्ट"
+
+#: debug_objects.php:224
+msgid "Compress scripts, constant"
+msgstr "लिपियों सेक अचल"
+
+#: debug_objects.php:225
+msgid "Compress stylesheet, constant"
+msgstr "शैली पत्रक सेक अचल"
+
+#: debug_objects.php:226
+msgid "Enforce GZIP, constant"
+msgstr "gzip लागू अचल"
+
+#: debug_objects.php:227
+msgid "Autosave interval, constant"
+msgstr "अंतराल को बचाने अचल"
+
+#: debug_objects.php:255
+msgid "WordPress Cookie Informations"
+msgstr "WordPress कुकी जानकारी"
+
+#: debug_objects.php:257
+msgid "Cookie domain, constant"
+msgstr "कुकी डोमेन अचल"
+
+#: debug_objects.php:258
+#: debug_objects.php:293
+msgid "Cookie path, constant"
+msgstr "कुकी पथ अचल"
+
+#: debug_objects.php:259
+msgid "Site cookie path, constant"
+msgstr "साइट कुकी पथ अचल"
+
+#: debug_objects.php:260
+msgid "Plugin cookie path, constant"
+msgstr "प्लगइन साइट कुकी पथ अचल"
+
+#: debug_objects.php:261
+msgid "Admin cookie path, constant"
+msgstr "प्रशासन साइट कुकी पथ अचल"
+
+#: debug_objects.php:274
+msgid "WordPress File Permissions Informations"
+msgstr "WordPress फ़ाइल अनुमतियाँ सूचना"
+
+#: debug_objects.php:276
+msgid "File Permissions, constant"
+msgstr "फ़ाइल अनुमतियाँ अचल"
+
+#: debug_objects.php:277
+msgid "DIR Permissions, constant"
+msgstr "फ़ोल्डर अनुमतियाँ अचल"
+
+#: debug_objects.php:290
+msgid "WordPress Custom User &amp; Usermeta Tables"
+msgstr "WordPress कस्टम उपयोगकर्ता तालिका"
+
+#: debug_objects.php:292
+msgid "Custom User Table, constant"
+msgstr "कस्टम उपयोगकर्ता तालिका अचल"
+
+#: debug_objects.php:341
+msgid "WordPress FTP/SSH Informations"
+msgstr "WordPress FTP/SSH सूचना"
+
+#: debug_objects.php:343
+msgid "Forces the filesystem method, constant"
+msgstr "बल फाइल सिस्टम विधि अचल"
+
+#: debug_objects.php:344
+msgid "Path to root install directory, constant"
+msgstr "स्थापना फ़ोल्डर पथ रूट करने के लिए अचल"
+
+#: debug_objects.php:345
+msgid "Absoluth path to wp-content dorectory, constant"
+msgstr "फ़ोल्डर में पूर्ण पथ wp-content अचल"
+
+#: debug_objects.php:346
+msgid "Absoluth path tp plugin directory, constant"
+msgstr "निरपेक्ष पथ फ़ोल्डर प्लगइन अचल"
+
+#: debug_objects.php:347
+msgid "Absoluth path to SSH public key, constant"
+msgstr "सार्वजनिक ssh कुंजी को पूर्ण पथ अचल"
+
+#: debug_objects.php:348
+msgid "Absoluth path to SSH private key, constant"
+msgstr "निजी ssh कुंजी को पूर्ण पथ अचल"
+
+#: debug_objects.php:349
+msgid "FTP or SSH username, constant"
+msgstr "ftp या ssh उपयोगकर्ता नाम अचल"
+
+#: debug_objects.php:350
+msgid "FTP or SSH password, constant"
+msgstr "ftp या ssh पासवर्ड अचल"
+
+#: debug_objects.php:351
+msgid "Hostname, constant"
+msgstr "होस्टनाम अचल"
+
+#: debug_objects.php:354
+msgid "WordPress Query Informations"
+msgstr "WordPress क्वेरी जानकारी"
+
+#: debug_objects.php:356
+msgid "Queries: "
+msgstr "प्रश्नों:"
+
+#: debug_objects.php:356
+msgid "See more Details with my plugin"
+msgstr "अपने प्लगइन के साथ और अधिक विवरण देखें"
+
+#: debug_objects.php:357
+msgid "Timer stop: "
+msgstr "घड़ी बंद:"
+
+#: debug_objects.php:370
+msgid "The Conditional Tags can be used in your Template files to change what content is displayed and how that content is displayed on a particular page depending on what conditions that page matches. You see on this view the condition of all possible tags."
+msgstr ""
+
+#: debug_objects.php:373
+#: debug_objects.php:376
+#: debug_objects.php:379
+#: debug_objects.php:382
+#: debug_objects.php:385
+#: debug_objects.php:388
+#: debug_objects.php:391
+#: debug_objects.php:394
+#: debug_objects.php:397
+#: debug_objects.php:400
+#: debug_objects.php:403
+#: debug_objects.php:406
+#: debug_objects.php:409
+#: debug_objects.php:412
+#: debug_objects.php:415
+#: debug_objects.php:418
+#: debug_objects.php:421
+#: debug_objects.php:424
+#: debug_objects.php:427
+#: debug_objects.php:430
+#: debug_objects.php:433
+#: debug_objects.php:436
+#: debug_objects.php:439
+#: debug_objects.php:442
+#: debug_objects.php:445
+#: debug_objects.php:448
+#: debug_objects.php:451
+msgid "Documentation in Codex"
+msgstr "कोडेक्स में दस्तावेज़ीकरण"
+
+#: debug_objects.php:373
+#: debug_objects.php:376
+#: debug_objects.php:379
+#: debug_objects.php:382
+#: debug_objects.php:385
+#: debug_objects.php:388
+#: debug_objects.php:391
+#: debug_objects.php:394
+#: debug_objects.php:397
+#: debug_objects.php:400
+#: debug_objects.php:403
+#: debug_objects.php:406
+#: debug_objects.php:409
+#: debug_objects.php:412
+#: debug_objects.php:415
+#: debug_objects.php:418
+#: debug_objects.php:421
+#: debug_objects.php:424
+#: debug_objects.php:427
+#: debug_objects.php:430
+#: debug_objects.php:433
+#: debug_objects.php:436
+#: debug_objects.php:439
+#: debug_objects.php:442
+#: debug_objects.php:445
+#: debug_objects.php:448
+#: debug_objects.php:451
+msgid "is"
+msgstr "है"
+
+#: debug_objects.php:374
+#: debug_objects.php:377
+#: debug_objects.php:380
+#: debug_objects.php:383
+#: debug_objects.php:386
+#: debug_objects.php:389
+#: debug_objects.php:392
+#: debug_objects.php:395
+#: debug_objects.php:398
+#: debug_objects.php:401
+#: debug_objects.php:404
+#: debug_objects.php:407
+#: debug_objects.php:410
+#: debug_objects.php:413
+#: debug_objects.php:416
+#: debug_objects.php:419
+#: debug_objects.php:422
+#: debug_objects.php:425
+#: debug_objects.php:428
+#: debug_objects.php:431
+#: debug_objects.php:434
+#: debug_objects.php:437
+#: debug_objects.php:440
+#: debug_objects.php:443
+#: debug_objects.php:446
+#: debug_objects.php:449
+#: debug_objects.php:452
+msgid "no"
+msgstr "न"
+
+#: debug_objects.php:509
+msgid "Theme Values"
+msgstr "विषय मान"
+
+#: debug_objects.php:511
+msgid "Current theme name:"
+msgstr "चालू विषय का नाम:"
+
+#: debug_objects.php:518
+msgid "Current theme title:"
+msgstr "चालू विषय शीर्षक:"
+
+#: debug_objects.php:520
+msgid "Current theme uri:"
+msgstr "चालू विषय uri:"
+
+#: debug_objects.php:527
+msgid "Current theme description:"
+msgstr "चालू विषय विवरण:"
+
+#: debug_objects.php:534
+msgid "Current theme author:"
+msgstr "चालू विषय लेखक:"
+
+#: debug_objects.php:541
+msgid "Current theme version:"
+msgstr "चालू विषय अधिकृत:"
+
+#: debug_objects.php:548
+msgid "Current theme template:"
+msgstr "चालू विषय टेम्पलेट:"
+
+#: debug_objects.php:555
+msgid "Current theme status:"
+msgstr "चालू विषय हैसियत:"
+
+#: debug_objects.php:556
+msgid "Current theme tags:"
+msgstr "चालू विषय टैग:"
+
+#: debug_objects.php:564
+msgid "Current theme:"
+msgstr "चालू विषय:"
+
+#: debug_objects.php:565
+msgid "Current theme directory:"
+msgstr "चालू विषय uri:"
+
+#: debug_objects.php:566
+msgid "Current stylesheet:"
+msgstr "चालू शैली पत्रक:"
+
+#: debug_objects.php:567
+msgid "Current stylesheet directory:"
+msgstr "चालू शैली पत्रक फ़ोल्डर:"
+
+#: debug_objects.php:568
+msgid "Current template path, constant"
+msgstr "चालू टेम्पलेट पथ अचल"
+
+#: debug_objects.php:569
+msgid "Current stylesheet path, constant"
+msgstr "चालू शैली पत्रक फ़ोल्डर अचल"
+
+#: debug_objects.php:572
+msgid "Current template file"
+msgstr "चालू टेम्पलेट फ़ाइल"
+
+#: debug_objects.php:591
+msgid "Simple WordPress Hooks &amp; Filters Insight"
+msgstr "सरल WordPress हुक और अंतर्दृष्टि फिल्टर"
+
+#: debug_objects.php:606
+msgid "Priority"
+msgstr "अग्रता"
+
+#: debug_objects.php:622
+msgid "View data"
+msgstr "दृश्य डेटा"
+
+#: debug_objects.php:644
+msgid "Hooks total:"
+msgstr "कुल हुक:"
+
+#: debug_objects.php:644
+msgid "Register filter/actions total:"
+msgstr "रजिस्टर फिल्टर / कार्रवाई कुल:"
+
+#: debug_objects.php:738
+#: debug_objects.php:749
+msgid "Objects total:"
+msgstr "कुल वस्तुओं:"
+
+#: debug_objects.php:774
+msgid "by Frank B&uuml;ltge"
+msgstr "उप Frank B&uuml;ltge"
+
+#: debug_objects.php:775
+msgid "&raquo; Deactivate after analysis!"
+msgstr "&raquo; विश्लेषण के बाद निष्क्रिय"
+
+#: debug_objects.php:780
+msgid "PHP, Memory &amp; WordPress"
+msgstr "PHP स्मृति और WordPress"
+
+#: debug_objects.php:781
+msgid "Conditional Tags"
+msgstr "सशर्त टैग"
+
+#: debug_objects.php:782
+msgid "Theme &amp; Template"
+msgstr "विषय और टेम्पलेट"
+
+#: debug_objects.php:784
+msgid "Cache"
+msgstr "कैश"
+
+#: debug_objects.php:786
+msgid "Hooks &amp; Filter"
+msgstr "हुक और फिल्टर"
+
+#: debug_objects.php:787
+msgid "Constants"
+msgstr "स्थिरांक"
+
+#: debug_objects.php:789
+msgid "Queries"
+msgstr "प्रश्नों"
+
