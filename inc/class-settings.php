@@ -293,6 +293,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 						<li><a href="http://wordpress.org/extend/plugins/debug-objects/" title="<?php esc_attr_e( 'The Plugin on the WordPress plugin repository', self :: get_textdomain() ); ?>"><?php _e( 'Give the plugin a good rating.', self :: get_textdomain() ); ?></a></li>
 						<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=6069955" title="<?php esc_attr_e( 'Donate via PayPal', self :: get_textdomain() ); ?>"><?php _e( 'Donate a few euros.', self :: get_textdomain() ); ?></a></li>
 						<li><a href="http://www.amazon.de/gp/registry/3NTOGEK181L23/ref=wl_s_3" title="<?php esc_attr_e( 'Frank Bültge\'s Amazon Wish List', self :: get_textdomain() ); ?>"><?php _e( 'Get me something from my wish list.', self :: get_textdomain() ); ?></a></li>
+						<li><a href="https://github.com/bueltge/Debug-Objects" title="<?php esc_attr_e( 'I waiting for your pull requests!', self :: get_textdomain() ); ?>"><?php _e( 'Fork it or improve it; open issues on github.', self :: get_textdomain() ); ?></a></li>
 					</ul>
 				</div>
 			</div>
