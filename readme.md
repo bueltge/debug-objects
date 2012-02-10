@@ -4,7 +4,7 @@ The WordPress Plugin *Debug Objects* provides a large number of information: que
 ## Description
 The Plugin Debug Objects provides the user, which has the appropriate rights, normally the administrator, a large number of information: query, cache, constants, hooks, functions and many many more. Values and content get displayed at the frontend and backend of the blog, to analyze errors but also to better understand and develop with/for WordPress.
 
-### The Plugin provides in various tabs information to:
+*The Plugin provides in various tabs information to:*
 * PHP
 * Memory usage
 * Load Time
@@ -47,7 +47,7 @@ There are no data in the database and there are no settings. Therefore, the inst
 
 
 ## Screenshots
- * [See this example Screenshot in WordPress 3.3](https://github.com/bueltge/Debug-Objects/blob/master/screenshot-1.png)
+ * [See this example screenshot in WordPress 3.3](https://github.com/bueltge/Debug-Objects/blob/master/screenshot-1.png)
 
 
 ## Other Notes
@@ -55,7 +55,7 @@ There are no data in the database and there are no settings. Therefore, the inst
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a [small donation](http://bueltge.de/wunschliste/ "Wishliste and Donate") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 ### Translations
-The plugin comes with various translations, please refer to the [WordPress Codex](http://codex.wordpress.org/Installing_WordPress_in_Your_Language "Installing WordPress in Your Language") for more information about activating the translation. If you want to help to translate the plugin to your language, please have a look at the .pot file which contains all defintions and may be used with a [gettext](http://www.gnu.org/software/gettext/) editor like [Poedit](http://www.poedit.net/) (Windows).
+The plugin comes with various translations, please refer to the [WordPress Codex](http://codex.wordpress.org/Installing_WordPress_in_Your_Language "Installing WordPress in Your Language") for more information about activating the translation. If you want to help to translate the plugin to your language, please have a look at the .pot file which contains all defintions and may be used with a [gettext](http://www.gnu.org/software/gettext/) editor like [Poedit](http://www.poedit.net/) (Linux, Mac OS X, Windows).
 
 ### Contact & Feedback
 The plugin is designed and developed by me ([Frank Bültge](http://bueltge.de))
