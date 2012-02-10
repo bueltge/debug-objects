@@ -1,7 +1,8 @@
-The Plugin Debug Objects provides a large number of information: query, cache, constants, hooks, functions and many more.
+# Debug Objects
+The WordPress Plugin *Debug Objects* provides a large number of information: query, cache, constants, hooks, functions and many more.
 
 ## Description
-____________
+
 The Plugin Debug Objects provides the user, which has the appropriate rights, normally the administrator, a large number of information: query, cache, constants, hooks, functions and many many more. Values and content get displayed at the frontend and backend of the blog, to analyze errors but also to better understand and develop with/for WordPress.
 
 ### The Plugin provides in various tabs information to:
@@ -35,7 +36,6 @@ There are no data in the database and there are no settings. Therefore, the inst
 
 
 ## Installation
-____________
 
 ### Requirements
 
@@ -52,12 +52,11 @@ ____________
 
 
 ## Screenshots
-____________
+
 1. Example Screenshot (WordPress 3.3)
 
 
 ## Other Notes
-___________
 
 ### Licence
 
@@ -68,5 +67,5 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 The plugin comes with various translations, please refer to the [WordPress Codex](http://codex.wordpress.org/Installing_WordPress_in_Your_Language "Installing WordPress in Your Language") for more information about activating the translation. If you want to help to translate the plugin to your language, please have a look at the .pot file which contains all defintions and may be used with a [gettext](http://www.gnu.org/software/gettext/) editor like [Poedit](http://www.poedit.net/) (Windows).
 
 ## Changelog
-_________
+
  * [see on the page](http://wordpress.org/extend/plugins/debug-objects/)
