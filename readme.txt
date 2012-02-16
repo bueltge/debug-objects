@@ -75,7 +75,7 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 == Changelog ==
 = 2.1.3 =
-* Fix, enhanced itesm for global php variables on php tab
+* Fix, enhanced items for global php variables on php tab
 
 = 2.1.2 =
 * Fix for use an private method
