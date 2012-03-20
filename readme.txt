@@ -74,6 +74,9 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * german language file
 
 == Changelog ==
+= 2.1.4 =
+* Full compatible to PHP 5.3 ([PHP 5.3] The use of function ereg_replace() is discouraged; use preg_replace() instead)
+
 = 2.1.3 =
 * Fix, enhanced items for global php variables on php tab
 
