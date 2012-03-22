@@ -10,11 +10,11 @@
  * Text Domain: debug_objects
  * Domain Path: /languages
  * Description: List filter and action-hooks, cache data, defined constants, qieries, included scripts and styles, php and memory informations and return of conditional tags only for admins; for debug, informations or learning purposes. Setting output in the settings of the plugin and use output via setting or url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days
- * Version:     2.1.2
+ * Version:     2.1.4
  * License:     GPLv3
  * Author:      Frank B&uuml;ltge
  * Author URI:  http://bueltge.de/
- * Last Change: 02/09/2012
+ * Last Change: 03/22/2012
  */
 
 // error_reporting(E_ALL);
@@ -100,6 +100,12 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			else
 				$options = get_option( self :: $option_string );
 			
+			if ( ( isset( $options['frontend'] ) && '1' === $options['frontend'] ) || 
+				( isset( $options['backend'] ) && '1' === $options['backend'] ) )
+				$view = TRUE;
+			else
+				$view = FALSE;
+			
 			// exclude options from include classes
 			foreach ( self :: $exclude_class as $exclude_class )
 				unset( $options[ strtolower( $exclude_class ) ] );
@@ -114,9 +120,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			
 			self::set_cookie_control();
 			
-			if ( ( isset( $options['frontend'] ) && '1' === $options['frontend'] ) || 
-				 ( isset( $options['backend'] ) && '1' === $options['backend'] ) || 
-				 self::debug_control()
+			if ( $view || self::debug_control()
 			) {
 				foreach ( $classes as $key => $require )
 					require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-' . strtolower( $require ) . '.php';

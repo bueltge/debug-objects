@@ -4,7 +4,7 @@ Donate link: http://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, 
 Requires at least: 3.3
 Tested up to: 3.4-alpha
-Stable tag: 2.1.2
+Stable tag: 2.1.4
 
 The Plugin Debug Objects provides a large number of information: query, cache, constants, hooks, functions and many more.
 
@@ -38,6 +38,9 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 
 The plugin does not filter values and should only be used for information and optimization, I don't recommended to use it on a live blog. For developers it can rapidly deliver data, which is useful in a development environment.
 There are no data in the database and there are no settings. Therefore, the installation is pretty simple: Just upload the Plugin in the Plugin directory or use the automatic installation of the backend to install and activate the Plugin. In the footer of the frontend of the blog, you can see the information.
+
+= Bugs, technical hints or contribute =
+Please give us feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/bueltge/Debug-Objects).
 
 = More Plugins = 
 Please see also my [Premium Plugins](http://wpplugins.com/author/malo.conny/). Maybe you find an solution for your requirement.
@@ -75,7 +78,13 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Romanian language files, thanks to [Alexander Ovsov](http://webhostinggeeks.com/)
 
 == Changelog ==
-= 2.2.2 =
+= 2.1.4 =
+* Full compatible to PHP 5.3 ([PHP 5.3] The use of function ereg_replace() is discouraged; use preg_replace() instead)
+
+= 2.1.3 =
+* Fix, enhanced items for global php variables on php tab
+
+= 2.1.2 =
 * Fix for use an private method
 * Fix for cache and debug mode
 * Change load time, if dont view items; many faster now

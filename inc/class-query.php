@@ -93,7 +93,7 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 						. ' (' . $time . __( 's', parent :: get_plugin_data() ) . ')</li>';
 					if ( isset($q[1]) && ! empty($q[1]) ) {
 						$s = nl2br( esc_html( $q[0] ) );
-						$s = trim( ereg_replace( '[[:space:]]+', ' ', $s) );
+						$s = trim( preg_replace( '/[[:space:]]+/', ' ', $s) );
 						$debug_queries .= '<li class="none_list"><strong>' . __( 'Query:', parent :: get_plugin_data() ) . '</strong> <code>' . $s . '</code></li>';
 					}
 					if ( isset($q[2]) && ! empty( $q[2] ) ) {

@@ -180,7 +180,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 * Return form and markup on settings page
 		 * 
 		 * @uses    settings_fields, normalize_whitespace, is_plugin_active_for_network, get_site_option, get_option
-		 * @access  public	
+		 * @access  public
 		 * @since   2.0.0
 		 * @return  void
 		 */
@@ -190,6 +190,8 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 				<?php screen_icon('options-general'); ?>
 				<h2><?php echo parent :: get_plugin_data( 'Name' ); ?> <?php _e('Settings', self :: get_textdomain() ); ?></h2>
 				<?php
+				// settings.php?page=Debug-Objects/inc/class-settings.php // plugin_basename( __FILE__ );
+				// $action = 'edit.php?action=' . self :: $option_string;
 				if ( is_multisite() && is_plugin_active_for_network( parent :: $plugin ) )
 					$action = 'edit.php?action=' . self :: $option_string;
 				else
@@ -213,9 +215,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					</div> <!-- .metabox-holder -->
 					
 					<br class="clear" />
-					<p class="submit">
-						<input type="submit" class="button-primary" value="<?php _e( 'Save Changes' ) ?>" />
-					</p>
+					<?php submit_button( __( 'Save Changes' ), 'button-primary', 'submit', TRUE ); ?>
 				</form>
 				
 			</div>
@@ -293,6 +293,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 						<li><a href="http://wordpress.org/extend/plugins/debug-objects/" title="<?php esc_attr_e( 'The Plugin on the WordPress plugin repository', self :: get_textdomain() ); ?>"><?php _e( 'Give the plugin a good rating.', self :: get_textdomain() ); ?></a></li>
 						<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=6069955" title="<?php esc_attr_e( 'Donate via PayPal', self :: get_textdomain() ); ?>"><?php _e( 'Donate a few euros.', self :: get_textdomain() ); ?></a></li>
 						<li><a href="http://www.amazon.de/gp/registry/3NTOGEK181L23/ref=wl_s_3" title="<?php esc_attr_e( 'Frank Bültge\'s Amazon Wish List', self :: get_textdomain() ); ?>"><?php _e( 'Get me something from my wish list.', self :: get_textdomain() ); ?></a></li>
+						<li><a href="https://github.com/bueltge/Debug-Objects" title="<?php esc_attr_e( 'I waiting for your pull requests!', self :: get_textdomain() ); ?>"><?php _e( 'Fork it or improve it; open issues on github.', self :: get_textdomain() ); ?></a></li>
 					</ul>
 				</div>
 			</div>
@@ -335,6 +336,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 * @return  void
 		 */
 		public function save_network_settings_page() {
+			
 			// validate options
 			$value = self :: validate_settings( $_POST[self :: $option_string] );
 			// update options
@@ -342,7 +344,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			// redirect to settings page in network
 			wp_redirect(
 				add_query_arg( 
-					array('page' => 'debug-objects/inc/class-settings.php', 'updated' => 'true'),
+					array( 'page' => plugin_basename( __FILE__ ), 'updated' => 'true' ),
 					network_admin_url( 'settings.php' )
 				)
 			);
@@ -432,7 +434,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 * @return  string $contextual_help
 		 */
 		public function contextual_help( $contextual_help, $screen_id, $screen ) {
-				
+			
 			if ( 'settings_page_' . self :: $option_string . '_group' !== $screen_id )
 				return $contextual_help;
 				

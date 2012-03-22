@@ -68,4 +68,4 @@ I'm German and my English might be gruesome here and there. So please be patient
 
 ## Changelog
 
- * [see on the page](http://wordpress.org/extend/plugins/debug-objects/)
+ * [see on the page](http://wordpress.org/extend/plugins/debug-objects/changelog/)

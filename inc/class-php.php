@@ -390,22 +390,27 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			$output .= '<li class="alternate">' . __( 'SCRIPT_NAME:', parent :: get_plugin_data() ) . ' ' . $_SERVER['SCRIPT_NAME'] . '</li>';
 			$output .= '<li>' . __( 'SCRIPT_FILENAME:', parent :: get_plugin_data() ) . ' ' . $_SERVER['SCRIPT_FILENAME'] . '</li>';
 			$output .= '<li class="alternate">' . __( 'PHP_SELF:', parent :: get_plugin_data() ) . ' ' . $_SERVER['PHP_SELF'] . '</li>';
-			$output .= '<li class="alternate">' . __( 'FILE:', parent :: get_plugin_data() ) . ' ' . __FILE__ . '</li>';
+			$output .= '<li>' . __( 'FILE:', parent :: get_plugin_data() ) . ' ' . __FILE__ . '</li>';
+			$output .= '</ul>' . "\n";
+			
+			$output .= "\n" . '<h4>' . __( 'HTTP $_SERVER variables', parent :: get_plugin_data() ) . '</h4>' . "\n";
 			if ( ! isset( $_SERVER ) || empty( $_SERVER ) )
 				$output .= __( 'Undefined or empty', parent :: get_plugin_data() );
 			else 
-				$output .= '<li>' . var_export( $_SERVER, TRUE ) . '</li>';
+				$output .= '<li class="alternate">' . var_export( $_SERVER, TRUE ) . '</li>';
 			$output .= '</ul>' . "\n";
 			
 			// error
-			$output .= "\n" . '<h4>' . __( 'HTTP GET Error', parent :: get_plugin_data() ) . '</h4>' . "\n";
+			$output .= "\n" . '<h4>' . __( 'HTTP $_GET Error', parent :: get_plugin_data() ) . '</h4>' . "\n";
 			$output .= '<ul><li>' . "\n";
-			if ( ! isset( $_GET['error'] ) )
-				$_GET['error'] = __( 'Undefined', parent :: get_plugin_data() );
+			if ( ! isset( $_GET['error'] ) || empty( $_GET['error'] ) )
+				$output .= __( 'Undefined or empty', parent :: get_plugin_data() );
+			else
+				$output .= '<li class="alternate">' . var_export( $_GET['error'], TRUE ) . '</li>';
 			$output .= '</li></ul>' . "\n";
 			
 			// Globals 
-			$output .= "\n" . '<h4>' . __( 'HTTP GET variables', parent :: get_plugin_data() ) . '</h4>' . "\n";
+			$output .= "\n" . '<h4>' . __( 'HTTP $_GET variables', parent :: get_plugin_data() ) . '</h4>' . "\n";
 			$output .= '<ul><li>' . "\n";
 			if ( ! isset( $_GET ) || empty( $_GET ) )
 				$output .= __( 'Undefined or empty', parent :: get_plugin_data() );
@@ -413,7 +418,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 				$output .= var_export( $_GET, TRUE );
 			$output .= '</li></ul>' . "\n";
 			
-			$output .= "\n" . '<h4>' . __( 'HTTP POST variables', parent :: get_plugin_data() ) . '</h4>' . "\n";
+			$output .= "\n" . '<h4>' . __( 'HTTP $_POST variables', parent :: get_plugin_data() ) . '</h4>' . "\n";
 			$output .= '<ul><li>' . "\n";
 			if ( ! isset( $_POST ) || empty( $_POST ) )
 				$output .= __( 'Undefined or empty', parent :: get_plugin_data() );
@@ -422,7 +427,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			$output .= '</li></ul>' . "\n";
 			
 			// cookies
-			$output .= "\n" . '<h4>' . __( 'COOKIEs', parent :: get_plugin_data() ) . '</h4>' . "\n";
+			$output .= "\n" . '<h4>' . __( '$_COOKIE variables', parent :: get_plugin_data() ) . '</h4>' . "\n";
 			$output .= '<ul><li>' . "\n";
 			if ( ! isset( $_COOKIE ) || empty( $_COOKIE ) )
 				$output .= __( 'Undefined or empty', parent :: get_plugin_data() );
