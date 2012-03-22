@@ -80,6 +80,8 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 == Changelog ==
 = 2.1.4 =
 * Full compatible to PHP 5.3 ([PHP 5.3] The use of function ereg_replace() is discouraged; use preg_replace() instead)
+* Fix direct view via settings
+* Small changes on source
 
 = 2.1.3 =
 * Fix, enhanced items for global php variables on php tab
