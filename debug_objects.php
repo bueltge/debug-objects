@@ -14,7 +14,7 @@
  * License:     GPLv3
  * Author:      Frank B&uuml;ltge
  * Author URI:  http://bueltge.de/
- * Last Change: 03/20/2012
+ * Last Change: 03/22/2012
  */
 
 // error_reporting(E_ALL);
@@ -100,6 +100,12 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			else
 				$options = get_option( self :: $option_string );
 			
+			if ( ( isset( $options['frontend'] ) && '1' === $options['frontend'] ) || 
+				( isset( $options['backend'] ) && '1' === $options['backend'] ) )
+				$view = TRUE;
+			else
+				$view = FALSE;
+			
 			// exclude options from include classes
 			foreach ( self :: $exclude_class as $exclude_class )
 				unset( $options[ strtolower( $exclude_class ) ] );
@@ -114,9 +120,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			
 			self::set_cookie_control();
 			
-			if ( ( isset( $options['frontend'] ) && '1' === $options['frontend'] ) || 
-				 ( isset( $options['backend'] ) && '1' === $options['backend'] ) || 
-				 self::debug_control()
+			if ( $view || self::debug_control()
 			) {
 				foreach ( $classes as $key => $require )
 					require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-' . strtolower( $require ) . '.php';
