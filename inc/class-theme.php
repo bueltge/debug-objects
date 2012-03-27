@@ -76,7 +76,10 @@ if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 			}
 			
 			$theme_data = array();
-			$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
+			if ( function_exists( 'wp_get_theme' ) )
+				$theme_data = wp_get_theme( get_stylesheet_directory() . '/style.css' );
+			else
+				$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
 			
 			$output .=  "\n" . '<h4>' . __( 'Theme Values', parent :: get_plugin_data() ) . '</h4>' . "\n";
 			$output .= '<ul>' . "\n";

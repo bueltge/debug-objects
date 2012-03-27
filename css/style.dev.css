@@ -68,6 +68,7 @@ div#debugobjects #memory li, div#debugobjects #conditional_tags li, div#debugobj
 
 div#debugobjects table {
 	width: 100%;
+	margin-bottom: 20px;
 }
 
 div#debugobjects ul li:hover, div#debugobjects ol li:hover,

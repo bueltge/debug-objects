@@ -238,6 +238,8 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Backend'          => __( 'Output in WordPress Admin Footer. <br />Alternatively use url param "<code>debug</code>" or set a cookie via url param "<code>debugcookie</code>" in days. <br />Example: <code>example.com/?debug</code>', self :: get_textdomain() ),
 					'Frontend'         => __( 'Output in Footer of Frontend. <br />Alternatively use url param "<code>debug</code>" or set a cookie via url param "<code>debugcookie</code>" in days <br />Example: <code>example.com/?debugcookie=5</code>', self :: get_textdomain() ),
 					'Php'              => __( 'PHP, WordPress and global Stuff', self :: get_textdomain() ),// php, WordPress, globals and more
+					'Classes'          => __( 'List all declared classes and his subclasses', self :: get_textdomain() ),
+					'Functions'        => __( 'List all defined functins', self :: get_textdomain() ),
 					'Conditional_Tags' => __( 'Conditional Tags', self :: get_textdomain() ), // conditional tags
 					'Theme'            => __( 'Theme and Template informations', self :: get_textdomain() ),
 					'Constants'        => __( 'All Constants', self :: get_textdomain() ),// All active Constants
