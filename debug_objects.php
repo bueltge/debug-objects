@@ -10,11 +10,11 @@
  * Text Domain: debug_objects
  * Domain Path: /languages
  * Description: List filter and action-hooks, cache data, defined constants, qieries, included scripts and styles, php and memory informations and return of conditional tags only for admins; for debug, informations or learning purposes. Setting output in the settings of the plugin and use output via setting or url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days
- * Version:     2.1.5
+ * Version:     2.1.6
  * License:     GPLv3
  * Author:      Frank B&uuml;ltge
  * Author URI:  http://bueltge.de/
- * Last Change: 03/27/2012
+ * Last Change: 03/29/2012
  */
 
 // error_reporting(E_ALL);
@@ -36,7 +36,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		
 		static private $classobj = NULL;
 		// table for page hooks
-		public static $table;
+		public static $table = 'hook_list';
 		// var for tab array
 		public static $tabs = array();
 		// string vor save in DB
@@ -73,7 +73,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		public function __construct() {
 			
 			// define table
-			self :: $table = $GLOBALS['wpdb'] -> base_prefix . 'hook_list';
+			self :: $table = $GLOBALS['wpdb'] -> base_prefix . self::$table;
 			self :: $plugin = plugin_basename( __FILE__ );
 			
 			// add and remove settings, the table for the plugin
@@ -246,7 +246,8 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			
 			$GLOBALS['wp_roles'] -> add_cap( 'administrator', '_debug_objects' );
 			// add table
-			$table = self::$table;
+			$table = $GLOBALS['wpdb'] -> base_prefix . self::$table;
+			
 			$GLOBALS['wpdb'] -> query(
 				"CREATE TABLE $table (
 				called_by varchar(96) NOT NULL,
