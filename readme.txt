@@ -4,7 +4,7 @@ Donate link: http://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, 
 Requires at least: 3.3
 Tested up to: 3.4-alpha
-Stable tag: 2.1.5
+Stable tag: 2.1.6
 
 The Plugin Debug Objects provides a large number of information: query, cache, constants, hooks, functions and many more.
 
