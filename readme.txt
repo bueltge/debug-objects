@@ -29,6 +29,7 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Conditional tags; value of the tag
 * Theme information
 * Template Information
+* Cron content and his functions to an cron
 * Cache content
 * Hooks and filters
 * Functions, which respond on hooks and filters
@@ -78,6 +79,10 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Romanian language files, thanks to [Alexander Ovsov](http://webhostinggeeks.com/)
 
 == Changelog ==
+= 2.1.7 =
+* Add content of cron
+* ToDo: remove i18n possibility; to slow for faster debuggging
+
 = 2.1.6 =
 * Fix on activation for add the custom table
 

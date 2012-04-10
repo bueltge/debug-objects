@@ -23,6 +23,7 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Conditional tags; value of the tag
 * Theme information
 * Template Information
+* Cron content and his functions to an cron
 * Cache content
 * Hooks and filters
 * Functions, which respond on hooks and filters
