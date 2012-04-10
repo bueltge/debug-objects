@@ -249,6 +249,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Page_Hooks'       => __( 'Hooks of current page, very slow and use many RAM', self :: get_textdomain() ),// Hook Instrument for active page
 					'Query'            => __( 'Contents of Query', self :: get_textdomain() ),// WP Queries
 					'Cache'            => __( 'Contents of Cache', self :: get_textdomain() ),// WP Cache
+					'Cron'             => __( 'Crons', self :: get_textdomain() ),
 					'Memory'           => __( 'Memory Used, Load Time and included Files' ),
 					'About'            => __( 'About the plugin', self :: get_textdomain() ),// about plugin
 				);

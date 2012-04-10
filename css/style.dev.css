@@ -97,6 +97,10 @@ div#debugobjects li.none_list {
 	overflow:hidden;
 }
 
+div#debugobjects #cron td {
+	width: 16%;
+}
+
 #debugqueries {
 	display: none !important;
 }
