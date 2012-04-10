@@ -1,15 +1,15 @@
 === Debug Objects ===
 Contributors: Bueltge
 Donate link: http://bueltge.de/wunschliste/
-Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, 
+Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, cron, cache
 Requires at least: 3.3
 Tested up to: 3.4-alpha
 Stable tag: 2.1.6
 
-The Plugin Debug Objects provides a large number of information: query, cache, constants, hooks, functions and many more.
+The Plugin Debug Objects provides a large number of information: query, cache, cron, constants, hooks, functions and many more.
 
 == Description ==
-The Plugin Debug Objects provides the user, which has the appropriate rights, normally the administrator, a large number of information: query, cache, constants, hooks, functions and many many more. Values and content get displayed at the frontend and backend of the blog, to analyze errors but also to better understand and develop with/for WordPress.
+The Plugin Debug Objects provides the user, which has the appropriate rights, normally the administrator, a large number of information: query, cache, cron, constants, hooks, functions and many many more. Values and content get displayed at the frontend and backend of the blog, to analyze errors but also to better understand and develop with/for WordPress.
 
 = The Plugin provides in various tabs information to: =
 * PHP
