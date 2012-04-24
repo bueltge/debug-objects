@@ -3,7 +3,7 @@ Contributors: Bueltge
 Donate link: http://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, cron, cache
 Requires at least: 3.3
-Tested up to: 3.4-alpha
+Tested up to: 3.4-Beta3
 Stable tag: 2.1.6
 
 The Plugin Debug Objects provides a large number of information: query, cache, cron, constants, hooks, functions and many more.
@@ -77,6 +77,7 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 = Localizations =
 * german language files
 * Romanian language files, thanks to [Alexander Ovsov](http://webhostinggeeks.com/)
+* Lithuanian translation files by [Vincent G](http://www.host1plus.com)
 
 == Changelog ==
 = 2.1.6 =

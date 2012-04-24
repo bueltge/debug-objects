@@ -1,0 +1,1121 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Debug Objects\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-12 19:30+0100\n"
+"PO-Revision-Date: 2012-03-10 17:45+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#@ debug_objects
+#: inc/class-php.php:54
+msgid "Windows XP"
+msgstr "Windows XP"
+
+#@ debug_objects
+#: inc/class-php.php:56
+msgid "Windows 2000"
+msgstr "Windows 2000"
+
+#@ debug_objects
+#: inc/class-php.php:60
+msgid "Windows ME"
+msgstr "Windows ME"
+
+#@ debug_objects
+#: inc/class-php.php:62
+msgid "Windows 98"
+msgstr "Windows 98"
+
+#@ debug_objects
+#: inc/class-php.php:64
+msgid "Windows 95"
+msgstr "Windows 95"
+
+#@ debug_objects
+#: inc/class-php.php:67
+msgid "Macintosh"
+msgstr "Macintosh"
+
+#@ debug_objects
+#: inc/class-php.php:69
+msgid "Linux"
+msgstr "Linux"
+
+#@ debug_objects
+#: inc/class-php.php:73
+#: inc/class-php.php:80
+#: inc/class-php.php:87
+#: inc/class-php.php:94
+#: inc/class-php.php:101
+#: inc/class-php.php:108
+#: inc/class-php.php:115
+#: inc/class-php.php:122
+#: inc/class-php.php:129
+#: inc/class-php.php:146
+#: inc/class-php.php:150
+#: inc/class-php.php:154
+#: inc/class-php.php:205
+#: inc/class-php.php:222
+#: inc/class-php.php:245
+#: inc/class-php.php:250
+#: inc/class-php.php:255
+#: inc/class-php.php:260
+#: inc/class-php.php:265
+#: inc/class-php.php:279
+#: inc/class-php.php:284
+#: inc/class-php.php:295
+#: inc/class-php.php:300
+#: inc/class-php.php:311
+#: inc/class-php.php:316
+#: inc/class-php.php:321
+#: inc/class-php.php:326
+#: inc/class-php.php:331
+#: inc/class-php.php:336
+#: inc/class-php.php:341
+#: inc/class-php.php:346
+#: inc/class-php.php:351
+#: inc/class-php.php:377
+#: inc/class-php.php:379
+#: inc/class-php.php:381
+#: inc/class-php.php:383
+#: inc/class-php.php:404
+#: inc/class-theme.php:87
+#: inc/class-theme.php:96
+#: inc/class-theme.php:103
+#: inc/class-theme.php:110
+#: inc/class-theme.php:117
+#: inc/class-theme.php:124
+#: inc/class-theme.php:132
+msgid "Undefined"
+msgstr "Neapibrėžta"
+
+#@ debug_objects
+#: inc/class-php.php:75
+#: inc/class-php.php:82
+#: inc/class-php.php:89
+#: inc/class-php.php:96
+#: inc/class-php.php:103
+#: inc/class-php.php:110
+#: inc/class-php.php:117
+#: inc/class-php.php:124
+#: inc/class-php.php:131
+msgid "OFF"
+msgstr "ATJUNGTI"
+
+#@ debug_objects
+#: inc/class-php.php:77
+#: inc/class-query.php:93
+msgid "s"
+msgstr "s"
+
+#@ debug_objects
+#: inc/class-php.php:91
+#: inc/class-php.php:98
+#: inc/class-php.php:105
+#: inc/class-php.php:112
+#: inc/class-php.php:119
+#: inc/class-php.php:126
+#: inc/class-php.php:133
+msgid "ON"
+msgstr "ĮJUNGTI"
+
+#@ debug_objects
+#: inc/class-php.php:169
+msgid "PHP Version &amp; System"
+msgstr "PHP versija &amp; Sistema"
+
+#@ debug_objects
+#: inc/class-php.php:172
+msgid "PHP version:"
+msgstr "PHP versija:"
+
+#@ debug_objects
+#: inc/class-php.php:173
+msgid "Server:"
+msgstr "Serveris:"
+
+#@ debug_objects
+#: inc/class-php.php:174
+msgid "Server SW:"
+msgstr "Serverio Programinė įranga:"
+
+#@ debug_objects
+#: inc/class-php.php:175
+msgid "OS version:"
+msgstr "Operacinės Sistemos versija:"
+
+#@ debug_objects
+#: inc/class-php.php:224
+msgid "WordPress Informations"
+msgstr "WordPress Informacija"
+
+#@ debug_objects
+#: inc/class-about.php:42
+#: inc/class-php.php:226
+#: inc/class-settings.php:317
+msgid "Version:"
+msgstr "Versija:"
+
+#@ debug_objects
+#: inc/class-php.php:228
+msgid "Language, constant"
+msgstr "Kalba, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:229
+msgid "Language folder, constant"
+msgstr "Kalbos aplankas, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:230
+msgid "Content URL, constant"
+msgstr "Turinio Universalioji nuoroda, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:231
+msgid "Content folder, constant"
+msgstr "Turinio aplankas, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:232
+msgid "Memory limit, constant"
+msgstr "Atminties riba, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:233
+msgid "Post revision, constant"
+msgstr "Įrašo taisymas, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:234
+msgid "Save queries, constant"
+msgstr "Išsaugoti užklausas, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:235
+msgid "Debug option, constant"
+msgstr "Derinimo parametras, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:236
+msgid "SSL Login, constant"
+msgstr "Saugus (SSL) prisijungimas, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:237
+msgid "Concatenate scripts, constant"
+msgstr "Skriptų jungimas, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:238
+msgid "Compress scripts, constant"
+msgstr "Skriptų glaudinimas, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:239
+msgid "Compress stylesheet, constant"
+msgstr "Suspausti CSS, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:240
+msgid "Enforce GZIP, constant"
+msgstr "Versti vykdyti GZIP suspaudimą, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:241
+msgid "Autosave interval, constant"
+msgstr "Automatinio išsaugijimo intervalas, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:269
+msgid "WordPress Cookie Informations"
+msgstr "WordPress Slapukų Informacija"
+
+#@ debug_objects
+#: inc/class-php.php:271
+msgid "Cookie domain, constant"
+msgstr "Slapukų sritis, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:272
+#: inc/class-php.php:307
+msgid "Cookie path, constant"
+msgstr "Slapukų adresas, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:273
+msgid "Site cookie path, constant"
+msgstr "Svetainės slapukų adresas, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:274
+msgid "Plugin cookie path, constant"
+msgstr "Papildinio slapukų adresas, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:275
+msgid "Admin cookie path, constant"
+msgstr "Administratoriaus slapukų adresas, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:288
+msgid "WordPress File Permissions Informations"
+msgstr "Wordpress Rinkmenų Leidimų Infomacija"
+
+#@ debug_objects
+#: inc/class-php.php:290
+msgid "File Permissions, constant"
+msgstr "Rinkmenų Leidimai, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:291
+msgid "DIR Permissions, constant"
+msgstr "Katalogų leidimai, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:304
+msgid "WordPress Custom User &amp; Usermeta Tables"
+msgstr "WordPress Adaptuoto Vartotojo &amp; Vartotojo meta Lentelės "
+
+#@ debug_objects
+#: inc/class-php.php:306
+msgid "Custom User Table, constant"
+msgstr "Adaptuoto Vartotojo Lentelė, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:355
+msgid "WordPress FTP/SSH Informations"
+msgstr "WordPress FTP/SSH informacija"
+
+#@ debug_objects
+#: inc/class-php.php:357
+msgid "Forces the filesystem method, constant"
+msgstr "Iššaukia rinkmenų sistemos metodą, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:358
+msgid "Path to root install directory, constant"
+msgstr "Adresas į šakninį įdiegimo katalogą, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:363
+msgid "FTP or SSH username, constant"
+msgstr "FTP arba SSH vartotojo vardas, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:364
+msgid "FTP or SSH password, constant"
+msgstr "FTP arba SSH slaptažodis, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:365
+msgid "Hostname, constant"
+msgstr "Pagrindinio kompiuterio vardas, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:368
+msgid "WordPress Query Informations"
+msgstr "WordPress Užklausos Informacija"
+
+#@ debug_objects
+#: inc/class-conditional_tags.php:40
+msgid "The Conditional Tags can be used in your Template files to change what content is displayed and how that content is displayed on a particular page depending on what conditions that page matches. You see on this view the condition of all possible tags."
+msgstr "Norint pakeisti rodomą turinį ir turinio rodymo būdą tam tikrame puslapyje (priklausomai nuo atitinkamų puslapio sąlygų), sąlyginės Gairės gali būti naudojamos Jūsų Šablono rinkemnose. Šiame vaizde Jūs matote visų įmanomų gairių sąlygas."
+
+#@ debug_objects
+#: inc/class-conditional_tags.php:43
+#: inc/class-conditional_tags.php:46
+#: inc/class-conditional_tags.php:49
+#: inc/class-conditional_tags.php:52
+#: inc/class-conditional_tags.php:55
+#: inc/class-conditional_tags.php:58
+#: inc/class-conditional_tags.php:61
+#: inc/class-conditional_tags.php:64
+#: inc/class-conditional_tags.php:67
+#: inc/class-conditional_tags.php:70
+#: inc/class-conditional_tags.php:73
+#: inc/class-conditional_tags.php:76
+#: inc/class-conditional_tags.php:79
+#: inc/class-conditional_tags.php:82
+#: inc/class-conditional_tags.php:85
+#: inc/class-conditional_tags.php:88
+#: inc/class-conditional_tags.php:95
+#: inc/class-conditional_tags.php:98
+#: inc/class-conditional_tags.php:101
+#: inc/class-conditional_tags.php:104
+#: inc/class-conditional_tags.php:107
+#: inc/class-conditional_tags.php:110
+#: inc/class-conditional_tags.php:113
+#: inc/class-conditional_tags.php:116
+#: inc/class-conditional_tags.php:119
+#: inc/class-conditional_tags.php:122
+msgid "Documentation in Codex"
+msgstr "Dokumentacija Kodekse"
+
+#@ debug_objects
+#: inc/class-conditional_tags.php:43
+#: inc/class-conditional_tags.php:46
+#: inc/class-conditional_tags.php:49
+#: inc/class-conditional_tags.php:52
+#: inc/class-conditional_tags.php:55
+#: inc/class-conditional_tags.php:58
+#: inc/class-conditional_tags.php:61
+#: inc/class-conditional_tags.php:64
+#: inc/class-conditional_tags.php:67
+#: inc/class-conditional_tags.php:70
+#: inc/class-conditional_tags.php:73
+#: inc/class-conditional_tags.php:76
+#: inc/class-conditional_tags.php:79
+#: inc/class-conditional_tags.php:82
+#: inc/class-conditional_tags.php:85
+#: inc/class-conditional_tags.php:88
+#: inc/class-conditional_tags.php:95
+#: inc/class-conditional_tags.php:98
+#: inc/class-conditional_tags.php:101
+#: inc/class-conditional_tags.php:104
+#: inc/class-conditional_tags.php:107
+#: inc/class-conditional_tags.php:110
+#: inc/class-conditional_tags.php:113
+#: inc/class-conditional_tags.php:116
+#: inc/class-conditional_tags.php:119
+#: inc/class-conditional_tags.php:122
+msgid "is"
+msgstr "yra"
+
+#@ debug_objects
+#: inc/class-conditional_tags.php:44
+#: inc/class-conditional_tags.php:47
+#: inc/class-conditional_tags.php:50
+#: inc/class-conditional_tags.php:53
+#: inc/class-conditional_tags.php:56
+#: inc/class-conditional_tags.php:59
+#: inc/class-conditional_tags.php:62
+#: inc/class-conditional_tags.php:65
+#: inc/class-conditional_tags.php:68
+#: inc/class-conditional_tags.php:71
+#: inc/class-conditional_tags.php:74
+#: inc/class-conditional_tags.php:77
+#: inc/class-conditional_tags.php:80
+#: inc/class-conditional_tags.php:83
+#: inc/class-conditional_tags.php:86
+#: inc/class-conditional_tags.php:89
+#: inc/class-conditional_tags.php:96
+#: inc/class-conditional_tags.php:99
+#: inc/class-conditional_tags.php:102
+#: inc/class-conditional_tags.php:105
+#: inc/class-conditional_tags.php:108
+#: inc/class-conditional_tags.php:111
+#: inc/class-conditional_tags.php:114
+#: inc/class-conditional_tags.php:117
+#: inc/class-conditional_tags.php:120
+#: inc/class-conditional_tags.php:123
+msgid "no"
+msgstr "ne"
+
+#@ debug_objects
+#: inc/class-theme.php:81
+msgid "Theme Values"
+msgstr "Apipavidalinimo Reikšmės"
+
+#@ debug_objects
+#: inc/class-theme.php:83
+msgid "Current theme name:"
+msgstr "Dabartinio apipavidalinimo pavadinimas:"
+
+#@ debug_objects
+#: inc/class-theme.php:90
+msgid "Current theme title:"
+msgstr "Dabartinio apipavidalinimo antraštė:"
+
+#@ debug_objects
+#: inc/class-theme.php:92
+msgid "Current theme uri:"
+msgstr "Dabartinio apipavidalinimo universalioji nuoroda:"
+
+#@ debug_objects
+#: inc/class-theme.php:99
+msgid "Current theme description:"
+msgstr "Dabartinio apipavidalinimo aprašymas:"
+
+#@ debug_objects
+#: inc/class-theme.php:106
+msgid "Current theme author:"
+msgstr "Dabartinio apipavidalinimo autorius:"
+
+#@ debug_objects
+#: inc/class-theme.php:113
+msgid "Current theme version:"
+msgstr "Dabartinio apipavidalinimo versija:"
+
+#@ debug_objects
+#: inc/class-theme.php:120
+msgid "Current theme template:"
+msgstr "Dabartinio apipavidalinimo šablonas:"
+
+#@ debug_objects
+#: inc/class-theme.php:127
+msgid "Current theme status:"
+msgstr "Dabartinio apipavidalinimo būsena:"
+
+#@ debug_objects
+#: inc/class-theme.php:128
+msgid "Current theme tags:"
+msgstr "Dabartinio apipavidalinimo gairės:"
+
+#@ debug_objects
+#: inc/class-theme.php:136
+msgid "Current theme:"
+msgstr "Dabartinis apipavidalinimas:"
+
+#@ debug_objects
+#: inc/class-theme.php:137
+msgid "Current theme directory:"
+msgstr "Dabartinio apipavidalinimo katalogas:"
+
+#@ debug_objects
+#: inc/class-theme.php:138
+msgid "Current stylesheet:"
+msgstr "Dabartinis stiliaus lapas:"
+
+#@ debug_objects
+#: inc/class-theme.php:139
+msgid "Current stylesheet directory:"
+msgstr "Dabartinio stiliaus lapo katalogas:"
+
+#@ debug_objects
+#: inc/class-theme.php:144
+msgid "Current template path, constant"
+msgstr "Dabar naudojamo šablono adresas, konstanta"
+
+#@ debug_objects
+#: inc/class-theme.php:145
+msgid "Current stylesheet path, constant"
+msgstr "Dabar naudojamo stiliaus lapo adresas, konstanta"
+
+#@ debug_objects
+#: inc/class-hooks.php:47
+msgid "Simple WordPress Hooks &amp; Filters Insight"
+msgstr "Paprastasis WordPress Prikabintojas &amp; Filtrų Supratimas"
+
+#@ debug_objects
+#: inc/class-hooks.php:66
+msgid "Priority"
+msgstr "Prioritetas"
+
+#@ debug_objects
+#: inc/class-hooks.php:85
+msgid "View data"
+msgstr "Peržiūrėti duomenis"
+
+#@ debug_objects
+#: inc/class-hooks.php:125
+msgid "Hooks total:"
+msgstr "Iš viso prikabinimų:"
+
+#@ debug_objects
+#: inc/class-hooks.php:125
+msgid "Register filter/actions total:"
+msgstr "Registrų filtras/iš viso veiksmų"
+
+#@ debug_objects
+#: inc/class-cache.php:38
+#: inc/class-constants.php:39
+msgid "Objects total:"
+msgstr "Iš viso objektų:"
+
+#@ debug_objects
+#: inc/class-conditional_tags.php:27
+#: inc/class-settings.php:241
+msgid "Conditional Tags"
+msgstr "Sąlyginės gairės"
+
+#@ debug_objects
+#: inc/class-cache.php:26
+msgid "Cache"
+msgstr "Spartinančioji atmintinė"
+
+#@ debug_objects
+#: inc/class-constants.php:27
+msgid "Constants"
+msgstr "Konstantos"
+
+#@ debug_objects
+#: inc/class-query.php:44
+msgid "Queries"
+msgstr "Užklausos"
+
+#@ debug_objects
+#: inc/class-php.php:370
+msgid "Queries:"
+msgstr "Užklausos:"
+
+#@ debug_objects
+#: inc/class-php.php:372
+msgid "Timer stop:"
+msgstr "Laikmačio stabdymas:"
+
+#@ debug_objects
+#: inc/class-php.php:359
+msgid "Absolute path to wp-content directory, constant"
+msgstr "Visas kelias į wp-content katalogą, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:360
+msgid "Absolute path to plugin directory, constant"
+msgstr "Visas kelias į papildinių katalogą, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:361
+msgid "Absolute path to SSH public key, constant"
+msgstr "Visas kelias į SSH viešąjį šifrą, konstanta"
+
+#@ debug_objects
+#: inc/class-php.php:362
+msgid "dorector path to SSH private key, constant"
+msgstr "Visas kelias į SSH privatųjį šifrą, konstanta"
+
+#@ debug_objects
+#. translators: plugin header field 'Name'
+#: debug_objects.php:0
+msgid "Debug Objects"
+msgstr "Derinimo objektas"
+
+#@ debug_objects
+#. translators: plugin header field 'PluginURI'
+#: debug_objects.php:0
+msgid "http://bueltge.de/debug-objects-wordpress-plugin/966/"
+msgstr "http://bueltge.de/debug-objects-wordpress-plugin/966/"
+
+#@ debug_objects
+#. translators: plugin header field 'Description'
+#: debug_objects.php:0
+msgid "List filter and action-hooks, cache data, defined constants, qieries, included scripts and styles, php and memory informations and return of conditional tags only for admins; for debug, informations or learning purposes. Setting output in the settings of the plugin and use output via setting or url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days"
+msgstr "Derinimo arba mokymo tikslams pateikti ir suskirstyti prikabintojus, spartinančiosios atmintinės duomenis, apibrėžtas konstantas, užklausas, įtrauktus skriptus ir stilius, php ir atminties informaciją ir grįžtančias gaires tik administratoriaus teises turintiems vartotojams. Dienų tikslumu nuostatose pateikti papildinio išvesties rezultatus, nustatant universaliosios nuorodos parametrus '<code>debug</code>' arba nustatant slapukų unviersaliosios nuorodos parametrus '<code>debugcookie</code>'"
+
+#@ debug_objects
+#. translators: plugin header field 'Author'
+#: debug_objects.php:0
+msgid "Frank B&uuml;ltge"
+msgstr "Frank B&uuml;ltge"
+
+#@ debug_objects
+#. translators: plugin header field 'AuthorURI'
+#: debug_objects.php:0
+msgid "http://bueltge.de/"
+msgstr "http://bueltge.de/"
+
+#@ debug_objects
+#. translators: plugin header field 'Version'
+#: debug_objects.php:0
+msgid "2.1.0"
+msgstr "2.1.0"
+
+#@ default
+#: debug_objects.php:166
+msgid "Sorry, This plugin requires PHP 5.2.4"
+msgstr "Atriprašome, šiam papildiniui reikalinga PHP 5.2.4 versija"
+
+#@ debug_objects
+#: inc/class-about.php:27
+msgid "About"
+msgstr "Apie"
+
+#@ debug_objects
+#: inc/class-about.php:39
+#: inc/class-settings.php:321
+msgid "Description:"
+msgstr "Aprašas:"
+
+#@ debug_objects
+#: inc/class-about.php:45
+#: inc/class-settings.php:291
+msgid "Here's how you can give back:"
+msgstr "Štai kaip Jūs galite atsidėkoti:"
+
+#@ debug_objects
+#: inc/class-about.php:48
+#: inc/class-settings.php:293
+msgid "The Plugin on the WordPress plugin repository"
+msgstr "Papildinys WordPress papildinių saugykloje"
+
+#@ debug_objects
+#: inc/class-about.php:49
+#: inc/class-settings.php:293
+msgid "Give the plugin a good rating."
+msgstr "Įvertink papildinį aukštu balu."
+
+#@ debug_objects
+#: inc/class-about.php:51
+#: inc/class-settings.php:294
+msgid "Donate via PayPal"
+msgstr "Paaukokite PayPal sistemoje"
+
+#@ debug_objects
+#: inc/class-about.php:52
+#: inc/class-settings.php:294
+msgid "Donate a few euros."
+msgstr "Paaukokite kelis eurus."
+
+#@ debug_objects
+#: inc/class-about.php:54
+#: inc/class-settings.php:295
+msgid "Frank Bültge's Amazon Wish List"
+msgstr "Frank Bültge Amazon Pageidavimų sąrašas"
+
+#@ debug_objects
+#: inc/class-about.php:55
+#: inc/class-settings.php:295
+msgid "Get me something from my wish list."
+msgstr "Padovanokite man ką nors iš mano pageidavimų sąrašo."
+
+#@ debug_objects
+#: inc/class-debug_hooks.php:35
+msgid "Debug Hooks"
+msgstr "Derinti Prikabinimus"
+
+#@ debug_objects
+#: inc/class-enqueue_stuff.php:27
+msgid "Scripts & Styles"
+msgstr "Skriptai ir Stiliai"
+
+#@ debug_objects
+#: inc/class-hooks.php:27
+msgid "Hooks"
+msgstr "Prikabinimai"
+
+#@ debug_objects
+#: inc/class-hooks.php:105
+msgid "1 accepted argument"
+msgstr "1 sutartas argumentas"
+
+#@ debug_objects
+#: inc/class-hooks.php:106
+#, php-format
+msgid "%s accepted argument"
+msgstr "%s sutartų argumentų"
+
+#@ debug_objects
+#: inc/class-memory.php:31
+msgid "Time, Mem & Files"
+msgstr "Laikas, Atmintis ir Rinkmenos"
+
+#@ default
+#: inc/class-memory.php:45
+msgid "Memory & Load Time"
+msgstr "Atminties ir Įkelties Trukmė"
+
+#@ default
+#: inc/class-memory.php:54
+msgid "Included Files"
+msgstr "Įtrauktos Rinkmenos"
+
+#@ default
+#: inc/class-memory.php:64
+msgid "Files"
+msgstr "Rinkmenos"
+
+#@ debug_objects
+#: inc/class-page_hooks.php:34
+msgid "Page Hooks"
+msgstr "Tinklapio Prikabinimai"
+
+#@ debug_objects
+#: inc/class-page_hooks.php:145
+msgid "Undefinded"
+msgstr "Neapibrėžta"
+
+#@ debug_objects
+#: inc/class-php.php:27
+msgid "PHP, Globals &amp; WP"
+msgstr "PHP, Pasaulinis &amp; WP"
+
+#@ debug_objects
+#: inc/class-php.php:136
+#: inc/class-php.php:140
+msgid "On"
+msgstr "Aktyvus"
+
+#@ debug_objects
+#: inc/class-php.php:138
+#: inc/class-php.php:142
+msgid "Off"
+msgstr "Neaktyvus"
+
+#@ debug_objects
+#@ default
+#: inc/class-php.php:156
+#: inc/class-php.php:160
+#: inc/class-php.php:164
+#: inc/class-php.php:217
+msgid "Yes"
+msgstr "Taip"
+
+#@ debug_objects
+#: inc/class-php.php:158
+#: inc/class-php.php:162
+#: inc/class-php.php:166
+#: inc/class-php.php:219
+msgid "No"
+msgstr "Ne"
+
+#@ debug_objects
+#: inc/class-php.php:176
+msgid "Memory usage in MByte:"
+msgstr "Užimta atmintis, megabaitais:"
+
+#@ debug_objects
+#: inc/class-php.php:177
+msgid "Memory limit, PHP Configuration in MByte:"
+msgstr "Atminties riba, PHP Sąranka, megabaitais:"
+
+#@ debug_objects
+#: inc/class-php.php:178
+msgid "Memory percent (in % of 100%):"
+msgstr "Atminties dalis (procentais iš 100%):"
+
+#@ debug_objects
+#: inc/class-php.php:179
+msgid "PHP Safe Mode:"
+msgstr "Ribotoji PHP Veiksena:"
+
+#@ debug_objects
+#: inc/class-php.php:180
+msgid "PHP Allow URL fopen:"
+msgstr "PHP Leidimas atverti universalųjį adresą:"
+
+#@ debug_objects
+#: inc/class-php.php:181
+msgid "PHP Max Upload Size:"
+msgstr "PHP Maksimalus leidžiamas Siuntos Dydis:"
+
+#@ debug_objects
+#: inc/class-php.php:182
+msgid "PHP Max Post Size:"
+msgstr "PHP Maksimalus leidžiamas Įrašo Dydis:"
+
+#@ debug_objects
+#: inc/class-php.php:183
+msgid "PHP Max Script Execute Time:"
+msgstr "PHP Maksimalus leidžiamas Skripto Vykdymo Laikas:"
+
+#@ debug_objects
+#: inc/class-php.php:184
+msgid "PHP Exif support:"
+msgstr "PHP Exif formato palaikymas:"
+
+#@ debug_objects
+#: inc/class-php.php:185
+msgid "PHP IPTC support:"
+msgstr "PHP IPTC standarto palaikymas:"
+
+#@ debug_objects
+#: inc/class-php.php:186
+msgid "PHP XML support:"
+msgstr "PHP XML kalbos palaikymas:"
+
+#@ debug_objects
+#: inc/class-php.php:207
+msgid "MySQL"
+msgstr "MySQL"
+
+#@ debug_objects
+#: inc/class-php.php:209
+msgid "MySQL version:"
+msgstr "MySQL versija:"
+
+#@ debug_objects
+#: inc/class-php.php:210
+msgid "SQL Mode:"
+msgstr "SQL kalbos būsena:"
+
+#@ debug_objects
+#: inc/class-php.php:227
+msgid "Multisite:"
+msgstr "Kelių skirtingų puslapių palaikymas per pavienį Wordpress įdiegimą:"
+
+#@ debug_objects
+#: inc/class-php.php:385
+msgid "Selected server and execution environment information"
+msgstr "Pasirinkto serverio ir vykdymo aplinkos informacija"
+
+#@ debug_objects
+#: inc/class-php.php:387
+msgid "PATH_INFO:"
+msgstr "KELIO_INFORMACIJA:"
+
+#@ debug_objects
+#: inc/class-php.php:388
+msgid "REQUEST_URI:"
+msgstr "UNIVERSALAUS_ADRESYNO_UŽKLAUSA:"
+
+#@ debug_objects
+#: inc/class-php.php:389
+msgid "QUERY_STRING:"
+msgstr "UŽKLAUSOS_EILUTĖ:"
+
+#@ debug_objects
+#: inc/class-php.php:390
+msgid "SCRIPT_NAME:"
+msgstr "SKRIPTO_PAVADINIMAS:"
+
+#@ debug_objects
+#: inc/class-php.php:391
+msgid "SCRIPT_FILENAME:"
+msgstr "SKRIPTO_RINKMENOS_VARDAS:"
+
+#@ debug_objects
+#: inc/class-php.php:392
+#, fuzzy
+msgid "PHP_SELF:"
+msgstr "PHP_SELF:"
+
+#@ debug_objects
+#: inc/class-php.php:393
+msgid "FILE:"
+msgstr "RINKMENA:"
+
+#@ debug_objects
+#: inc/class-php.php:395
+#: inc/class-php.php:411
+#: inc/class-php.php:419
+#: inc/class-php.php:428
+msgid "Undefined or empty"
+msgstr "Neapibrėžta arba tuščia"
+
+#@ debug_objects
+#: inc/class-php.php:401
+msgid "HTTP GET Error"
+msgstr "HTTP protokolo ATVĖRIMO klaida"
+
+#@ debug_objects
+#: inc/class-php.php:408
+msgid "HTTP GET variables"
+msgstr "HTTP protokolo ATVĖRIMO  kintamieji"
+
+#@ debug_objects
+#: inc/class-php.php:416
+msgid "HTTP POST variables"
+msgstr "HTTP protokolo ĮRAŠO kintameji"
+
+#@ debug_objects
+#: inc/class-php.php:425
+msgid "COOKIEs"
+msgstr "Slapukai"
+
+#@ debug_objects
+#: inc/class-query.php:91
+msgid "Time:"
+msgstr "Laikas:"
+
+#@ debug_objects
+#: inc/class-query.php:92
+msgid "ms"
+msgstr "kelių puslapių palaikymas"
+
+#@ debug_objects
+#: inc/class-query.php:97
+msgid "Query:"
+msgstr "Užklausa:"
+
+#@ debug_objects
+#: inc/class-query.php:108
+msgid "<a href=\"http://en.wikipedia.org/wiki/Stack_trace\">Stack trace</a>:"
+msgstr "<a href=\"http://en.wikipedia.org/wiki/Stack_trace\">Stack trace</a>:"
+
+#@ debug_objects
+#: inc/class-query.php:121
+msgid "Database Errors"
+msgstr "Duomenų bazės Klaidos:"
+
+#@ debug_objects
+#: inc/class-query.php:139
+msgid "Total query time:"
+msgstr "Visa užklausos trukmė:"
+
+#@ default
+#: inc/class-query.php:141
+msgid "ms for"
+msgstr "kelių puslapių palaikymas"
+
+#@ debug_objects
+#: inc/class-query.php:141
+msgid "queries ("
+msgstr "užklausos ("
+
+#@ debug_objects
+#: inc/class-query.php:142
+msgid "s) "
+msgstr "s)"
+
+#@ debug_objects
+#: inc/class-query.php:144
+msgid "Total num_query time:"
+msgstr "Visa užklausų kiekio trukmė"
+
+#@ default
+#: inc/class-query.php:145
+msgid "for"
+msgstr "dėl"
+
+#@ debug_objects
+#: inc/class-query.php:146
+msgid "num_queries."
+msgstr "užklausų_kiekis"
+
+#@ debug_objects
+#: inc/class-query.php:148
+msgid "&raquo; Different values in num_query and query? - please set the constant"
+msgstr "&raquo; Skirtingos reikšmės užklausų_kiekyje ir užklausose? - nustatykite konstantą"
+
+#@ default
+#@ debug_objects
+#: inc/class-query.php:149
+#: inc/class-query.php:153
+msgid "in your"
+msgstr "Jūsų"
+
+#@ debug_objects
+#: inc/class-query.php:152
+msgid "&raquo; Query time is null (0)? - please set the constant"
+msgstr "&raquo; Užklausos trukmės reikšmė 0? - nustatykite konstantą"
+
+#@ default
+#: inc/class-query.php:153
+msgid "at"
+msgstr "į"
+
+#@ debug_objects
+#: inc/class-query.php:156
+msgid "Page generated in"
+msgstr "Svetainė sukurta"
+
+#@ debug_objects
+#: inc/class-query.php:157
+msgid "ms; ("
+msgstr "kelių puslapių palaikymas; ("
+
+#@ debug_objects
+#: inc/class-query.php:158
+msgid "s); "
+msgstr "s);"
+
+#@ debug_objects
+#: inc/class-query.php:159
+msgid "% PHP"
+msgstr "% PHP"
+
+#@ debug_objects
+#: inc/class-query.php:160
+msgid "% MySQL"
+msgstr "% MySQL"
+
+#@ default
+#@ debug_objects
+#: inc/class-settings.php:108
+#: inc/class-settings.php:125
+#: inc/class-settings.php:143
+#: inc/class-settings.php:152
+#: inc/class-settings.php:191
+msgid "Settings"
+msgstr "Nuostatos"
+
+#@ default
+#: inc/class-settings.php:217
+msgid "Save Changes"
+msgstr "Išsaugoti Pakeitimus"
+
+#@ debug_objects
+#: inc/class-settings.php:238
+msgid "Output in WordPress Admin Footer. <br />Alternatively use url param \"<code>debug</code>\" or set a cookie via url param \"<code>debugcookie</code>\" in days. <br />Example: <code>example.com/?debug</code>"
+msgstr "Išvesties rezultatas WordPress administratoriaus poraštėje.. <br />Vietoje to naudokite universaliosios nuorodos parametrą \"<code>debug</code>\" arba nustatykite slapukus per universaliosios nuorodos parametrus \"<code>debugcookie</code>\" dienų tikslumu. <br />Pavyzdys: <code>example.com/?debug</code>"
+
+#@ debug_objects
+#: inc/class-settings.php:239
+msgid "Output in Footer of Frontend. <br />Alternatively use url param \"<code>debug</code>\" or set a cookie via url param \"<code>debugcookie</code>\" in days <br />Example: <code>example.com/?debugcookie=5</code>"
+msgstr "Išvesties rezultatas sąsajos poraštėje . <br />Vietoje to naudokite universaliosios nuorodos parametrą\"<code>debug</code>\" arba nustatykite slapukus per universaliosios nuorodos parametrus \"<code>debugcookie</code>\" dienų tikslumu. <br />Pavyzdysl: <code>example.com/?debugcookie=5</code>"
+
+#@ debug_objects
+#: inc/class-settings.php:240
+msgid "PHP, WordPress and global Stuff"
+msgstr "PHP, WordPress ir kiti visuotinai naudingi Daiktai:"
+
+#@ debug_objects
+#: inc/class-settings.php:242
+msgid "Theme and Template informations"
+msgstr "Apipavidalinimo ir Šablono Informacija"
+
+#@ debug_objects
+#: inc/class-settings.php:243
+msgid "All Constants"
+msgstr "Visos Konstantos"
+
+#@ debug_objects
+#: inc/class-settings.php:244
+msgid "Introduced scripts and stylesheets"
+msgstr "Įdiegti stiliaus lapai  ir skriptai"
+
+#@ debug_objects
+#: inc/class-settings.php:245
+msgid "List existing Hooks and assigned functions and count of accepted args"
+msgstr "Parodyti egzistuojančius Prikabinimus ir priskirtas funkcijas bei suskaičiuoti sutartus argumentus"
+
+#@ debug_objects
+#: inc/class-settings.php:247
+msgid "Hooks of current page, very slow and use many RAM"
+msgstr "Dabartinio puslapio prikabinimai, labai lėti ir naudoja daugybę operatyviosios atminties"
+
+#@ debug_objects
+#: inc/class-settings.php:248
+msgid "Contents of Query"
+msgstr "Užklausų Turinys"
+
+#@ debug_objects
+#: inc/class-settings.php:249
+msgid "Contents of Cache"
+msgstr "Spartinančiosios atmintinės Turinys"
+
+#@ default
+#: inc/class-settings.php:250
+msgid "Memory Used, Load Time and included Files"
+msgstr "Užimta Atmintis, Įkelties Trukmė ir Įtrauktos Rinkmenos"
+
+#@ debug_objects
+#: inc/class-settings.php:251
+msgid "About the plugin"
+msgstr "Apie papildinį"
+
+#@ debug_objects
+#: inc/class-settings.php:287
+msgid "Like this plugin?"
+msgstr "Patinka šis papildinys?"
+
+#@ debug_objects
+#: inc/class-settings.php:314
+msgid "About this plugin"
+msgstr "Apie papildinį"
+
+#@ debug_objects
+#: inc/class-settings.php:366
+msgid "Options saved."
+msgstr "Parametrai išsaugoti."
+
+#@ debug_objects
+#: inc/class-theme.php:26
+msgid "Theme"
+msgstr "Apipavidalinimas"
+
+#@ debug_objects
+#: inc/class-theme.php:142
+msgid "Current template"
+msgstr "Dabar naudojamas šablonas"
+
