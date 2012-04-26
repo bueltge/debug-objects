@@ -82,6 +82,7 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 == Changelog ==
 = 2.1.7 =
 * Update for [issue #2](https://github.com/bueltge/Debug-Objects/issues/2)
+* Markup Fix on Settings page for WP 3.4 
 
 = 2.1.6 =
 * Fix on activation for add the custom table
