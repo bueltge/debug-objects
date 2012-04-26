@@ -10,11 +10,11 @@
  * Text Domain: debug_objects
  * Domain Path: /languages
  * Description: List filter and action-hooks, cache data, defined constants, qieries, included scripts and styles, php and memory informations and return of conditional tags only for admins; for debug, informations or learning purposes. Setting output in the settings of the plugin and use output via setting or url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days
- * Version:     2.1.6
+ * Version:     2.1.7
  * License:     GPLv3
  * Author:      Frank B&uuml;ltge
  * Author URI:  http://bueltge.de/
- * Last Change: 04/10/2012
+ * Last Change: 04/26/2012
  */
 
 // error_reporting(E_ALL);
@@ -107,8 +107,11 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				$view = FALSE;
 			
 			// exclude options from include classes
-			foreach ( self :: $exclude_class as $exclude_class )
-				unset( $options[ strtolower( $exclude_class ) ] );
+			foreach ( self :: $exclude_class as $exclude_class ) {
+				
+				if ( isset( $options[ strtolower( $exclude_class ) ] ) )
+					unset( $options[ strtolower( $exclude_class ) ] );
+			}
 			
 			if ( ! empty( $options ) ) {
 				foreach ( $options as $class => $check ) {
