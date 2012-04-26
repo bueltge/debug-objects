@@ -189,36 +189,46 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			<div class="wrap">
 				<?php screen_icon('options-general'); ?>
 				<h2><?php echo parent :: get_plugin_data( 'Name' ); ?> <?php _e('Settings', self :: get_textdomain() ); ?></h2>
-				<?php
-				// settings.php?page=Debug-Objects/inc/class-settings.php // plugin_basename( __FILE__ );
-				// $action = 'edit.php?action=' . self :: $option_string;
-				if ( is_multisite() && is_plugin_active_for_network( parent :: $plugin ) )
-					$action = 'edit.php?action=' . self :: $option_string;
-				else
-					$action = 'options.php';
-				?>
-				<form method="post" action="<?php echo $action; ?>">
-					<?php settings_fields( self :: $option_string . '_group' ); ?>
-					
-					<div id="poststuff" class="metabox-holder has-right-sidebar">
-						
-						<div class="inner-sidebar">
-							<?php do_action( 'debug_objects_settings_page_sidebar', self :: return_options() ); ?>
-						</div> <!-- .inner-sidebar -->
-						
-						<div id="post-body">
-							<div id="post-body-content">
-								<?php do_action( 'debug_objects_settings_page', self :: return_options() ); ?>
-							</div> <!-- #post-body-content -->
-						</div> <!-- #post-body -->
-						
-					</div> <!-- .metabox-holder -->
-					
-					<br class="clear" />
-					<?php submit_button( __( 'Save Changes' ), 'button-primary', 'submit', TRUE ); ?>
-				</form>
 				
-			</div>
+				<div id="poststuff">
+					<div id="post-body" class="metabox-holder columns-2">
+					<?php
+					// settings.php?page=Debug-Objects/inc/class-settings.php // plugin_basename( __FILE__ );
+					// $action = 'edit.php?action=' . self :: $option_string;
+					if ( is_multisite() && is_plugin_active_for_network( parent :: $plugin ) )
+						$action = 'edit.php?action=' . self :: $option_string;
+					else
+						$action = 'options.php';
+					?>
+					<form method="post" action="<?php echo $action; ?>">
+						<?php settings_fields( self :: $option_string . '_group' ); ?>
+						
+						<!-- main content -->
+						<div id="post-body-content">
+							<div class="meta-box-sortables ui-sortable">
+									
+									<?php do_action( 'debug_objects_settings_page', self :: return_options() ); ?>
+									
+							</div> <!-- .meta-box-sortables .ui-sortable -->
+						</div> <!-- post-body-content -->
+						
+						<!-- sidebar -->
+						<div id="postbox-container-1" class="postbox-container">
+							<div class="meta-box-sortables">
+								
+								<?php do_action( 'debug_objects_settings_page_sidebar', self :: return_options() ); ?>
+								
+							</div> <!-- .meta-box-sortables -->
+						</div> <!-- #postbox-container-1 .postbox-container -->
+						
+						<br class="clear" />
+						<?php submit_button( __( 'Save Changes' ), 'button-primary', 'submit', TRUE ); ?>
+					</form>
+				
+					</div> <!-- #post-body .metabox-holder .columns-2 -->
+				</div> <!-- #poststuff -->
+				
+			</div> <!-- .wrap -->
 			<?php
 		}
 		

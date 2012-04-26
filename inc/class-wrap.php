@@ -109,6 +109,8 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 				<div id="debugobjectstabs">
 					<ul>
 					<?php
+					if ( ! isset( $tabs ) )
+						echo '<li>Debug Objects: No active settings.</li>';
 					/**
 					 *  use this filter for include new tabs with content
 					$tabs[] = array( 
