@@ -10,7 +10,7 @@
  * Text Domain: debug_objects
  * Domain Path: /languages
  * Description: List filter and action-hooks, cache data, defined constants, qieries, included scripts and styles, php and memory informations and return of conditional tags only for admins; for debug, informations or learning purposes. Setting output in the settings of the plugin and use output via setting or url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days
- * Version:     2.1.7
+ * Version:     2.1.8
  * License:     GPLv3
  * Author:      Frank B&uuml;ltge
  * Author URI:  http://bueltge.de/
@@ -46,7 +46,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		// included classes on default; without user settings
 		public static $by_settings = array( 'Wrap' );
 		// exlude class for central include
-		public static $exclude_class = array( 'Backend', 'Frontend' );
+		public static $exclude_class = array( 'Backend', 'Frontend', 'Stack_Trace' );
 		
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
@@ -105,6 +105,9 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				$view = TRUE;
 			else
 				$view = FALSE;
+			
+			if ( isset( $options['stack_trace'] ) && '1' === $options['stack_trace'] )
+				define( 'STACKTRACE', TRUE );
 			
 			// exclude options from include classes
 			foreach ( self :: $exclude_class as $exclude_class ) {

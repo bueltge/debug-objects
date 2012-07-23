@@ -258,6 +258,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					/*'Hooks'            => __( 'List existing Hooks and assigned functions', self :: get_textdomain() ),// Hooks */
 					'Page_Hooks'       => __( 'Hooks of current page, very slow and use many RAM', self :: get_textdomain() ),// Hook Instrument for active page
 					'Query'            => __( 'Contents of Query', self :: get_textdomain() ),// WP Queries
+					'Stack_Trace'       => __( 'Stack Trace' ),
 					'Cache'            => __( 'Contents of Cache', self :: get_textdomain() ),// WP Cache
 					'Cron'             => __( 'Crons', self :: get_textdomain() ),
 					'Memory'           => __( 'Memory Used, Load Time and included Files' ),
@@ -395,13 +396,10 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 */
 		public function validate_settings( $values ) {
 			
-			if ( empty( $values ) )
-				return;
-			
 			foreach ( $values as $key => $value ) {
 				if ( isset($value[$key]) && 1 == $value[$key] )
 					$value[$key] = 1;
-				else 
+				else
 					$value[$key] = 0;
 			}
 			
