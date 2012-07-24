@@ -83,7 +83,14 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			// Include settings
 			require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-settings.php';
 			
+			add_action( 'admin_init', array( __CLASS__, 'add_capabilities' ) );
+			
 			self :: init_classes();
+		}
+		
+		public function add_capabilities() {
+			
+			$GLOBALS['wp_roles']->add_cap( 'administrator', '_debug_objects' );
 		}
 		
 		/**
@@ -237,7 +244,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 */
 		public function on_activation() {
 			
-			// Check for PHP Version 5.3
+			// Check for PHP Version
 			if ( ! version_compare( PHP_VERSION, '5.2.4', '>=' ) ) {
 				deactivate_plugins( __FILE__ );
 				wp_die(
@@ -247,12 +254,12 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 					)
 				);
 			}
-				
-			//add_option( self :: $option_string, array( 'php' => '1', 'hooks' => '1', 'about' => '1' ) );
 			
-			$GLOBALS['wp_roles'] -> add_cap( 'administrator', '_debug_objects' );
+			// add capability
+			$GLOBALS['wp_roles']->add_cap( 'administrator', '_debug_objects' );
+			
 			// add table
-			$table = $GLOBALS['wpdb'] -> base_prefix . self::$table;
+			$table = $GLOBALS['wpdb']->base_prefix . self::$table;
 			
 			$GLOBALS['wpdb'] -> query(
 				"CREATE TABLE $table (
@@ -278,7 +285,9 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			unregister_setting( self :: $option_string . '_group', self :: $option_string );
 			delete_option( self :: $option_string );
 			
-			$GLOBALS['wp_roles'] -> remove_cap( 'administrator', '_debug_objects' );
+			// remove retired administrator capability
+			$GLOBALS['wp_roles']->remove_cap( 'administrator', '_debug_objects' );
+				
 			// remove hook table
 			$GLOBALS['wpdb'] -> query( "DROP TABLE IF EXISTS " . self::$table );
 		}
