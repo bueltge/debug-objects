@@ -34,11 +34,11 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 */
 		public function get_object() {
 			
-			if ( NULL === self :: $classobj ) {
-				self :: $classobj = new self;
+			if ( NULL === self::$classobj ) {
+				self::$classobj = new self;
 			}
 			
-			return self :: $classobj;
+			return self::$classobj;
 		}
 		
 		/**
@@ -52,9 +52,9 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		public function __construct() {
 			
 			// textdomain from parent class
-			self :: $textdomain    = parent :: get_plugin_data();
-			self :: $option_string = parent :: $option_string;
-			self :: $nonce_string  = parent :: get_plugin_data() . '_nonce';
+			self::$textdomain    = parent :: get_plugin_data();
+			self::$option_string = parent :: $option_string;
+			self::$nonce_string  = parent :: get_plugin_data() . '_nonce';
 			
 			//register_uninstall_hook( __FILE__,       array( 'Debug_Objects_Settings', 'unregister_settings' ) );
 			// settings for an active multisite
@@ -63,9 +63,11 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 				// add settings link
 				add_filter( 'network_admin_plugin_action_links', array( __CLASS__, 'network_admin_plugin_action_links' ), 10, 2 );
 				// save settings on network
-				add_action( 'network_admin_edit_' . self :: $option_string, array( __CLASS__, 'save_network_settings_page' ) );
+				add_action( 'network_admin_edit_' . self::$option_string, array( __CLASS__, 'save_network_settings_page' ) );
 				// return message for update settings
 				add_action( 'network_admin_notices', array( __CLASS__, 'get_network_admin_notices' ) );
+				// todos on init of WP
+				add_action( 'init', array( __CLASS__, 'on_init' ) );
 			} else {
 				add_action( 'admin_menu',            array( __CLASS__, 'add_settings_page' ) );
 				// add settings link
@@ -90,7 +92,19 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 */
 		public function get_textdomain() {
 			
-			return self :: $textdomain;
+			return self::$textdomain;
+		}
+		
+		/**
+		 * Doing on init of WordPress
+		 * 
+		 * @since   07/24/2012
+		 * @param   void
+		 * @return  void
+		 */
+		public function on_init() {
+			// add item on admin bar for go faster to the settings
+			add_action( 'admin_bar_menu', array( __CLASS__, 'add_wp_admin_bar_item' ), 20 );
 		}
 		
 		/**
@@ -105,7 +119,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		public function plugin_action_links( $links, $file ) {
 			
 			if ( parent :: get_plugin_string() == $file  )
-				$links[] = '<a href="tools.php?page=debug-objects/inc/class-settings.php">' . __('Settings') . '</a>';
+				$links[] = '<a href="tools.php?page=' . plugin_basename( __FILE__ ) . '">' . __('Settings') . '</a>';
 			
 			return $links;
 		}
@@ -122,9 +136,28 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		public function network_admin_plugin_action_links( $links, $file ) {
 			
 			if ( parent :: get_plugin_string() == $file  )
-				$links[] = '<a href="settings.php?page=debug-objects/inc/class-settings.php">' . __('Settings') . '</a>';
+				$links[] = '<a href="' . network_admin_url( 'settings.php?page=' . plugin_basename( __FILE__ ) ) . '">' . __( 'Settings' ) . '</a>';
 			
 			return $links;
+		}
+		
+		/**
+		 * Add item in admin bar
+		 * 
+		 * @since   07/24/2012
+		 * @param   Array $wp_admin_bar
+		 */
+		public function add_wp_admin_bar_item( $wp_admin_bar ) {
+			
+			if ( is_super_admin() ) {
+				$wp_admin_bar->add_menu( array(
+					'parent'    => 'network-admin',
+					'secondary' => FALSE,
+					'id'        => 'network-' . self::get_textdomain(),
+					'title'     => self::get_plugin_data( 'Name' ),
+					'href'      => network_admin_url( 'settings.php?page=' . plugin_basename( __FILE__ ) ),
+				) );
+			}
 		}
 		
 		/**
@@ -135,12 +168,12 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 * @since  2.0.0
 		 * @return void
 		 */
-		public function add_settings_page () {
+		public function add_settings_page() {
 			
 			if ( is_multisite() && is_plugin_active_for_network( parent :: $plugin ) ) {
 				add_submenu_page(
 					'settings.php',
-					parent :: get_plugin_data( 'Name' ) . ' ' . __( 'Settings', self :: get_textdomain() ),
+					parent :: get_plugin_data( 'Name' ) . ' ' . __( 'Settings', self::get_textdomain() ),
 					parent :: get_plugin_data( 'Name' ),
 					'manage_options',
 					plugin_basename(__FILE__),
@@ -149,7 +182,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			} else {
 				add_submenu_page(
 					'tools.php',
-					parent :: get_plugin_data( 'Name' ) . ' ' . __( 'Settings', self :: get_textdomain() ),
+					parent :: get_plugin_data( 'Name' ) . ' ' . __( 'Settings', self::get_textdomain() ),
 					parent :: get_plugin_data( 'Name' ),
 					'manage_options',
 					plugin_basename(__FILE__),
@@ -169,9 +202,9 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		public function return_options() {
 			
 			if ( is_multisite() && is_plugin_active_for_network( parent :: $plugin ) )
-				$options = get_site_option( self :: $option_string );
+				$options = get_site_option( self::$option_string );
 			else
-				$options = get_option( self :: $option_string );
+				$options = get_option( self::$option_string );
 			
 			return $options;
 		}
@@ -188,26 +221,26 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			?>
 			<div class="wrap">
 				<?php screen_icon('options-general'); ?>
-				<h2><?php echo parent :: get_plugin_data( 'Name' ); ?> <?php _e('Settings', self :: get_textdomain() ); ?></h2>
+				<h2><?php echo parent :: get_plugin_data( 'Name' ); ?> <?php _e('Settings', self::get_textdomain() ); ?></h2>
 				
 				<div id="poststuff">
 					<div id="post-body" class="metabox-holder columns-2">
 					<?php
 					// settings.php?page=Debug-Objects/inc/class-settings.php // plugin_basename( __FILE__ );
-					// $action = 'edit.php?action=' . self :: $option_string;
+					// $action = 'edit.php?action=' . self::$option_string;
 					if ( is_multisite() && is_plugin_active_for_network( parent :: $plugin ) )
-						$action = 'edit.php?action=' . self :: $option_string;
+						$action = 'edit.php?action=' . self::$option_string;
 					else
 						$action = 'options.php';
 					?>
 					<form method="post" action="<?php echo $action; ?>">
-						<?php settings_fields( self :: $option_string . '_group' ); ?>
+						<?php settings_fields( self::$option_string . '_group' ); ?>
 						
 						<!-- main content -->
 						<div id="post-body-content">
 							<div class="meta-box-sortables ui-sortable">
 									
-									<?php do_action( 'debug_objects_settings_page', self :: return_options() ); ?>
+									<?php do_action( 'debug_objects_settings_page', self::return_options() ); ?>
 									
 							</div> <!-- .meta-box-sortables .ui-sortable -->
 						</div> <!-- post-body-content -->
@@ -216,7 +249,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 						<div id="postbox-container-1" class="postbox-container">
 							<div class="meta-box-sortables">
 								
-								<?php do_action( 'debug_objects_settings_page_sidebar', self :: return_options() ); ?>
+								<?php do_action( 'debug_objects_settings_page_sidebar', self::return_options() ); ?>
 								
 							</div> <!-- .meta-box-sortables -->
 						</div> <!-- #postbox-container-1 .postbox-container -->
@@ -245,23 +278,24 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			<table class="form-table">
 				<?php
 				$defaults = array(
-					'Backend'          => __( 'Output in WordPress Admin Footer. <br />Alternatively use url param "<code>debug</code>" or set a cookie via url param "<code>debugcookie</code>" in days. <br />Example: <code>example.com/?debug</code>', self :: get_textdomain() ),
-					'Frontend'         => __( 'Output in Footer of Frontend. <br />Alternatively use url param "<code>debug</code>" or set a cookie via url param "<code>debugcookie</code>" in days <br />Example: <code>example.com/?debugcookie=5</code>', self :: get_textdomain() ),
-					'Php'              => __( 'PHP, WordPress and global Stuff', self :: get_textdomain() ),// php, WordPress, globals and more
-					'Classes'          => __( 'List all declared classes and his subclasses', self :: get_textdomain() ),
-					'Functions'        => __( 'List all defined functins', self :: get_textdomain() ),
-					'Conditional_Tags' => __( 'Conditional Tags', self :: get_textdomain() ), // conditional tags
-					'Theme'            => __( 'Theme and Template informations', self :: get_textdomain() ),
-					'Constants'        => __( 'All Constants', self :: get_textdomain() ),// All active Constants
-					'Enqueue_Stuff'    => __( 'Introduced scripts and stylesheets', self :: get_textdomain() ),// Scripts and styles
-					'Debug_Hooks'      => __( 'List existing Hooks and assigned functions and count of accepted args', self :: get_textdomain() ), // Hooks, faster
-					/*'Hooks'            => __( 'List existing Hooks and assigned functions', self :: get_textdomain() ),// Hooks */
-					'Page_Hooks'       => __( 'Hooks of current page, very slow and use many RAM', self :: get_textdomain() ),// Hook Instrument for active page
-					'Query'            => __( 'Contents of Query', self :: get_textdomain() ),// WP Queries
-					'Cache'            => __( 'Contents of Cache', self :: get_textdomain() ),// WP Cache
-					'Cron'             => __( 'Crons', self :: get_textdomain() ),
+					'Backend'          => __( 'Output in WordPress Admin Footer. <br />Alternatively use url param "<code>debug</code>" or set a cookie via url param "<code>debugcookie</code>" in days. <br />Example: <code>example.com/?debug</code>', self::get_textdomain() ),
+					'Frontend'         => __( 'Output in Footer of Frontend. <br />Alternatively use url param "<code>debug</code>" or set a cookie via url param "<code>debugcookie</code>" in days <br />Example: <code>example.com/?debugcookie=5</code>', self::get_textdomain() ),
+					'Php'              => __( 'PHP, WordPress and global Stuff', self::get_textdomain() ),// php, WordPress, globals and more
+					'Classes'          => __( 'List all declared classes and his subclasses', self::get_textdomain() ),
+					'Functions'        => __( 'List all defined functions', self::get_textdomain() ),
+					'Conditional_Tags' => __( 'Conditional Tags', self::get_textdomain() ), // conditional tags
+					'Theme'            => __( 'Theme and Template informations', self::get_textdomain() ),
+					'Constants'        => __( 'All Constants', self::get_textdomain() ),// All active Constants
+					'Enqueue_Stuff'    => __( 'Introduced scripts and stylesheets', self::get_textdomain() ),// Scripts and styles
+					'Debug_Hooks'      => __( 'List existing Hooks and assigned functions and count of accepted args', self::get_textdomain() ), // Hooks, faster
+					/*'Hooks'            => __( 'List existing Hooks and assigned functions', self::get_textdomain() ),// Hooks */
+					'Page_Hooks'       => __( 'Hooks of current page, very slow and use many RAM', self::get_textdomain() ),// Hook Instrument for active page
+					'Query'            => __( 'Contents of Query', self::get_textdomain() ),// WP Queries
+					'Stack_Trace'      => __( 'Stack Trace, all files and functions on each query. Query options is prerequisite.<br />A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.', self::get_textdomain() ),
+					'Cache'            => __( 'Contents of Cache', self::get_textdomain() ),// WP Cache
+					'Cron'             => __( 'Crons', self::get_textdomain() ),
 					'Memory'           => __( 'Memory Used, Load Time and included Files' ),
-					'About'            => __( 'About the plugin', self :: get_textdomain() ),// about plugin
+					'About'            => __( 'About the plugin', self::get_textdomain() ),// about plugin
 				);
 				
 				$classes = apply_filters( 'debug_objects_classes', $defaults );
@@ -270,10 +304,10 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					$key = strtolower( $class );
 					?>
 				<tr valign="top">
-					<td scope="row">
-						<label for="<?php echo self :: $option_string . '_' . $key; ?>"><?php echo str_replace( '_', ' ', $class); ?></label>
+					<td scope="row" style="width: 20%;">
+						<label for="<?php echo self::$option_string . '_' . $key; ?>"><?php echo str_replace( '_', ' ', $class); ?></label>
 					</td>
-					<td><input type="checkbox" id="<?php echo self :: $option_string . '_' . $key; ?>" name="<?php echo self :: $option_string . '[' . $key . ']'; ?>" value="1" 
+					<td><input type="checkbox" id="<?php echo self::$option_string . '_' . $key; ?>" name="<?php echo self::$option_string . '[' . $key . ']'; ?>" value="1" 
 						<?php if ( isset( $options[$key] ) ) checked( '1', $options[$key] ); ?> />	
 						<span class="description"><?php _e( $hint ); ?></span>
 					</td>
@@ -297,16 +331,16 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			?>
 			<div class="postbox">
 				
-				<h3><span><?php _e( 'Like this plugin?', self :: get_textdomain() ); ?></span></h3>
+				<h3><span><?php _e( 'Like this plugin?', self::get_textdomain() ); ?></span></h3>
 				<div class="inside">
 					<p>
 						<img style="float:right;" src="<?php echo plugins_url( '/img/bug-32.png', parent::$plugin ); ?>" alt="The Bug" />
-						<?php _e( 'Here\'s how you can give back:', self :: get_textdomain() ); ?></p>
+						<?php _e( 'Here\'s how you can give back:', self::get_textdomain() ); ?></p>
 					<ul>
-						<li><a href="http://wordpress.org/extend/plugins/debug-objects/" title="<?php esc_attr_e( 'The Plugin on the WordPress plugin repository', self :: get_textdomain() ); ?>"><?php _e( 'Give the plugin a good rating.', self :: get_textdomain() ); ?></a></li>
-						<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=6069955" title="<?php esc_attr_e( 'Donate via PayPal', self :: get_textdomain() ); ?>"><?php _e( 'Donate a few euros.', self :: get_textdomain() ); ?></a></li>
-						<li><a href="http://www.amazon.de/gp/registry/3NTOGEK181L23/ref=wl_s_3" title="<?php esc_attr_e( 'Frank Bültge\'s Amazon Wish List', self :: get_textdomain() ); ?>"><?php _e( 'Get me something from my wish list.', self :: get_textdomain() ); ?></a></li>
-						<li><a href="https://github.com/bueltge/Debug-Objects" title="<?php esc_attr_e( 'I waiting for your pull requests!', self :: get_textdomain() ); ?>"><?php _e( 'Fork it or improve it; open issues on github.', self :: get_textdomain() ); ?></a></li>
+						<li><a href="http://wordpress.org/extend/plugins/debug-objects/" title="<?php esc_attr_e( 'The Plugin on the WordPress plugin repository', self::get_textdomain() ); ?>"><?php _e( 'Give the plugin a good rating.', self::get_textdomain() ); ?></a></li>
+						<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=6069955" title="<?php esc_attr_e( 'Donate via PayPal', self::get_textdomain() ); ?>"><?php _e( 'Donate a few euros.', self::get_textdomain() ); ?></a></li>
+						<li><a href="http://www.amazon.de/gp/registry/3NTOGEK181L23/ref=wl_s_3" title="<?php esc_attr_e( 'Frank Bültge\'s Amazon Wish List', self::get_textdomain() ); ?>"><?php _e( 'Get me something from my wish list.', self::get_textdomain() ); ?></a></li>
+						<li><a href="https://github.com/bueltge/Debug-Objects" title="<?php esc_attr_e( 'I waiting for your pull requests!', self::get_textdomain() ); ?>"><?php _e( 'Fork it or improve it; open issues on github.', self::get_textdomain() ); ?></a></li>
 					</ul>
 				</div>
 			</div>
@@ -325,14 +359,14 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			?>
 			<div class="postbox">
 				
-				<h3><span><?php _e( 'About this plugin', self :: get_textdomain() ); ?></span></h3>
+				<h3><span><?php _e( 'About this plugin', self::get_textdomain() ); ?></span></h3>
 				<div class="inside">
 					<p>
-						<strong><?php _e( 'Version:', self :: get_textdomain() ); ?></strong>
+						<strong><?php _e( 'Version:', self::get_textdomain() ); ?></strong>
 						<?php echo parent :: get_plugin_data( 'Version' ); ?>
 					</p>
 					<p>
-						<strong><?php _e( 'Description:', self :: get_textdomain() ); ?></strong>
+						<strong><?php _e( 'Description:', self::get_textdomain() ); ?></strong>
 						<?php echo parent :: get_plugin_data( 'Description' ); ?>
 					</p>
 				</div>
@@ -351,9 +385,9 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		public function save_network_settings_page() {
 			
 			// validate options
-			$value = self :: validate_settings( $_POST[self :: $option_string] );
+			$value = self::validate_settings( $_POST[self::$option_string] );
 			// update options
-			update_site_option( self :: $option_string, $value );
+			update_site_option( self::$option_string, $value );
 			// redirect to settings page in network
 			wp_redirect(
 				add_query_arg( 
@@ -378,7 +412,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			if ( isset( $_GET['updated'] ) && 
 				 'settings_page_debug-objects/inc/class-settings-network' === $GLOBALS['current_screen'] -> id
 				) {
-				$message = __( 'Options saved.', self :: get_textdomain() );
+				$message = __( 'Options saved.', self::get_textdomain() );
 				$notice  = '<div id="message" class="updated"><p>' .$message . '</p></div>';
 				echo $notice;
 			}
@@ -395,13 +429,10 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 */
 		public function validate_settings( $values ) {
 			
-			if ( empty( $values ) )
-				return;
-			
 			foreach ( $values as $key => $value ) {
 				if ( isset($value[$key]) && 1 == $value[$key] )
 					$value[$key] = 1;
-				else 
+				else
 					$value[$key] = 0;
 			}
 			
@@ -418,8 +449,8 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 */
 		public function register_settings() {
 			
-			register_setting( self :: $option_string . '_group', self :: $option_string, array( __CLASS__, 'validate_settings' ) );
-			add_option( self :: $option_string, array( 'php' => '1', 'debug_hooks' => '1', 'about' => '1' ) );
+			register_setting( self::$option_string . '_group', self::$option_string, array( __CLASS__, 'validate_settings' ) );
+			add_option( self::$option_string, array( 'php' => '1', 'debug_hooks' => '1', 'about' => '1' ) );
 		}
 		
 		/**
@@ -432,8 +463,8 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 */
 		public function unregister_settings() {
 			
-			unregister_setting( self :: $option_string . '_group', self :: $option_string );
-			delete_option( self :: $option_string );
+			unregister_setting( self::$option_string . '_group', self::$option_string );
+			delete_option( self::$option_string );
 		}
 		
 		/**
@@ -448,7 +479,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 */
 		public function contextual_help( $contextual_help, $screen_id, $screen ) {
 			
-			if ( 'settings_page_' . self :: $option_string . '_group' !== $screen_id )
+			if ( 'settings_page_' . self::$option_string . '_group' !== $screen_id )
 				return $contextual_help;
 				
 			$contextual_help = 

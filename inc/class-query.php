@@ -22,6 +22,9 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 	if ( ! defined( 'SAVEQUERIES' ) )
 		define( 'SAVEQUERIES', TRUE );
 	
+	if ( ! defined( 'STACKTRACE' ) )
+		define( 'STACKTRACE', FALSE );
+	
 	//add_action( 'admin_init', array( 'Debug_Objects_Query', 'init' ) );
 	
 	class Debug_Objects_Query extends Debug_Objects {
@@ -98,15 +101,18 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 					}
 					if ( isset($q[2]) && ! empty( $q[2] ) ) {
 						$st = explode( ', ', $q[2] );
-						$st = array_diff( $st, self :: $replaced_functions );
-						foreach ( $st as $s ) {
+						$st_array = array_diff( $st, self :: $replaced_functions );
+						foreach ( $st_array as $s ) {
 							$markup_st[] = '<code>' . esc_html( $s ) . '</code>';
 						}
 						$st = implode( ', ', $markup_st );
 						$st = str_replace( self :: $replaced_actions, array( 'do_action' ), $st );
-						$debug_queries .= '<li class="none_list"><strong>' 
-							. __( '<a href="http://en.wikipedia.org/wiki/Stack_trace">Stack trace</a>:', parent :: get_plugin_data() ) . '</strong> ' 
-							. $st . '</li>';
+						if ( ! STACKTRACE )
+							$debug_queries .= '<li class="none_list"><strong>Function:</strong> <code>' . end( $st_array ) . '()</code></li>';
+						if ( STACKTRACE )
+							$debug_queries .= '<li class="none_list"><strong>' 
+								. '<a href="http://en.wikipedia.org/wiki/Stack_trace">Stack trace</a>:</strong> ' 
+								. $st . '</li>';
 					}
 					
 					$debug_queries .= '</ul></li>' . "\n";

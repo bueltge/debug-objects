@@ -80,6 +80,12 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Lithuanian translation files by [Vincent G](http://www.host1plus.com)
 
 == Changelog ==
+= 2.1.8 =
+* Change/add options for stack trace on query list
+* Change output on query, faster, lighter
+* Add item in Admin Bar for faster go to settings
+* Small changes on source
+
 = 2.1.7 =
 * Update for [issue #2](https://github.com/bueltge/Debug-Objects/issues/2)
 * Markup Fix on Settings page for WP 3.4 

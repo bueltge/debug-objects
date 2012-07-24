@@ -10,7 +10,7 @@
  * Text Domain: debug_objects
  * Domain Path: /languages
  * Description: List filter and action-hooks, cache data, defined constants, qieries, included scripts and styles, php and memory informations and return of conditional tags only for admins; for debug, informations or learning purposes. Setting output in the settings of the plugin and use output via setting or url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days
- * Version:     2.1.7
+ * Version:     2.1.8
  * License:     GPLv3
  * Author:      Frank B&uuml;ltge
  * Author URI:  http://bueltge.de/
@@ -46,7 +46,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		// included classes on default; without user settings
 		public static $by_settings = array( 'Wrap' );
 		// exlude class for central include
-		public static $exclude_class = array( 'Backend', 'Frontend' );
+		public static $exclude_class = array( 'Backend', 'Frontend', 'Stack_Trace' );
 		
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
@@ -83,7 +83,14 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			// Include settings
 			require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-settings.php';
 			
+			add_action( 'admin_init', array( __CLASS__, 'add_capabilities' ) );
+			
 			self :: init_classes();
+		}
+		
+		public function add_capabilities() {
+			
+			$GLOBALS['wp_roles']->add_cap( 'administrator', '_debug_objects' );
 		}
 		
 		/**
@@ -105,6 +112,9 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				$view = TRUE;
 			else
 				$view = FALSE;
+			
+			if ( isset( $options['stack_trace'] ) && '1' === $options['stack_trace'] )
+				define( 'STACKTRACE', TRUE );
 			
 			// exclude options from include classes
 			foreach ( self :: $exclude_class as $exclude_class ) {
@@ -234,7 +244,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 */
 		public function on_activation() {
 			
-			// Check for PHP Version 5.3
+			// Check for PHP Version
 			if ( ! version_compare( PHP_VERSION, '5.2.4', '>=' ) ) {
 				deactivate_plugins( __FILE__ );
 				wp_die(
@@ -244,12 +254,12 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 					)
 				);
 			}
-				
-			//add_option( self :: $option_string, array( 'php' => '1', 'hooks' => '1', 'about' => '1' ) );
 			
-			$GLOBALS['wp_roles'] -> add_cap( 'administrator', '_debug_objects' );
+			// add capability
+			$GLOBALS['wp_roles']->add_cap( 'administrator', '_debug_objects' );
+			
 			// add table
-			$table = $GLOBALS['wpdb'] -> base_prefix . self::$table;
+			$table = $GLOBALS['wpdb']->base_prefix . self::$table;
 			
 			$GLOBALS['wpdb'] -> query(
 				"CREATE TABLE $table (
@@ -275,7 +285,9 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			unregister_setting( self :: $option_string . '_group', self :: $option_string );
 			delete_option( self :: $option_string );
 			
-			$GLOBALS['wp_roles'] -> remove_cap( 'administrator', '_debug_objects' );
+			// remove retired administrator capability
+			$GLOBALS['wp_roles']->remove_cap( 'administrator', '_debug_objects' );
+				
 			// remove hook table
 			$GLOBALS['wpdb'] -> query( "DROP TABLE IF EXISTS " . self::$table );
 		}
