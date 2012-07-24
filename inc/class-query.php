@@ -107,7 +107,8 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 						}
 						$st = implode( ', ', $markup_st );
 						$st = str_replace( self :: $replaced_actions, array( 'do_action' ), $st );
-						$debug_queries .= '<li class="none_list"><strong>Function:</strong> <code>' . end( $st_array ) . '</code></li>';
+						if ( ! STACKTRACE )
+							$debug_queries .= '<li class="none_list"><strong>Function:</strong> <code>' . end( $st_array ) . '()</code></li>';
 						if ( STACKTRACE )
 							$debug_queries .= '<li class="none_list"><strong>' 
 								. '<a href="http://en.wikipedia.org/wiki/Stack_trace">Stack trace</a>:</strong> ' 
