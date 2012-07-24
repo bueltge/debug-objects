@@ -81,8 +81,10 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 
 == Changelog ==
 = 2.1.8 =
-* Change options for stack trace on query list
-* change output on query, faster, lighter
+* Change/add options for stack trace on query list
+* Change output on query, faster, lighter
+* Add item in Admin Bar for faster go to settings
+* Small changes on source
 
 = 2.1.7 =
 * Update for [issue #2](https://github.com/bueltge/Debug-Objects/issues/2)
