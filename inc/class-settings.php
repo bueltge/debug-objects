@@ -234,8 +234,14 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 						$action = 'options.php';
 					?>
 					<form method="post" action="<?php echo $action; ?>">
-						<?php settings_fields( self::$option_string . '_group' ); ?>
-						
+						<?php
+						if ( is_multisite() && is_plugin_active_for_network( self::$plugin ) ) {
+							wp_nonce_field( self::$nonce_string );
+							$options = get_site_option( self::$option_string );
+						} else {
+							settings_fields( self::$option_string . '_group' );
+							$options = get_option( self::$option_string );
+						} ?>
 						<!-- main content -->
 						<div id="post-body-content">
 							<div class="meta-box-sortables ui-sortable">
@@ -294,7 +300,8 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Stack_Trace'      => __( 'Stack Trace, all files and functions on each query. Query options is prerequisite.<br />A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.', self::get_textdomain() ),
 					'Cache'            => __( 'Contents of Cache', self::get_textdomain() ),// WP Cache
 					'Cron'             => __( 'Crons', self::get_textdomain() ),
-					'Memory'           => __( 'Memory Used, Load Time and included Files' ),
+					'Memory'           => __( 'Memory Used, Load Time and included Files', self::get_textdomain() ),
+					'Inspector'        => __( 'Provide information about a given domain', self::get_textdomain() ),
 					'About'            => __( 'About the plugin', self::get_textdomain() ),// about plugin
 				);
 				

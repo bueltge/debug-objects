@@ -18,6 +18,7 @@ if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 				return;
 			
 			add_filter( 'debug_objects_tabs', array( __CLASS__, 'get_conditional_tab' ) );
+			add_action( 'shutdown', array( __CLASS__, 'get_list_ids' ) );
 		}
 		
 		public static function get_conditional_tab( $tabs ) {
@@ -150,11 +151,28 @@ if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 					$output .= '<li class="alternate">' . $template . '</li>';
 			$output .= '</ul>' . "\n";
 			
+			$output .=  "\n" . '<h4>' . __( 'Registered IDs, like Sidebar, Admin Bar etc.', parent :: get_plugin_data() ) . '</h4>' . "\n";
+			$output .= '<div id="register_ids"></div>' . "\n";
 			
 			if ( $echo )
 				echo $output;
 			else
 				return $output;
+		}
+		
+		public function get_list_ids() {
+		?>
+			
+			<script>
+				var els = [];
+				jQuery( '[id]' ).each( function () {
+					els.push( this.id );
+				} );
+				els.sort();
+				var ids = '#' + els.join( '<br />#' );
+				jQuery( '#register_ids' ).html( ids );
+			</script>
+			<?php
 		}
 		
 	} // end class

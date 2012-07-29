@@ -1,0 +1,143 @@
+<?php
+/**
+ * Add informations about the domain
+ *
+ * @package     Debug Objects
+ * @subpackage  Site Inspector
+ * @author      Frank B&uuml;ltge
+ * @since       07/29/2012
+ */
+
+if ( ! class_exists( 'Debug_Objects_Inspector' ) ) {
+	
+	class Debug_Objects_Inspector extends Debug_Objects {
+		
+		public static function init() {
+			
+			if ( ! current_user_can( '_debug_objects' ) )
+				return;
+			
+			require_once 'class-site-inspector.php';
+			add_filter( 'debug_objects_tabs', array( __CLASS__, 'get_conditional_tab' ) );
+		}
+		
+		public static function get_conditional_tab( $tabs ) {
+			
+			$tabs[] = array( 
+				'tab' => __( 'Inspector', parent :: get_plugin_data() ),
+				'function' => array( __CLASS__, 'get_site_inspector_data' )
+			);
+			
+			return $tabs;
+		}
+		
+		public function get_domain( $url ) {
+			
+			$nowww = ereg_replace( 'www\.', '', $url );
+			$domain = parse_url( $nowww );
+			
+			if ( ! empty( $domain["host"] ) )
+				return $domain["host"];
+			else
+				return $domain["path"];
+		}
+		
+		public static function get_site_inspector_data() {
+			
+			$inspector = new SiteInspector;
+			$data = $inspector->inspect( self::get_domain( $_SERVER['HTTP_HOST'] ) );
+			?>
+			<h4>Check Host: <?php echo $_SERVER['HTTP_HOST']; ?></h4>
+			<ul>
+				<li>Status: <?php echo $inspector->status; ?></li>
+				<li>IPv6 Support: <?php echo ( $inspector->ipv6 ) ? 'Yes' : 'No'; ?></li>
+				<li>Non-WWW Support:  <?php echo ( $inspector->nonwww ) ? 'Yes' : 'No'; ?></li>
+				<li>CDN: <?php echo $inspector->cdn; ?></li>
+				<li>Cloud: <?php echo $inspector->cloud; ?></li>
+				<li>Https: <?php echo ( $inspector->https ) ? 'Yes' : 'No'; ?></li>
+				<li>Non www: <?php echo ( $inspector->nonwww ) ? 'Yes' : 'No'; ?></li>
+			</ul>
+			
+			<h4>Software</h4>
+			<ul>
+				<li>Google Apps: <?php echo $inspector->gapps; ?></li>
+				<li>Server Software: <?php if ( isset( $data['server_software'] ) ) echo $data['server_software']; else echo 'undefined'; ?></li>
+				<li>Analytics: <?php if ( isset( $inspector->analytics ) ) echo implode(', ', $inspector->analytics); else echo 'undefined'; ?></li>
+				<li>JavaScript Libraries: <?php if ( isset( $inspector->scripts ) ) echo implode(', ', $inspector->scripts); else echo 'undefined'; ?></li>
+			</ul>
+			
+			<?php if ( isset( $inspector->headers ) ) { ?>
+			<h4>Headers</h4>
+			<ul>
+			<?php foreach ( $inspector->headers as $k => $v) { ?>
+				<li><?php echo $k; ?>: <?php if ( is_array( $v ) ) print_r( $v ); else echo $v; ?></li>
+			<?php } ?>
+			</ul>
+			<?php }
+			
+			if ( isset ( $data['redirect'] ) ) { ?>
+			<h4>Redirects</h4>
+			<ul>
+			<?php foreach ( $data['redirect'] as $r) { ?>
+				<li><?php echo $r['code']; ?>: <?php echo $r['destination']; ?></li>
+			<?php } ?>
+			</ul>
+			<?php } ?>
+			
+			<h4>DNS Record</h4>
+			<?php foreach ( $inspector->dns as $domain => $records ) { ?>
+				<strong><?php echo $domain; ?></strong>
+				<?php self::format_records( $records ); ?>
+			<?php } ?>
+			
+			<h4>Reverse Lookup</h4>
+			<table>
+				<tr>
+					<th>IP</th>
+					<th>Hostname</th>
+				</tr>
+			<?php 
+			foreach ($inspector->hosts as $ip=>$host) { ?>
+				<tr>
+					<td><a href="http://www.bing.com/search?q=ip%3A<?php echo trim( $ip ); ?>"><?php echo $ip; ?></a></td>
+					<td><?php echo $host; ?></td>
+				</tr>
+			<?php } ?>
+			</table>
+		<?php 
+		}
+		
+		public function format_records( $records ) {
+		?>
+			<table>
+				<tr>
+					<th>Host</th>
+					<th>Class</th>
+					<th>Type</th>
+					<th>TTL</th>
+					<th>Additional Info</th>
+				</tr>
+			<?php
+			foreach ($records as $record) { ?>
+				<tr>
+					<td><?php echo $record['host']; ?></td>
+					<td><?php echo $record['class']; ?></td>
+					<td><?php echo $record['type']; ?></td>
+					<td><?php echo $record['ttl']; ?></td>
+					<td>
+					<?php 
+						unset($record['host'], $record['class'], $record['type'], $record['ttl']);
+						foreach ($record as $field=>$value) {
+							echo "$field: $value<br />";
+						}
+					?>
+					</td>
+				</tr>
+			<?php } ?>
+			</table>
+		<?php
+		} 
+		
+	} // end class
+	
+}// end if class exists
