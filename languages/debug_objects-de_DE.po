@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Debug Objects\n"
+"Project-Id-Version: Debug Objects v2.1.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-07-12 19:30+0100\n"
-"PO-Revision-Date: 2009-07-12 19:30+0100\n"
+"PO-Revision-Date: 2012-07-29 11:35:30+0000\n"
 "Last-Translator: Frank Bulteg <frank@bueltge.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -90,14 +90,13 @@ msgstr "Linux"
 #: inc/class-php.php:379
 #: inc/class-php.php:381
 #: inc/class-php.php:383
-#: inc/class-php.php:404
-#: inc/class-theme.php:87
-#: inc/class-theme.php:96
-#: inc/class-theme.php:103
-#: inc/class-theme.php:110
-#: inc/class-theme.php:117
-#: inc/class-theme.php:124
-#: inc/class-theme.php:132
+#: inc/class-theme.php:91
+#: inc/class-theme.php:100
+#: inc/class-theme.php:107
+#: inc/class-theme.php:114
+#: inc/class-theme.php:121
+#: inc/class-theme.php:128
+#: inc/class-theme.php:136
 #@ debug_objects
 msgid "Undefined"
 msgstr "Undefiniert"
@@ -116,7 +115,7 @@ msgid "OFF"
 msgstr "Deaktiviert"
 
 #: inc/class-php.php:77
-#: inc/class-query.php:93
+#: inc/class-query.php:96
 #@ debug_objects
 msgid "s"
 msgstr "s"
@@ -164,7 +163,7 @@ msgstr "WordPress Informationen"
 
 #: inc/class-about.php:42
 #: inc/class-php.php:226
-#: inc/class-settings.php:317
+#: inc/class-settings.php:372
 #@ debug_objects
 msgid "Version:"
 msgstr "Version:"
@@ -425,82 +424,82 @@ msgstr "ist"
 msgid "no"
 msgstr "kein"
 
-#: inc/class-theme.php:81
+#: inc/class-theme.php:85
 #@ debug_objects
 msgid "Theme Values"
 msgstr "Themewerte"
 
-#: inc/class-theme.php:83
+#: inc/class-theme.php:87
 #@ debug_objects
 msgid "Current theme name:"
 msgstr "Aktueller Themename:"
 
-#: inc/class-theme.php:90
+#: inc/class-theme.php:94
 #@ debug_objects
 msgid "Current theme title:"
 msgstr "Aktueller Themetitel:"
 
-#: inc/class-theme.php:92
+#: inc/class-theme.php:96
 #@ debug_objects
 msgid "Current theme uri:"
 msgstr "Aktuelle Theme URI:"
 
-#: inc/class-theme.php:99
+#: inc/class-theme.php:103
 #@ debug_objects
 msgid "Current theme description:"
 msgstr "Aktuell Themebeschreibung."
 
-#: inc/class-theme.php:106
+#: inc/class-theme.php:110
 #@ debug_objects
 msgid "Current theme author:"
 msgstr "Aktueller Themeautor:"
 
-#: inc/class-theme.php:113
+#: inc/class-theme.php:117
 #@ debug_objects
 msgid "Current theme version:"
 msgstr "Aktuelle Themeversion:"
 
-#: inc/class-theme.php:120
+#: inc/class-theme.php:124
 #@ debug_objects
 msgid "Current theme template:"
 msgstr "Aktuelles Themetemplate:"
 
-#: inc/class-theme.php:127
+#: inc/class-theme.php:131
 #@ debug_objects
 msgid "Current theme status:"
 msgstr "Aktueller Themestatus:"
 
-#: inc/class-theme.php:128
+#: inc/class-theme.php:132
 #@ debug_objects
 msgid "Current theme tags:"
 msgstr "Aktuelle Theme Tags:"
 
-#: inc/class-theme.php:136
+#: inc/class-theme.php:140
 #@ debug_objects
 msgid "Current theme:"
 msgstr "Aktuelles Theme:"
 
-#: inc/class-theme.php:137
+#: inc/class-theme.php:141
 #@ debug_objects
 msgid "Current theme directory:"
 msgstr "Aktuelles Themeverzeichnis:"
 
-#: inc/class-theme.php:138
+#: inc/class-theme.php:142
 #@ debug_objects
 msgid "Current stylesheet:"
 msgstr "Aktuelles Stylsheet:"
 
-#: inc/class-theme.php:139
+#: inc/class-theme.php:143
 #@ debug_objects
 msgid "Current stylesheet directory:"
 msgstr "Aktuelles Stylesheetverzeichnis:"
 
-#: inc/class-theme.php:144
+#: inc/class-theme.php:148
 #@ debug_objects
 msgid "Current template path, constant"
 msgstr "Aktueller Templatepfad, Konstante"
 
-#: inc/class-theme.php:145
+#: inc/class-theme.php:149
 #@ debug_objects
 msgid "Current stylesheet path, constant"
 msgstr "Aktueller Stylesheetpfad, Konstante"
@@ -537,7 +536,7 @@ msgid "Objects total:"
 msgstr "Objekte gesamt:"
 
 #: inc/class-conditional_tags.php:27
-#: inc/class-settings.php:241
+#: inc/class-settings.php:292
 #@ debug_objects
 msgid "Conditional Tags"
 msgstr "Conditional Tags"
@@ -552,7 +551,7 @@ msgstr "Speicher"
 msgid "Constants"
 msgstr "Konstanten"
 
-#: inc/class-query.php:44
+#: inc/class-query.php:47
 #@ debug_objects
 msgid "Queries"
 msgstr "Queries"
@@ -617,13 +616,7 @@ msgstr ""
 msgid "http://bueltge.de/"
 msgstr ""
 
-#. translators: plugin header field 'Version'
-#: debug_objects.php:0
-#@ debug_objects
-msgid "2.1.0"
-msgstr ""
-
-#: debug_objects.php:166
+#: debug_objects.php:252
 #@ default
 msgid "Sorry, This plugin requires PHP 5.2.4"
 msgstr ""
@@ -634,49 +627,49 @@ msgid "About"
 msgstr "Über"
 
 #: inc/class-about.php:39
-#: inc/class-settings.php:321
+#: inc/class-settings.php:376
 #@ debug_objects
 msgid "Description:"
 msgstr "Beschreibung:"
 
 #: inc/class-about.php:45
-#: inc/class-settings.php:291
+#: inc/class-settings.php:345
 #@ debug_objects
 msgid "Here's how you can give back:"
 msgstr "So kannst du Feedback geben:"
 
 #: inc/class-about.php:48
-#: inc/class-settings.php:293
+#: inc/class-settings.php:347
 #@ debug_objects
 msgid "The Plugin on the WordPress plugin repository"
 msgstr "Das Plugin im WordPress Plugin Repository"
 
 #: inc/class-about.php:49
-#: inc/class-settings.php:293
+#: inc/class-settings.php:347
 #@ debug_objects
 msgid "Give the plugin a good rating."
 msgstr "Gib dem Plugin ein tolles Rating."
 
 #: inc/class-about.php:51
-#: inc/class-settings.php:294
+#: inc/class-settings.php:348
 #@ debug_objects
 msgid "Donate via PayPal"
 msgstr "Spende via PayPal"
 
 #: inc/class-about.php:52
-#: inc/class-settings.php:294
+#: inc/class-settings.php:348
 #@ debug_objects
 msgid "Donate a few euros."
 msgstr "Spende einige Euros."
 
 #: inc/class-about.php:54
-#: inc/class-settings.php:295
+#: inc/class-settings.php:349
 #@ debug_objects
 msgid "Frank Bültge's Amazon Wish List"
 msgstr "Frank Bültge`s Amazon Wunschliste"
 
 #: inc/class-about.php:55
-#: inc/class-settings.php:295
+#: inc/class-settings.php:349
 #@ debug_objects
 msgid "Get me something from my wish list."
 msgstr "Sende mir etwas aus meiner Wunschliste."
@@ -727,12 +720,12 @@ msgstr ""
 msgid "Files"
 msgstr ""
 
-#: inc/class-page_hooks.php:34
+#: inc/class-page_hooks.php:30
 #@ debug_objects
 msgid "Page Hooks"
 msgstr "Seiten Hooks"
 
-#: inc/class-page_hooks.php:145
+#: inc/class-page_hooks.php:142
 #@ debug_objects
 msgid "Undefinded"
 msgstr "Undefiniert"
@@ -886,238 +879,325 @@ msgstr ""
 msgid "FILE:"
 msgstr ""
 
-#: inc/class-php.php:395
-#: inc/class-php.php:411
-#: inc/class-php.php:419
-#: inc/class-php.php:428
+#: inc/class-php.php:398
+#: inc/class-php.php:407
+#: inc/class-php.php:416
+#: inc/class-php.php:424
+#: inc/class-php.php:433
 #@ debug_objects
 msgid "Undefined or empty"
 msgstr "Undefiniert oder leer"
 
-#: inc/class-php.php:401
-#@ debug_objects
-msgid "HTTP GET Error"
-msgstr ""
-
-#: inc/class-php.php:408
-#@ debug_objects
-msgid "HTTP GET variables"
-msgstr ""
-
-#: inc/class-php.php:416
-#@ debug_objects
-msgid "HTTP POST variables"
-msgstr ""
-
-#: inc/class-php.php:425
-#@ debug_objects
-msgid "COOKIEs"
-msgstr ""
-
-#: inc/class-query.php:91
+#: inc/class-query.php:94
 #@ debug_objects
 msgid "Time:"
 msgstr "Zeit:"
 
-#: inc/class-query.php:92
+#: inc/class-query.php:95
 #@ debug_objects
 msgid "ms"
 msgstr ""
 
-#: inc/class-query.php:97
+#: inc/class-query.php:100
 #@ debug_objects
 msgid "Query:"
 msgstr ""
 
-#: inc/class-query.php:108
-#@ debug_objects
-msgid "<a href=\"http://en.wikipedia.org/wiki/Stack_trace\">Stack trace</a>:"
-msgstr ""
-
-#: inc/class-query.php:121
+#: inc/class-query.php:127
 #@ debug_objects
 msgid "Database Errors"
 msgstr "Datenbank Fehler"
 
-#: inc/class-query.php:139
+#: inc/class-query.php:145
 #@ debug_objects
 msgid "Total query time:"
 msgstr ""
 
-#: inc/class-query.php:141
+#: inc/class-query.php:147
 #@ default
 msgid "ms for"
 msgstr ""
 
-#: inc/class-query.php:141
+#: inc/class-query.php:147
 #@ debug_objects
 msgid "queries ("
 msgstr ""
 
-#: inc/class-query.php:142
+#: inc/class-query.php:148
 #@ debug_objects
 msgid "s) "
 msgstr ""
 
-#: inc/class-query.php:144
+#: inc/class-query.php:150
 #@ debug_objects
 msgid "Total num_query time:"
 msgstr ""
 
-#: inc/class-query.php:145
+#: inc/class-query.php:151
 #@ default
 msgid "for"
 msgstr ""
 
-#: inc/class-query.php:146
+#: inc/class-query.php:152
 #@ debug_objects
 msgid "num_queries."
 msgstr ""
 
-#: inc/class-query.php:148
+#: inc/class-query.php:154
 #@ debug_objects
 msgid "&raquo; Different values in num_query and query? - please set the constant"
 msgstr "&raquo; Verschieden Werte in num_query und query? - Bitte setze die Konstante"
 
-#: inc/class-query.php:149
-#: inc/class-query.php:153
+#: inc/class-query.php:155
+#: inc/class-query.php:159
 #@ default
 #@ debug_objects
 msgid "in your"
 msgstr "in deiner"
 
-#: inc/class-query.php:152
+#: inc/class-query.php:158
 #@ debug_objects
 msgid "&raquo; Query time is null (0)? - please set the constant"
 msgstr "&raquo; Query Zeit ist null (0)? - Bitte setze die Konstante"
 
-#: inc/class-query.php:153
+#: inc/class-query.php:159
 #@ default
 msgid "at"
 msgstr ""
 
-#: inc/class-query.php:156
+#: inc/class-query.php:162
 #@ debug_objects
 msgid "Page generated in"
 msgstr "Seite generiert in"
 
-#: inc/class-query.php:157
+#: inc/class-query.php:163
 #@ debug_objects
 msgid "ms; ("
 msgstr ""
 
-#: inc/class-query.php:158
+#: inc/class-query.php:164
 #@ debug_objects
 msgid "s); "
 msgstr ""
 
-#: inc/class-query.php:159
+#: inc/class-query.php:165
 #@ debug_objects
 msgid "% PHP"
 msgstr ""
 
-#: inc/class-query.php:160
+#: inc/class-query.php:166
 #@ debug_objects
 msgid "% MySQL"
 msgstr ""
 
-#: inc/class-settings.php:108
-#: inc/class-settings.php:125
-#: inc/class-settings.php:143
-#: inc/class-settings.php:152
-#: inc/class-settings.php:191
+#: inc/class-settings.php:122
+#: inc/class-settings.php:139
+#: inc/class-settings.php:176
+#: inc/class-settings.php:185
+#: inc/class-settings.php:224
 #@ default
 #@ debug_objects
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: inc/class-settings.php:217
+#: inc/class-settings.php:264
 #@ default
 msgid "Save Changes"
 msgstr ""
 
-#: inc/class-settings.php:238
+#: inc/class-settings.php:287
 #@ debug_objects
 msgid "Output in WordPress Admin Footer. <br />Alternatively use url param \"<code>debug</code>\" or set a cookie via url param \"<code>debugcookie</code>\" in days. <br />Example: <code>example.com/?debug</code>"
 msgstr "Ausgabe im WordPress Admin Footer. <br />Alternativ nutze den URL Parameter \"<code>debug</code>\" oder setze einen Cookie via URL Parameter \"<code>debugcookie</code>\" in Tagen. <br />Beispiel: <code>example.com/?debug</code>"
 
-#: inc/class-settings.php:239
+#: inc/class-settings.php:288
 #@ debug_objects
 msgid "Output in Footer of Frontend. <br />Alternatively use url param \"<code>debug</code>\" or set a cookie via url param \"<code>debugcookie</code>\" in days <br />Example: <code>example.com/?debugcookie=5</code>"
 msgstr "Ausgabe im WordPress Frontend. <br />Alternativ nutze den URL Parameter \"<code>debug</code>\" oder setze einen Cookie via URL Parameter \"<code>debugcookie</code>\" in Tagen. <br />Beispiel: <code>example.com/?debugcookie=5</code>"
 
-#: inc/class-settings.php:240
+#: inc/class-settings.php:289
 #@ debug_objects
 msgid "PHP, WordPress and global Stuff"
 msgstr "PHP, WordPress und globales Zeug"
 
-#: inc/class-settings.php:242
+#: inc/class-settings.php:293
 #@ debug_objects
 msgid "Theme and Template informations"
 msgstr "Theme und Template Informationen"
 
-#: inc/class-settings.php:243
+#: inc/class-settings.php:294
 #@ debug_objects
 msgid "All Constants"
 msgstr "Alle Konstanten"
 
-#: inc/class-settings.php:244
+#: inc/class-settings.php:295
 #@ debug_objects
 msgid "Introduced scripts and stylesheets"
 msgstr "Aktive Scripte und Stylesheets"
 
-#: inc/class-settings.php:245
+#: inc/class-settings.php:296
 #@ debug_objects
 msgid "List existing Hooks and assigned functions and count of accepted args"
 msgstr "Listet existente Hooks und zugeordnete Funktionen und die Anzahl der akzeptierten Argumente"
 
-#: inc/class-settings.php:247
+#: inc/class-settings.php:298
 #@ debug_objects
 msgid "Hooks of current page, very slow and use many RAM"
 msgstr "Hooks der aktuellen Seite, sehr langsam und nutze sehr viel RAM"
 
-#: inc/class-settings.php:248
+#: inc/class-settings.php:299
 #@ debug_objects
 msgid "Contents of Query"
 msgstr "Query Inhalt"
 
-#: inc/class-settings.php:249
+#: inc/class-settings.php:301
 #@ debug_objects
 msgid "Contents of Cache"
 msgstr "Cache Inhalt"
 
-#: inc/class-settings.php:250
-#@ default
+#: inc/class-settings.php:303
+#@ debug_objects
 msgid "Memory Used, Load Time and included Files"
 msgstr ""
 
-#: inc/class-settings.php:251
+#: inc/class-settings.php:305
 #@ debug_objects
 msgid "About the plugin"
 msgstr "Über das Plugin"
 
-#: inc/class-settings.php:287
+#: inc/class-settings.php:341
 #@ debug_objects
 msgid "Like this plugin?"
 msgstr "Du magst das Plugin?"
 
-#: inc/class-settings.php:314
+#: inc/class-settings.php:369
 #@ debug_objects
 msgid "About this plugin"
 msgstr "Über das Plugin"
 
-#: inc/class-settings.php:366
+#: inc/class-settings.php:422
 #@ debug_objects
 msgid "Options saved."
 msgstr "Einstellungen gespeichert."
 
-#: inc/class-theme.php:26
+#: inc/class-theme.php:27
 #@ debug_objects
 msgid "Theme"
 msgstr "Theme"
 
-#: inc/class-theme.php:142
+#: inc/class-theme.php:146
 #@ debug_objects
 msgid "Current template"
 msgstr "Aktuelles Template"
+
+#. translators: plugin header field 'Version'
+#: debug_objects.php:0
+#@ debug_objects
+msgid "2.1.9"
+msgstr ""
+
+#: inc/class-classes.php:26
+#@ debug_objects
+msgid "Classes"
+msgstr "Klassen"
+
+#: inc/class-classes.php:70
+#@ debug_objects
+msgid "Class total:"
+msgstr "Klassen total:"
+
+#: inc/class-cron.php:67
+#@ debug_objects
+msgid "Cron"
+msgstr "Cron"
+
+#: inc/class-debug.php:26
+#@ debug_objects
+msgid "Debug"
+msgstr "Debug"
+
+#: inc/class-debug.php:54
+#@ debug_objects
+msgid "Debug Objects wp_die on Debug method."
+msgstr "Debug Objects wp_die on Debug method."
+
+#: inc/class-functions.php:26
+#@ debug_objects
+msgid "Functions"
+msgstr "Funktionen"
+
+#: inc/class-functions.php:79
+#@ debug_objects
+msgid "Functions total:"
+msgstr "Funktionen total:"
+
+#: inc/class-inspector.php:27
+#@ debug_objects
+msgid "Inspector"
+msgstr "Inspektor"
+
+#: inc/class-php.php:396
+#@ debug_objects
+msgid "HTTP $_SERVER variables"
+msgstr "HTTP $_SERVER Variablen"
+
+#: inc/class-php.php:404
+#@ debug_objects
+msgid "HTTP $_GET Error"
+msgstr "HTTP $_GET Error"
+
+#: inc/class-php.php:413
+#@ debug_objects
+msgid "HTTP $_GET variables"
+msgstr "HTTP $_GET Variablen"
+
+#: inc/class-php.php:421
+#@ debug_objects
+msgid "HTTP $_POST variables"
+msgstr "HTTP $_POST Variablen"
+
+#: inc/class-php.php:430
+#@ debug_objects
+msgid "$_COOKIE variables"
+msgstr "$_COOKIE Variablen"
+
+#: inc/class-settings.php:290
+#@ debug_objects
+msgid "List all declared classes and his subclasses"
+msgstr "Listet alle deklarierten Klassen und deren Unterklassen auf"
+
+#: inc/class-settings.php:291
+#@ debug_objects
+msgid "List all defined functions"
+msgstr "Listet alle definierten Funktionen"
+
+#: inc/class-settings.php:300
+#@ debug_objects
+msgid "Stack Trace, all files and functions on each query. Query options is prerequisite.<br />A stack trace is a report of the active stack frames at a certain point in time during the execution of a program."
+msgstr "Stack Trace, alle Dateien und Funktionen pro Query. Query Option ist Vorraussetzung!<br />Ein Stack Trace ist ein Bericht zu einem bestimmten Zeitpunkt während der Ausführung eines Programms."
+
+#: inc/class-settings.php:302
+#@ debug_objects
+msgid "Crons"
+msgstr "Crons"
+
+#: inc/class-settings.php:304
+#@ debug_objects
+msgid "Provide information about a given domain"
+msgstr "Enthält Informationen über die Domain"
+
+#: inc/class-settings.php:350
+#@ debug_objects
+msgid "I waiting for your pull requests!"
+msgstr "Ich warte auf deinen pull requests!"
+
+#: inc/class-settings.php:350
+#@ debug_objects
+msgid "Fork it or improve it; open issues on github."
+msgstr "Fork or verbessere es; offen für Einträge auf Github."
+
+#: inc/class-theme.php:154
+#@ debug_objects
+msgid "Registered IDs, like Sidebar, Admin Bar etc."
+msgstr "Registrierte IDs, wie bspw. zur Sidebar, Admin Bar usw."
 
