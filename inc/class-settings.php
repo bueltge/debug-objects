@@ -17,7 +17,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 	
 	class Debug_Objects_Settings extends Debug_Objects {
 		
-		static private $classobj = NULL;
+		private static $classobj = NULL;
 		// string for translation
 		public static $textdomain;
 		// string for options in table options

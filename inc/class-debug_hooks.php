@@ -39,7 +39,7 @@ if ( ! class_exists( 'Debug_Objects_Debug_Hooks' ) ) {
 			return $tabs;
 		}
 		
-		public static function list_hooks( $filter = false ){
+		public static function list_hooks( $filter = FALSE ){
 			global $wp_filter;
 			
 			$hooks = $wp_filter;
