@@ -151,6 +151,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @return  $debug boolean
 		 */
 		public function debug_control() {
+			
 			// Debug via _GET Param on URL
 			if ( ! isset( $_GET['debug'] ) )
 				$debug = FALSE;
@@ -213,11 +214,17 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 */
 		public static function get_plugin_data( $value = 'TextDomain', $echo = FALSE ) {
 			
+			static $plugin_data = array();
+			
+			// fetch the data just once.
+			if ( isset( $plugin_data[ $value ] ) )
+				return $plugin_data[ $value ];
+			
 			if ( ! function_exists( 'get_plugin_data' ) )
 				require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 			
 			$plugin_data  = get_plugin_data( __FILE__ );
-			$plugin_value = $plugin_data[$value];
+			$plugin_value = empty ( $plugin_data[ $value ] ) ? '' : $plugin_data[ $value ];
 			
 			if ( $echo )
 				echo $plugin_value;
