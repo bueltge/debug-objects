@@ -3,8 +3,8 @@ Contributors: Bueltge
 Donate link: http://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, cron, cache
 Requires at least: 3.3
-Tested up to: 3.5-Alpha
-Stable tag: 2.1.9
+Tested up to: 3.5-Beta3
+Stable tag: 2.1.10
 
 The Plugin Debug Objects provides a large number of information: query, cache, cron, constants, hooks, functions and many more.
 
@@ -43,12 +43,9 @@ There are no data in the database and there are no settings. Therefore, the inst
 = Bugs, technical hints or contribute =
 Please give us feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/bueltge/Debug-Objects).
 
-= More Plugins = 
-Please see also my [Premium Plugins](http://wpplugins.com/author/malo.conny/). Maybe you find an solution for your requirement.
+**Made by [Inpsyde](http://inpsyde.com) &middot; We love WordPress**
 
-= Interested in WordPress tips and tricks =
-You may also be interested in WordPress tips and tricks at [WP Engineer](http://wpengineer.com/) or for german people [bueltge.de](http://bueltge.de/) 
-
+Have a look at the premium plugins in our [market](http://marketpress.com).
 
 == Installation ==
 = Requirements =
@@ -80,6 +77,10 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Lithuanian translation files by [Vincent G](http://www.host1plus.com)
 
 == Changelog ==
+= 2.1.10 =
+* Mninor Fixes, PHP Warnings and Notice
+* Add "Super Var Dump" project
+
 = 2.1.9 =
 * Fix for save settings in WP multisite 3.4*
 * Add list of all registered IDs on tab 'Theme'
