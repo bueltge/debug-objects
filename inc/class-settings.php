@@ -302,6 +302,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Cron'             => __( 'Crons', self::get_textdomain() ),
 					'Memory'           => __( 'Memory Used, Load Time and included Files', self::get_textdomain() ),
 					'Inspector'        => __( 'Provide information about a given domain', self::get_textdomain() ),
+					'Super_Var_Dump'   => __( 'A customized var_dump walker for viewing complex PHP variable data with an easy, javascript-backed nested-exploring view. Use the function <code>super_var_dump( $example_object );</code> for your debugging. More hints on <a href="https://github.com/ericandrewlewis/super-var-dump">this project</a>.', self::get_textdomain() ),
 					'About'            => __( 'About the plugin', self::get_textdomain() ),// about plugin
 				);
 				
@@ -437,10 +438,14 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		public function validate_settings( $values ) {
 			
 			foreach ( $values as $key => $value ) {
-				if ( isset($value[$key]) && 1 == $value[$key] )
-					$value[$key] = 1;
-				else
-					$value[$key] = 0;
+				
+				if ( isset($value[$key]) ) {
+					
+					if ( 1 == $value[$key] )
+						$value[$key] = 1;
+					else
+						$value[$key] = 0;
+				}
 			}
 			
 			return $values;

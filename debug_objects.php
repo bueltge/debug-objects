@@ -10,11 +10,11 @@
  * Text Domain: debug_objects
  * Domain Path: /languages
  * Description: List filter and action-hooks, cache data, defined constants, qieries, included scripts and styles, php and memory informations and return of conditional tags only for admins; for debug, informations or learning purposes. Setting output in the settings of the plugin and use output via setting or url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days
- * Version:     2.1.9
+ * Version:     2.1.10
  * License:     GPLv3
  * Author:      Frank B&uuml;ltge
  * Author URI:  http://bueltge.de/
- * Last Change: 08/02/2012
+ * Last Change: 11/15/2012
  */
 
 // error_reporting(E_ALL);
@@ -73,8 +73,11 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		public function __construct() {
 			
 			// define table
-			self :: $table = $GLOBALS['wpdb'] -> base_prefix . self::$table;
+			self :: $table  = $GLOBALS['wpdb'] -> base_prefix . self::$table;
 			self :: $plugin = plugin_basename( __FILE__ );
+			
+			if ( is_multisite() && ! function_exists( 'is_plugin_active_for_network' ) )
+				require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 			
 			// add and remove settings, the table for the plugin
 			register_deactivation_hook( __FILE__, array( __CLASS__, 'on_deactivation' ) );
@@ -85,7 +88,8 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			
 			add_action( 'admin_init', array( __CLASS__, 'add_capabilities' ) );
 			
-			self :: init_classes();
+			//add_action( 'init', array( __CLASS__, 'init_classes' ) );
+			self::init_classes();
 		}
 		
 		public function add_capabilities() {
@@ -289,7 +293,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			$GLOBALS['wp_roles']->remove_cap( 'administrator', '_debug_objects' );
 				
 			// remove hook table
-			$GLOBALS['wpdb'] -> query( "DROP TABLE IF EXISTS " . self::$table );
+			$GLOBALS['wpdb']->query( "DROP TABLE IF EXISTS " . self::$table );
 		}
 		
 		/**
