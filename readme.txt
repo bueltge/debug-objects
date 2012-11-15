@@ -1,5 +1,5 @@
 === Debug Objects ===
-Contributors: Bueltge
+Contributors: Bueltge, inpsyde
 Donate link: http://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, cron, cache
 Requires at least: 3.3
