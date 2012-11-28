@@ -29,6 +29,8 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Functions, which respond on hooks and filters
 * Contents of arrays to hooks and filters
 * All defined constants
+* Super Var Dump
+* Run WordPress in default mode via url-param
 * and many more ...
 
 The plugin does not filter values and should only be used for information and optimization, I don't recommended to use it on a live blog. For developers it can rapidly deliver data, which is useful in a development environment.

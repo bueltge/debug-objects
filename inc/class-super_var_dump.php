@@ -27,7 +27,6 @@ class Debug_Objects_Super_Var_Dump extends Debug_Objects {
 	public static function include_super_var_dump() {
 		
 		require_once( plugin_dir_path( __FILE__ ) . 'super-var_dump.php' );
-		super_var_dump( $_SERVER );
 	}
 	
 } // end class

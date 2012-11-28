@@ -90,7 +90,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 * @since   2.0.0
 		 * @return  string
 		 */
-		public function get_textdomain() {
+		public static function get_textdomain() {
 			
 			return self::$textdomain;
 		}
@@ -102,7 +102,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 * @param   void
 		 * @return  void
 		 */
-		public function on_init() {
+		public static function on_init() {
 			// add item on admin bar for go faster to the settings
 			add_action( 'admin_bar_menu', array( __CLASS__, 'add_wp_admin_bar_item' ), 20 );
 		}
@@ -147,7 +147,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 * @since   07/24/2012
 		 * @param   Array $wp_admin_bar
 		 */
-		public function add_wp_admin_bar_item( $wp_admin_bar ) {
+		public static function add_wp_admin_bar_item( $wp_admin_bar ) {
 			
 			if ( is_super_admin() ) {
 				$wp_admin_bar->add_menu( array(
@@ -303,6 +303,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Memory'           => __( 'Memory Used, Load Time and included Files', self::get_textdomain() ),
 					'Inspector'        => __( 'Provide information about a given domain', self::get_textdomain() ),
 					'Super_Var_Dump'   => __( 'A customized var_dump walker for viewing complex PHP variable data with an easy, javascript-backed nested-exploring view. Use the function <code>super_var_dump( $example_object );</code> for your debugging. More hints on <a href="https://github.com/ericandrewlewis/super-var-dump">this project</a>.', self::get_textdomain() ),
+					'Default_Mode'     => __( 'Add the url-param \'<code>default</code>\', like \'<code>?debug&default</code>\', for run WordPress in a safe mode. Plugins are not loaed and set the default theme as active theme, is it available.', self::get_textdomain() ),
 					'About'            => __( 'About the plugin', self::get_textdomain() ),// about plugin
 				);
 				
