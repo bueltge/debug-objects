@@ -83,6 +83,8 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		}
 		
 		
+		public function init() {}
+		
 		/**
 		 * Return Textdomain string
 		 * 
@@ -303,7 +305,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Memory'           => __( 'Memory Used, Load Time and included Files', self::get_textdomain() ),
 					'Inspector'        => __( 'Provide information about a given domain', self::get_textdomain() ),
 					'Super_Var_Dump'   => __( 'A customized var_dump walker for viewing complex PHP variable data with an easy, javascript-backed nested-exploring view. Use the function <code>super_var_dump( $example_object );</code> for your debugging. More hints on <a href="https://github.com/ericandrewlewis/super-var-dump">this project</a>.', self::get_textdomain() ),
-					'Default_Mode'     => __( 'Add the url-param \'<code>default</code>\', like \'<code>?debug&default</code>\', for run WordPress in a safe mode. Plugins are not loaed and set the default theme as active theme, is it available.', self::get_textdomain() ),
+					//'Default_Mode'     => __( 'Add the url-param \'<code>default</code>\', like \'<code>?debug&default</code>\', for run WordPress in a safe mode. Plugins are not loaded and set the default theme as active theme, is it available.', self::get_textdomain() ),
 					'About'            => __( 'About the plugin', self::get_textdomain() ),// about plugin
 				);
 				
@@ -503,7 +505,6 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		
 	}
 	
-	add_action( 'plugins_loaded', array( 'Debug_Objects_Settings', 'get_object' ) );
-	$Debug_Objects_Settings = Debug_Objects_Settings :: get_object();
+	$Debug_Objects_Settings = Debug_Objects_Settings::get_object();
 	
 } // end if class exists

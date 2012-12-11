@@ -83,12 +83,13 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			register_deactivation_hook( __FILE__, array( __CLASS__, 'on_deactivation' ) );
 			register_uninstall_hook( __FILE__,    array( 'Debug_Objects', 'on_deactivation' ) );
 			
+			// include for load safe mode
+			require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-default_mode.php';
 			// Include settings
 			require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-settings.php';
 			
 			add_action( 'admin_init', array( __CLASS__, 'add_capabilities' ) );
 			
-			//add_action( 'init', array( __CLASS__, 'init_classes' ) );
 			self::init_classes();
 		}
 		
