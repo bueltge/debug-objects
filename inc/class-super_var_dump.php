@@ -11,10 +11,10 @@
  * @since       2.0.1
  */
 
-if ( class_exists( 'Debug_Objects_Memory' ) )
+if ( class_exists( 'Debug_Objects_Super_Var_Dump' ) )
 	return NULL;
 
-class Debug_Objects_Super_Var_Dump extends Debug_Objects {
+class Debug_Objects_Super_Var_Dump {
 	
 	public static function init() {
 		
@@ -26,7 +26,7 @@ class Debug_Objects_Super_Var_Dump extends Debug_Objects {
 	
 	public static function include_super_var_dump() {
 		
-		require_once( plugin_dir_path( __FILE__ ) . 'super-var_dump.php' );
+		require_once( plugin_dir_path( __FILE__ ) . 'super-var-dump/super-var_dump.php' );
 	}
 	
 } // end class

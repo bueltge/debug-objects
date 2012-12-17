@@ -95,6 +95,11 @@ if ( ! class_exists( 'Debug_Objects_Default_Mode' ) ) {
 			return $plugins;
 		}
 		
+		/**
+		 * get list of all active plugins
+		 * 
+		 * @todo: maybe via filter hook 'active_plugins'
+		 */
 		public function create_active_plugin_list() {
 			// get plugins
 			$plugins = self::get_plugins();
