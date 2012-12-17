@@ -8,8 +8,12 @@
  * @since       2.1.11
  */
 
+if ( ! function_exists( 'add_filter' ) ) {
+	echo "Hi there! I'm just a part of plugin, not much I can do when called directly.";
+	exit;
+}
+
 if ( ! class_exists( 'Debug_Objects_Default_Mode' ) ) {
-	
 	class Debug_Objects_Default_Mode {
 		
 		private static $classobj = NULL;
