@@ -105,7 +105,7 @@ if ( ! class_exists( 'Debug_Objects_Debug_Hooks' ) ) {
 			foreach( $hook as $priority => $functions ) {
 				
 				$output .= '<li>Priority: ' . $priority . '<ul>';
-			
+				
 				foreach( $functions as $function ) {
 					if ( $function['function'] != 'list_hook_details' ) {
 						

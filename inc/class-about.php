@@ -71,6 +71,7 @@ if ( ! class_exists( 'Debug_Objects_About' ) ) {
 			$output .= '<li><a href="http://www.amazon.de/gp/registry/3NTOGEK181L23/ref=wl_s_3" title="' 
 				. esc_attr__( 'Frank Bültge\'s Amazon Wish List', parent :: get_plugin_data() ) 
 				. '">' . __( 'Get me something from my wish list.', parent :: get_plugin_data() ) . '</a></li>';
+			$output .= '<li><a href="https://github.com/bueltge/Debug-Objects" title="' . esc_attr__( 'Please give me feedback, contribute and file technical bugs on this GitHub Repo, use Issues.', parent :: get_plugin_data() ) . '">' . esc_attr__( 'Github Repo for Contribute, Issues & Bugs', parent :: get_plugin_data() ) . '</a></li>';
 			$output .= '</ul>';
 			
 			if ( $echo )

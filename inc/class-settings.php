@@ -296,7 +296,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Constants'        => __( 'All Constants' ),// All active Constants
 					'Enqueue_Stuff'    => __( 'Introduced scripts and stylesheets' ),// Scripts and styles
 					'Debug_Hooks'      => __( 'List existing Hooks and assigned functions and count of accepted args' ), // Hooks, faster
-					/*'Hooks'            => __( 'List existing Hooks and assigned functions' ),// Hooks */
+					//'Hooks'            => __( 'List existing Hooks and assigned functions' ),// Hooks
 					'Page_Hooks'       => __( 'Hooks of current page, very slow and use many RAM' ),// Hook Instrument for active page
 					'Query'            => __( 'Contents of Query' ),// WP Queries
 					'Stack_Trace'      => __( 'Stack Trace, all files and functions on each query. Query options is prerequisite.<br />A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.' ),
@@ -305,8 +305,9 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Memory'           => __( 'Memory Used, Load Time and included Files' ),
 					'Inspector'        => __( 'Provide information about a given domain' ),
 					'Super_Var_Dump'   => __( 'A customized var_dump walker for viewing complex PHP variable data with an easy, javascript-backed nested-exploring view. Use the function <code>super_var_dump( $example_object );</code> for your debugging. More hints on <a href="https://github.com/ericandrewlewis/super-var-dump">this project</a>.' ),
-					'Php_Error'        => __( 'A alternative PHP Error reporting; works only with PHP 5.3.' ),
-					//'Default_Mode'     => __( 'Add the url-param \'<code>default</code>\', like \'<code>?debug&default</code>\', for run WordPress in a safe mode. Plugins are not loaded and set the default theme as active theme, is it available.' ),
+					//'Debug'            => __( '' ),
+					'Php_Error'        => __( 'A alternative PHP Error reporting; works only with PHP 5.3. Set the url param <code>php_error</code> for all strict messages.' ),
+					'Default_Mode'     => __( 'Add the url-param \'<code>default</code>\', like \'<code>?debug&default</code>\', for run WordPress in a safe mode. Plugins are not loaded and set the default theme as active theme, is it available.' ),
 					'About'            => __( 'About the plugin' ),// about plugin
 				);
 				
