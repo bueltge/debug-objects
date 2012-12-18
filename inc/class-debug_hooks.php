@@ -18,32 +18,47 @@ if ( ! class_exists( 'Debug_Objects_Debug_Hooks' ) ) {
 		
 		static public $wp_func = 0;
 		
+		protected static $classobj = NULL;
+		
+		/**
+		 * Handler for the action 'init'. Instantiates this class.
+		 * 
+		 * @access  public
+		 * @return  $classobj
+		 */
 		public static function init() {
+			
+			NULL === self::$classobj and self::$classobj = new self();
+			
+			return self::$classobj;
+		}
+		
+		public function __construct() {
 			
 			if ( ! current_user_can( '_debug_objects' ) )
 				return;
 			
 			self::$wp_func = 0;
 			
-			add_filter( 'debug_objects_tabs', array( __CLASS__, 'get_conditional_tab' ) );
+			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 		}
 		
-		public static function get_conditional_tab( $tabs ) {
+		public function get_conditional_tab( $tabs ) {
 			/*
 			$tabs[] = array( 
 				'tab' => __( 'Debug Live Hooks', parent :: get_plugin_data() ),
-				'function' => array( __CLASS__, 'list_live_hooks' )
+				'function' => array( $this, 'list_live_hooks' )
 			);
 			*/
 			$tabs[] = array( 
 				'tab' => __( 'Debug Hooks', parent :: get_plugin_data() ),
-				'function' => array( __CLASS__, 'list_hooks' )
+				'function' => array( $this, 'list_hooks' )
 			);
 			
 			return $tabs;
 		}
 		
-		public static function list_hooks( $filter = FALSE ){
+		public function list_hooks( $filter = FALSE ){
 			global $wp_filter;
 			
 			$hooks = $wp_filter;
@@ -61,12 +76,12 @@ if ( ! class_exists( 'Debug_Objects_Debug_Hooks' ) ) {
 			echo '<br>Register filter/actions total: ' . self::$wp_func . '</p>';
 		}
 		
-		public static function list_live_hooks( $hook = FALSE ) {
+		public function list_live_hooks( $hook = FALSE ) {
 			
 			if ( FALSE === $hook )
 				$hook = 'all';
 		
-			add_action( $hook, array( __CLASS__, 'list_hook_details' ), -1 );
+			add_action( $hook, array( $this, 'list_hook_details' ), -1 );
 		}
 		
 		public static function list_hook_details( $input = NULL ) {
@@ -79,7 +94,8 @@ if ( ! class_exists( 'Debug_Objects_Debug_Hooks' ) ) {
 			return $input;
 		}
 		
-		public static function dump_hook( $tag, $hook, $echo = TRUE ) {
+		public function dump_hook( $tag, $hook, $echo = TRUE ) {
+			
 			ksort($hook);
 			
 			$tag = esc_html( $tag );

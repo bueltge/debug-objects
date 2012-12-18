@@ -16,7 +16,22 @@ if ( ! function_exists( 'add_filter' ) ) {
 if ( ! class_exists( 'Debug_Objects_Page_Hooks' ) ) {
 	class Debug_Objects_Page_Hooks extends Debug_Objects {
 		
+		protected static $classobj = NULL;
+		
+		/**
+		 * Handler for the action 'init'. Instantiates this class.
+		 * 
+		 * @access  public
+		 * @return  $classobj
+		 */
 		public static function init() {
+			
+			NULL === self::$classobj and self::$classobj = new self();
+			
+			return self::$classobj;
+		}
+		
+		public function __construct() {
 			
 			if ( ! current_user_can( '_debug_objects' ) )
 				return;
@@ -24,15 +39,15 @@ if ( ! class_exists( 'Debug_Objects_Page_Hooks' ) ) {
 			// self :: control_schedule_record();
 			// add_action( 'record_hook_usage', array( 'Debug_Objects_Page_Hooks', 'control_record' ) );
 			
-			add_action( 'all', array( __CLASS__, 'record_hook_usage' ) );
-			add_filter( 'debug_objects_tabs', array( __CLASS__, 'get_conditional_tab' ) );
+			add_action( 'all', array( $this, 'record_hook_usage' ) );
+			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 		}
 		
-		public static function get_conditional_tab( $tabs ) {
+		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 
 				'tab' => __( 'Page Hooks', parent :: get_plugin_data() ),
-				'function' => array( __CLASS__, 'get_page_hooks' )
+				'function' => array( $this, 'get_page_hooks' )
 			);
 			
 			return $tabs;
@@ -47,7 +62,7 @@ if ( ! class_exists( 'Debug_Objects_Page_Hooks' ) ) {
 		
 		public function control_record() {
 			
-			add_action( 'all', array( __CLASS__, 'record_hook_usage' ) );
+			add_action( 'all', array( $this, 'record_hook_usage' ) );
 		}
 		
 		public function get_page_hooks( $echo = TRUE ) {

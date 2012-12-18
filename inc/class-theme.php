@@ -16,26 +16,41 @@ if ( ! function_exists( 'add_filter' ) ) {
 if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 	class Debug_Objects_Theme extends Debug_Objects {
 		
+		protected static $classobj = NULL;
+		
+		/**
+		 * Handler for the action 'init'. Instantiates this class.
+		 * 
+		 * @access  public
+		 * @return  $classobj
+		 */
 		public static function init() {
+			
+			NULL === self::$classobj and self::$classobj = new self();
+			
+			return self::$classobj;
+		}
+		
+		public function __construct() {
 			
 			if ( ! current_user_can( '_debug_objects' ) )
 				return;
 			
-			add_filter( 'debug_objects_tabs', array( __CLASS__, 'get_conditional_tab' ) );
-			add_action( 'shutdown', array( __CLASS__, 'get_list_ids' ) );
+			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
+			add_action( 'shutdown', array( $this, 'get_list_ids' ) );
 		}
 		
-		public static function get_conditional_tab( $tabs ) {
+		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 
 				'tab' => __( 'Theme', parent :: get_plugin_data() ),
-				'function' => array( __CLASS__, 'get_theme_data' )
+				'function' => array( $this, 'get_theme_data' )
 			);
 			
 			return $tabs;
 		}
 		
-		public static function get_theme_data( $echo = TRUE ) {
+		public function get_theme_data( $echo = TRUE ) {
 			
 			$output  = '';
 			
@@ -165,8 +180,7 @@ if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 		}
 		
 		public function get_list_ids() {
-		?>
-			
+			?>
 			<script>
 				var els = [];
 				jQuery( '[id]' ).each( function () {
