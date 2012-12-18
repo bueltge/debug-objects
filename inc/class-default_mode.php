@@ -101,6 +101,7 @@ if ( ! class_exists( 'Debug_Objects_Default_Mode' ) ) {
 		 * get list of all active plugins
 		 * 
 		 * @todo: maybe via filter hook 'active_plugins'
+		 * @todo: maybe via wp_get_active_and_valid_plugins()
 		 */
 		public function create_active_plugin_list() {
 			// get plugins
