@@ -8,8 +8,12 @@
  * @since       07/29/2012
  */
 
+if ( ! function_exists( 'add_filter' ) ) {
+	echo "Hi there! I'm just a part of plugin, not much I can do when called directly.";
+	exit;
+}
+
 if ( ! class_exists( 'Debug_Objects_Inspector' ) ) {
-	
 	class Debug_Objects_Inspector extends Debug_Objects {
 		
 		public static function init() {
@@ -97,12 +101,17 @@ if ( ! class_exists( 'Debug_Objects_Inspector' ) ) {
 					<th>Hostname</th>
 				</tr>
 			<?php 
-			foreach ($inspector->hosts as $ip=>$host) { ?>
+			super_var_dump($ip);
+			if ( 'undefined' !== $inspector->hosts ) {
+			foreach ($inspector->hosts as $ip => $host) { ?>
 				<tr>
 					<td><a href="http://www.bing.com/search?q=ip%3A<?php echo trim( $ip ); ?>"><?php echo $ip; ?></a></td>
 					<td><?php echo $host; ?></td>
 				</tr>
-			<?php } ?>
+			<?php }
+		} else {
+			_e( 'undefined' );
+		} ?>
 			</table>
 		<?php 
 		}

@@ -8,9 +8,12 @@
  * @since       2.0.0
  */
 
+if ( ! function_exists( 'add_filter' ) ) {
+	echo "Hi there! I'm just a part of plugin, not much I can do when called directly.";
+	exit;
+}
+
 if ( ! class_exists( 'Debug_Objects_Hooks' ) ) {
-	//add_action( 'admin_init', array( 'Debug_Objects_Hooks', 'init' ) );
-	
 	class Debug_Objects_Hooks extends Debug_Objects {
 		
 		public static function init() {

@@ -8,8 +8,12 @@
  * @since       2.0.0
  */
 
+if ( ! function_exists( 'add_filter' ) ) {
+	echo "Hi there! I'm just a part of plugin, not much I can do when called directly.";
+	exit;
+}
+
 if ( ! class_exists( 'Debug_Objects_Debug_Hooks' ) ) {
-	
 	class Debug_Objects_Debug_Hooks extends Debug_Objects {
 		
 		static public $wp_func = 0;
