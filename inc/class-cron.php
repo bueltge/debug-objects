@@ -46,17 +46,32 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 		 */
 		private static $_total_crons = 0;
 		
+		protected static $classobj = NULL;
+		
+		/**
+		 * Handler for the action 'init'. Instantiates this class.
+		 * 
+		 * @access  public
+		 * @return  $classobj
+		 */
+		public static function init() {
+			
+			NULL === self::$classobj and self::$classobj = new self();
+			
+			return self::$classobj;
+		}
+		
 		/**
 		 * Init the class and include this in the plugin
 		 * 
 		 * @return  void
 		 */
-		public function init() {
+		public function __construct() {
 			
 			if ( ! current_user_can( '_debug_objects' ) )
 				return;
 			
-			add_filter( 'debug_objects_tabs', array( __CLASS__, 'get_conditional_tab' ) );
+			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 		}
 		
 		/**
@@ -69,7 +84,7 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 			
 			$tabs[] = array( 
 				'tab' => __( 'Cron', parent :: get_plugin_data() ),
-				'function' => array( __CLASS__, 'render_data' )
+				'function' => array( $this, 'render_data' )
 			);
 			
 			return $tabs;
@@ -186,21 +201,25 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 					$output .= '<td valign="top"><code>' . wp_strip_all_tags( $hook ) . '</code></td>';
 					
 					$functions = array();
-					if ( date( 'Y-m-d H:i:s' ) != $hook ) {
+					if ( date( 'Y-m-d H:i:s' ) != $hook && isset( $GLOBALS['wp_filter'][$hook] ) ) {
+						
 						foreach ( (array) $GLOBALS['wp_filter'][$hook] as $priority => $function ) {
+							
 							foreach ( $function as $hook_details ) {
 								
-									if ( is_object( $hook_details['function'][0] ) ) {
-										
-										$functions[] = get_class( $hook_details['function'][0] ) . '::' . $hook_details['function'][1] . '()';
-										
-									} else {
-										$functions[] = ( isset( $hook_details['class'] ) ? $hook_details['class'] . '::' : '') . $hook_details['function'] . '()';
-									}
-								
+								if ( is_object( $hook_details['function'][0] ) ) {
+									
+									$functions[] = get_class( $hook_details['function'][0] ) . '::' . $hook_details['function'][1] . '()';
+								} else {
+									
+									$functions[] = ( isset( $hook_details['class'] ) ? $hook_details['class'] . '::' : '') . $hook_details['function'] . '()';
 								}
+							
+							}
+							
 						}
-					}
+						
+					} // end if
 					
 					$output .= '<td valign="top">';
 					$output .= implode(', ', $functions);

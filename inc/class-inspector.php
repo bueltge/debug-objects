@@ -16,20 +16,35 @@ if ( ! function_exists( 'add_filter' ) ) {
 if ( ! class_exists( 'Debug_Objects_Inspector' ) ) {
 	class Debug_Objects_Inspector extends Debug_Objects {
 		
+		protected static $classobj = NULL;
+		
+		/**
+		 * Handler for the action 'init'. Instantiates this class.
+		 * 
+		 * @access  public
+		 * @return  $classobj
+		 */
 		public static function init() {
+			
+			NULL === self::$classobj and self::$classobj = new self();
+			
+			return self::$classobj;
+		}
+		
+		public function __construct() {
 			
 			if ( ! current_user_can( '_debug_objects' ) )
 				return;
 			
 			require_once 'class-site-inspector.php';
-			add_filter( 'debug_objects_tabs', array( __CLASS__, 'get_conditional_tab' ) );
+			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 		}
 		
-		public static function get_conditional_tab( $tabs ) {
+		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 
 				'tab' => __( 'Inspector', parent :: get_plugin_data() ),
-				'function' => array( __CLASS__, 'get_site_inspector_data' )
+				'function' => array( $this, 'get_site_inspector_data' )
 			);
 			
 			return $tabs;
@@ -37,7 +52,7 @@ if ( ! class_exists( 'Debug_Objects_Inspector' ) ) {
 		
 		public function get_domain( $url ) {
 			
-			$nowww = ereg_replace( 'www\.', '', $url );
+			$nowww  = str_replace( 'www.', '', $url );
 			$domain = parse_url( $nowww );
 			
 			if ( ! empty( $domain["host"] ) )
@@ -46,7 +61,7 @@ if ( ! class_exists( 'Debug_Objects_Inspector' ) ) {
 				return $domain["path"];
 		}
 		
-		public static function get_site_inspector_data() {
+		public function get_site_inspector_data() {
 			
 			$inspector = new SiteInspector;
 			$data = $inspector->inspect( self::get_domain( $_SERVER['HTTP_HOST'] ) );
@@ -101,7 +116,7 @@ if ( ! class_exists( 'Debug_Objects_Inspector' ) ) {
 					<th>Hostname</th>
 				</tr>
 			<?php 
-			super_var_dump($ip);
+			
 			if ( 'undefined' !== $inspector->hosts ) {
 			foreach ($inspector->hosts as $ip => $host) { ?>
 				<tr>

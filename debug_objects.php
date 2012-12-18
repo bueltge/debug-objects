@@ -91,7 +91,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			self::init_classes();
 		}
 		
-		public static function add_capabilities() {
+		public function add_capabilities() {
 			
 			$GLOBALS['wp_roles']->add_cap( 'administrator', '_debug_objects' );
 		}
@@ -103,7 +103,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @since   2.0.0
 		 * @return  void
 		 */
-		private function init_classes() {
+		public function init_classes() {
 			
 			if ( is_multisite() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) )
 				$options = get_site_option( self :: $option_string );
@@ -215,7 +215,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 *         Name, PluginURI, Version, Description, Author, AuthorURI, TextDomain, DomainPath, Network, Title
 		 * @return string
 		 */
-		public static function get_plugin_data( $value = 'TextDomain', $echo = FALSE ) {
+		public function get_plugin_data( $value = 'TextDomain', $echo = FALSE ) {
 			
 			static $plugin_data = array();
 			
@@ -241,7 +241,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @since   2.0.0
 		 * @return  string
 		 */
-		public static function get_plugin_string() {
+		public function get_plugin_string() {
 			
 			return self :: $plugin;
 		}
@@ -290,7 +290,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @since   2.0.0
 		 * @return  void
 		 */
-		public static function on_deactivation() {
+		public function on_deactivation() {
 			
 			unregister_setting( self :: $option_string . '_group', self :: $option_string );
 			delete_option( self :: $option_string );

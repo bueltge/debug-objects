@@ -31,7 +31,7 @@ if ( ! class_exists( 'Debug_Objects_Default_Mode' ) ) {
 		 * @since   2.0.0
 		 * @return  $classobj
 		 */
-		public function get_object() {
+		public function init() {
 			
 			if ( NULL === self::$classobj ) {
 				self::$classobj = new self;
@@ -55,8 +55,6 @@ if ( ! class_exists( 'Debug_Objects_Default_Mode' ) ) {
 			self::create_active_plugin_list();
 			add_filter( 'option_active_plugins', array( __CLASS__, 'disable_plugins' ) );
 		}
-		
-		public function init() {}
 		
 		public function disable_theme( $template = '' ) {
 			
@@ -143,12 +141,12 @@ if ( ! class_exists( 'Debug_Objects_Default_Mode' ) ) {
 						unset( $plugins[$key] );
 				}
 			}
-			var_dump(self::$disabled);
+			
 			return $plugins;
 		}
 		
 	}
 	
 }
-$debug_object_default_mode = Debug_Objects_Default_Mode::get_object();
+$debug_object_default_mode = Debug_Objects_Default_Mode::init();
 
