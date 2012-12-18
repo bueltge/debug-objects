@@ -100,10 +100,12 @@ if ( ! class_exists( 'Debug_Objects_Inspector' ) ) {
 					<th>IP</th>
 					<th>Hostname</th>
 				</tr>
-			<?php 
-			super_var_dump($ip);
+			<?php
 			if ( 'undefined' !== $inspector->hosts ) {
-			foreach ($inspector->hosts as $ip => $host) { ?>
+			foreach ($inspector->hosts as $ip => $host) {
+				if ( ! isset( $ip )  )
+					continue;
+				?>
 				<tr>
 					<td><a href="http://www.bing.com/search?q=ip%3A<?php echo trim( $ip ); ?>"><?php echo $ip; ?></a></td>
 					<td><?php echo $host; ?></td>
