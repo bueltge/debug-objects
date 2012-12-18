@@ -34,7 +34,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 	
 	class Debug_Objects {
 		
-		static private $classobj = NULL;
+		protected static $classobj = NULL;
 		// table for page hooks
 		public static $table = 'hook_list';
 		// var for tab array
@@ -55,13 +55,11 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @since   2.0.0
 		 * @return  $classobj
 		 */
-		public function get_object() {
+		public static function get_object() {
 			
-			if ( NULL === self :: $classobj ) {
-				self :: $classobj = new self;
-			}
-			
-			return self :: $classobj;
+			NULL === self::$classobj and self::$classobj = new self();
+		
+			return self::$classobj;
 		}
 		
 		/**
@@ -80,7 +78,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 			
 			// add and remove settings, the table for the plugin
-			register_deactivation_hook( __FILE__, array( __CLASS__, 'on_deactivation' ) );
+			register_deactivation_hook( __FILE__, array( $this, 'on_deactivation' ) );
 			register_uninstall_hook( __FILE__,    array( 'Debug_Objects', 'on_deactivation' ) );
 			
 			// include for load safe mode
@@ -88,7 +86,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			// Include settings
 			require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-settings.php';
 			
-			add_action( 'admin_init', array( __CLASS__, 'add_capabilities' ) );
+			add_action( 'admin_init', array( $this, 'add_capabilities' ) );
 			
 			self::init_classes();
 		}
