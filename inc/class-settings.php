@@ -17,7 +17,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 	
 	class Debug_Objects_Settings extends Debug_Objects {
 		
-		private static $classobj = NULL;
+		protected static $classobj = NULL;
 		// string for translation
 		public static $textdomain;
 		// string for options in table options
@@ -32,7 +32,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 * @since   2.0.0
 		 * @return  $classobj
 		 */
-		public function get_object() {
+		public static function get_object() {
 			
 			if ( NULL === self::$classobj ) {
 				self::$classobj = new self;
@@ -59,27 +59,27 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			//register_uninstall_hook( __FILE__,       array( 'Debug_Objects_Settings', 'unregister_settings' ) );
 			// settings for an active multisite
 			if ( is_multisite() && is_plugin_active_for_network( parent :: $plugin ) ) {
-				add_action( 'network_admin_menu',    array( __CLASS__, 'add_settings_page' ) );
+				add_action( 'network_admin_menu',    array( $this, 'add_settings_page' ) );
 				// add settings link
-				add_filter( 'network_admin_plugin_action_links', array( __CLASS__, 'network_admin_plugin_action_links' ), 10, 2 );
+				add_filter( 'network_admin_plugin_action_links', array( $this, 'network_admin_plugin_action_links' ), 10, 2 );
 				// save settings on network
-				add_action( 'network_admin_edit_' . self::$option_string, array( __CLASS__, 'save_network_settings_page' ) );
+				add_action( 'network_admin_edit_' . self::$option_string, array( $this, 'save_network_settings_page' ) );
 				// return message for update settings
-				add_action( 'network_admin_notices', array( __CLASS__, 'get_network_admin_notices' ) );
+				add_action( 'network_admin_notices', array( $this, 'get_network_admin_notices' ) );
 				// todos on init of WP
-				add_action( 'init', array( __CLASS__, 'on_init' ) );
+				add_action( 'init', array( $this, 'on_init' ) );
 			} else {
-				add_action( 'admin_menu',            array( __CLASS__, 'add_settings_page' ) );
+				add_action( 'admin_menu',            array( $this, 'add_settings_page' ) );
 				// add settings link
-				add_filter( 'plugin_action_links',   array( __CLASS__, 'plugin_action_links' ), 10, 2 );
+				add_filter( 'plugin_action_links',   array( $this, 'plugin_action_links' ), 10, 2 );
 				// use settings API
-				add_action( 'admin_init',            array( __CLASS__, 'register_settings' ) );
+				add_action( 'admin_init',            array( $this, 'register_settings' ) );
 			}
 			//
-			add_action( 'debug_objects_settings_page', array( __CLASS__, 'get_inside_form' ) );
+			add_action( 'debug_objects_settings_page', array( $this, 'get_inside_form' ) );
 			// add meta boxes on settings pages
-			add_action( 'debug_objects_settings_page_sidebar', array( __CLASS__, 'get_plugin_infos' ) );
-			add_action( 'debug_objects_settings_page_sidebar', array( __CLASS__, 'get_about_plugin' ) );
+			add_action( 'debug_objects_settings_page_sidebar', array( $this, 'get_plugin_infos' ) );
+			add_action( 'debug_objects_settings_page_sidebar', array( $this, 'get_about_plugin' ) );
 		}
 		
 		
@@ -92,7 +92,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 * @since   2.0.0
 		 * @return  string
 		 */
-		public static function get_textdomain() {
+		public function get_textdomain() {
 			
 			return self::$textdomain;
 		}
@@ -104,9 +104,9 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 * @param   void
 		 * @return  void
 		 */
-		public static function on_init() {
+		public function on_init() {
 			// add item on admin bar for go faster to the settings
-			add_action( 'admin_bar_menu', array( __CLASS__, 'add_wp_admin_bar_item' ), 20 );
+			add_action( 'admin_bar_menu', array( $this, 'add_wp_admin_bar_item' ), 20 );
 		}
 		
 		/**
@@ -149,7 +149,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 * @since   07/24/2012
 		 * @param   Array $wp_admin_bar
 		 */
-		public static function add_wp_admin_bar_item( $wp_admin_bar ) {
+		public function add_wp_admin_bar_item( $wp_admin_bar ) {
 			
 			if ( is_super_admin() ) {
 				$wp_admin_bar->add_menu( array(
@@ -179,7 +179,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					parent :: get_plugin_data( 'Name' ),
 					'manage_options',
 					plugin_basename(__FILE__),
-					array( __CLASS__, 'get_settings_page' )
+					array( $this, 'get_settings_page' )
 				);
 			} else {
 				add_submenu_page(
@@ -188,9 +188,9 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					parent :: get_plugin_data( 'Name' ),
 					'manage_options',
 					plugin_basename(__FILE__),
-					array( __CLASS__, 'get_settings_page' )
+					array( $this, 'get_settings_page' )
 				);
-				add_action( 'contextual_help', array( __CLASS__, 'contextual_help' ), 10, 3 );
+				add_action( 'contextual_help', array( $this, 'contextual_help' ), 10, 3 );
 			}
 		}
 		
@@ -296,7 +296,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Constants'        => __( 'All Constants' ),// All active Constants
 					'Enqueue_Stuff'    => __( 'Introduced scripts and stylesheets' ),// Scripts and styles
 					'Debug_Hooks'      => __( 'List existing Hooks and assigned functions and count of accepted args' ), // Hooks, faster
-					/*'Hooks'            => __( 'List existing Hooks and assigned functions' ),// Hooks */
+					//'Hooks'            => __( 'List existing Hooks and assigned functions' ),// Hooks
 					'Page_Hooks'       => __( 'Hooks of current page, very slow and use many RAM' ),// Hook Instrument for active page
 					'Query'            => __( 'Contents of Query' ),// WP Queries
 					'Stack_Trace'      => __( 'Stack Trace, all files and functions on each query. Query options is prerequisite.<br />A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.' ),
@@ -305,8 +305,9 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Memory'           => __( 'Memory Used, Load Time and included Files' ),
 					'Inspector'        => __( 'Provide information about a given domain' ),
 					'Super_Var_Dump'   => __( 'A customized var_dump walker for viewing complex PHP variable data with an easy, javascript-backed nested-exploring view. Use the function <code>super_var_dump( $example_object );</code> for your debugging. More hints on <a href="https://github.com/ericandrewlewis/super-var-dump">this project</a>.' ),
-					'Php_Error'        => __( 'A alternative PHP Error reporting; works only with PHP 5.3.' ),
-					//'Default_Mode'     => __( 'Add the url-param \'<code>default</code>\', like \'<code>?debug&default</code>\', for run WordPress in a safe mode. Plugins are not loaded and set the default theme as active theme, is it available.' ),
+					//'Debug'            => __( '' ),
+					'Php_Error'        => __( 'A alternative PHP Error reporting; works only with PHP 5.3. Set the url param <code>php_error</code> for all strict messages.' ),
+					'Default_Mode'     => __( 'Add the url-param \'<code>default</code>\', like \'<code>?debug&default</code>\', for run WordPress in a safe mode. Plugins are not loaded and set the default theme as active theme, is it available.' ),
 					'About'            => __( 'About the plugin' ),// about plugin
 				);
 				
@@ -465,7 +466,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 */
 		public function register_settings() {
 			
-			register_setting( self::$option_string . '_group', self::$option_string, array( __CLASS__, 'validate_settings' ) );
+			register_setting( self::$option_string . '_group', self::$option_string, array( $this, 'validate_settings' ) );
 			add_option( self::$option_string, array( 'php' => '1', 'debug_hooks' => '1', 'about' => '1' ) );
 		}
 		

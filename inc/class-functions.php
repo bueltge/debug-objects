@@ -16,19 +16,34 @@ if ( ! function_exists( 'add_filter' ) ) {
 if ( ! class_exists( 'Debug_Objects_Functions' ) ) {
 	class Debug_Objects_Functions extends Debug_Objects {
 		
+		protected static $classobj = NULL;
+		
+		/**
+		 * Handler for the action 'init'. Instantiates this class.
+		 * 
+		 * @access  public
+		 * @return  $classobj
+		 */
 		public static function init() {
+			
+			NULL === self::$classobj and self::$classobj = new self();
+			
+			return self::$classobj;
+		}
+		
+		public function __construct() {
 			
 			if ( ! current_user_can( '_debug_objects' ) )
 				return;
 			
-			add_filter( 'debug_objects_tabs', array( __CLASS__, 'get_conditional_tab' ) );
+			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 		}
 		
-		public static function get_conditional_tab( $tabs ) {
+		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 
 				'tab' => __( 'Functions', parent :: get_plugin_data() ),
-				'function' => array( __CLASS__, 'get_functions' )
+				'function' => array( $this, 'get_functions' )
 			);
 			
 			return $tabs;
@@ -41,7 +56,7 @@ if ( ! class_exists( 'Debug_Objects_Functions' ) ) {
 		 * @param bool $sort sort classes
 		 * @param bool $echo return or echo
 		 */
-		public static function get_functions( $sort = TRUE, $echo = TRUE ) {
+		public function get_functions( $sort = TRUE, $echo = TRUE ) {
 			
 			$functions = get_defined_functions();
 			if ( $sort )

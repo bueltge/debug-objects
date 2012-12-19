@@ -21,15 +21,30 @@ if ( class_exists( 'Debug_Objects_Super_Var_Dump' ) )
 
 class Debug_Objects_Super_Var_Dump {
 	
+	protected static $classobj = NULL;
+	
+	/**
+	 * Handler for the action 'init'. Instantiates this class.
+	 * 
+	 * @access  public
+	 * @return  $classobj
+	 */
 	public static function init() {
+		
+		NULL === self::$classobj and self::$classobj = new self();
+		
+		return self::$classobj;
+	}
+
+	public function __construct() {
 		
 		if ( ! current_user_can( '_debug_objects' ) )
 			return;
 		
-		self::include_super_var_dump();
+		$this->include_super_var_dump();
 	}
 	
-	public static function include_super_var_dump() {
+	public function include_super_var_dump() {
 		
 		require_once( plugin_dir_path( __FILE__ ) . 'super-var-dump/super-var_dump.php' );
 	}

@@ -16,6 +16,21 @@ if ( ! function_exists( 'add_filter' ) ) {
 if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 	class Debug_Objects_Wrap extends Debug_Objects {
 		
+		protected static $classobj = NULL;
+		
+		/**
+		 * Handler for the action 'init'. Instantiates this class.
+		 * 
+		 * @access  public
+		 * @return  $classobj
+		 */
+		public static function init() {
+			
+			NULL === self::$classobj and self::$classobj = new self();
+			
+			return self::$classobj;
+		}
+		
 		/**
 		 * Include class in plugin and init all functions
 		 * 
@@ -23,7 +38,7 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 		 * @since   2.0.0
 		 * @return  void
 		 */
-		public static function init() {
+		public function __construct() {
 			// not enough right - back
 			if ( ! current_user_can( '_debug_objects' ) )
 				return;
@@ -34,17 +49,17 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 			if ( isset( $options['frontend'] ) && '1' === $options['frontend']
 				 || self::debug_control()
 				 ) {
-				add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_scripts') );
-				add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_styles') );
-				add_action( 'wp_footer', array( __CLASS__, 'get_content' ), 9999 );
+				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts') );
+				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles') );
+				add_action( 'wp_footer', array( $this, 'get_content' ), 9999 );
 			}
 			// check for output on backend
 			if ( isset( $options['backend'] ) && '1' === $options['backend']
 				 || self::debug_control()
 				 ) {
-				add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_styles') );
-				add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_scripts') );
-				add_action( 'admin_footer', array( __CLASS__, 'get_content' ), 9999 );
+				add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles') );
+				add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts') );
+				add_action( 'admin_footer', array( $this, 'get_content' ), 9999 );
 			}
 		}
 		
@@ -55,7 +70,7 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 		 * @since   2.0.0
 		 * @return  void
 		 */
-		public static function enqueue_styles() {
+		public function enqueue_styles() {
 			
 			$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 			
@@ -80,7 +95,7 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 		 * @since   2.0.0
 		 * @return  void
 		 */
-		public static function enqueue_scripts( $where ) {
+		public function enqueue_scripts( $where ) {
 			
 			$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 			
@@ -107,7 +122,7 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 		 * @since   2.0.0
 		 * @return  string
 		 */
-		public static function get_content() {
+		public function get_content() {
 			?>
 			<div id="debugobjects">
 				<div id="debugobjectstabs">

@@ -31,7 +31,7 @@ if ( ! class_exists( 'Debug_Objects_Default_Mode' ) ) {
 		 * @since   2.0.0
 		 * @return  $classobj
 		 */
-		public function get_object() {
+		public function init() {
 			
 			if ( NULL === self::$classobj ) {
 				self::$classobj = new self;
@@ -49,14 +49,12 @@ if ( ! class_exists( 'Debug_Objects_Default_Mode' ) ) {
 			self::$mu_plugins = get_mu_plugins();
 			
 			// set default theme
-			add_filter( 'template',   array( __CLASS__, 'disable_theme' ) );
-			add_filter( 'stylesheet', array( __CLASS__, 'disable_theme' ) );
+			add_filter( 'template',   array( $this, 'disable_theme' ) );
+			add_filter( 'stylesheet', array( $this, 'disable_theme' ) );
 			// disable plugins
 			self::create_active_plugin_list();
-			add_filter( 'option_active_plugins', array( __CLASS__, 'disable_plugins' ) );
+			add_filter( 'option_active_plugins', array( $this, 'disable_plugins' ) );
 		}
-		
-		public function init() {}
 		
 		public function disable_theme( $template = '' ) {
 			
@@ -103,6 +101,7 @@ if ( ! class_exists( 'Debug_Objects_Default_Mode' ) ) {
 		 * get list of all active plugins
 		 * 
 		 * @todo: maybe via filter hook 'active_plugins'
+		 * @todo: maybe via wp_get_active_and_valid_plugins()
 		 */
 		public function create_active_plugin_list() {
 			// get plugins
@@ -143,12 +142,10 @@ if ( ! class_exists( 'Debug_Objects_Default_Mode' ) ) {
 						unset( $plugins[$key] );
 				}
 			}
-			var_dump(self::$disabled);
+			
 			return $plugins;
 		}
 		
 	}
 	
-}
-$debug_object_default_mode = Debug_Objects_Default_Mode::get_object();
-
+} // end class

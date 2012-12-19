@@ -20,21 +20,36 @@ class Debug_Objects_Memory extends Debug_Objects {
 	
 	static public $start_time;
 	
+	protected static $classobj = NULL;
+	
+	/**
+	 * Handler for the action 'init'. Instantiates this class.
+	 * 
+	 * @access  public
+	 * @return  $classobj
+	 */
 	public static function init() {
+		
+		NULL === self::$classobj and self::$classobj = new self();
+		
+		return self::$classobj;
+	}
+	
+	public function __construct() {
 		
 		if ( ! current_user_can( '_debug_objects' ) )
 			return;
 		
 		self :: $start_time = self :: get_micro_time();
 		
-		add_filter( 'debug_objects_tabs', array( __CLASS__, 'get_conditional_tab' ) );
+		add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 	}
 	
-	public static function get_conditional_tab( $tabs ) {
+	public function get_conditional_tab( $tabs ) {
 		
 		$tabs[] = array( 
 			'tab' => __( 'Time, Mem & Files', parent :: get_plugin_data() ),
-			'function' => array( __CLASS__, 'get_output' )
+			'function' => array( $this, 'get_output' )
 		);
 		
 		return $tabs;

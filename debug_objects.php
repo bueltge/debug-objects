@@ -34,7 +34,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 	
 	class Debug_Objects {
 		
-		static private $classobj = NULL;
+		protected static $classobj = NULL;
 		// table for page hooks
 		public static $table = 'hook_list';
 		// var for tab array
@@ -55,13 +55,11 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @since   2.0.0
 		 * @return  $classobj
 		 */
-		public function get_object() {
+		public static function get_object() {
 			
-			if ( NULL === self :: $classobj ) {
-				self :: $classobj = new self;
-			}
-			
-			return self :: $classobj;
+			NULL === self::$classobj and self::$classobj = new self();
+		
+			return self::$classobj;
 		}
 		
 		/**
@@ -80,7 +78,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 			
 			// add and remove settings, the table for the plugin
-			register_deactivation_hook( __FILE__, array( __CLASS__, 'on_deactivation' ) );
+			register_deactivation_hook( __FILE__, array( $this, 'on_deactivation' ) );
 			register_uninstall_hook( __FILE__,    array( 'Debug_Objects', 'on_deactivation' ) );
 			
 			// include for load safe mode
@@ -88,12 +86,12 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			// Include settings
 			require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-settings.php';
 			
-			add_action( 'admin_init', array( __CLASS__, 'add_capabilities' ) );
+			add_action( 'admin_init', array( $this, 'add_capabilities' ) );
 			
 			self::init_classes();
 		}
 		
-		public static function add_capabilities() {
+		public function add_capabilities() {
 			
 			$GLOBALS['wp_roles']->add_cap( 'administrator', '_debug_objects' );
 		}
@@ -105,7 +103,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @since   2.0.0
 		 * @return  void
 		 */
-		private function init_classes() {
+		public function init_classes() {
 			
 			if ( is_multisite() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) )
 				$options = get_site_option( self :: $option_string );
@@ -217,7 +215,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 *         Name, PluginURI, Version, Description, Author, AuthorURI, TextDomain, DomainPath, Network, Title
 		 * @return string
 		 */
-		public static function get_plugin_data( $value = 'TextDomain', $echo = FALSE ) {
+		public function get_plugin_data( $value = 'TextDomain', $echo = FALSE ) {
 			
 			static $plugin_data = array();
 			
@@ -243,7 +241,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @since   2.0.0
 		 * @return  string
 		 */
-		public static function get_plugin_string() {
+		public function get_plugin_string() {
 			
 			return self :: $plugin;
 		}
@@ -292,7 +290,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @since   2.0.0
 		 * @return  void
 		 */
-		public static function on_deactivation() {
+		public function on_deactivation() {
 			
 			unregister_setting( self :: $option_string . '_group', self :: $option_string );
 			delete_option( self :: $option_string );
