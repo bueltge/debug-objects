@@ -3,9 +3,9 @@
  * Add small quick and dirty debug helper
  *
  * @package     Debug Objects
- * @subpackage  Helper for Debug
+ * @subpackage  Post Meta Data
  * @author      Frank B&uuml;ltge
- * @since       2.1.5
+ * @since       12/19/2012
  */
 
 if ( ! function_exists( 'add_filter' ) ) {

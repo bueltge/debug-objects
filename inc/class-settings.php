@@ -291,9 +291,10 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Php'              => __( 'PHP, WordPress and global Stuff' ),// php, WordPress, globals and more
 					'Classes'          => __( 'List all declared classes and his subclasses' ),
 					'Functions'        => __( 'List all defined functions' ),
-					'Conditional_Tags' => __( 'Conditional Tags' ), // conditional tags
-					'Theme'            => __( 'Theme and Template informations' ),
 					'Constants'        => __( 'All Constants' ),// All active Constants
+					'Conditional_Tags' => __( 'Conditional Tags' ), // conditional tags
+					'Post_Meta'        => __( 'Get a list of post meta for the current post' ),
+					'Theme'            => __( 'Theme and Template informations' ),
 					'Enqueue_Stuff'    => __( 'Introduced scripts and stylesheets' ),// Scripts and styles
 					'Debug_Hooks'      => __( 'List existing Hooks and assigned functions and count of accepted args' ), // Hooks, faster
 					//'Hooks'            => __( 'List existing Hooks and assigned functions' ),// Hooks

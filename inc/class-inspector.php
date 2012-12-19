@@ -115,12 +115,7 @@ if ( ! class_exists( 'Debug_Objects_Inspector' ) ) {
 					<th>IP</th>
 					<th>Hostname</th>
 				</tr>
-<<<<<<< HEAD
-			<?php
-=======
 			<?php 
-			
->>>>>>> 9fda3c9ec422280e346c094fcfcef833d5ac7bef
 			if ( 'undefined' !== $inspector->hosts ) {
 			foreach ($inspector->hosts as $ip => $host) {
 				if ( ! isset( $ip )  )

@@ -1,10 +1,9 @@
 <?php
 /**
  * @package Debug Objects
- * @author  Frank B&uuml;ltge
- */
- 
-/**
+ * @author  Frank Bü;ltge
+ * 
+ * 
  * Plugin Name: Debug Objects
  * Plugin URI:  http://bueltge.de/debug-objects-wordpress-plugin/966/
  * Text Domain: debug_objects
@@ -12,9 +11,9 @@
  * Description: List filter and action-hooks, cache data, defined constants, qieries, included scripts and styles, php and memory informations and return of conditional tags only for admins; for debug, informations or learning purposes. Setting output in the settings of the plugin and use output via setting or url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days
  * Version:     2.1.11
  * License:     GPLv3
- * Author:      Frank B&uuml;ltge
+ * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
- * Last Change: 11/26/2012
+ * Last Change: 12/19/2012
  */
 
 // error_reporting(E_ALL);
