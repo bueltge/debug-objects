@@ -21,7 +21,22 @@ if ( class_exists( 'Debug_Objects_Php_Error' ) )
 
 class Debug_Objects_Php_Error {
 	
-	public function init() {
+	protected static $classobj = NULL;
+	
+	/**
+	 * Handler for the action 'init'. Instantiates this class.
+	 * 
+	 * @access  public
+	 * @return  $classobj
+	 */
+	public static function init() {
+		
+		NULL === self::$classobj and self::$classobj = new self();
+		
+		return self::$classobj;
+	}
+
+	public function __construct() {
 		
 		// use namespace, only PHP 5.3*
 		if ( version_compare( phpversion(), '5.3a', '<' ) ) 
@@ -31,6 +46,7 @@ class Debug_Objects_Php_Error {
 			return NULL;
 		
 		self::include_php_error();
+		self::set_php_error();
 	}
 	
 	public function include_php_error() {
@@ -40,8 +56,13 @@ class Debug_Objects_Php_Error {
 	
 	public function set_php_error() {
 		
+		if ( ! isset( $_GET['php_error'] ) )
+			$defaults = array( 'wordpress' => TRUE );
+		else
+			$defaults = array( 'wordpress' => FALSE );
+		
 		// see all options on https://github.com/JosephLenton/PHP-Error/wiki/Options
-		$args = apply_filters( 'debug_objects_php_error_args', array( 'wordpress' => TRUE ) );
+		$args = apply_filters( 'debug_objects_php_error_args', $defaults );
 		\php_error\reportErrors( $args );
 	}
 	
