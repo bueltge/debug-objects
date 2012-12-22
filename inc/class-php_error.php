@@ -7,7 +7,7 @@
  * 
  * Kudos to JosephLenton for the project PHP Error
  * @see         http://phperror.net/
- * @author      Frank B&uuml;ltge
+ * @author      Frank Bültge
  * @since       2.1.11
  */
 

@@ -306,6 +306,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Memory'           => __( 'Memory Used, Load Time and included Files' ),
 					'Inspector'        => __( 'Provide information about a given domain' ),
 					'Super_Var_Dump'   => __( 'A customized var_dump walker for viewing complex PHP variable data with an easy, javascript-backed nested-exploring view. Use the function <code>super_var_dump( $example_object );</code> for your debugging. More hints on <a href="https://github.com/ericandrewlewis/super-var-dump">this project</a>.' ),
+					'Chromephp'        => __( 'Logging PHP variables to Google Chrome console. You need to install the <a href="http://www.chromephp.com/">ChromePHP</a> extension. Start logging: <code>ChromePhp::log( $_SERVER );</code> More information can be found here: <a href="http://www.chromephp.com">http://www.chromephp.com</a>' ),
 					//'Debug'            => __( '' ),
 					'Php_Error'        => __( 'A alternative PHP Error reporting; works only with PHP 5.3. Set the url param <code>php_error</code> for all strict messages.' ),
 					'Default_Mode'     => __( 'Add the url-param \'<code>default</code>\', like \'<code>?debug&default</code>\', for run WordPress in a safe mode. Plugins are not loaded and set the default theme as active theme, is it available.' ),
