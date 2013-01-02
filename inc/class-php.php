@@ -70,7 +70,11 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			//Operating-System scan start
 			if ( preg_match( '=WIN=i', $oskey) ) { //Windows
 				if (preg_match( '=NT=i', $oskey) ) {
-					if (preg_match( '=5.1=', $oskey) ) {
+					if (preg_match( '=6.1=', $oskey) ) {
+						$os = __( 'Windows 7', parent :: get_plugin_data() );
+					} elseif (preg_match( '=6.0=', $oskey) ) {
+						$os = __( 'Windows Vista', parent :: get_plugin_data() );
+					} elseif (preg_match( '=5.1=', $oskey) ) {
 						$os = __( 'Windows XP', parent :: get_plugin_data() );
 					} elseif(preg_match( '=5.0=', $oskey) ) {//Windows 2000
 						$os = __( 'Windows 2000', parent :: get_plugin_data() );
