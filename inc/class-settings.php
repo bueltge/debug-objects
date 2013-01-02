@@ -170,7 +170,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 						. plugins_url( '/img/bug-32.png', parent::$plugin ) 
 						. '" alt="The Bug" />' 
 						. __( 'Debug this', self::get_textdomain() ),
-					'href' => "?debug"
+					'href' => "?debug#debugobjects"
 				)
 			);
 		}
