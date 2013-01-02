@@ -65,6 +65,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			if ( ! empty($memory_usage) && ! empty($memory_limit) )
 				$memory_percent = round( $memory_usage / $memory_limit * 100, 0 );
 			
+			$os = __( 'undefined', parent :: get_plugin_data() );
 			$oskey = $_SERVER['HTTP_USER_AGENT'];
 			//Operating-System scan start
 			if ( preg_match( '=WIN=i', $oskey) ) { //Windows
