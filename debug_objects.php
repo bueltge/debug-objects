@@ -8,12 +8,12 @@
  * Plugin URI:  http://bueltge.de/debug-objects-wordpress-plugin/966/
  * Text Domain: debug_objects
  * Domain Path: /languages
- * Description: List filter and action-hooks, cache data, defined constants, qieries, included scripts and styles, php and memory informations and return of conditional tags only for admins; for debug, informations or learning purposes. Setting output in the settings of the plugin and use output via setting or url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days
+ * Description: List filter and action-hooks, cache data, defined constants, qieries, included scripts and styles, php and memory informations and return of conditional tags only for admins; for debug, informations or learning purposes. Setting output in the settings of the plugin and use output via link in Admin Bar, via setting, via url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days.
  * Version:     2.1.11
  * License:     GPLv3
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
- * Last Change: 12/19/2012
+ * Last Change: 02/01/2013)
  */
 
 // error_reporting(E_ALL);
@@ -414,3 +414,20 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 	} // end class
 	
 } // end if class exists
+
+if ( ! function_exists( 'pre_print' ) ) {
+
+	/**
+	 * Print debug output
+	 *
+	 * @since  2012.11.03
+	 * @param  mixed
+	 * @return void
+	 */
+	function pre_print( $var ) {
+
+		$export = var_export( $var, TRUE );
+		$escape = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
+		print "<pre>$escape</pre>";
+	}
+}

@@ -151,15 +151,28 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 */
 		public function add_wp_admin_bar_item( $wp_admin_bar ) {
 			
-			if ( is_super_admin() ) {
-				$wp_admin_bar->add_menu( array(
+			if ( ! is_super_admin() || ! is_admin_bar_showing() )
+				return NULL;
+			
+			$wp_admin_bar->add_menu(
+				array(
 					'parent'    => 'network-admin',
 					'secondary' => FALSE,
 					'id'        => 'network-' . self::get_textdomain(),
 					'title'     => self::get_plugin_data( 'Name' ),
 					'href'      => network_admin_url( 'settings.php?page=' . plugin_basename( __FILE__ ) ),
-				) );
-			}
+				)
+			);
+			$wp_admin_bar->add_menu(
+				array(
+					'id' => 'debug_objects', 
+					'title' => '<img style="float:left;" src="' 
+						. plugins_url( '/img/bug-32.png', parent::$plugin ) 
+						. '" alt="The Bug" />' 
+						. __( 'Debug this', self::get_textdomain() ),
+					'href' => "?debug"
+				)
+			);
 		}
 		
 		/**
@@ -383,6 +396,10 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					<p>
 						<strong><?php _e( 'Description:' ); ?></strong>
 						<?php echo parent :: get_plugin_data( 'Description' ); ?>
+					</p>
+					<p>
+						<strong><?php _e( 'Hints:' ) ?></strong>
+						<?php _e( 'You can use the function <code>pre_print( $var );</code> for little bid comfort on debug output, like <code>var_dump()</code>, but more readable. More features or helpers you can activate in the settings.' ); ?>
 					</p>
 				</div>
 			</div>
