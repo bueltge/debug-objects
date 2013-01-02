@@ -61,6 +61,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			$memory_usage = function_exists( 'memory_get_usage' ) ? round(memory_get_usage() / 1024 / 1024, 2) : 0;
 			$memory_limit = (int) ini_get( 'memory_limit' ) ;
 			
+			$memory_percent = '';
 			if ( ! empty($memory_usage) && ! empty($memory_limit) )
 				$memory_percent = round( $memory_usage / $memory_limit * 100, 0 );
 			

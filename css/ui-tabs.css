@@ -63,12 +63,12 @@
 	font-size: 1.1em;
 }
 .ui-tabs-hide {
-	display: none;/* for accessible hiding: position: absolute; left: -99999999px*/;
+	display: none;/* for accessible hiding: position: absolute; left: -99999999px; */
 }
 
 /*hidden elements*/
 .ui-hidden {
-	display: none;/* for accessible hiding: position: absolute; left: -99999999px*/;
+	display: none;/* for accessible hiding: position: absolute; left: -99999999px; */
 }
 .ui-accessible-hidden {
 	 position: absolute; left: -99999999px;
