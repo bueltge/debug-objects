@@ -106,7 +106,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 */
 		public function on_init() {
 			// add item on admin bar for go faster to the settings
-			add_action( 'admin_bar_menu', array( $this, 'add_wp_admin_bar_item' ), 20 );
+			add_action( 'admin_bar_menu', array( $this, 'add_wp_admin_bar_item' ), 9999 );
 		}
 		
 		/**
@@ -166,6 +166,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			$wp_admin_bar->add_menu(
 				array(
 					'id' => 'debug_objects', 
+					'parent' => 'top-secondary',
 					'title' => '<img style="float:left;height:28px;" src="' 
 						. plugins_url( '/img/bug-32.png', parent::$plugin ) 
 						. '" alt="The Bug" />' 
