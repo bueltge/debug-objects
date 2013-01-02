@@ -166,10 +166,10 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			$wp_admin_bar->add_menu(
 				array(
 					'id' => 'debug_objects', 
-					'title' => '<img style="float:left;" src="' 
+					'title' => '<img style="float:left;height:28px;" src="' 
 						. plugins_url( '/img/bug-32.png', parent::$plugin ) 
 						. '" alt="The Bug" />' 
-						. __( 'Debug this', self::get_textdomain() ),
+						. __( ' Objects', self::get_textdomain() ),
 					'href' => "?debug#debugobjects"
 				)
 			);
