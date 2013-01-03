@@ -163,6 +163,11 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'href'      => network_admin_url( 'settings.php?page=' . plugin_basename( __FILE__ ) ),
 				)
 			);
+			$url = "http://".$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+			$get = '?';
+			if ( FALSE !== strpos( $url, '?' ) )
+				$get = '&';
+			$href = $url . $get . "debug#debugobjects";
 			$wp_admin_bar->add_menu(
 				array(
 					'id' => 'debug_objects', 
@@ -171,7 +176,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 						. plugins_url( '/img/bug-32.png', parent::$plugin ) 
 						. '" alt="The Bug" />' 
 						. __( ' Objects', self::get_textdomain() ),
-					'href' => "?debug#debugobjects"
+					'href' => $href
 				)
 			);
 		}
