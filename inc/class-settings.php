@@ -163,7 +163,10 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'href'      => network_admin_url( 'settings.php?page=' . plugin_basename( __FILE__ ) ),
 				)
 			);
-			$url = "http://".$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+			
+			$url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$str = array( '?debug', '&debug', '#debugobjects' );
+			$url = esc_url( str_replace( $str, '', $url ) );
 			$get = '?';
 			if ( FALSE !== strpos( $url, '?' ) )
 				$get = '&';

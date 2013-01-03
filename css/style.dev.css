@@ -13,6 +13,7 @@ div#debugobjects {
 	color: #fff;
 	text-align: left;
 	z-index: 999;
+	clear: both;
 }
 
 div#debugobjectstabs {
@@ -27,6 +28,10 @@ div#debugobjectstabs, .ui-corner-all {
 
 div#debugobjects ol li {
 	margin: 5px 0 5px 15px;
+}
+
+div#debugobjects div div ul li, div#debugobjects div div td {
+	padding: 0 10px;
 }
 
 div#debugobjects #memory ul, div#debugobjects #conditional_tags ul, 
