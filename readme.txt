@@ -81,7 +81,7 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Lithuanian translation files by [Vincent G](http://www.host1plus.com)
 
 == Changelog ==
-= 2.1.11 =
+= 2.1.11 (01/08/2013) =
 * Add possibility to run WP in default mode; Add the url-param 'default', like '?debug&default' for run WordPress in a safe mode. Plugins are not loaed and set the default theme as active theme, is it available.
 * Add logging in chrome Webinspector via [ChromePHP](http://www.chromephp.com/)
 * Add [PHPError](http://phperror.net/), alternative PHP Error reporting
