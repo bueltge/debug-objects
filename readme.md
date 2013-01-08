@@ -32,7 +32,7 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Super Var Dump
 * Run WordPress in default mode via url-param
 * Add alternative PHP Error reporting: [PHP Error](http://phperror.net/)
-* Inlcude Logging in Chrome Console: [ChromePHP](http://www.chromephp.com/)
+* Include Logging in Chrome Console: [ChromePHP](http://www.chromephp.com/)
 * and many more ...
 
 The plugin does not filter values and should only be used for information and optimization, I don't recommended to use it on a live blog. For developers it can rapidly deliver data, which is useful in a development environment.
