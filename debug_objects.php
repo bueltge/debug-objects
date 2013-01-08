@@ -1,7 +1,7 @@
 <?php
 /**
  * @package Debug Objects
- * @author  Frank Bü;ltge
+ * @author  Frank Bültge
  * 
  * 
  * Plugin Name: Debug Objects
