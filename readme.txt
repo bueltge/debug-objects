@@ -35,6 +35,8 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Functions, which respond on hooks and filters
 * Contents of arrays to hooks and filters
 * All defined constants
+* All classes
+* Post Meta data
 * Super Var Dump
 * Run WordPress in default mode via url-param
 * Add alternative PHP Error reporting: [PHP Error](http://phperror.net/)
