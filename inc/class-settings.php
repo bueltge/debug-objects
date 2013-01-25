@@ -308,31 +308,32 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			<table class="form-table">
 				<?php
 				$defaults = array(
-					'Backend'          => __( 'Output in WordPress Admin Footer. <br />Alternatively use url param "<code>debug</code>" or set a cookie via url param "<code>debugcookie</code>" in days. <br />Example: <code>example.com/?debug</code>' ),
-					'Frontend'         => __( 'Output in Footer of Frontend. <br />Alternatively use url param "<code>debug</code>" or set a cookie via url param "<code>debugcookie</code>" in days <br />Example: <code>example.com/?debugcookie=5</code>' ),
-					'Php'              => __( 'PHP, WordPress and global Stuff' ),// php, WordPress, globals and more
-					'Classes'          => __( 'List all declared classes and his subclasses' ),
-					'Functions'        => __( 'List all defined functions' ),
-					'Constants'        => __( 'All Constants' ),// All active Constants
-					'Conditional_Tags' => __( 'Conditional Tags' ), // conditional tags
-					'Post_Meta'        => __( 'Get a list of post meta for the current post' ),
-					'Theme'            => __( 'Theme and Template informations' ),
-					'Enqueue_Stuff'    => __( 'Introduced scripts and stylesheets' ),// Scripts and styles
-					'Debug_Hooks'      => __( 'List existing Hooks and assigned functions and count of accepted args' ), // Hooks, faster
+					'Backend'           => __( 'Output in WordPress Admin Footer. <br />Alternatively use url param "<code>debug</code>" or set a cookie via url param "<code>debugcookie</code>" in days. <br />Example: <code>example.com/?debug</code>' ),
+					'Frontend'          => __( 'Output in Footer of Frontend. <br />Alternatively use url param "<code>debug</code>" or set a cookie via url param "<code>debugcookie</code>" in days <br />Example: <code>example.com/?debugcookie=5</code>' ),
+					'Php'               => __( 'PHP, WordPress and global Stuff' ),// php, WordPress, globals and more
+					'Classes'           => __( 'List all declared classes and his subclasses' ),
+					'Functions'         => __( 'List all defined functions' ),
+					'Constants'         => __( 'All Constants' ),// All active Constants
+					'Rewrite_Backtrace' => __( 'Filter to temporarily get a "debug object" prior to redirecting with a backtrace' ),
+					'Conditional_Tags'  => __( 'Conditional Tags' ), // conditional tags
+					'Post_Meta'         => __( 'Get a list of post meta for the current post' ),
+					'Theme'             => __( 'Theme and Template informations' ),
+					'Enqueue_Stuff'     => __( 'Introduced scripts and stylesheets' ),// Scripts and styles
+					'Debug_Hooks'       => __( 'List existing Hooks and assigned functions and count of accepted args' ), // Hooks, faster
 					//'Hooks'            => __( 'List existing Hooks and assigned functions' ),// Hooks
-					'Page_Hooks'       => __( 'Hooks of current page, very slow and use many RAM' ),// Hook Instrument for active page
-					'Query'            => __( 'Contents of Query' ),// WP Queries
-					'Stack_Trace'      => __( 'Stack Trace, all files and functions on each query. Query options is prerequisite.<br />A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.' ),
-					'Cache'            => __( 'Contents of Cache' ),// WP Cache
-					'Cron'             => __( 'Crons' ),
-					'Memory'           => __( 'Memory Used, Load Time and included Files' ),
-					'Inspector'        => __( 'Provide information about a given domain' ),
-					'Super_Var_Dump'   => __( 'A customized var_dump walker for viewing complex PHP variable data with an easy, javascript-backed nested-exploring view. Use the function <code>super_var_dump( $example_object );</code> for your debugging. More hints on <a href="https://github.com/ericandrewlewis/super-var-dump">this project</a>.' ),
-					'Chromephp'        => __( 'Logging PHP variables to Google Chrome console. You need to install the <a href="http://www.chromephp.com/">ChromePHP</a> extension. Start logging: <code>ChromePhp::log( $_SERVER );</code> More information can be found here: <a href="http://www.chromephp.com">http://www.chromephp.com</a>' ),
+					'Page_Hooks'        => __( 'Hooks of current page, very slow and use many RAM' ),// Hook Instrument for active page
+					'Query'             => __( 'Contents of Query' ),// WP Queries
+					'Stack_Trace'       => __( 'Stack Trace, all files and functions on each query. Query options is prerequisite.<br />A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.' ),
+					'Cache'             => __( 'Contents of Cache' ),// WP Cache
+					'Cron'              => __( 'Crons' ),
+					'Memory'            => __( 'Memory Used, Load Time and included Files' ),
+					'Inspector'         => __( 'Provide information about a given domain' ),
+					'Super_Var_Dump'    => __( 'A customized var_dump walker for viewing complex PHP variable data with an easy, javascript-backed nested-exploring view. Use the function <code>super_var_dump( $example_object );</code> for your debugging. More hints on <a href="https://github.com/ericandrewlewis/super-var-dump">this project</a>.' ),
+					'Chromephp'         => __( 'Logging PHP variables to Google Chrome console. You need to install the <a href="http://www.chromephp.com/">ChromePHP</a> extension. Start logging: <code>ChromePhp::log( $_SERVER );</code> More information can be found here: <a href="http://www.chromephp.com">http://www.chromephp.com</a>' ),
 					//'Debug'            => __( '' ),
-					'Php_Error'        => __( 'A alternative PHP Error reporting; works only with PHP 5.3. Set the url param <code>php_error</code> for all strict messages.' ),
-					'Default_Mode'     => __( 'Add the url-param \'<code>default</code>\', like \'<code>?debug&default</code>\', for run WordPress in a safe mode. Plugins are not loaded and set the default theme as active theme, is it available.' ),
-					'About'            => __( 'About the plugin' ),// about plugin
+					'Php_Error'         => __( 'A alternative PHP Error reporting; works only with PHP 5.3. Set the url param <code>php_error</code> for all strict messages.' ),
+					'Default_Mode'      => __( 'Add the url-param \'<code>default</code>\', like \'<code>?debug&default</code>\', for run WordPress in a safe mode. Plugins are not loaded and set the default theme as active theme, is it available.' ),
+					'About'             => __( 'About the plugin' ),// about plugin
 				);
 				
 				$classes = apply_filters( 'debug_objects_classes', $defaults );

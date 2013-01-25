@@ -13,10 +13,8 @@
  * License:     GPLv3
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
- * Last Change: 02/01/2013)
+ * Last Change: 01/25/2013)
  */
-
-// error_reporting(E_ALL);
 
 // avoid direct calls to this file, because now WP core and framework has been used.
 if ( ! function_exists( 'add_filter' ) ) {
@@ -68,6 +66,8 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @return  void
 		 */
 		public function __construct() {
+			
+			ini_set( 'max_execution_time', 60 );
 			
 			// define table
 			self :: $table  = $GLOBALS['wpdb'] -> base_prefix . self::$table;
@@ -137,11 +137,14 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			
 			if ( $view || self::debug_control()
 			) {
-				foreach ( $classes as $key => $require )
-					require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-' . strtolower( $require ) . '.php';
-			
-				foreach ( $classes as $class )
-					add_action( 'init', array( 'Debug_Objects_' . $class, 'init' ) );
+				foreach ( $classes as $key => $require ) {
+					$file = dirname( __FILE__ ) . DIRECTORY_SEPARATOR 
+						. 'inc/class-' . strtolower( $require ) . '.php';
+					if ( file_exists( $file ) )
+						require_once $file;
+					
+					add_action( 'init', array( 'Debug_Objects_' . $require, 'init' ) );
+				}
 			}
 		}
 		
@@ -293,6 +296,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			
 			unregister_setting( self :: $option_string . '_group', self :: $option_string );
 			delete_option( self :: $option_string );
+			delete_option( 'debug_objects_rewrite_backtrace' );
 			
 			// remove retired administrator capability
 			$GLOBALS['wp_roles']->remove_cap( 'administrator', '_debug_objects' );
@@ -415,19 +419,21 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 	
 } // end if class exists
 
-if ( ! function_exists( 'pre_print' ) ) {
+//ChromePhp::LOG( $GLOBALS['post'] );
 
+if ( ! function_exists( 'pre_print' ) ) {
+	
 	/**
 	 * Print debug output
 	 *
-	 * @since  2012.11.03
+	 * @since  03/11/2012
 	 * @param  mixed
 	 * @return void
 	 */
-	function pre_print( $var ) {
-
+	function pre_print( $var, $before = '' ) {
+		
 		$export = var_export( $var, TRUE );
 		$escape = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
-		print "<pre>$escape</pre>";
+		print $before . '<pre>' . $escape . '</pre>';
 	}
 }

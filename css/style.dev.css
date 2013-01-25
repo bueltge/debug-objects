@@ -16,6 +16,12 @@ div#debugobjects {
 	clear: both;
 }
 
+div#debugobjects pre {
+	width: 100%;
+	overflow: auto;
+	white-space: pre;
+}
+
 div#debugobjectstabs {
 	padding: 10px;
 }
