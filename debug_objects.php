@@ -9,7 +9,7 @@
  * Text Domain: debug_objects
  * Domain Path: /languages
  * Description: List filter and action-hooks, cache data, defined constants, qieries, included scripts and styles, php and memory informations and return of conditional tags only for admins; for debug, informations or learning purposes. Setting output in the settings of the plugin and use output via link in Admin Bar, via setting, via url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days.
- * Version:     2.1.11
+ * Version:     2.1.11-alpha
  * License:     GPLv3
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
@@ -21,7 +21,9 @@ if ( ! function_exists( 'add_filter' ) ) {
 	echo "Hi there! I'm just a part of plugin, not much I can do when called directly.";
 	exit;
 }
-	
+
+require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-chromephp.php';
+$Debug_Objects_Chromephp = Debug_Objects_Chromephp::init();
 
 if ( ! class_exists( 'Debug_Objects' ) ) {
 	
@@ -143,9 +145,11 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 					if ( file_exists( $file ) )
 						require_once $file;
 					
+					
 					add_action( 'init', array( 'Debug_Objects_' . $require, 'init' ) );
 				}
 			}
+			
 		}
 		
 /**
@@ -296,7 +300,6 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			
 			unregister_setting( self :: $option_string . '_group', self :: $option_string );
 			delete_option( self :: $option_string );
-			delete_option( 'debug_objects_rewrite_backtrace' );
 			
 			// remove retired administrator capability
 			$GLOBALS['wp_roles']->remove_cap( 'administrator', '_debug_objects' );
@@ -418,8 +421,6 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 	} // end class
 	
 } // end if class exists
-
-//ChromePhp::LOG( $GLOBALS['post'] );
 
 if ( ! function_exists( 'pre_print' ) ) {
 	
