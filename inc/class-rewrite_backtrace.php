@@ -21,8 +21,6 @@ class Debug_Objects_Rewrite_Backtrace {
 	
 	protected static $classobj = NULL;
 	
-	public $output = '';
-	
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
 	 * 
@@ -38,8 +36,6 @@ class Debug_Objects_Rewrite_Backtrace {
 	
 	public function __construct() {
 		
-		$this->output = '';
-		
 		add_filter( 'wp_redirect', array( $this, 'redirect_debug' ), 1, 2 );
 		add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 	}
@@ -48,8 +44,11 @@ class Debug_Objects_Rewrite_Backtrace {
 		
 		ob_start();
 		debug_print_backtrace();
-		$this->output = ob_get_contents();
-		update_option( 'debug_objects_rewrite_backtrace', $this->output );
+		$output['debug_backtrace'] = ob_get_contents();
+		$output['_get']            = $_GET;
+		$output['_post']           = $_POST;
+		$output['global_post']     = $GLOBALS['post'];
+		set_transient( 'debug_objects_rewrite_backtrace', $output, 120 );
 		ob_end_clean();
 		
 		return $location;
@@ -65,11 +64,32 @@ class Debug_Objects_Rewrite_Backtrace {
 		return $tabs;
 	}
 	
-	public function get_debug_backtrace() {
+	public function get_debug_backtrace( $echo = TRUE ) {
 		
-		$export = var_export( get_option( 'debug_objects_rewrite_backtrace' ), TRUE );
-		$escape = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
-		echo '<pre>' . $escape . '</pre>';
+		$data = get_transient( 'debug_objects_rewrite_backtrace' );
+		
+		$output  = '';
+		$output .= '<h4>$_POST</h4>';
+		if ( empty( $data['_post'] ) ) {
+			$output .= 'Empty';
+		} else {
+			$export  = var_export( $data['_post'], TRUE );
+			$escape  = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
+			$output .= '<pre>' . $escape . '</pre>';
+		}
+		
+		$output .= '<h4>$_GET</h4>';
+		$output .= ( empty( $data['_get'] ) ) ? 'Empty' : $data['_get'];
+		
+		$output .= '<h4>Debug Backtrace</h4>';
+		$export  = var_export( $data['debug_backtrace'], TRUE );
+		$escape  = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
+		$output .= '<pre>' . $escape . '</pre>';
+		
+		if ( $echo )
+			echo $output;
+		else
+			return $output;
 	}
 	
 } // end class
