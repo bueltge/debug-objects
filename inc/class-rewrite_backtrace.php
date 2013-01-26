@@ -48,7 +48,10 @@ class Debug_Objects_Rewrite_Backtrace {
 		$output['_get']            = $_GET;
 		$output['_post']           = $_POST;
 		$output['global_post']     = $GLOBALS['post'];
-		set_transient( 'debug_objects_rewrite_backtrace', $output, 120 );
+		if ( is_network_admin() )
+			set_site_transient( 'debug_objects_rewrite_backtrace', $output, 120 );
+		else
+			set_transient( 'debug_objects_rewrite_backtrace', $output, 120 );
 		ob_end_clean();
 		
 		return $location;
@@ -66,7 +69,10 @@ class Debug_Objects_Rewrite_Backtrace {
 	
 	public function get_debug_backtrace( $echo = TRUE ) {
 		
-		$data = get_transient( 'debug_objects_rewrite_backtrace' );
+		if ( is_network_admin() )
+			$data = get_site_transient( 'debug_objects_rewrite_backtrace' );
+		else
+			$data = get_transient( 'debug_objects_rewrite_backtrace' );
 		
 		$output  = '';
 		$output .= '<h4>$_POST</h4>';

@@ -137,6 +137,8 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			
 			self::set_cookie_control();
 			
+			//@ToDO: load class backtrace without output, if option is active
+			
 			if ( $view || self::debug_control()
 			) {
 				foreach ( $classes as $key => $require ) {
@@ -144,7 +146,6 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 						. 'inc/class-' . strtolower( $require ) . '.php';
 					if ( file_exists( $file ) )
 						require_once $file;
-					
 					
 					add_action( 'init', array( 'Debug_Objects_' . $require, 'init' ) );
 				}
