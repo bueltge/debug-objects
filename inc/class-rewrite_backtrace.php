@@ -21,6 +21,8 @@ class Debug_Objects_Rewrite_Backtrace {
 	
 	protected static $classobj = NULL;
 	
+	public $transient_string = 'debug_objects_rewrite_backtrace';
+	
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
 	 * 
@@ -34,12 +36,25 @@ class Debug_Objects_Rewrite_Backtrace {
 		return self::$classobj;
 	}
 	
+	/**
+	 * Constructor, init the methods
+	 * 
+	 * @return  void
+	 * @since   2.1.11
+	 */
 	public function __construct() {
 		
 		add_filter( 'wp_redirect', array( $this, 'redirect_debug' ), 1, 2 );
 		add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 	}
 	
+	/**
+	 * Parse data and save in transient dat in DB
+	 * 
+	 * @param  $location
+	 * @param  $status
+	 * @return $location
+	 */
 	public function redirect_debug( $location, $status ) {
 		
 		ob_start();
@@ -49,14 +64,20 @@ class Debug_Objects_Rewrite_Backtrace {
 		$output['_post']           = $_POST;
 		$output['global_post']     = $GLOBALS['post'];
 		if ( is_network_admin() )
-			set_site_transient( 'debug_objects_rewrite_backtrace', $output, 120 );
+			set_site_transient( $this->transient_string, $output, 120 );
 		else
-			set_transient( 'debug_objects_rewrite_backtrace', $output, 120 );
+			set_transient( $this->transient_string, $output, 120 );
 		ob_end_clean();
 		
 		return $location;
 	}
 	
+	/**
+	 * Create Tab in Debug Objects list
+	 * 
+	 * @param   Array $tabs
+	 * @return  Array $tabs
+	 */
 	public function get_conditional_tab( $tabs ) {
 		
 		$tabs[] = array( 
@@ -67,12 +88,18 @@ class Debug_Objects_Rewrite_Backtrace {
 		return $tabs;
 	}
 	
+	/**
+	 * Get data from transient to data befre rewrite
+	 * 
+	 * @param   Boolean $echo
+	 * @return  String  $output
+	 */
 	public function get_debug_backtrace( $echo = TRUE ) {
 		
 		if ( is_network_admin() )
-			$data = get_site_transient( 'debug_objects_rewrite_backtrace' );
+			$data = get_site_transient( $this->transient_string );
 		else
-			$data = get_transient( 'debug_objects_rewrite_backtrace' );
+			$data = get_transient( $this->transient_string );
 		
 		$output  = '';
 		$output .= '<h4>$_POST</h4>';
