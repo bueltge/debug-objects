@@ -37,7 +37,8 @@ if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 				return;
 			
 			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
-			add_action( 'shutdown', array( $this, 'get_list_ids' ) );
+			add_action( 'admin_footer', array( $this, 'get_list_ids' ), 9999 );
+			add_action( 'wp_footer', array( $this, 'get_list_ids' ), 9999 );
 		}
 		
 		public function get_conditional_tab( $tabs ) {
