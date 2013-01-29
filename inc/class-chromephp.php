@@ -35,15 +35,21 @@ class Debug_Objects_Chromephp {
 		
 		return self::$classobj;
 	}
-
+	
+	/**
+	 * Constructor, init the methods
+	 * 
+	 * @return  void
+	 * @since   2.1.11
+	 */
 	public function __construct() {
 		
 		// use namespace, only PHP 5.3*
 		if ( version_compare( phpversion(), '5.3a', '<' ) ) 
 			return NULL;
 		
-		if ( ! current_user_can( '_debug_objects' ) )
-			return NULL;
+		//if ( ! current_user_can( '_debug_objects' ) )
+		//	return NULL;
 		
 		if ( class_exists( 'ChromePhp' ) )
 			return;
@@ -51,10 +57,12 @@ class Debug_Objects_Chromephp {
 		self::include_chromephp();
 	}
 	
-	public function log() {
-		
-	}
-	
+	/**
+	 * Inlcude the lib ChomePHP
+	 * 
+	 * @return  void
+	 * @since   2.1.11
+	 */
 	public function include_chromephp() {
 		
 		require_once( plugin_dir_path( __FILE__ ) . 'chromephp/ChromePhp.php' );
