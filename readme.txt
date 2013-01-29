@@ -37,7 +37,7 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * All defined constants
 * All classes
 * Post Meta data
-* Super Var Dump
+* See data from `$_POST`; `$_GET` and debug backtrace before rewrite; usefull for forms in backend, see [Support Forum Discussion](http://wordpress.org/support/topic/feature-suggestion-to-debug-pre-redirect)
 * Run WordPress in default mode via url-param
 * Add alternative PHP Error reporting: [PHP Error](http://phperror.net/)
 * Inlcude Logging in Chrome Console: [ChromePHP](http://www.chromephp.com/)
@@ -83,6 +83,12 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Lithuanian translation files by [Vincent G](http://www.host1plus.com)
 
 == Changelog ==
+= 2.1.12 () =
+* Add to see data from `$_POST`; `$_GET` and debig backtrace before rewrite; usefull for forms in backend, see [Support Forum Discussion](http://wordpress.org/support/topic/feature-suggestion-to-debug-pre-redirect)
+* Change init of ChromePHP to load very early
+* Small changes on code
+* Remove Super Var Dump, ChromePHP is ore useful
+
 = 2.1.11 (01/08/2013) =
 * Add possibility to run WP in default mode; Add the url-param 'default', like '?debug&default' for run WordPress in a safe mode. Plugins are not loaed and set the default theme as active theme, is it available.
 * Add logging in chrome Webinspector via [ChromePHP](http://www.chromephp.com/)
