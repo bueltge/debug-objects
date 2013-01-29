@@ -138,24 +138,32 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			
 			self::set_cookie_control();
 			
-			//@TODO: load class backtrace without output, if option is active
-			ChromePhp::LOG( $classes );
+			// Load class backtrace without output, if option is active
+			if ( in_array( 'Rewrite_backtrace', $classes ) ) {
+				
+				$file = dirname( __FILE__ ) . DIRECTORY_SEPARATOR 
+					. 'inc/class-rewrite_backtrace.php';
+				require_once( $file );
+				add_action( 'init', array( 'Debug_Objects_Rewrite_Backtrace', 'init' ) );
+			}
 			
 			if ( $view || self::debug_control()
 			) {
 				foreach ( $classes as $key => $require ) {
-					$file = dirname( __FILE__ ) . DIRECTORY_SEPARATOR 
-						. 'inc/class-' . strtolower( $require ) . '.php';
-					if ( file_exists( $file ) )
-						require_once $file;
-					
-					add_action( 'init', array( 'Debug_Objects_' . $require, 'init' ) );
+					if ( ! class_exists( 'Debug_Objects_' . $require ) ) {
+						$file = dirname( __FILE__ ) . DIRECTORY_SEPARATOR 
+							. 'inc/class-' . strtolower( $require ) . '.php';
+						if ( file_exists( $file ) )
+							require_once $file;
+						
+						add_action( 'init', array( 'Debug_Objects_' . $require, 'init' ) );
+					}
 				}
 			}
 			
 		}
 		
-/**
+		/**
 		 * Check for url param to view output
 		 * 
 		 * @access  public

@@ -85,12 +85,22 @@ class Debug_Objects_Rewrite_Backtrace {
 		}
 		
 		$output .= '<h4>$_GET</h4>';
-		$output .= ( empty( $data['_get'] ) ) ? 'Empty' : $data['_get'];
+		if ( empty( $data['_get'] ) ) {
+			$output .= 'Empty';
+		} else {
+			$export  = var_export( $data['_get'], TRUE );
+			$escape  = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
+			$output .= '<pre>' . $escape . '</pre>';
+		}
 		
 		$output .= '<h4>Debug Backtrace</h4>';
-		$export  = var_export( $data['debug_backtrace'], TRUE );
-		$escape  = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
-		$output .= '<pre>' . $escape . '</pre>';
+		if ( empty( $data['debug_backtrace'] ) ) {
+			$output .= 'Empty';
+		} else {
+			$export  = var_export( $data['debug_backtrace'], TRUE );
+			$escape  = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
+			$output .= '<pre>' . $escape . '</pre>';
+		}
 		
 		if ( $echo )
 			echo $output;

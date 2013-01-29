@@ -336,16 +336,22 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'About'             => __( 'About the plugin' ),// about plugin
 				);
 				
-				$classes = apply_filters( 'debug_objects_classes', $defaults );
+				$classes          = apply_filters( 'debug_objects_classes', $defaults );
+				$disabled_options = apply_filters( 'debug_objects_disabled_options', array( 'Chromephp' ) );
 				
 				foreach ( $classes as $class => $hint ) {
 					$key = strtolower( $class );
-					?>
+					if ( in_array( $class, $disabled_options ) ) {
+						$disabled = ' disabled="disabled"';
+						$options[$key] = '1';
+					} else {
+						$disabled = '';
+					} ?>
 				<tr valign="top">
 					<td scope="row" style="width: 20%;">
 						<label for="<?php echo self::$option_string . '_' . $key; ?>"><?php echo str_replace( '_', ' ', $class); ?></label>
 					</td>
-					<td><input type="checkbox" id="<?php echo self::$option_string . '_' . $key; ?>" name="<?php echo self::$option_string . '[' . $key . ']'; ?>" value="1" 
+					<td><input type="checkbox" id="<?php echo self::$option_string . '_' . $key; ?>" <?php echo $disabled; ?> name="<?php echo self::$option_string . '[' . $key . ']'; ?>" value="1" 
 						<?php if ( isset( $options[$key] ) ) checked( '1', $options[$key] ); ?> />	
 						<span class="description"><?php _e( $hint ); ?></span>
 					</td>
