@@ -22,14 +22,15 @@ if ( ! function_exists( 'add_filter' ) ) {
 	exit;
 }
 
-require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-chromephp.php';
-$Debug_Objects_Chromephp = Debug_Objects_Chromephp::init();
-
 if ( ! class_exists( 'Debug_Objects' ) ) {
 	
 	// include plugin on hook
 	add_action( 'plugins_loaded',       array( 'Debug_Objects', 'get_object' ) );
 	register_activation_hook( __FILE__, array( 'Debug_Objects', 'on_activation' ) );
+	
+	// include the ChromePHP very early
+	require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-chromephp.php';
+	$debug_objects_chromephp = Debug_Objects_Chromephp::init();
 	
 	class Debug_Objects {
 		
@@ -137,7 +138,8 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			
 			self::set_cookie_control();
 			
-			//@ToDO: load class backtrace without output, if option is active
+			//@TODO: load class backtrace without output, if option is active
+			ChromePhp::LOG( $classes );
 			
 			if ( $view || self::debug_control()
 			) {
