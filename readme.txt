@@ -4,7 +4,7 @@ Donate link: http://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, cron, cache
 Requires at least: 3.3
 Tested up to: 3.6-alpha
-Stable tag: 2.1.11
+Stable tag: 2.1.12
 
 The Plugin Debug Objects provides a large number of information: query, cache, cron, constants, hooks, functions and many more.
 
@@ -83,11 +83,11 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Lithuanian translation files by [Vincent G](http://www.host1plus.com)
 
 == Changelog ==
-= 2.1.12 () =
+= 2.1.12 (02/01/2013) =
 * Add to see data from `$_POST`; `$_GET` and debig backtrace before rewrite; usefull for forms in backend, see [Support Forum Discussion](http://wordpress.org/support/topic/feature-suggestion-to-debug-pre-redirect)
 * Change init of ChromePHP to load very early
 * Small changes on code
-* Remove Super Var Dump, ChromePHP is ore useful
+* Remove Super Var Dump, ChromePHP is more useful
 
 = 2.1.11 (01/08/2013) =
 * Add possibility to run WP in default mode; Add the url-param 'default', like '?debug&default' for run WordPress in a safe mode. Plugins are not loaed and set the default theme as active theme, is it available.
