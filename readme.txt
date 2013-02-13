@@ -83,6 +83,9 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Lithuanian translation files by [Vincent G](http://www.host1plus.com)
 
 == Changelog ==
+= 2.1.13 () =
+* Add new output for current hooks
+
 = 2.1.12 (02/01/2013) =
 * Add to see data from `$_POST`; `$_GET` and debig backtrace before rewrite; usefull for forms in backend, see [Support Forum Discussion](http://wordpress.org/support/topic/feature-suggestion-to-debug-pre-redirect)
 * Change init of ChromePHP to load very early

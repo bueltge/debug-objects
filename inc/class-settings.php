@@ -321,7 +321,8 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Enqueue_Stuff'     => __( 'Introduced scripts and stylesheets' ),// Scripts and styles
 					'Debug_Hooks'       => __( 'List existing Hooks and assigned functions and count of accepted args' ), // Hooks, faster
 					//'Hooks'            => __( 'List existing Hooks and assigned functions' ),// Hooks
-					'Page_Hooks'        => __( 'Hooks of current page, very slow and use many RAM' ),// Hook Instrument for active page
+					'All_Hooks'         => __( 'List all hooks, very slow and use many RAM' ),
+					'Page_Hooks'        => __( 'Hooks of current page' ),// Hook Instrument for active page
 					'Query'             => __( 'Contents of Query' ),// WP Queries
 					'Stack_Trace'       => __( 'Stack Trace, all files and functions on each query. Query options is prerequisite.<br />A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.' ),
 					'Cache'             => __( 'Contents of Cache' ),// WP Cache

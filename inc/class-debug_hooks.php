@@ -64,16 +64,15 @@ if ( ! class_exists( 'Debug_Objects_Debug_Hooks' ) ) {
 			$hooks = $wp_filter;
 			ksort( $hooks );
 			
-			$wp_hook = 0;
+			echo '<h2>Hooks Total: ' . count( $wp_filter ) . '</h2>';
+			
 			foreach( $hooks as $tag => $hook ) {
 				if ( FALSE === $filter || FALSE !== strpos( $tag, $filter ) ) {
 					self::dump_hook($tag, $hook);
 				}
-				$wp_hook ++;
 			}
 			
-			echo '<p class="alternate">Hooks Total: ' . $wp_hook;
-			echo '<br>Register filter/actions total: ' . self::$wp_func . '</p>';
+			echo '<p class="alternate">Register filter/actions total: ' . self::$wp_func . '</p>';
 		}
 		
 		public function list_live_hooks( $hook = FALSE ) {
@@ -90,7 +89,7 @@ if ( ! class_exists( 'Debug_Objects_Debug_Hooks' ) ) {
 			$tag = current_filter();
 			if ( isset( $wp_filter[$tag] ) )
 				self::dump_hook( $tag, $wp_filter[$tag] );
-		
+			
 			return $input;
 		}
 		
