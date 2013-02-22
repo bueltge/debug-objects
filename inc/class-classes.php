@@ -13,7 +13,7 @@ if ( ! function_exists( 'add_filter' ) ) {
 }
 
 if ( ! class_exists( 'Debug_Objects_Classes' ) ) {
-	class Debug_Objects_Classes extends Debug_Objects {
+	class Debug_Objects_Classes {
 		
 		protected static $classobj = NULL;
 		
@@ -41,7 +41,7 @@ if ( ! class_exists( 'Debug_Objects_Classes' ) ) {
 		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 
-				'tab' => __( 'Classes', parent :: get_plugin_data() ),
+				'tab' => __( 'Classes' ),
 				'function' => array( $this, 'get_classes' )
 			);
 			
@@ -64,28 +64,29 @@ if ( ! class_exists( 'Debug_Objects_Classes' ) ) {
 			if ( ! $echo ) {
 				return $classes;
 			} else {
-				$i        = 0;
-				$style    = '';
-				$substyle = '';
-				$output   = '';
+				$i         = 0;
+				$style     = '';
+				$substyle  = '';
+				$output    = '';
 				$suboutput = '';
 				foreach ( $classes as $count => $class ) {
+					
 					$subclasses = '';
-					$style = ( ' class="alternate"' == $style ) ? '' : ' class="alternate"';
-					$output .= '<tr' . $style . '><td>' . $count . '</td><td>' . $class . '</td>';
+					$style      = ( ' class="alternate"' == $style ) ? '' : ' class="alternate"';
+					$output    .= '<tr' . $style . '><td>' . $count . '</td><td>' . $class . '</td>';
 					$subclasses = get_parent_class( $class );
-					//$output .= var_export( $subclasses, true );
+					
 					if ( ! empty( $subclasses ) ) {
 						$output .= '<td><code>extend</code> ' . $subclasses . '</td>';
 					} else {
 						$output .= '<td> </td>';
 					}
+					
 					$output .= '</tr>';
-					$i++;
+					$i ++;
 				}
+				echo '<h4>Total Classes: ' . count( $classes ) . '</h4>';
 				echo '<table>' . $output . '</table>';
-				
-				echo '<p class="alternate">' . __( 'Class total:', parent :: get_plugin_data() ) . ' ' . $i . '</p>';
 			}
 			
 		}

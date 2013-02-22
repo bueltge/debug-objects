@@ -14,7 +14,7 @@ if ( ! function_exists( 'add_filter' ) ) {
 }
 
 if ( ! class_exists( 'Debug_Objects_Constants' ) ) {
-	class Debug_Objects_Constants extends Debug_Objects {
+	class Debug_Objects_Constants {
 		
 		protected static $classobj = NULL;
 		
@@ -42,7 +42,7 @@ if ( ! class_exists( 'Debug_Objects_Constants' ) ) {
 		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 
-				'tab' => __( 'Constants', parent :: get_plugin_data() ),
+				'tab' => __( 'Constants' ),
 				'function' => array( $this, 'view_def_constants' )
 			);
 			
@@ -50,11 +50,14 @@ if ( ! class_exists( 'Debug_Objects_Constants' ) ) {
 		}
 		
 		public function view_def_constants( $echo = TRUE ) {
-			global $wp_object;
 			
-			$output  = '';
-			$output .= parent :: get_as_ul_tree( get_defined_constants(), '<strong class="h4">All Defined Constants</strong>' );
-			$output .= '<p>' . __( 'Objects total:', parent :: get_plugin_data() ) . ' ' . $wp_object . '</p>';
+			$get_def_constants = get_defined_constants();
+			
+			$export  = var_export( $get_def_constants, TRUE );
+			$output  = '<h4>Total Actions: ' . count( $get_def_constants ) . '</h4>';
+			$escape  = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
+			$output .= '<pre><code>' . $escape . '</code></pre>';
+			//$output .= parent :: get_as_ul_tree( $get_def_constants, '<strong class="h4">All Defined Constants</strong>' );
 			
 			if ( $echo )
 				echo $output;

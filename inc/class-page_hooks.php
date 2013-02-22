@@ -71,7 +71,7 @@ class Debug_Objects_Page_Hooks {
 	public function get_hooks() {
 		global $wp_actions;
 		
-		$output  = '<h2>Total Actions: ' . count( $wp_actions ) . '</h2>';
+		$output  = '<h4>Total Actions: ' . count( $wp_actions ) . '</h4>';
 		$output .= '<ol>';
 		
 		foreach ( $wp_actions as $key => $val ) {
