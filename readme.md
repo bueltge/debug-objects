@@ -30,6 +30,7 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Contents of arrays to hooks and filters
 * All defined constants
 * All classes
+* All shortcodes
 * Post Meta data
 * See data from `$_POST`; `$_GET` and debug backtrace before rewrite; usefull for forms in backend
 * Run WordPress in default mode via url-param

@@ -36,6 +36,7 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Contents of arrays to hooks and filters
 * All defined constants
 * All classes
+* All shortcodes
 * Post Meta data
 * See data from `$_POST`; `$_GET` and debug backtrace before rewrite; usefull for forms in backend, see [Support Forum Discussion](http://wordpress.org/support/topic/feature-suggestion-to-debug-pre-redirect)
 * Run WordPress in default mode via url-param
@@ -85,6 +86,7 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 == Changelog ==
 = 2.1.13 () =
 * Add new output for current hooks
+* Add list of all shortcodes and his function to get the output
 
 = 2.1.12 (02/01/2013) =
 * Add to see data from `$_POST`; `$_GET` and debig backtrace before rewrite; usefull for forms in backend, see [Support Forum Discussion](http://wordpress.org/support/topic/feature-suggestion-to-debug-pre-redirect)
