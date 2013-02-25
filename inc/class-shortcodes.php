@@ -37,7 +37,6 @@ class Debug_Objects_Shortcodes {
 	 * Constructor, init the methods
 	 * 
 	 * @return  void
-	 * @since   2.1.11
 	 */
 	public function __construct() {
 		
@@ -64,7 +63,7 @@ class Debug_Objects_Shortcodes {
 	}
 	
 	/**
-	 * Get hooks for current page
+	 * Get all shortocdes and his data
 	 * 
 	 * @return String
 	 */
