@@ -314,6 +314,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Classes'           => __( 'List all declared classes and his subclasses' ),
 					'Functions'         => __( 'List all defined functions' ),
 					'Constants'         => __( 'All Constants' ),// All active Constants
+					'Shortcodes'        => __( 'List all shortcodes' ),
 					'Rewrite_Backtrace' => __( 'Filter to temporarily get a "debug object" prior to redirecting with a backtrace' ),
 					'Conditional_Tags'  => __( 'Conditional Tags' ), // conditional tags
 					'Post_Meta'         => __( 'Get a list of post meta for the current post' ),
