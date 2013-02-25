@@ -70,6 +70,11 @@ div#debugobjects #memory li a:hover, div#debugobjects #conditional_tags li a:hov
 	text-decoration: none;
 }
 
+div#debugobjects .important {
+	border: 2px solid #D54E21;
+	padding: .5%;
+}
+
 div#debugobjects .alternate, div#debugobjects .alt {
 	background: #e6e6e6;
 }
