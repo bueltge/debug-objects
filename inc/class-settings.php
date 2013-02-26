@@ -105,6 +105,10 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 * @return  void
 		 */
 		public function on_init() {
+			
+			// set classes for admin bar item
+			add_filter( 'debug_objects_classes', array( $this, 'get_debug_objects_classes' ) );
+			
 			// add item on admin bar for go faster to the settings
 			add_action( 'admin_bar_menu', array( $this, 'add_wp_admin_bar_item' ), 9999 );
 		}
@@ -144,6 +148,17 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		}
 		
 		/**
+		 * Return classes for the Debug Objects Item
+		 * 
+		 * @param  Array $classes
+		 * @return Array $classes
+		 */
+		public function get_debug_objects_classes( $classes ) {
+			
+			return $classes;
+		}
+		
+		/**
 		 * Add item in admin bar
 		 * 
 		 * @since   07/24/2012
@@ -154,12 +169,16 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			if ( ! is_super_admin() || ! is_admin_bar_showing() )
 				return NULL;
 			
+			$classes = apply_filters( 'debug_objects_classes', array() );
+			$classes = implode( ' ', $classes );
+			
 			$wp_admin_bar->add_menu(
 				array(
 					'parent'    => 'network-admin',
 					'secondary' => FALSE,
 					'id'        => 'network-' . self::get_textdomain(),
 					'title'     => self::get_plugin_data( 'Name' ),
+					'meta'      => array( 'class' => $classes ),
 					'href'      => network_admin_url( 'settings.php?page=' . plugin_basename( __FILE__ ) ),
 				)
 			);
@@ -173,13 +192,14 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			$href = $url . $get . "debug#debugobjects";
 			$wp_admin_bar->add_menu(
 				array(
-					'id' => 'debug_objects', 
+					'id'     => 'debug_objects', 
 					'parent' => 'top-secondary',
-					'title' => '<img style="float:left;height:28px;" src="' 
+					'title'  => '<img style="float:left;height:28px;" src="' 
 						. plugins_url( '/img/bug-32.png', parent::$plugin ) 
 						. '" alt="The Bug" />' 
 						. __( ' Objects', self::get_textdomain() ),
-					'href' => $href
+					'meta'   => array( 'class' => $classes ),
+					'href'   => $href
 				)
 			);
 		}

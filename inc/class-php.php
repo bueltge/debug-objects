@@ -36,6 +36,11 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			return self::$classobj;
 		}
 		
+		/**
+		 * Constructor
+		 * 
+		 * @return  void
+		 */
 		public function __construct() {
 			
 			if ( ! current_user_can( '_debug_objects' ) )
@@ -45,8 +50,17 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			
 			// @see http://php.net/manual/de/function.set-error-handler.php
 			$this->real_error_handler = set_error_handler( array( $this, 'error_handler' ) );
+			
+			// set classes for admin bar item
+			add_filter( 'debug_objects_classes', array( $this, 'get_debug_objects_classes' ) );
 		}
 		
+		/**
+		 * Get data for the generated tabs
+		 * 
+		 * @param  Array $tabs
+		 * @return Array $tabs
+		 */
 		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 
@@ -55,6 +69,26 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			);
 			
 			return $tabs;
+		}
+		
+		/**
+		 * Get different classes for admin bar item to format to see easier a problem on php
+		 * 
+		 * @param  Array $classes
+		 * @return Array $classes
+		 */
+		public function get_debug_objects_classes( $classes ) {
+			var_dump($this->notices);
+			if ( 0 < count( $this->warnings ) )
+				$classes[] = ' debug_objects_php_warning';
+			
+			if ( 0 < count( $this->notices ) )
+				$classes[] = ' debug_objects_php_notice';
+			
+			if ( 0 < count( $this->messages ) )
+				$classes[] = ' debug_objects_php_message';
+			
+			return $classes;
 		}
 		
 		public function error_handler( $type, $message, $file, $line ) {
