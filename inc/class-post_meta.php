@@ -40,11 +40,18 @@ if ( ! class_exists( 'Debug_Objects_Post_Meta' ) ) {
 			if ( ! current_user_can( '_debug_objects' ) )
 				return;
 			
+			// get arguments of CPTs
 			add_action( 'registered_post_type', array( $this, 'get_args' ), 10, 2 );
-			
+			// add tab to the plugin tabs list
 			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 		}
 		
+		/**
+		 * Create tab for this data
+		 * 
+		 * @param  Array $tabs
+		 * @return Array $tabs
+		 */
 		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 
@@ -55,16 +62,28 @@ if ( ! class_exists( 'Debug_Objects_Post_Meta' ) ) {
 			return $tabs;
 		}
 		
+		/**
+		 * Get arguments of CPTs, write in var
+		 * 
+		 * @return void
+		 */
 		public function get_args( $post_type, $args ) {
 			
 			! $args->_builtin
 				&& self::$args[ $post_type ] = $args;
 		}
 		
+		/**
+		 * Get data and create output
+		 * 
+		 * @param  String  $echo
+		 * @return String  $output
+		 */
 		public function get_post_meta_data( $echo = TRUE ) {
 			
 			$output = '';
 			
+			// Post Meta data
 			if ( ! isset( $GLOBALS['post']->ID ) ) {
 				$output = __( 'No Post ID' );
 				if ( $echo )
