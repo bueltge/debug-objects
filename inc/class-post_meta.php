@@ -18,6 +18,10 @@ if ( ! class_exists( 'Debug_Objects_Post_Meta' ) ) {
 		
 		protected static $classobj = NULL;
 		
+		public static $builtin = array();
+	 
+		public static $args = array();
+		
 		/**
 		* Handler for the action 'init'. Instantiates this class.
 		* 
@@ -36,17 +40,25 @@ if ( ! class_exists( 'Debug_Objects_Post_Meta' ) ) {
 			if ( ! current_user_can( '_debug_objects' ) )
 				return;
 			
+			add_action( 'registered_post_type', array( $this, 'get_args' ), 10, 2 );
+			
 			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 		}
 		
 		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 
-				'tab' => __( 'Post Meta', parent::get_plugin_data() ),
+				'tab' => __( 'Post Type & Meta', parent::get_plugin_data() ),
 				'function' => array( $this, 'get_post_meta_data' )
 			);
 			
 			return $tabs;
+		}
+		
+		public function get_args( $post_type, $args ) {
+			
+			! $args->_builtin
+				&& self::$args[ $post_type ] = $args;
 		}
 		
 		public function get_post_meta_data( $echo = TRUE ) {
@@ -67,8 +79,8 @@ if ( ! class_exists( 'Debug_Objects_Post_Meta' ) ) {
 			if ( ! isset( $meta ) )
 				$output .= __( 'No meta data' );
 			
+			$output .= '<h4 class="alternate">' . __( 'Post ID:' ) . ' ' . get_the_ID() . '</h4>';
 			$output .= '<ul>';
-			$output .= '<li class="alternate">' . __( 'Post ID:' ) . ' ' . get_the_ID() . '</li>';
 			$output .= '<li>' . __( 'Meta Keys:' ) . ' ' . count( $meta ) . '';
 			$output .= '<table><tr><td>' . __( 'Key' ) . '</td><td>' . __( 'Value' ) . '</td></tr>';
 			foreach ( $meta as $key => $value ) {
@@ -94,6 +106,22 @@ if ( ! class_exists( 'Debug_Objects_Post_Meta' ) ) {
 			$output .= '<li class="alternate">' . __( 'Approximate Disk Size:' ) 
 				. ' ' . $this->get_string_disk_size( serialize( $meta ) );
 			$output .= '</ul>';
+			
+			// post type arguments
+			if ( isset( self::$args ) ) {
+				foreach ( self::$args as $post_type => $var ) {
+					$export = var_export( $var, TRUE );
+					$escape = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
+					
+					$output .= sprintf(
+						'<br><h4 class="alternate">Post Type: %s</h4><pre>%s</pre>',
+						$post_type,
+						$escape
+					);
+				}
+			} else {
+				$output .= __( 'No custom post type arguments' );
+			}
 			
 			if ( $echo )
 				echo $output;
