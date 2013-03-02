@@ -32,7 +32,7 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * All classes
 * All shortcodes
 * Post Meta data
-* List Custom Post Type Argument
+* List Custom Post Type Arguments
 * See data from `$_POST`; `$_GET` and debug backtrace before rewrite; usefull for forms in backend
 * Run WordPress in default mode via url-param
 * Add alternative PHP Error reporting: [PHP Error](http://phperror.net/)
