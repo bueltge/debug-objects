@@ -337,7 +337,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Shortcodes'        => __( 'List all shortcodes' ),
 					'Rewrite_Backtrace' => __( 'Filter to temporarily get a "debug object" prior to redirecting with a backtrace' ),
 					'Conditional_Tags'  => __( 'Conditional Tags' ), // conditional tags
-					'Post_Meta'         => __( 'Get a list of post meta for the current post' ),
+					'Post_Meta'         => __( 'Get a list of arguments to custom post types and a list of post meta for the current post type' ),
 					'Theme'             => __( 'Theme and Template informations' ),
 					'Enqueue_Stuff'     => __( 'Introduced scripts and stylesheets' ),// Scripts and styles
 					'Debug_Hooks'       => __( 'List existing Hooks and assigned functions and count of accepted args' ), // Hooks, faster
