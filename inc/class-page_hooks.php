@@ -4,7 +4,7 @@
  *
  * @package     Debug Objects
  * @subpackage  Current Hooks
- * @author      Frank B&uuml;ltge
+ * @author      Frank Bültge
  * @since       2.0.0
  */
 
@@ -19,6 +19,8 @@ if ( class_exists( 'Debug_Objects_Page_Hooks' ) )
 class Debug_Objects_Page_Hooks {
 	
 	protected static $classobj = NULL;
+	
+	public $filters_storage = array();
 	
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
@@ -44,6 +46,7 @@ class Debug_Objects_Page_Hooks {
 		if ( ! current_user_can( '_debug_objects' ) )
 			return NULL;
 		
+		add_action( 'all', array( $this, 'store_fired_filters' ) );
 		add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 	}
 	
@@ -63,6 +66,24 @@ class Debug_Objects_Page_Hooks {
 		return $tabs;
 	}
 	
+	public function store_fired_filters( $tag ) {
+		global $wp_filter;
+
+		if ( ! isset( $wp_filter[ $tag ] ) )
+			return;
+
+		$hooked = $wp_filter[ $tag ];
+		ksort( $hooked );
+
+		foreach ( $hooked as $priority => $function )
+			$hooked[] = $function;
+
+		$this->filters_storage[] = array(
+			'tag'    => $tag,
+			'hooked' => $wp_filter[ $tag ],
+		);
+	}
+	
 	/**
 	 * Get hooks for current page
 	 * 
@@ -71,14 +92,75 @@ class Debug_Objects_Page_Hooks {
 	public function get_hooks() {
 		global $wp_actions;
 		
-		$output  = '<h4>Total Actions: ' . count( $wp_actions ) . '</h4>';
-		$output .= '<ol>';
+		$callbacks        = array();
+		$hooks            = array();
+		$filter_hooks     = '';
+		$filter_callbacks = '';
 		
-		foreach ( $wp_actions as $key => $val ) {
-			$output .= "<li><code>{$key}</code></li>";
+		foreach ( $this->filters_storage as $index => $the_ ) {
+			
+			$hook_callbacks = array();
+			
+			if ( ! in_array( $the_['tag'], $hooks ) ) {
+				$hooks[] = $the_['tag'];
+				$filter_hooks .= "<tr><td><code>{$the_['tag']}</code></td></tr>";
+			}
+			
+			foreach( $the_['hooked'] as $priority => $hooked ) {
+				foreach( $hooked as $id => $function ) {
+					if ( is_string( $function['function'] ) ) {
+						// as array
+						$hook_callbacks[] = array(
+							'name'     => $function['function'],
+							'args'     => $function['accepted_args'],
+							'priority' => $priority
+						);
+						// readable
+						$filter_callbacks = "Function: {$function['function']}(), Arguments: {$function['accepted_args']}, Priority: {$priority}";
+					}
+				}
+			}
+			$callbacks[$the_['tag']][] = $filter_callbacks; //$hook_callbacks;
 		}
 		
-		$output .= '</ol>';
+		$output  = '';
+		
+		$output .= '<table>';
+		
+		$output .= '<tr class="nohover">';
+		$output .= '<th>Total Action Hooks: ' . count( $wp_actions ) . '</th>';
+		//$output .= '<th>Total Filter Hooks: ' . count( $hooks ) . '</th>';
+		$output .= '<th>Total Filter Hooks & Callback: ' . count( $callbacks ) . '</th>';
+		$output .= '</tr>';
+		
+		$output .= '<tr class="nohover">';
+		
+		$output .= '<td><table>';
+		foreach ( $wp_actions as $key => $val ) {
+			$output .= "<tr><td><code>{$key}</code></td></tr>";
+		}
+		$output .= '</table></td>';
+		/*
+		$output .= '<td><table>';
+		$output .= $filter_hooks;
+		$output .= '</table></td>';
+		*/
+		$output .= '<td><table>';
+		foreach ( $callbacks as $hook => $values ) {
+			// remove dublicate items
+			$values = array_unique( $values );
+			foreach ($values as $key => $value) {
+				$escape = htmlspecialchars( $value, ENT_QUOTES, 'utf-8', FALSE );
+				if ( empty( $escape ) )
+					$escape = 'Empty';
+				$prev_hook = $hook;
+				$output .= "<tr><td>Hook: <code>{$hook}</code><br> {$escape}</td></tr>";
+			}
+		}
+		$output .= '</table></td>';
+		
+		$output .= '</tr>';
+		$output .= '</table>';
 		
 		echo $output;
 	}
