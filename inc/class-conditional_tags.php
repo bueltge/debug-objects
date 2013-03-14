@@ -18,6 +18,8 @@ if ( ! class_exists( 'Debug_Objects_Conditional_Tags' ) ) {
 		
 		protected static $classobj = NULL;
 		
+		public $template_storage = '';
+		
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
 		 * 
@@ -36,6 +38,7 @@ if ( ! class_exists( 'Debug_Objects_Conditional_Tags' ) ) {
 			if ( ! current_user_can( '_debug_objects' ) )
 				return;
 			
+			add_filter( 'template_include', array( $this, 'get_include_template' ) );
 			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 		}
 		
@@ -49,12 +52,27 @@ if ( ! class_exists( 'Debug_Objects_Conditional_Tags' ) ) {
 			return $tabs;
 		}
 		
+		/**
+		 * Return the current use template
+		 * 
+		 * @param  $template
+		 * @return $template
+		 */
+		public function get_include_template( $template ) {
+			
+			$this->template_storage = $template;
+			
+			return $template;
+		}
+		
 		public function get_conditional_tags( $echo = TRUE ) {
 			global $post_type;
 			
-			$is = '';
+			$is     = '';
 			$is_not = '';
 			
+			$is .= '<h4>Current Template</h4>';
+			$is .= '<code>' . $this->template_storage . '</code>';
 			$is .= '<h4><a href="http://codex.wordpress.org/Conditional_Tags">Conditional Tags</a></h4>' . "\n";
 			$is .= '<p>' . __( 'The Conditional Tags can be used in your Template files to change what content is displayed and how that content is displayed on a particular page depending on what conditions that page matches. You see on this view the condition of all possible tags.' ) . '</p>' . "\n";
 			$is .= '<ul>' . "\n";
