@@ -44,7 +44,7 @@ if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 
-				'tab' => __( 'Theme', parent :: get_plugin_data() ),
+				'tab' => __( 'Theme & Plugins', parent :: get_plugin_data() ),
 				'function' => array( $this, 'get_theme_data' )
 			);
 			
@@ -171,8 +171,42 @@ if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 					$output .= '<li class="alternate">' . $template . '</li>';
 			$output .= '</ul>' . "\n";
 			
-			$output .=  "\n" . '<h4>' . __( 'Registered IDs, like Sidebar, Admin Bar etc.', parent :: get_plugin_data() ) . '</h4>' . "\n";
+			$output .= "\n" . '<h4>' . __( 'Active Plugins' ) . '</h4>' . "\n";
+			$output .= $this->get_plugin_data( FALSE );
+			
+			$output .=  "\n" . '<h4>' . __( 'Registered IDs, like Sidebar, Admin Bar etc.' ) . '</h4>' . "\n";
 			$output .= '<div id="register_ids"></div>' . "\n";
+			
+			if ( $echo )
+				echo $output;
+			else
+				return $output;
+		}
+		
+		public function get_plugin_data( $echo = TRUE ) {
+			
+			$all_plugins    = get_plugins();
+			$active_plugins = get_option( 'active_plugins', array() );
+			$output         = '';
+			
+			$class = '';
+			foreach ( $all_plugins as $plugin_path => $plugin ) {
+				
+				// Only show active plugins
+				if ( in_array( $plugin_path, $active_plugins ) ) {
+					
+					$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
+					
+					$output .= '<li' . $class . '>' . $plugin['Name'] . ', Version: ' . $plugin['Version'] . "\n";
+			
+					if ( isset( $plugin['PluginURI'] ) )
+						$output .= ', PluginURI: ' . $plugin['PluginURI'] . "\n";
+					
+					$output .= "</li>\n";
+				}
+			}
+			
+			$output = '<ul>' . $output . '</ul>';
 			
 			if ( $echo )
 				echo $output;

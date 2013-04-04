@@ -66,7 +66,9 @@ if ( ! class_exists( 'Debug_Objects_Conditional_Tags' ) ) {
 		}
 		
 		public function get_conditional_tags( $echo = TRUE ) {
-			global $post_type;
+			global $post_type, $post_id;
+			
+			$_post = get_post($post_id);
 			
 			$is     = '';
 			$is_not = '';
@@ -153,10 +155,10 @@ if ( ! class_exists( 'Debug_Objects_Conditional_Tags' ) ) {
 			if ( is_post_type_archive() ) $is .= "\t" . '<li class="alternate"><a href="http://codex.wordpress.org/Function_Reference/is_post_type_archive" title="' . __( 'Documentation in Codex' ) . '"><b>' . __( 'is' ) . '</b> is_post_type_archive</a></li>' . "\n";
 			else $is_not .= '<li><i>' . __( 'no' ) . '</i> is_post_type_archive</li>' . "\n";
 			
-			if ( comments_open() ) $is .= "\t" . '<li class="alternate"><a href="http://codex.wordpress.org/Function_Reference/comments_open" title="' . __( 'Documentation in Codex' ) . '"><b>' . __( 'is' ) . '</b> comments_open</a></li>' . "\n";
+			if ( isset( $_post ) && comments_open() ) $is .= "\t" . '<li class="alternate"><a href="http://codex.wordpress.org/Function_Reference/comments_open" title="' . __( 'Documentation in Codex' ) . '"><b>' . __( 'is' ) . '</b> comments_open</a></li>' . "\n";
 			else $is_not .= '<li><i>' . __( 'no' ) . '</i> comments_open</li>' . "\n";
 			
-			if ( pings_open() ) $is .= "\t" . '<li class="alternate"><a href="http://codex.wordpress.org/Function_Reference/pings_open" title="' . __( 'Documentation in Codex' ) . '"><b>' . __( 'is' ) . '</b> pings_open</a></li>' . "\n";
+			if ( isset( $_post ) && pings_open() ) $is .= "\t" . '<li class="alternate"><a href="http://codex.wordpress.org/Function_Reference/pings_open" title="' . __( 'Documentation in Codex' ) . '"><b>' . __( 'is' ) . '</b> pings_open</a></li>' . "\n";
 			else $is_not .= '<li><i>' . __( 'no' ) . '</i> pings_open</li>' . "\n";
 			
 			if ( ! is_admin() && is_sticky() ) $is .= "\t" . '<li class="alternate"><a href="http://codex.wordpress.org/Function_Reference/is_sticky" title="' . __( 'Documentation in Codex' ) . '"><b>' . __( 'is' ) . '</b> sticky</a></li>' . "\n";

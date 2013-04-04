@@ -64,7 +64,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 
-				'tab' => __( 'PHP, Globals &amp; WP' ),
+				'tab' => __( 'System' ),
 				'function' => array( $this, 'get_different_stuff' )
 			);
 			
@@ -169,9 +169,9 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			else
 				$important = '';
 			$output .= "<h2$important>Total unknown Error Messages: " . number_format( count( $this->messages ) ) . "</h2>\n";
-			if ( count( $this->warnings ) ) {
+			if ( count( $this->messages ) ) {
 				$output .= '<ol>';
-				foreach ( $this->warnings as $location_message ) {
+				foreach ( $this->messages as $location_message ) {
 					$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
 					list( $location, $message ) = $location_message;
 					$output .= "<li$class>Error Message: " . str_replace( ABSPATH, '', $location ) 
@@ -317,16 +317,26 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			else
 				$xml = __( 'No' );
 			
+			if ( function_exists( 'gd_info' ) )
+				$gd = __('Yes');
+			else
+				$gd = __('No');
+			
+			if ( function_exists( 'curl_init' ) )
+				$curl = __('Yes');
+			else
+				$curl = __('No');
+			
 			$output .= "\n" . '<h4>' . __( 'PHP Version &amp; System' ) . '</h4>' . "\n";
 			$output .= '<ul>' . "\n";
 			$php_info = array(
-				__( 'PHP version:' )                             => PHP_VERSION,
-				__( 'Server:' )                                  => substr( esc_attr( $_SERVER['SERVER_SOFTWARE'] ), 0, 14 ),
-				__( 'Server SW:' )                               => esc_attr( $_SERVER['SERVER_SOFTWARE'] ),
-				__( 'OS version:' )                              => $os,
-				__( 'Memory usage in MByte:' )                   => $memory_usage,
-				__( 'Memory limit, PHP Configuration in MByte:' ) => $memory_limit,
-				__( 'Memory percent (in % of 100%):' )           => $memory_percent,
+				__( 'PHP version:' )                              => PHP_VERSION,
+				__( 'Server:' )                                   => substr( esc_attr( $_SERVER['SERVER_SOFTWARE'] ), 0, 14 ),
+				__( 'Server SW:' )                                => esc_attr( $_SERVER['SERVER_SOFTWARE'] ),
+				__( 'OS version:' )                               => $os,
+				__( 'Memory usage in MByte:' )                    => $memory_usage,
+				__( 'PHP Memory limit, Configuration in MByte:' ) => $memory_limit,
+				__( 'PHP Memory percent (in % of 100%):' )        => $memory_percent,
 				__( 'PHP Safe Mode:' )                            => $safe_mode,
 				__( 'PHP Allow URL fopen:' )                      => $allow_url_fopen,
 				__( 'PHP Max Upload Size:' )                      => $upload_max,
@@ -335,6 +345,9 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 				__( 'PHP Exif support:' )                         => $exif,
 				__( 'PHP IPTC support:' )                         => $iptc,
 				__( 'PHP XML support:' )                          => $xml,
+				__( 'PHP GD Support' )                            => $gd,
+				__( 'PHP cURL Support:' )                         => $curl,
+				
 			);
 			// hook for more php informations
 			$php_infos = apply_filters( 'debug_onjects_php_infos', $php_info );
