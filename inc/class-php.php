@@ -78,7 +78,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 		 * @return Array $classes
 		 */
 		public function get_debug_objects_classes( $classes ) {
-			var_dump($this->notices);
+			
 			if ( 0 < count( $this->warnings ) )
 				$classes[] = ' debug_objects_php_warning';
 			
