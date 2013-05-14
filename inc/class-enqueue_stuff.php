@@ -49,34 +49,31 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 			return $tabs;
 		}
 		
-		public function get_enqueued_stuff( $handles = array(), $echo = TRUE ) {
+		public function get_enqueued_stuff() {
 			global $wp_scripts, $wp_styles;
-			
-			// scripts
-			foreach ( $wp_scripts -> registered as $registered )
-				$script_urls[ $registered -> handle ] = $registered -> src;
-			// styles
-			foreach ( $wp_styles -> registered as $registered )
-				$style_urls[ $registered -> handle ] = $registered -> src;
-			
-			if ( empty( $handles ) ) {
-				$handles = array_merge( $wp_scripts -> queue, $wp_styles -> queue );
-				array_values( $handles );
+			?>
+			<table>
+				<tr><th colspan="3"><h4>Enqueued Scripts</h4></th></tr>
+				<tr><th>Order</th><th>Loaded</th><th>Dependencies</th><th>Path</th></tr>
+			<?php
+			$i = 1;
+			foreach ( $wp_scripts->do_items() as $loaded_scripts ) {
+				echo '<tr',  ( $i % 2 === 0 ) ? '' : ' class="alternate"' , '><td>', $i, '<td>', $loaded_scripts, '</td><td>', ( count( $wp_scripts->registered[$loaded_scripts]->deps ) > 0 ) ? implode( " and ", $wp_scripts->registered[$loaded_scripts]->deps ) : '', '</td><td>', $wp_scripts->registered[$loaded_scripts]->src , '</td></tr>', "\n";
+				$i++;
 			}
-			$output = '';
-			foreach ( $handles as $handle ) {
-				if ( ! empty( $script_urls[ $handle ] ) )
-					$output .= '<li>' . $script_urls[ $handle ] . '</li>';
-				if ( ! empty( $style_urls[ $handle ] ) )
-					$output .= '<li class="alternate">' . $style_urls[ $handle ] . '</li>';
+			?>
+				<tr><th colspan="3"><h4>Enqueued Styles</h4></th></tr>
+				<tr><th>Order</th><th>Loaded</th><th>Dependencies</th><th>Path</th></tr>
+				<?php
+			
+			$i = 1;
+			foreach ( $wp_styles->do_items() as $loaded_styles ) {
+				echo '<tr', ( $i % 2 === 0 ) ? '' : ' class="alternate"' , '"><td>', $i, '<td>', $loaded_styles, '</td><td>', ( count( $wp_styles->registered[$loaded_styles]->deps ) > 0 ) ? implode( " and ", $wp_styles->registered[$loaded_styles]->deps ) : '', '</td><td>', $wp_styles->registered[$loaded_styles]->src , '</td></tr>', "\n";
+				$i++;
 			}
-			
-			$output = '<ul>' . $output . '</ul>';
-			
-			if ( $echo )
-				echo $output;
-			else
-				return $output;
+			?>
+			</table>
+			<?php
 		}
 		
 	} // end class
