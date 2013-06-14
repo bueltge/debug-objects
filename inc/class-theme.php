@@ -168,7 +168,7 @@ if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 				$output .= '<li class="alternate">' . __( 'Current template path, constant', parent :: get_plugin_data() ) . ' <code>TEMPLATEPATH</code>: ' . TEMPLATEPATH . '</li>';
 				$output .= '<li>' . __( 'Current stylesheet path, constant', parent :: get_plugin_data() ) . ' <code>STYLESHEETPATH</code>: ' . STYLESHEETPATH . '</li>';
 				if ( isset($template) && $template )
-					$output .= '<li class="alternate">' . $template . '</li>';
+					$output .= '<li class="alternate">' . __( 'Current template file path' ) . $template . '</li>';
 			$output .= '</ul>' . "\n";
 			
 			$output .= "\n" . '<h4>' . __( 'Active Plugins' ) . '</h4>' . "\n";
