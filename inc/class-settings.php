@@ -67,8 +67,6 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 				add_action( 'network_admin_edit_' . self::$option_string, array( $this, 'save_network_settings_page' ) );
 				// return message for update settings
 				add_action( 'network_admin_notices', array( $this, 'get_network_admin_notices' ) );
-				// todos on init of WP
-				add_action( 'init', array( $this, 'on_init' ) );
 			} else {
 				add_action( 'admin_menu',            array( $this, 'add_settings_page' ) );
 				// add settings link
@@ -76,7 +74,9 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 				// use settings API
 				add_action( 'admin_init',            array( $this, 'register_settings' ) );
 			}
-			//
+			// todos on init of WP
+			add_action( 'init', array( $this, 'on_init' ) );
+			// content for settings page
 			add_action( 'debug_objects_settings_page', array( $this, 'get_inside_form' ) );
 			// add meta boxes on settings pages
 			add_action( 'debug_objects_settings_page_sidebar', array( $this, 'get_plugin_infos' ) );
