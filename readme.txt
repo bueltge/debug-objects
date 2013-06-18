@@ -3,8 +3,8 @@ Contributors: Bueltge, inpsyde
 Donate link: http://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, cron, cache
 Requires at least: 3.3
-Tested up to: 3.6-alpha
-Stable tag: 2.1.12
+Tested up to: 3.6-beta3
+Stable tag: 2.1.13
 
 The Plugin Debug Objects provides a large number of information: query, cache, cron, constants, hooks, functions and many more.
 
@@ -42,7 +42,7 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * See data from `$_POST`; `$_GET` and debug backtrace before rewrite; usefull for forms in backend, see [Support Forum Discussion](http://wordpress.org/support/topic/feature-suggestion-to-debug-pre-redirect)
 * Run WordPress in default mode via url-param
 * Add alternative PHP Error reporting: [PHP Error](http://phperror.net/)
-* Inlcude Logging in Chrome Console: [ChromePHP](http://www.chromephp.com/)
+* Inlcude Logging in Chrome Console: [ChromeLogger](http://chromelogger.com/)
 * and many more ...
 
 The plugin does not filter values and should only be used for information and optimization, I don't recommended to use it on a live blog. For developers it can rapidly deliver data, which is useful in a development environment.
@@ -85,9 +85,11 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Lithuanian translation files by [Vincent G](http://www.host1plus.com)
 
 == Changelog ==
-= 2.1.13 () =
+= 2.1.13 (06/18/2013) =
 * Add new output for current hooks
 * Add list of all shortcodes and his function to get the output
+* Fix Admin Bar Button on single install
+* Small changes on the hints on the settings to the information about ChromeLogger
 
 = 2.1.12 (02/01/2013) =
 * Add to see data from `$_POST`; `$_GET` and debig backtrace before rewrite; usefull for forms in backend, see [Support Forum Discussion](http://wordpress.org/support/topic/feature-suggestion-to-debug-pre-redirect)
