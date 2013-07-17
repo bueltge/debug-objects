@@ -100,17 +100,21 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 			$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 			
 			wp_enqueue_script(
-				parent :: get_plugin_data() . '_script', 
-				str_replace( '/inc', '', plugins_url( '/js/debug_objects' . $suffix. '.js', __FILE__ ) ), 
+				parent::get_plugin_data() . '_script', 
+				str_replace( '/inc/', '', plugins_url( 'js/debug_objects' . $suffix. '.js', dirname( __FILE__ ) ) ), 
 				array( 'jquery-ui-tabs', parent :: get_plugin_data() . '_cookie_script' ),
-				'',
+				filemtime( 
+					str_replace( '/inc/', '', plugin_dir_path( dirname( __FILE__ ) ) . 'js/debug_objects' . $suffix. '.js' )
+				),
 				TRUE
 			);
 			wp_enqueue_script(
-				parent :: get_plugin_data() . '_cookie_script', 
-				str_replace( '/inc', '', plugins_url( '/js/jquery.cookie.js', __FILE__ ) ), 
+				parent::get_plugin_data() . '_cookie_script', 
+				str_replace( '/inc/', '', plugins_url( 'js/jquery.cookie.js', dirname( __FILE__ ) ) ), 
 				array( 'jquery' ),
-				'',
+				filemtime( 
+					str_replace( '/inc/', '', plugin_dir_path( dirname( __FILE__ ) ) . 'js/jquery.cookie.js' )
+				),
 				TRUE
 			);
 		}
