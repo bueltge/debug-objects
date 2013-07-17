@@ -70,9 +70,12 @@ class Debug_Objects_Shortcodes {
 	public function get_shortcodes() {
 		global $shortcode_tags;
 		
+		$style   = '';
 		$output  = '<h4>Total Shortcodes: ' . count( $shortcode_tags ) . '</h4>';
 		$output .= '<ol>';
 		foreach( $shortcode_tags as $tag => $function ) {
+			
+			$style = ( ' class="alternate"' == $style ) ? '' : ' class="alternate"';
 			
 			if ( is_string( $function ) ) {
 				
@@ -96,7 +99,7 @@ class Debug_Objects_Shortcodes {
 				}
 				
 				if ( ! empty( $parameters ) )
-					$parameters = '<br>Parameters of class:<ul>' . $parameters . '</ul>';
+					$parameters = '<br><strong>Parameters of class:</strong><ul>' . $parameters . '</ul>';
 				$function = '<code>' . $object . '::' . $function[1] . '</code>' . $parameters;
 			}
 			else {
@@ -104,7 +107,7 @@ class Debug_Objects_Shortcodes {
 			}
 			
 			
-			$output .= "<li><code>{$tag}</code> Function: $function</li>";
+			$output .= "<li$style><strong>Shortcode: </strong><code>$tag</code> <strong>Function: </strong>$function</li>";
 		}
 		
 		$output .= '</ol>';
