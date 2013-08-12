@@ -442,11 +442,14 @@ if ( ! function_exists( 'pre_print' ) ) {
 	 * @param  mixed
 	 * @return void
 	 */
-	function pre_print( $var, $before = '' ) {
+	function pre_print( $var, $before = '', $return = FALSE ) {
 		
 		$export = var_export( $var, TRUE );
 		$escape = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
-		print $before . '<pre>' . $escape . '</pre>';
+		if ( $return )
+			return $escape;
+		else
+			print $before . '<pre>' . $escape . '</pre>';
 	}
 }
 
@@ -458,12 +461,25 @@ if ( ! function_exists( 'debug_to_console' ) ) {
 	 * @return string
 	 */
 	function debug_to_console( $data ) {
-
-		if ( is_array( $data ) )
-			$output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
-		else
-			$output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
-
+		
+		$output = '';
+		
+		if ( is_array( $data ) ) {
+			$output .= "<script>console.warn( 'Debug Objects with Array.' ); console.log( '" . implode( ',', $data) . "' );</script>";
+		} else if ( is_object( $data ) ) {
+			$data    = var_export( $data, TRUE );
+			$data    = explode( "\n", $data );
+			foreach( $data as $line ) {
+				if ( trim( $line ) ) {
+					$line    = addslashes( $line );
+					$output .= "console.log( '{$line}' );";
+				}
+			}
+			$output = "<script>console.warn( 'Debug Objects with Object.' ); $output</script>";
+		} else {
+			$output .= "<script>console.log( 'Debug Objects: {$data}' );</script>";
+		}
+		
 		echo $output;
 	}
 }
