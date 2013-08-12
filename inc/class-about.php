@@ -48,9 +48,9 @@ if ( ! class_exists( 'Debug_Objects_About' ) ) {
 			
 			return $tabs;
 		}
-		
-		public function get_plugin_data( $echo = TRUE ) {
-			
+
+		public function get_plugin_data( $value = 'TextDomain', $echo = TRUE ) {
+
 			$output  = '';
 			$output .= '<h3>' . parent :: get_plugin_data( 'Title' ) . '</h3>';
 			$output .= '<p>';
