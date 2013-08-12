@@ -449,3 +449,21 @@ if ( ! function_exists( 'pre_print' ) ) {
 		print $before . '<pre>' . $escape . '</pre>';
 	}
 }
+
+if ( ! function_exists( 'debug_to_console' ) ) {
+	/**
+	 * Simple helper to debug to the console
+	 * 
+	 * @param  Array, String $data
+	 * @return string
+	 */
+	function debug_to_console( $data ) {
+
+		if ( is_array( $data ) )
+			$output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
+		else
+			$output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
+
+		echo $output;
+	}
+}

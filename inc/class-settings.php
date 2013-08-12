@@ -436,9 +436,15 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 						<strong><?php _e( 'Description:' ); ?></strong>
 						<?php echo parent :: get_plugin_data( 'Description' ); ?>
 					</p>
+					
 					<p>
-						<strong><?php _e( 'Hints:' ) ?></strong>
-						<?php _e( 'You can use the function <code>pre_print( $var );</code> for little bid comfort on debug output, like <code>var_dump()</code>, but more readable. More features or helpers you can activate in the settings.' ); ?>
+						<strong><?php _e( 'Hints:' ) ?></strong><br>
+						<?php
+						_e( '&middot; <em>Comfort on debug output:<br> <code>pre_print( $var );</code></em><br>' );
+						_e( 'You can use the function <code>pre_print( $var );</code> for little bid comfort on debug output, like <code>var_dump()</code>, but more readable. More features or helpers you can activate in the settings.' ); ?>
+						<br>
+						<?php _e( '&middot; <em>Simple Debug in Browser Console:<br> <code>debug_to_console( $data );</code></em><br>' );
+						_e( 'You can use the function <code>debug_to_console( $data );</code> for debug the content of a variable to your console inside the browser, simple and easy, but useful. More comfort for debug on console is the possibilities with ChromePhp, active and documented in the settings.' ); ?>
 					</p>
 				</div>
 			</div>
