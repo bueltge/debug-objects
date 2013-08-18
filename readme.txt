@@ -86,6 +86,11 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Lithuanian translation files by [Vincent G](http://www.host1plus.com)
 
 == Changelog ==
+= 2.1.15 () =
+* Enhancement to see the queries of plugins and identfier the problems
+* Sort queries on load time
+* Fix on empty arrays on shortcodes
+
 = 2.1.14 (08/15/2013) =
 * Small fixes for php strict warnings [Forum Thread](http://wordpress.org/support/topic/strict-warnings-fix)
 * Add function `debug_to_console( $data )` for easy to use debug informations in the console from browser, see settings page for hints
