@@ -9,7 +9,7 @@
  * Text Domain: debug_objects
  * Domain Path: /languages
  * Description: List filter and action-hooks, cache data, defined constants, qieries, included scripts and styles, php and memory informations and return of conditional tags only for admins; for debug, informations or learning purposes. Setting output in the settings of the plugin and use output via link in Admin Bar, via setting, via url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days.
- * Version:     2.1.14
+ * Version:     2.1.15-RC1
  * License:     GPLv3
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
