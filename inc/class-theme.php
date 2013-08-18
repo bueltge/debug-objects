@@ -172,7 +172,7 @@ if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 			$output .= '</ul>' . "\n";
 			
 			$output .= "\n" . '<h4>' . __( 'Active Plugins' ) . '</h4>' . "\n";
-			$output .= $this->get_plugin_data( FALSE );
+			$output .= $this->get_active_plugins( FALSE );
 			
 			$output .=  "\n" . '<h4>' . __( 'Registered IDs, like Sidebar, Admin Bar etc.' ) . '</h4>' . "\n";
 			$output .= '<div id="register_ids"></div>' . "\n";
@@ -183,7 +183,7 @@ if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 				return $output;
 		}
 		
-		public function get_plugin_data( $echo = TRUE ) {
+		public function get_active_plugins( $echo = TRUE ) {
 			
 			$all_plugins    = get_plugins();
 			$active_plugins = get_option( 'active_plugins', array() );
