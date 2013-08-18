@@ -75,7 +75,10 @@ div#debugobjects .important {
 	padding: .5%;
 }
 
-div#debugobjects .alternate, div#debugobjects .alt {
+.admin-color-classic div#debugobjects .alternate, .admin-color-classic div#debugobjects .alt {
+	background: #d1e5ee;
+}
+.admin-color-fresh div#debugobjects .alternate, .admin-color-fresh div#debugobjects .alt {
 	background: #e6e6e6;
 }
 

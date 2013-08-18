@@ -74,18 +74,26 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 			
 			$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 			
-			wp_enqueue_style(
-				parent :: get_plugin_data() . '-jquery-ui-all-css',
-				str_replace( '/inc', '', plugins_url( '/css/ui.all.css', __FILE__ ) )
-			);
+			// right path
+			$path = str_replace( '/inc/', '', plugin_dir_url( __FILE__ ) );
 			
-			wp_enqueue_style(
-				parent :: get_plugin_data() . '_style',
-				str_replace( '/inc', '', plugins_url( '/css/style' . $suffix. '.css', __FILE__ ) ),
-				parent :: get_plugin_data() . '-jquery-ui-all-css',
+			wp_register_style( 'jquery-ui-css', $path . '/css/jquery-ui-demo.css' );
+			
+			// check user style
+			if ( 'classic' == get_user_option( 'admin_color') )
+				wp_register_style( 'jquery-ui-wp', $path . '/css/jquery-ui-classic.css', 'jquery-ui-css' );
+			else
+				wp_register_style( 'jquery-ui-wp', $path . '/css/jquery-ui-fresh.css', 'jquery-ui-css' );
+			
+			wp_register_style(
+				parent::get_plugin_data() . '_style',
+				$path . '/css/style' . $suffix. '.css',
+				array( 'jquery-ui-css', 'jquery-ui-wp' ),
 				FALSE,
 				'screen'
 			);
+			wp_enqueue_style( parent::get_plugin_data() . '_style' );
+			
 		}
 		
 		/**

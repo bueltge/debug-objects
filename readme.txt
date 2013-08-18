@@ -90,6 +90,7 @@ The plugin comes with various translations, please refer to the [WordPress Codex
 * Enhancement to see the queries of plugins and identfier the problems
 * Sort queries on load time
 * Fix on empty arrays on shortcodes
+* More UI on tabs like default WordPress, also a difference from classic to fresh backend
 
 = 2.1.14 (08/15/2013) =
 * Small fixes for php strict warnings [Forum Thread](http://wordpress.org/support/topic/strict-warnings-fix)
