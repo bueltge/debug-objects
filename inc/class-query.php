@@ -2,10 +2,10 @@
 /**
  * Add small screen with informations about queries of WP
  *
- * @package     Debug Queries
+ * @package	 Debug Queries
  * @subpackage  Cache
- * @author      Frank B&uuml;ltge
- * @since       2.0.0
+ * @author	  Frank B&uuml;ltge
+ * @since	   2.0.0
  */
 
 if ( ! function_exists( 'add_action' ) ) {
@@ -66,7 +66,85 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 			return $tabs;
 		}
 		
-		public function get_queries( $echo = TRUE ) {
+		/**
+		 * Sorting of Multidimensional arrays
+		 * Only >= PHP 5.3
+		 * 
+		 * @since   08/18/2013
+		 * @see     http://stackoverflow.com/questions/96759/how-do-i-sort-a-multidimensional-array-in-php
+		 * @return  Boolean
+		 */
+		public function make_comparer() {
+			// Normalize criteria up front so that the comparer finds everything tidy
+			$criteria = func_get_args();
+			foreach ($criteria as $index => $criterion) {
+				$criteria[$index] = is_array($criterion)
+					? array_pad($criterion, 3, null)
+					: array($criterion, SORT_ASC, null);
+			}
+		 
+			return function( $first, $second ) use ( $criteria ) {
+				foreach ($criteria as $criterion) {
+					// How will we compare this round?
+					list($column, $sortOrder, $projection) = $criterion;
+					$sortOrder = $sortOrder === SORT_DESC ? -1 : 1;
+					
+					// If a projection was defined project the values now
+					if ($projection) {
+						$lhs = call_user_func($projection, $first[$column]);
+						$rhs = call_user_func($projection, $second[$column]);
+					} else {
+						$lhs = $first[$column];
+						$rhs = $second[$column];
+					}
+					
+					// Do the actual comparison; do not return if equal
+					if ($lhs < $rhs) {
+						return -1 * $sortOrder;
+					} else if ($lhs > $rhs) {
+						return 1 * $sortOrder;
+					}
+				}
+				
+				return 0; // tiebreakers exhausted, so $first == $second
+			};
+		}
+		
+		/**
+		 * Sorting of Multidimensional arrays
+		 * Hint: Slow and inefficent which to much foreach, usort is a better way
+		 * 
+		 * @since   08/18/2013
+		 * @see     http://stackoverflow.com/questions/2699086/sort-multidimensional-array-by-value-2
+		 * @param   Array,  Input array
+		 * @param   String of key in array
+		 */
+		public function aasort( &$array, $key ) {
+			
+			$sorter = array();
+			$ret    = array();
+			reset( $array );
+			
+			foreach( $array as $ii => $va ) {
+				$sorter[$ii] = $va[$key];
+			}
+			asort( $sorter );
+			
+			foreach( $sorter as $ii => $va ) {
+				$ret[$ii] = $array[$ii];
+			}
+			$array = $ret;
+		}
+		
+		/**
+		 * Get queries
+		 * Format the queries for readable output
+		 * 
+		 * @param   Boolean  Default is True, Use FALSE for return data
+		 * @param   String
+		 * @return  Mixed, Use SORT_DESC, SORT_ASC for Sorting direction; Use FALSE for deactivate the sorting
+		 */
+		public function get_queries( $echo = TRUE, $sorting = SORT_DESC ) {
 			global $wpdb, $EZSQL_ERROR;
 			
 			$wpdb->flush();
@@ -88,10 +166,16 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 			if ( ! empty( $wpdb->queries ) ) {
 				$debug_queries .= '<ol>' . "\n";
 				
+				// sort queries from high to low
+				// use time value in first subquery, array value 1
+				if ( ! empty( $sorting ) || ! $sorting )
+					usort( $wpdb->queries, $this->make_comparer([1, $sorting]) );
+				
 				foreach ( $wpdb->queries as $q ) {
 					
 					$time = $q[1];
-					$time_ms = number_format( sprintf('%0.1f', $q[1] * 1000), 1, '.', ',' );
+					$time_ms = number_format( sprintf('%0.1f', $time * 1000), 1, '.', ',' );
+					
 					if ( '0.5' <= $time_ms )
 						$class = ' high_query_time';
 					elseif ( '1.' <= $time_ms )
