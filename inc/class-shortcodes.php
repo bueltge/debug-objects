@@ -93,6 +93,11 @@ class Debug_Objects_Shortcodes {
 					
 					$object = get_class( $function[0] );
 					foreach ( $function[0] as $parameter => $value ) {
+						
+						// if the array is empty
+						if ( empty( $value ) )
+							$value = __( 'The Array is empty' );
+						
 						$parameters .=  '<li><code>' . $parameter . '</code> => <code>' . $value . '</code></li>';
 					}
 					
