@@ -26,6 +26,7 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Separate user and usermeta tables
 * FTP and SSH definitions
 * Detailed Query information
+* Query informaton about the active plugins, nice to identifier the longrunners on the plugins
 * Conditional tags; value of the tag
 * Theme information
 * Template Information
