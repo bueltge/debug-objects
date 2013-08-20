@@ -69,6 +69,12 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 		}
 		
+		/**
+		 * Add Tabs and his context to output
+		 * 
+		 * @param   Array
+		 * @return  Array
+		 */
 		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 
@@ -170,6 +176,11 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 			return $query;
 		}
 		
+		/**
+		 * Map Plugins to the queries and create array with data
+		 * 
+		 * @return  Array  All data to query, if is a plugin query
+		 */
 		public function validate_plugins_to_query() {
 			global $wpdb;
 			
@@ -247,7 +258,6 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 			$this->_query['query_count'] = $query_counter;
 			
 			return $this->_query;
-			
 		}
 		
 		/**
