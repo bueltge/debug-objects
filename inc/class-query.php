@@ -2,10 +2,10 @@
 /**
  * Add small screen with informations about queries of WP
  *
- * @package	 Debug Queries
+ * @package	    Debug Queries
  * @subpackage  Cache
- * @author	  Frank B&uuml;ltge
- * @since	   2.0.0
+ * @author      Frank Bültge
+ * @since       2.0.0
  */
 
 if ( ! function_exists( 'add_action' ) ) {
@@ -185,21 +185,27 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 			// clear var
 			$this->_query = array();
 			
+			$query_counter = 0;
 			foreach( $raw_data as $key => $data ) {
 				
 				foreach( $data['backtrace'] as $call ) {
 					
 					$functionChain[] = ( isset($call['class']) ? "{$call['class']}::" : '' ) . $call['function'];
 					
+					// same strings in local and web envirement
+					$wp_plugin_dir = str_replace( '\\', '/', WP_PLUGIN_DIR );
+					if ( ! empty( $call['file'] ) )
+						$call['file'] = str_replace( '\\', '/', $call['file'] );
+					
 					// if is a plugin
 					if ( ! empty( $call['file'] ) 
-						&& FALSE !== strpos( $call['file'], WP_PLUGIN_DIR )
+						&& FALSE !== strpos( $call['file'], $wp_plugin_dir )
 						&& FALSE === strpos( $call['file'], 'Debug-Objects' )
 						) {
 						
 						// get only the plugin file path, without plugin dir
 						list($root) = explode( '/', plugin_basename( $call['file'] ), 2 );
-						$file = str_replace( WP_PLUGIN_DIR, '', $call['file'] );
+						$file = str_replace( $wp_plugin_dir, '', $call['file'] );
 						
 						// Make sure the array is set up
 						if ( ! isset( $this->_query[$root] ) ) {
@@ -227,13 +233,18 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 							'time'           => $data['time'],
 							'function_chain' => array_reverse( $functionChain ),
 						);
+						
+						// add 1 to query counter
+						$query_counter ++;
 					}
 					
 				}
+				
 			}
 			
 			// sorting
 			usort( $this->_query, array( $this, 'sort_by_name') );
+			$this->_query['query_count'] = $query_counter;
 			
 			return $this->_query;
 			
@@ -249,17 +260,34 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 			if ( NULL === $data )
 				$data = $this->validate_plugins_to_query();
 			
+			$plugin_count = count( $data ) - 1;
+			
 			$output = '';
 			
 			$output .= '<ul>' . "\n";
 			$output .= '<li><strong>' . __( 'Plugins Total:' ) . ' ' 
-					. count($data) . ' ' . '</strong></li>';
+					. $plugin_count . ' ' . '</strong></li>';
+			$output .= '<li><strong>' . __( 'Queries Total:' ) . ' ' . $data['query_count'] . '</strong></li>';
 			$output .= '</ul>';
+			
+			// remove counter, not necassary from here
+			unset( $data['query_count'] );
+			
+			$output .= '<ol>';
+			
+			$x = 1;
+			foreach( $data as $plugin_data ) {
+				$output .= '<li><a href="#anker_' . $x . '">' 
+					. $plugin_data['name'] . '</a></li>' . "\n";
+				$x ++;
+			}
+			
+			$output .= '</ol>';
 			
 			$x = 1;
 			foreach( $data as $plugin_data ) {
 				
-				$output .= '<h2>' . $x . '. ' . __( 'Plugin:' ) . ' ' . $plugin_data['name'] . '</h2>';
+				$output .= '<h2 id="anker_' . $x . '">' . $x . '. ' . __( 'Plugin:' ) . ' ' . $plugin_data['name'] . '</h2>';
 				
 				foreach( $plugin_data['backtrace'] as $filename => $data ) {
 					
