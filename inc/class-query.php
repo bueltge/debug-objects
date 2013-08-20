@@ -266,14 +266,14 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 			
 			$output .= '<ul>' . "\n";
 			$output .= '<li><strong>' . __( 'Plugins Total:' ) . ' ' 
-					. $plugin_count . ' ' . '</strong></li>';
-			$output .= '<li><strong>' . __( 'Queries Total:' ) . ' ' . $data['query_count'] . '</strong></li>';
-			$output .= '</ul>';
+					. $plugin_count . ' ' . '</strong></li>' . "\n";
+			$output .= '<li><strong>' . __( 'Queries Total:' ) . ' ' . $data['query_count'] . '</strong></li>' . "\n";
+			$output .= '</ul><hr />' . "\n";
 			
 			// remove counter, not necassary from here
 			unset( $data['query_count'] );
 			
-			$output .= '<ol>';
+			$output .= '<ol>' . "\n";
 			
 			$x = 1;
 			foreach( $data as $plugin_data ) {
@@ -282,12 +282,12 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 				$x ++;
 			}
 			
-			$output .= '</ol>';
+			$output .= '</ol><hr />' . "\n";
 			
 			$x = 1;
 			foreach( $data as $plugin_data ) {
 				
-				$output .= '<h2 id="anker_' . $x . '">' . $x . '. ' . __( 'Plugin:' ) . ' ' . $plugin_data['name'] . '</h2>';
+				$output .= '<h2 id="anker_' . $x . '">' . $x . '. ' . __( 'Plugin:' ) . ' ' . $plugin_data['name'] . '</h2>' . "\n";
 				
 				foreach( $plugin_data['backtrace'] as $filename => $data ) {
 					
@@ -326,7 +326,7 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 						}
 						
 					}
-					$output .= '</table>';
+					$output .= '</table>' . "\n"	;
 					$x ++;
 				}
 			}
@@ -399,7 +399,7 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 				}
 				$debug_queries .= '</ul>' . "\n";
 
-				$debug_queries .= '<ol>' . "\n";
+				$debug_queries .= '<hr /><ol>' . "\n";
 				
 				// sort queries from high to low
 				// use time value in first subquery, array value 1
