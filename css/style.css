@@ -26,3 +26,4 @@ div#debugobjects #cron td{width:16%}
 #debugqueries{display:none!important}
 .high_query_time{border:2px solid orange}
 .big_query_time{border:2px solid red}
+#debugobjects #pagehooks code span {font-weight:900}

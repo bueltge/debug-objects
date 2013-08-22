@@ -140,4 +140,8 @@ div#debugobjects #cron td {
 	border: 2px solid red;
 }
 
+#debugobjects #pagehooks code span {
+	font-weight: 900;
+}
+
 /* End Debug Objects CSS */
