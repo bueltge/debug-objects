@@ -12,7 +12,8 @@ div#debugobjects {
 	font-size: 12px !important; /* fix for all themes */
 	color: #fff;
 	text-align: left;
-	z-index: 999;
+	position: relative;
+	z-index: 99999;
 	clear: both;
 }
 
