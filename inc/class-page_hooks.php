@@ -21,6 +21,8 @@ class Debug_Objects_Page_Hooks {
 	protected static $classobj = NULL;
 	
 	public $filters_storage = array();
+	// define strings for important hooks to easier identify
+	public $my_important_hooks = array();
 	
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
@@ -123,6 +125,12 @@ class Debug_Objects_Page_Hooks {
 			$callbacks[$the_['tag']][] = $filter_callbacks; //$hook_callbacks;
 		}
 		
+		// format important hooks, that you easier identifier this hooks 
+		$this->my_important_hooks = apply_filters(
+			'debug_objects_important_hooks',
+			array( 'admin_print_' , 'admin_head-', 'admin_footer-', 'add_meta_boxes' )
+		);
+		
 		$output  = '';
 		
 		$output .= '<table>';
@@ -136,8 +144,19 @@ class Debug_Objects_Page_Hooks {
 		$output .= '<tr class="nohover">';
 		
 		$output .= '<td><table>';
+		$output .= '<tr><td>Fired in order</td><td>Hook</td></tr>';
+		$order = 1;
 		foreach ( $wp_actions as $key => $val ) {
-			$output .= "<tr><td><code>{$key}</code></td></tr>";
+			
+			// format, if the key is inside the important list of hooks
+			foreach( $this->my_important_hooks as $hook ) {
+				
+				if ( FALSE !== strpos( $key, $hook ) )
+					$key = '<span>' . $key . ' </span>';
+			}
+			
+			$output .= '<tr><td>' . $order . '.</td><td><code>' . $key . '</code></td></tr>';
+			$order ++;
 		}
 		$output .= '</table></td>';
 		/*
@@ -163,6 +182,12 @@ class Debug_Objects_Page_Hooks {
 		$output .= '</table>';
 		
 		echo $output;
+	}
+	
+	public function search_string( $haystack ) {
+		
+		$needle = $this->needle;
+		return ( strpos( $haystack, $needle ) ); // or stripos() if you want case-insensitive searching.
 	}
 	
 } // end class
