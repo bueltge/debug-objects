@@ -13,7 +13,7 @@ div#debugobjects {
 	color: #fff;
 	text-align: left;
 	position: relative;
-	z-index: 99999;
+	z-index: 99990;
 	clear: both;
 }
 
