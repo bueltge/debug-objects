@@ -71,7 +71,7 @@ class Debug_Objects_Memory extends Debug_Objects {
 		}
 		$output .= '<ul>' . $mem_speed . '</ul>';
 		
-		$output .= '<h4>' . __( 'Included Files' ) .' </h4>';
+		$output .= '<h4>' . __( 'Included Files, without' ) .' <code>wp-admin</code>, <code>wp-includes</code></h4>';
 		$file_data = self :: get_file_data();
 		$file_totals = '';
 		foreach ( $file_data[ 'file_totals' ] as $key => $value ) {
@@ -168,15 +168,39 @@ class Debug_Objects_Memory extends Debug_Objects {
 	
 	public function get_file_data() {
 		
-		$files = get_included_files();
+		$files                  = get_included_files();
+		$filtered_files         = array();
+		$files_without_admin    = array();
+		$files_without_includes = array();
+		
+		// remove wp-admin
+		foreach( $files as $file ) {
+			
+			if ( ! strpos( $file, 'wp-admin' ) )
+				$files_without_admin[] = $file;
+		}
+		unset( $file );
+		$files = $files_without_admin;
+		
+		// remove wp-includes
+		foreach( $files as $file ) {
+			
+			if ( ! strpos( $file, 'wp-includes' ) )
+				$files_without_includes[] = $file;
+		}
+		unset( $file );
+		$files = $files_without_includes;
+		
+		$filtered_files = $files;
+		
 		$file_list = array();
 		$file_totals = array(
-			'total_files' => count($files),
+			'total_files' => count( $filtered_files ),
 			'total_size'  => 0,
 			'largest'     => 0,
 		);
-
-		foreach ( $files as $key => $file ) {
+		
+		foreach ( $filtered_files as $key => $file ) {
 			$size = filesize($file);
 			$file_list[] = array(
 				'name' => $file,
