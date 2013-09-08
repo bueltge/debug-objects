@@ -51,9 +51,12 @@ if ( ! class_exists( 'Debug_Objects_Default_Mode' ) ) {
 			// set default theme
 			add_filter( 'template',   array( $this, 'disable_theme' ) );
 			add_filter( 'stylesheet', array( $this, 'disable_theme' ) );
+			
 			// disable plugins
 			self::create_active_plugin_list();
 			add_filter( 'option_active_plugins', array( $this, 'disable_plugins' ) );
+			// usable without the chance to filter for a plugin
+			// add_filter( 'option_active_plugins', '__return_empty_array' );
 		}
 		
 		public function disable_theme( $template = '' ) {
