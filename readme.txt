@@ -74,6 +74,10 @@ Have a look at the premium plugins in our [market](http://marketpress.com).
 
 
 == Other Notes ==
+= Older versions =
+You find older version on this repo, [here](http://wordpress.org/plugins/debug-objects/developers/) But only to version 2.1.14
+After this version you find the other verison on the [github repo](https://github.com/bueltge/Debug-Objects)
+
 = Licence =
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a [small donation](http://bueltge.de/wunschliste/ "Wishliste and Donate") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
