@@ -83,6 +83,10 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			register_deactivation_hook( __FILE__, array( $this, 'on_deactivation' ) );
 			register_uninstall_hook( __FILE__,    array( 'Debug_Objects', 'on_deactivation' ) );
 			
+			// Include PHP 5.4 specific code improvements
+			if ( version_compare( phpversion(), '5.4.0', '>=' ) ) {
+				require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/php-54-improvements.php';
+			}
 			// include for load safe mode
 			require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-default_mode.php';
 			// Include settings
