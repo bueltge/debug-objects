@@ -106,8 +106,9 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 					? array_pad($criterion, 3, null)
 					: array($criterion, SORT_ASC, null);
 			}
-		 
+			
 			return function( $first, $second ) use ( $criteria ) {
+				
 				foreach ($criteria as $criterion) {
 					// How will we compare this round?
 					list($column, $sortOrder, $projection) = $criterion;
@@ -411,19 +412,22 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 
 				$debug_queries .= '<hr /><ol>' . "\n";
 				
+				/*
 				// for php 5.3 and higher
-				if ( version_compare( phpversion(), '5.3.0', '>=' ) ) {
+				if ( version_compare( phpversion(), '5.4.0', '>=' ) ) {
 					// sort queries from high to low
 					// use time value in first subquery, array value 1
 					if ( ! empty( $sorting ) || ! $sorting )
 						usort( $this->_queries, $this->make_comparer( [1, $sorting] ) );
 				} else {
+				*/
+				
 					foreach ( $this->_queries as $key => $row ) {
     					$queries[$key]  = $row[0]; 
 						// of course, replace 0 with whatever is the date field's index
 					}
 					array_multisort( $queries, $sorting, $this->_queries );
-				}
+				//}
 				
 				foreach ( $this->_queries as $q ) {
 					
