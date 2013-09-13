@@ -98,7 +98,7 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 		 * @see     http://stackoverflow.com/questions/96759/how-do-i-sort-a-multidimensional-array-in-php
 		 * @return  Boolean
 		 */
-		public function make_comparer() {
+		public static function make_comparer() {
 			// Normalize criteria up front so that the comparer finds everything tidy
 			$criteria = func_get_args();
 			foreach ($criteria as $index => $criterion) {
@@ -412,11 +412,17 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 
 				$debug_queries .= '<hr /><ol>' . "\n";
 				
-				$this->_queries = apply_filters( 'debug_objects_sort_queries', $this->_queries, $sorting );
+				/**
+				 * Hook to filter the queries array
+				 * 
+				 * @since  09/13/13
+				 */
+				$this->_queries = apply_filters( 
+					'debug_objects_sort_queries', $this->_queries, $sorting
+				);
 				
 				foreach ( $this->_queries as $key => $row ) {
-    				$queries[$key]  = $row[0]; 
-					// of course, replace 0 with whatever is the date field's index
+					$queries[$key]  = $row[0]; 
 				}
 				array_multisort( $queries, $sorting, $this->_queries );
 				
