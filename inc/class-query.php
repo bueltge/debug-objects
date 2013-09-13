@@ -412,22 +412,13 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 
 				$debug_queries .= '<hr /><ol>' . "\n";
 				
-				/*
-				// for php 5.3 and higher
-				if ( version_compare( phpversion(), '5.4.0', '>=' ) ) {
-					// sort queries from high to low
-					// use time value in first subquery, array value 1
-					if ( ! empty( $sorting ) || ! $sorting )
-						usort( $this->_queries, $this->make_comparer( [1, $sorting] ) );
-				} else {
-				*/
+				$this->_queries = apply_filters( 'debug_objects_sort_queries', $this->_queries, $sorting );
 				
-					foreach ( $this->_queries as $key => $row ) {
-    					$queries[$key]  = $row[0]; 
-						// of course, replace 0 with whatever is the date field's index
-					}
-					array_multisort( $queries, $sorting, $this->_queries );
-				//}
+				foreach ( $this->_queries as $key => $row ) {
+    				$queries[$key]  = $row[0]; 
+					// of course, replace 0 with whatever is the date field's index
+				}
+				array_multisort( $queries, $sorting, $this->_queries );
 				
 				foreach ( $this->_queries as $q ) {
 					
