@@ -58,13 +58,21 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 			<?php
 			$i = 1;
 			foreach ( $wp_scripts->do_items() as $loaded_scripts ) {
-				echo '<tr',  ( $i % 2 === 0 ) ? '' : ' class="alternate"' , '><td>', $i, '<td>', $loaded_scripts, '</td><td>', ( count( $wp_scripts->registered[$loaded_scripts]->deps ) > 0 ) ? implode( " and ", $wp_scripts->registered[$loaded_scripts]->deps ) : '', '</td><td>', $wp_scripts->registered[$loaded_scripts]->src , '</td></tr>', "\n";
+				echo '<tr' . ( $i % 2 === 0 ) ? '' : ' class="alternate"' . '>';
+					echo '<td>' . $i . '</td>';
+					echo '<td>' . $loaded_scripts . '</td>';
+					echo '<td>';
+					echo ( count( $wp_scripts->registered[$loaded_scripts]->deps ) > 0 ) ? implode( " and ", $wp_scripts->registered[$loaded_scripts]->deps ) : '';
+					echo '</td>';
+					echo '<td>' . $wp_scripts->registered[$loaded_scripts]->src . '</td>';
+				echo '</tr>' . "\n";
+				
 				$i++;
 			}
 			?>
 				<tr><th colspan="3"><h4>Enqueued Styles</h4></th></tr>
 				<tr><th>Order</th><th>Loaded</th><th>Dependencies</th><th>Path</th></tr>
-				<?php
+			<?php
 			
 			$i = 1;
 			foreach ( $wp_styles->do_items() as $loaded_styles ) {
