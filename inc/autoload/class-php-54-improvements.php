@@ -6,7 +6,7 @@
  * @package     Debug Objects
  * @subpackage  PHP 5.4 improvements
  * @since       09/13/2013  2.1.16
- * @author      nofearinc
+ * @author      nofearinc, bueltge
  *
  */
  
@@ -84,7 +84,7 @@ class Debug_Objects_Php54 {
 					return 1 * $sortOrder;
 				}
 			}
-	
+			
 			return 0; // tiebreakers exhausted, so $first == $second
 		};
 	}
@@ -103,7 +103,7 @@ class Debug_Objects_Php54 {
 		$sorter = array();
 		$ret    = array();
 		reset( $array );
-			
+		
 		foreach( $array as $ii => $va ) {
 			$sorter[$ii] = $va[$key];
 		}
