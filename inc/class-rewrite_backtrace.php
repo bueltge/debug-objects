@@ -62,7 +62,7 @@ class Debug_Objects_Rewrite_Backtrace {
 		$output['debug_backtrace'] = ob_get_contents();
 		$output['_get']            = $_GET;
 		$output['_post']           = $_POST;
-		$output['global_post']     = $GLOBALS['post'];
+		$output['global_post']     = isset( $GLOBALS['post'] ) ? $GLOBALS['post'] : '';
 		if ( is_network_admin() )
 			set_site_transient( $this->transient_string, $output, 120 );
 		else
