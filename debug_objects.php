@@ -95,7 +95,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			
 			// add and remove settings, the table for the plugin
 			register_deactivation_hook( __FILE__, array( $this, 'on_deactivation' ) );
-			register_uninstall_hook( __FILE__,    array( 'Debug_Objects', 'on_deactivation' ) );
+			register_uninstall_hook( __FILE__,    array( 'Debug_Objects', 'on_uninstall' ) );
 			
 			// define folder for autoload, seetings was load via settings and init_classes()
 			self::$file_base = dirname( __FILE__ ) . '/inc/autoload';
@@ -328,7 +328,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			$table = $GLOBALS['wpdb']->base_prefix . self::$table;
 			
 			$GLOBALS['wpdb'] -> query(
-				"CREATE TABLE $table (
+				"CREATE TABLE IF NOT EXISTS $table (
 				called_by varchar(96) NOT NULL,
 				hook_name varchar(96) NOT NULL,
 				hook_type varchar(15) NOT NULL,
@@ -341,19 +341,29 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		}
 		
 		/**
-		 * Delete user rights and the db-table
+		 * Flush capabilities when plugin deactivated
 		 * 
 		 * @since   2.0.0
 		 * @return  void
 		 */
 		public function on_deactivation() {
-			
-			unregister_setting( self :: $option_string . '_group', self :: $option_string );
-			delete_option( self :: $option_string );
-			
 			// remove retired administrator capability
 			$GLOBALS['wp_roles']->remove_cap( 'administrator', '_debug_objects' );
+		}
+		
+		/**
+		 * Delete user rights and the db-table on uninstall
+		 *
+		 * @since   2.1.16
+		 * @return  void
+		 */
+		public function on_uninstall() {
+			unregister_setting( self :: $option_string . '_group', self :: $option_string );
+			delete_option( self :: $option_string );
 				
+			// remove retired administrator capability
+			$GLOBALS['wp_roles']->remove_cap( 'administrator', '_debug_objects' );
+			
 			// remove hook table
 			$GLOBALS['wpdb']->query( "DROP TABLE IF EXISTS " . self::$table );
 		}
