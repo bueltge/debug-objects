@@ -100,6 +100,10 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			// define folder for autoload, seetings was load via settings and init_classes()
 			self::$file_base = dirname( __FILE__ ) . '/inc/autoload';
 			
+			// Load 5.4 improvements 
+			if ( version_compare( phpversion(), '5.4.0', '>=' ) )
+				require_once( dirname( __FILE__ ) . '/inc/class-php-54-improvements.php' );
+			
 			// load all files form autoload folder
 			$this->load();
 			
