@@ -22,6 +22,10 @@ class Debug_Objects_Php54 {
 	 */
 	public function __construct() {
 		
+		// break, if the php version is to small
+		if ( version_compare( phpversion(), '5.4.0', '<' ) )
+			return NULL;
+		
 		add_filter( 'debug_objects_sort_queries', array( $this, 'sort_queries' ), 10, 2 );
 	}
 	
