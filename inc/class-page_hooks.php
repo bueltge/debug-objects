@@ -136,15 +136,16 @@ class Debug_Objects_Page_Hooks {
 		$output .= '<table>';
 		
 		$output .= '<tr class="nohover">';
-		$output .= '<th>Total Action Hooks: ' . count( $wp_actions ) . '</th>';
+		$output .= "\t" . '<th>Total Action Hooks: ' . count( $wp_actions ) . '</th>';
 		//$output .= '<th>Total Filter Hooks: ' . count( $hooks ) . '</th>';
-		$output .= '<th>Total Filter Hooks & Callback: ' . count( $callbacks ) . '</th>';
+		$output .= "\t" . '<th>Total Filter Hooks & Callback: ' . count( $callbacks ) . '</th>';
 		$output .= '</tr>';
 		
 		$output .= '<tr class="nohover">';
 		
-		$output .= '<td><table>';
-		$output .= '<tr><td>Fired in order</td><td>Hook</td></tr>';
+		$output .= "\t" . '<td><table>';
+		$output .= "\t" . '<tr><td>Fired in order</td><td>Hook</td></tr>';
+		
 		$order = 1;
 		foreach ( $wp_actions as $key => $val ) {
 			
@@ -158,25 +159,34 @@ class Debug_Objects_Page_Hooks {
 			$output .= '<tr><td>' . $order . '.</td><td><code>' . $key . '</code></td></tr>';
 			$order ++;
 		}
-		$output .= '</table></td>';
+		$output .= '</table>';
+		$output .= '</td>';
 		/*
 		$output .= '<td><table>';
 		$output .= $filter_hooks;
 		$output .= '</table></td>';
 		*/
-		$output .= '<td><table>';
+		$output .= "\t" . '<td>';
+		$output .= "\t\t" . '<table>';
 		foreach ( $callbacks as $hook => $values ) {
+			
 			// remove dublicate items
 			$values = array_unique( $values );
-			foreach ($values as $key => $value) {
+			foreach ( $values as $key => $value ) {
 				$escape = htmlspecialchars( $value, ENT_QUOTES, 'utf-8', FALSE );
+				
 				if ( empty( $escape ) )
-					$escape = 'Empty';
-				$prev_hook = $hook;
-				$output .= "<tr><td>Hook: <code>{$hook}</code><br> {$escape}</td></tr>";
+					$escape = __( 'Empty' );
+				
+				$output .= '<tr>';
+				$output .= "\t" . '<td>' . __( 'Hook:' ) 
+					. ' <code>' . $hook . '</code><br> ' . $escape . '</td>';
+				$output .= '</tr>';
 			}
+
 		}
-		$output .= '</table></td>';
+		$output .= "\t\t" . '</table>';
+		$output .= "\t" . '</td>';
 		
 		$output .= '</tr>';
 		$output .= '</table>';

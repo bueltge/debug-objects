@@ -333,9 +333,9 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 					$debug_queries .= '<li><strong>' . __( 'Total:' ) . ' ' 
 						. get_num_queries() . ' ' 
 						. __( 'num_queries.' ) . '</strong></li>' . "\n";
-					$debug_queries .= '<li class="none_list">' 
+					$debug_queries .= '<li>' 
 						. __( '&raquo; Different values in num_query and query? - please set the constant' ) 
-						. ' <code>define(\'SAVEQUERIES\', true);</code>' . __( 'in your' ) . ' <code>wp-config.php</code></li>' . "\n";
+						. ' <code>define( \'SAVEQUERIES\', TRUE );</code>' . __( 'in your' ) . ' <code>wp-config.php</code></li>' . "\n";
 				}
 				$debug_queries .= '</ul>' . "\n";
 
@@ -374,7 +374,7 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 					
 					$total_query_time += $time;
 					$debug_queries .= '<li' . $class . '><ul>';
-					$debug_queries .= '<li class="none_list"><strong>' 
+					$debug_queries .= '<li><strong>' 
 						. __( 'Time:' ) . '</strong> ' 
 						. $time_ms . __( 'ms' ) 
 						. ' (' . $time . __( 's' ) . ')</li>';
@@ -382,7 +382,7 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 					if ( isset($q[1]) && ! empty($time) ) {
 						$s = nl2br( esc_html( $q[0] ) );
 						$s = trim( preg_replace( '/[[:space:]]+/', ' ', $s) );
-						$debug_queries .= '<li class="none_list"><strong>' 
+						$debug_queries .= '<li><strong>' 
 							. __( 'Query:' ) . '</strong> <code>' 
 							. $s . '</code></li>';
 					}
@@ -397,12 +397,12 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 						}
 						
 						if ( ! STACKTRACE ) {
-							$debug_queries .= '<li class="none_list"><strong>Function:</strong> <code>' 
+							$debug_queries .= '<li><strong>Function:</strong> <code>' 
 								. end( $st_array ) . '()</code></li>';
 						} else {
 							$st = implode( ', ', $markup_st );
 							$st = str_replace( self :: $replaced_actions, array( 'do_action' ), $st );
-							$debug_queries .= '<li class="none_list"><strong>' 
+							$debug_queries .= '<li><strong>' 
 								. '<a href="http://en.wikipedia.org/wiki/Stack_trace">Stack trace</a>:</strong> ' 
 								. $st . '</li>';
 						}
@@ -443,12 +443,12 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 				$debug_queries .= '<li><strong>' . __( 'Total num_query time:' ) . ' ' 
 					. timer_stop() . ' ' . __( 'for' ) . ' ' . get_num_queries() . ' ' 
 					. __( 'num_queries.' ) . '</strong></li>' . "\n";
-				$debug_queries .= '<li class="none_list">' 
+				$debug_queries .= '<li>' 
 					. __( '&raquo; Different values in num_query and query? - please set the constant' ) 
-					. ' <code>define(\'SAVEQUERIES\', true);</code>' . __( 'in your' ) . ' <code>wp-config.php</code></li>' . "\n";
+					. ' <code>define( \'SAVEQUERIES\', TRUE );</code>' . __( 'in your' ) . ' <code>wp-config.php</code></li>' . "\n";
 			}
 			if ( $total_query_time == 0 )
-				$debug_queries .= '<li class="none_list">' . __( '&raquo; Query time is null (0)? - please set the constant' ) 
+				$debug_queries .= '<li>' . __( '&raquo; Query time is null (0)? - please set the constant' ) 
 					. ' <code>SAVEQUERIES</code>' . ' ' . __( 'at' ) . ' <code>TRUE</code> ' . __( 'in your' ) 
 					. ' <code>wp-config.php</code></li>' . "\n";
 			if ( 0 < $total_time )

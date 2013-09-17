@@ -52,35 +52,68 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 		public function get_enqueued_stuff() {
 			global $wp_scripts, $wp_styles;
 			?>
+			
 			<table>
-				<tr><th colspan="3"><h4>Enqueued Scripts</h4></th></tr>
-				<tr><th>Order</th><th>Loaded</th><th>Dependencies</th><th>Path</th></tr>
+				<tr>
+					<th colspan="4"><strong>Enqueued Scripts</strong></th>
+				</tr>
+				<tr>
+					<th>Order</th>
+					<th>Loaded</th>
+					<th>Dependencies</th>
+					<th>Path</th>
+				</tr>
 			<?php
+			$class = '';
 			$i = 1;
 			foreach ( $wp_scripts->do_items() as $loaded_scripts ) {
-				echo '<tr' . ( $i % 2 === 0 ) ? '' : ' class="alternate"' . '>';
-					echo '<td>' . $i . '</td>';
-					echo '<td>' . $loaded_scripts . '</td>';
-					echo '<td>';
-					echo ( count( $wp_scripts->registered[$loaded_scripts]->deps ) > 0 ) ? implode( " and ", $wp_scripts->registered[$loaded_scripts]->deps ) : '';
-					echo '</td>';
-					echo '<td>' . $wp_scripts->registered[$loaded_scripts]->src . '</td>';
+					
+				$class = ( $i % 2 === 0 ) ? '' : ' class="alternate"';
+				echo '<tr' . $class . '>';
+				echo '<td>' . $i . '</td>';
+				echo '<td>' . $loaded_scripts . '</td>';
+				echo '<td>';
+				echo ( count( $wp_scripts->registered[$loaded_scripts]->deps ) > 0 ) ? implode( __( 'and' ), $wp_scripts->registered[$loaded_scripts]->deps ) : '';
+				echo '</td>';
+				echo '<td>' . $wp_scripts->registered[$loaded_scripts]->src . '</td>';
 				echo '</tr>' . "\n";
 				
 				$i++;
 			}
 			?>
-				<tr><th colspan="3"><h4>Enqueued Styles</h4></th></tr>
-				<tr><th>Order</th><th>Loaded</th><th>Dependencies</th><th>Path</th></tr>
-			<?php
+			</table>
 			
+			<table>
+				<tr>
+					<th colspan="4"><strong>Enqueued Styles</strong></th>
+				</tr>
+				<tr>
+					<th>Order</th>
+					<th>Loaded</th>
+					<th>Dependencies</th>
+					<th>Path</th>
+				</tr>
+			
+			<?php
+			$class = '';
 			$i = 1;
 			foreach ( $wp_styles->do_items() as $loaded_styles ) {
-				echo '<tr', ( $i % 2 === 0 ) ? '' : ' class="alternate"' , '"><td>', $i, '<td>', $loaded_styles, '</td><td>', ( count( $wp_styles->registered[$loaded_styles]->deps ) > 0 ) ? implode( " and ", $wp_styles->registered[$loaded_styles]->deps ) : '', '</td><td>', $wp_styles->registered[$loaded_styles]->src , '</td></tr>', "\n";
+				
+				$class = ( $i % 2 === 0 ) ? '' : ' class="alternate"';
+				echo '<tr' . $class . '>';
+				echo '<td>' . $i . '</td>';
+				echo '<td>' . $loaded_styles . '</td>';
+				echo '<td>';
+				echo ( count( $wp_styles->registered[$loaded_styles]->deps ) > 0 ) ? implode( __( 'and'  ), $wp_styles->registered[$loaded_styles]->deps ) : '';
+				echo '</td>';
+				echo '<td>' . $wp_styles->registered[$loaded_styles]->src . '</td>';
+				echo '</tr>' . "\n";
+				
 				$i++;
 			}
 			?>
 			</table>
+			
 			<?php
 		}
 		
