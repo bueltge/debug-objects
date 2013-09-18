@@ -43,17 +43,8 @@ function toggle( obj ) {
 	if ( typeof selected_tab  == 'undefined' ) selected_tab = 0;
 	
 	$( '#debugobjectstabs' ).tabs( {
+		collapsible: true,
 		active: selected_tab,
 	} );
-	/*
-	 * only useful before WP version 3.4
-	 *
-	$( '#wpadminbar' ).click( function() {
-		$( 'html, body' ).animate( { scrollTop: 0 }, 100 );
-	} );
-	$( '#wpadminbar li' ).click( function( e ) { 
-		e.stopPropagation(); 
-	} );
-	*/
 	
 } )( jQuery );
