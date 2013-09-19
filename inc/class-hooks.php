@@ -100,7 +100,7 @@ if ( ! class_exists( 'Debug_Objects_Hooks' ) ) {
 										$x ++;
 										if ( ! is_string($v) ) {
 											$v  = htmlentities( serialize($v) );
-											$v  = '<a href="javascript:toggle(\'serialize_' . $wp_func. $x. '\' );">' . __( 'View data', parent :: get_plugin_data() ) . '</a><textarea style="display:none;" class="large-text code" id="serialize_' . $wp_func. $x. '"name="v" cols="50" rows="10">' . $v. '</textarea>';
+											$v  = '<a href="javascript:debug_objects_toggle(\'serialize_' . $wp_func. $x. '\' );">' . __( 'View data', parent :: get_plugin_data() ) . '</a><textarea style="display:none;" class="large-text code" id="serialize_' . $wp_func. $x. '"name="v" cols="50" rows="10">' . $v. '</textarea>';
 										}
 										$output .= '<li>' . $k. ' : ' . $v. '</li>' . "\n";
 									}

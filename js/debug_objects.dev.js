@@ -1,4 +1,4 @@
-function toggle( obj ) {
+function debug_objects_toggle( obj ) {
 	var el = document.getElementById(obj);
 	if ( el.style.display != 'block' ) {
 		el.style.display = 'block';
