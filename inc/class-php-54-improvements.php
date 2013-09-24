@@ -21,6 +21,7 @@ class Debug_Objects_Php54 {
 	 * Add all required filters/actions
 	 */
 	public function __construct() {
+		
 		add_filter( 'debug_objects_sort_queries', array( $this, 'sort_queries' ), 10, 2 );
 	}
 	

@@ -51,6 +51,9 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 		
 		public function get_enqueued_stuff() {
 			global $wp_scripts, $wp_styles;
+			
+			$loaded_scripts = $wp_scripts->do_items();
+			$loaded_styles  = $wp_styles->do_items();
 			?>
 			
 			<table>
@@ -66,16 +69,16 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 			<?php
 			$class = '';
 			$i = 1;
-			foreach ( $wp_scripts->do_items() as $loaded_scripts ) {
-					
+			foreach ( $loaded_scripts as $loaded_script ) {
+				
 				$class = ( $i % 2 === 0 ) ? '' : ' class="alternate"';
 				echo '<tr' . $class . '>';
 				echo '<td>' . $i . '</td>';
-				echo '<td>' . $loaded_scripts . '</td>';
+				echo '<td>' . esc_attr( $loaded_script ) . '</td>';
 				echo '<td>';
-				echo ( count( $wp_scripts->registered[$loaded_scripts]->deps ) > 0 ) ? implode( __( 'and' ), $wp_scripts->registered[$loaded_scripts]->deps ) : '';
+				echo ( count( $wp_scripts->registered[$loaded_script]->deps ) > 0 ) ? implode( __( ', ' ), $wp_scripts->registered[$loaded_script]->deps ) : '';
 				echo '</td>';
-				echo '<td>' . $wp_scripts->registered[$loaded_scripts]->src . '</td>';
+				echo '<td>' . $wp_scripts->registered[$loaded_script]->src . '</td>';
 				echo '</tr>' . "\n";
 				
 				$i++;
@@ -97,16 +100,16 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 			<?php
 			$class = '';
 			$i = 1;
-			foreach ( $wp_styles->do_items() as $loaded_styles ) {
+			foreach ( $loaded_styles as $loaded_style ) {
 				
 				$class = ( $i % 2 === 0 ) ? '' : ' class="alternate"';
 				echo '<tr' . $class . '>';
 				echo '<td>' . $i . '</td>';
-				echo '<td>' . $loaded_styles . '</td>';
+				echo '<td>' . esc_attr( $loaded_style ) . '</td>';
 				echo '<td>';
-				echo ( count( $wp_styles->registered[$loaded_styles]->deps ) > 0 ) ? implode( __( 'and'  ), $wp_styles->registered[$loaded_styles]->deps ) : '';
+				echo ( count( $wp_styles->registered[$loaded_style]->deps ) > 0 ) ? implode( __( ', ' ), $wp_styles->registered[$loaded_style]->deps ) : '';
 				echo '</td>';
-				echo '<td>' . $wp_styles->registered[$loaded_styles]->src . '</td>';
+				echo '<td>' . $wp_styles->registered[$loaded_style]->src . '</td>';
 				echo '</tr>' . "\n";
 				
 				$i++;
