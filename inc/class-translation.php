@@ -1,7 +1,9 @@
 <?php
  /**
  * Return different information about translation files
- *
+ *  
+ * Kudos to Toscho <info@toscho.de> for the idea and code ressource
+ * 
  * @package     Debug Objects
  * @subpackage  Translation Information
  * @author      Frank Bültge
