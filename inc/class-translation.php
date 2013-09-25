@@ -159,7 +159,7 @@ class Debug_Objects_Translation {
 			$output .= '<li' . $class . '>' . $value . '</li>';
 		}	
 		
-		echo '<h4>' . __( 'Translations' ) . '</h4>';
+		echo '<h4>' . __( 'Translations' ) . ' (' . count( $this->get_log() ) . ')</h4>';
 		echo '<p>' . __( 'Locale:' ) . ' ' . esc_html( get_locale() ) . "</p>\n";
 		echo '<ul>' . $output . '</ul>';
 	}
