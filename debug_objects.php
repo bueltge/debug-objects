@@ -312,7 +312,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @since   2.0.0
 		 * @return  void
 		 */
-		public function on_activation() {
+		public static function on_activation() {
 			
 			// Check for PHP Version
 			if ( ! version_compare( PHP_VERSION, '5.2.4', '>=' ) ) {
