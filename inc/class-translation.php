@@ -1,6 +1,6 @@
 <?php
  /**
- * Return all meta data to a post
+ * Return different information about translation files
  *
  * @package     Debug Objects
  * @subpackage  Translation Information
@@ -157,9 +157,11 @@ class Debug_Objects_Translation {
 			$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
 			
 			$output .= '<li' . $class . '>' . $value . '</li>';
-		}
+		}	
 		
 		echo '<h4>' . __( 'Translations' ) . '</h4>';
+		echo '<p>' . __( 'Locale:' ) . ' ' . esc_html( get_locale() ) . "</p>\n";
 		echo '<ul>' . $output . '</ul>';
 	}
+	
 }
