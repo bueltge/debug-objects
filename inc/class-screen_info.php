@@ -1,7 +1,7 @@
 <?php
- {}/**
- * Return all meta data to a post
- *
+ /**
+ * Get information in backend about screen information and different globals
+ * 
  * @package     Debug Objects
  * @subpackage  Screen Info
  * @author      Frank Bültge

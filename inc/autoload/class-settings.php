@@ -344,6 +344,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Conditional_Tags'  => __( 'Conditional Tags' ), // conditional tags
 					'Post_Meta'         => __( 'Get a list of arguments to custom post types and a list of post meta for the current post type' ),
 					'Theme'             => __( 'Theme and Template informations' ),
+					'Translation'       => __( 'Get translation data: language, files, possible problems.' ),
 					'Enqueue_Stuff'     => __( 'Introduced scripts and stylesheets' ),// Scripts and styles
 					'Debug_Hooks'       => __( 'List existing Hooks and assigned functions and count of accepted args' ), // Hooks, faster
 					//'Hooks'            => __( 'List existing Hooks and assigned functions' ),// Hooks
