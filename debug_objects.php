@@ -199,7 +199,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 						if ( file_exists( $file ) )
 							require_once $file;
 						
-						add_action( 'init', array( 'Debug_Objects_' . $require, 'init' ) );
+						add_action( 'plugins_loaded', array( 'Debug_Objects_' . $require, 'init' ), -1 );
 					}
 				}
 			}

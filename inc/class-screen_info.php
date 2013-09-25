@@ -108,29 +108,35 @@ class Debug_Objects_Screen_Info {
 	}
 	
 	public function get_screen_info() {
-				
-		$screen = get_current_screen();
 		
-		$output = '';
-		$class  = '';
+		if ( ! function_exists( 'get_current_screen' ) ) {
+			$output = '<tr><td colspan="2">' . __( 'Current no screen info found.' ) . '</td></tr>';
+		} else {
 		
-		if ( NULL !== $screen ) {
+			$screen = get_current_screen();
 			
-			foreach ( $screen as $key => $data ) {
+			$output = '';
+			$class  = '';
+			
+			if ( NULL !== $screen ) {
 				
-				// class for formatting
-				$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
+				foreach ( $screen as $key => $data ) {
+					
+					// class for formatting
+					$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
+					
+					if ( empty( $data ) )
+						$data = __( 'Empty' );
+					
+					$output .= '<tr' . $class . '><td>' . $key . '</td><td>';
+					$output .= $data . '</td></tr>';
+					
+				}
 				
-				if ( empty( $data ) )
-					$data = __( 'Empty' );
-				
-				$output .= '<tr' . $class . '><td>' . $key . '</td><td>';
-				$output .= $data . '</td></tr>';
-				
+			} else {
+				$output = __( 'Current no screen info found.' );
 			}
 			
-		} else {
-			$output = __( 'Current no screen info found.' );
 		}
 		
 		$output = '<table><tr><th><code>current_screen</code> ' 
