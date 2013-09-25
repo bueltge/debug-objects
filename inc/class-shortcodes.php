@@ -4,7 +4,7 @@
  *
  * @package     Debug Objects
  * @subpackage  List Shortcodes
- * @author      Frank B&uuml;ltge
+ * @author      Frank Bültge
  * @since       02/25/2013
  */
 

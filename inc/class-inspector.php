@@ -4,7 +4,7 @@
  *
  * @package     Debug Objects
  * @subpackage  Site Inspector
- * @author      Frank B&uuml;ltge
+ * @author      Frank Bültge
  * @since       07/29/2012
  */
 

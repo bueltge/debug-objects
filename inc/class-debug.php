@@ -4,7 +4,7 @@
  *
  * @package     Debug Objects
  * @subpackage  Post Meta Data
- * @author      Frank B&uuml;ltge
+ * @author      Frank Bültge
  * @since       12/19/2012
  */
 

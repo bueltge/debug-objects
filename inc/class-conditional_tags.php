@@ -4,7 +4,7 @@
  *
  * @package     Debug Objects
  * @subpackage  Conditional Tags
- * @author      Frank B&uuml;ltge
+ * @author      Frank Bültge
  * @since       2.0.0
  */
 if ( ! function_exists( 'add_filter' ) ) {

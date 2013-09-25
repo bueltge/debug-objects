@@ -4,7 +4,7 @@
  *
  * @package     Debug Objects
  * @subpackage  Constants
- * @author      Frank B&uuml;ltge
+ * @author      Frank Bültge
  * @since       2.0.0
  */
 

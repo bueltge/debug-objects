@@ -4,7 +4,7 @@
  *
  * @package     Debug Objects
  * @subpackage  Helper for Debug
- * @author      Frank B&uuml;ltge
+ * @author      Frank Bültge
  * @since       2.1.5
  */
 if ( ! function_exists( 'add_filter' ) ) {

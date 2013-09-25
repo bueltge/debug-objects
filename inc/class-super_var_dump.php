@@ -7,7 +7,7 @@
  * 
  * Kudos to Eric Lewis <http://www.ericandrewlewis.com/> for the function super_var_dump()
  * @see         https://github.com/ericandrewlewis/super-var-dump
- * @author      Frank B&uuml;ltge
+ * @author      Frank Bültge
  * @since       2.0.1
  */
 

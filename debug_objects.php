@@ -13,7 +13,7 @@
  * License:     GPLv3
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
- * Last Change: 09/17/2013)
+ * Last Change: 09/25/2013
  */
 
 // avoid direct calls to this file, because now WP core and framework has been used.
@@ -72,7 +72,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		public static function get_object() {
 			
 			NULL === self::$classobj and self::$classobj = new self();
-		
+			
 			return self::$classobj;
 		}
 		

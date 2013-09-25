@@ -6,7 +6,7 @@
  *
  * @package     Debug Objects
  * @subpackage  Helper for crons
- * @author      Frank B&uuml;ltge
+ * @author      Frank Bültge
  * @since       2.1.5  11/04/2012
  */
 

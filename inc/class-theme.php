@@ -4,7 +4,7 @@
  *
  * @package     Debug Objects
  * @subpackage  theme and template informations
- * @author      Frank B&uuml;ltge
+ * @author      Frank Bültge
  * @since       2.0.3
  */
 
