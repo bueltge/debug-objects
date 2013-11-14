@@ -17,6 +17,10 @@ div#debugobjects {
 	clear: both;
 }
 
+div#debugobjects code {
+	word-wrap: break-word;
+}
+
 div#debugobjects pre {
 	width: 100%;
 	overflow: auto;
