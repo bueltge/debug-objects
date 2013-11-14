@@ -1,5 +1,6 @@
 #debugobjects *{font-size:12px;line-height:2em;margin:0}
 div#debugobjects{left:1%;right:1%;font-size:12px!important;color:#fff;text-align:left;position:relative;z-index:99990;clear:both;margin:30px 10px}
+div#debugobjects code{word-wrap:break-word}
 div#debugobjects pre{width:100%;overflow:auto;white-space:pre}
 div#debugobjectstabs{padding:10px}
 div#debugobjectstabs,.ui-corner-all{border:1px solid #DFDFDF;border-radius:3px}

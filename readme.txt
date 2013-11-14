@@ -84,6 +84,10 @@ After this version you find the other verison on the [github repo](https://githu
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a [small donation](http://bueltge.de/wunschliste/ "Wishliste and Donate") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 == Changelog ==
+= 2.1.16 (11/14/2013) =
+* Fix problem on view for enqueue stuff
+* Update style for better view of code-tags
+
 = 2.1.15 (08/09/2013) =
 * Enhancement to see the queries of plugins and identfier the problems
 * Sort queries on load time
