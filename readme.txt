@@ -65,15 +65,15 @@ Have a look at the premium plugins in our [market](http://marketpress.com).
 
 = Installation =
 1. Unpack the download-package
-1. Upload the file to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Go to *Tools* -> *Debug Objects* and change settings or read instructions for use with url params
-1. Ready
+2. Upload the file to the `/wp-content/plugins/` directory
+3. Activate the plugin through the 'Plugins' menu in WordPress
+4. Go to *Tools* -> *Debug Objects* and change settings or read instructions for use with url params
+5. Ready
 
 
 == Screenshots ==
 1. Example Screenshot (WordPress 3.3)
-1. Another Example with the current hooks of this back end page (WordPress 3.8-alpha)
+2. Another Example with the current hooks of this back end page (WordPress 3.8-alpha)
 
 == Other Notes ==
 = Older versions =
