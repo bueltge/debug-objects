@@ -52,7 +52,17 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 		public function get_enqueued_stuff() {
 			global $wp_scripts, $wp_styles;
 			
-			$loaded_scripts = $wp_scripts->do_items();
+			/**
+			 * Get all enqueue scripts
+			 * Current is do_items() not usable, echo all scripts
+			 * 
+			 * @see https://github.com/bueltge/Debug-Objects/issues/22#issuecomment-24728637
+			 */
+			//$loaded_scripts = $wp_scripts->do_items();
+			$wp_scripts->all_deps( $wp_scripts->queue );
+			$loaded_scripts = $wp_scripts->to_do;
+			
+			// Get all enqueue styles
 			$loaded_styles  = $wp_styles->do_items();
 			?>
 			
