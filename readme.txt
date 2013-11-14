@@ -73,7 +73,7 @@ Have a look at the premium plugins in our [market](http://marketpress.com).
 
 == Screenshots ==
 1. Example Screenshot (WordPress 3.3)
-
+1. Another Example with the current hooks of this back end page (WordPress 3.8-alpha)
 
 == Other Notes ==
 = Older versions =
