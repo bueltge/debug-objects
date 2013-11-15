@@ -90,7 +90,7 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 * Update style for better view of code-tags
 * Remove php notice [#31](https://github.com/bueltge/Debug-Objects/issues/31)
 * Add new tab for see backend current page, meta data [#27](https://github.com/bueltge/Debug-Objects/issues/27)
-# Persist options on deactivation, drop only on uninstall [#26](https://github.com/bueltge/Debug-Objects/pull/26)
+* Persist options on deactivation, drop only on uninstall [#26](https://github.com/bueltge/Debug-Objects/pull/26)
 
 = 2.1.15 (08/09/2013) =
 * Enhancement to see the queries of plugins and identfier the problems
