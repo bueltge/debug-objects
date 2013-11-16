@@ -8,7 +8,7 @@
  * Plugin URI:  http://bueltge.de/debug-objects-wordpress-plugin/966/
  * Text Domain: debug_objects
  * Domain Path: /languages
- * Description: List filter and action-hooks, cache data, defined constants, qieries, included scripts and styles, php and memory informations and return of conditional tags only for admins; for debug, informations or learning purposes. Setting output in the settings of the plugin and use output via link in Admin Bar, via setting, via url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days.
+ * Description: List filter and action-hooks, cache data, defined constants, queries, included scripts and styles, php and memory information and return of conditional tags only for admins; for debug, information or learning purposes. Setting output in the settings of the plugin and use output via link in Admin Bar, via setting, via url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days.
  * Version:     2.1.16
  * License:     GPLv3
  * Author:      Frank Bültge
@@ -59,7 +59,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		public static $plugin;
 		// included classes on default; without user settings
 		public static $by_settings = array( 'Wrap' );
-		// exlude class for central include
+		// exclude class for central include
 		public static $exclude_class = array( 'Backend', 'Frontend', 'Stack_Trace' );
 		
 		/**
@@ -97,7 +97,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			register_deactivation_hook( __FILE__, array( $this, 'on_deactivation' ) );
 			register_uninstall_hook( __FILE__,    array( 'Debug_Objects', 'on_uninstall' ) );
 			
-			// define folder for autoload, seetings was load via settings and init_classes()
+			// define folder for autoload, settings was load via settings and init_classes()
 			self::$file_base = dirname( __FILE__ ) . '/inc/autoload';
 			
 			// Load 5.4 improvements 
@@ -493,12 +493,13 @@ if ( ! function_exists( 'pre_print' ) ) {
 	 *
 	 * @since  03/11/2012
 	 * @param  mixed
-	 * @return void
+	 * @return String
 	 */
 	function pre_print( $var, $before = '', $return = FALSE ) {
 		
 		$export = var_export( $var, TRUE );
 		$escape = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
+
 		if ( $return )
 			return $escape;
 		else
