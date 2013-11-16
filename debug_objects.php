@@ -137,10 +137,10 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @return  void
 		 */
 		public function add_capabilities() {
-			
+
 			$GLOBALS['wp_roles']->add_cap( 'administrator', '_debug_objects' );
 		}
-		
+
 		/**
 		 * Include classes
 		 * Use filter string 'debug_objects_classes' for include custom classes
@@ -151,9 +151,9 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		public function init_classes() {
 			
 			if ( is_multisite() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) )
-				$options = get_site_option( self :: $option_string );
+				$options = get_site_option( self::$option_string );
 			else
-				$options = get_option( self :: $option_string );
+				$options = get_option( self::$option_string );
 			
 			if ( ( isset( $options['frontend'] ) && '1' === $options['frontend'] ) || 
 				( isset( $options['backend'] ) && '1' === $options['backend'] ) )
@@ -303,7 +303,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 */
 		public function get_plugin_string() {
 			
-			return self :: $plugin;
+			return self::$plugin;
 		}
 		
 		/**
@@ -362,8 +362,8 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @return  void
 		 */
 		public function on_uninstall() {
-			unregister_setting( self :: $option_string . '_group', self :: $option_string );
-			delete_option( self :: $option_string );
+			unregister_setting( self::$option_string . '_group', self::$option_string );
+			delete_option( self::$option_string );
 				
 			// remove retired administrator capability
 			$GLOBALS['wp_roles']->remove_cap( 'administrator', '_debug_objects' );
