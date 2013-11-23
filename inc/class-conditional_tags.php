@@ -19,20 +19,23 @@ if ( ! class_exists( 'Debug_Objects_Conditional_Tags' ) ) {
 		protected static $classobj = NULL;
 		
 		public $template_storage = '';
-		
+
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
-		 * 
+		 *
 		 * @access  public
-		 * @return  $classobj
+		 * @return \Debug_Objects_Conditional_Tags|null $classobj
 		 */
 		public static function init() {
 			
-			NULL === self::$classobj and self::$classobj = new self();
+			NULL === self::$classobj && self::$classobj = new self();
 			
 			return self::$classobj;
 		}
-		
+
+		/**
+		 * Constructor
+		 */
 		public function __construct() {
 			
 			if ( ! current_user_can( '_debug_objects' ) )
@@ -41,7 +44,13 @@ if ( ! class_exists( 'Debug_Objects_Conditional_Tags' ) ) {
 			add_filter( 'template_include', array( $this, 'get_include_template' ) );
 			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 		}
-		
+
+		/**
+		 * Create new tab for Conditionals on the default tab list
+		 *
+		 * @param   $tabs
+		 * @return  array
+		 */
 		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 
@@ -64,7 +73,13 @@ if ( ! class_exists( 'Debug_Objects_Conditional_Tags' ) ) {
 			
 			return $template;
 		}
-		
+
+		/**
+		 * Get the status of each conditional tag
+		 *
+		 * @param   bool $echo
+		 * @return  bool
+		 */
 		public function get_conditional_tags( $echo = TRUE ) {
 			global $post_type, $post_id;
 			
@@ -207,4 +222,5 @@ if ( ! class_exists( 'Debug_Objects_Conditional_Tags' ) ) {
 		}
 		
 	} // end class
+	
 }// end if class exists
