@@ -61,26 +61,26 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		public static $by_settings = array( 'Wrap' );
 		// exclude class for central include
 		public static $exclude_class = array( 'Backend', 'Frontend', 'Stack_Trace' );
-		
+
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
-		 * 
+		 *
 		 * @access  public
 		 * @since   2.0.0
-		 * @return  $classobj
+		 * @return \Debug_Objects|String $classobj
 		 */
 		public static function get_object() {
 			
-			NULL === self::$classobj and self::$classobj = new self();
+			NULL === self::$classobj && self::$classobj = new self();
 			
 			return self::$classobj;
 		}
-		
+
 		/**
 		 * Init other methods via hook; install settings and capabilities
-		 * 
+		 *
 		 * @since   2.0.0
-		 * @return  void
+		 * @return \Debug_Objects
 		 */
 		public function __construct() {
 			
@@ -205,13 +205,13 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			}
 			
 		}
-		
+
 		/**
 		 * Check for url param to view output
-		 * 
+		 *
 		 * @access  public
 		 * @since   2.0.1
-		 * @return  $debug boolean
+		 * @return bool $debug
 		 */
 		public function debug_control() {
 			
@@ -226,13 +226,14 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			
 			return (bool) $debug;
 		}
-		
+
 		/**
 		 * Check for cookie to view output
-		 * 
+		 *
 		 * @access  public
 		 * @since   2.0.1
-		 * @return  $debug boolean
+		 * @param   $debug
+		 * @return  bool $debug
 		 */
 		public function get_cookie_control( $debug ) {
 			
@@ -265,15 +266,16 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			if ( 0 == intval( $_GET['debugcookie'] ) )
 				setcookie( $this->get_plugin_data() . '_cookie', '', time() - 3600, COOKIEPATH, COOKIE_DOMAIN );
 		}
-		
+
 		/**
 		 * Return plugin comment data
-		 * 
-		 * @since  2.0.0
-		 * @access public
-		 * @param  $value string, default = 'TextDomain'
-		 *         Name, PluginURI, Version, Description, Author, AuthorURI, TextDomain, DomainPath, Network, Title
-		 * @return string
+		 *
+		 * @since   2.0.0
+		 * @access  public
+		 * @param   string $value default = 'TextDomain'
+		 *                    Name, PluginURI, Version, Description, Author, AuthorURI, TextDomain, DomainPath, Network, Title
+		 * @param   bool $echo
+		 * @return  string
 		 */
 		public function get_plugin_data( $value = 'TextDomain', $echo = FALSE ) {
 			
@@ -371,16 +373,16 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			// remove hook table
 			$GLOBALS['wpdb']->query( "DROP TABLE IF EXISTS " . self::$table );
 		}
-		
+
 		/**
 		 * Return undefined list as tree
-		 * 
+		 *
 		 * @access  public
 		 * @since   2.0.0
-		 * @param   $arr array
-		 * @param   $root_name string
-		 * @param   $unserialized_string boolean
-		 * @return  $output array
+		 * @param   array $arr
+		 * @param   string $root_name
+		 * @param   bool $unserialized_string
+		 * @return  string $output
 		 */
 		public function get_as_ul_tree( $arr, $root_name = '', $unserialized_string = FALSE ) {
 			global $wp_object;
@@ -460,8 +462,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 						$output .= "<br/><small><em>type</em>: $vt | <em>size</em>: ".strlen($val). " | <em>serialized</em>: ".(is_serialized($val) !== false?"true":"false"). '</small><br/>';
 						if ( is_serialized($val) ) {
 							$output .= Debug_Objects :: get_as_ul_tree($obj, "<small><em>value</em>:</small> <span class=\"value\">[unserialized]</span>", true);
-						}
-						else {
+						} else {
 							if ($val)
 								$output .= '<small><em>value</em>: </small><span class="value">' . htmlspecialchars($val) . '</span>';
 							else
@@ -487,13 +488,16 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 } // end if class exists
 
 if ( ! function_exists( 'pre_print' ) ) {
-	
+
 	/**
 	 * Print debug output
 	 *
-	 * @since  03/11/2012
-	 * @param  mixed
-	 * @return String
+	 * @since     03/11/2012
+	 * @param     mixed $var
+	 * @param     string $before
+	 * @param     bool   $return
+	 * @internal  param $mixed
+	 * @return    string
 	 */
 	function pre_print( $var, $before = '', $return = FALSE ) {
 		
@@ -511,7 +515,7 @@ if ( ! function_exists( 'debug_to_console' ) ) {
 	/**
 	 * Simple helper to debug to the console
 	 * 
-	 * @param  Array, String $data
+	 * @param  array, String $data
 	 * @return string
 	 */
 	function debug_to_console( $data ) {
