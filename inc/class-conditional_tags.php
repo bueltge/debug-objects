@@ -6,6 +6,7 @@
  * @subpackage  Conditional Tags
  * @author      Frank Bültge
  * @since       2.0.0
+ * @version     11/23/2013
  */
 if ( ! function_exists( 'add_filter' ) ) {
 	echo "Hi there! I'm just a part of plugin, not much I can do when called directly.";
@@ -222,5 +223,5 @@ if ( ! class_exists( 'Debug_Objects_Conditional_Tags' ) ) {
 		}
 		
 	} // end class
-	
+
 }// end if class exists
