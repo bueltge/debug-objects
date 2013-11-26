@@ -515,13 +515,13 @@ if ( ! function_exists( 'debug_to_console' ) ) {
 	/**
 	 * Simple helper to debug to the console
 	 * 
-	 * @param  array, String $data
+	 * @param  object, array, string $data
 	 * @return string
 	 */
 	function debug_to_console( $data ) {
 		
 		$output = '';
-		
+		/*
 		if ( is_array( $data ) ) {
 			$output .= "console.warn( 'Debug Objects with Array.' ); 
 				console.log( '" . preg_replace( 
@@ -541,7 +541,11 @@ if ( ! function_exists( 'debug_to_console' ) ) {
 		} else {
 			$output .= "console.log( 'Debug Objects: {$data}' );";
 		}
-		
+		*/
+		// new and smaller version, easier to maintain
+		$output .= 'console.info( \'Debug in Console via Debug Objects Plugin:\' );';
+		$output .= 'console.log(' . json_encode( $data ) . ');';
+
 		echo '<script>' . $output . '</script>';
 	}
 }
