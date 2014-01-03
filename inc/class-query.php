@@ -6,6 +6,7 @@
  * @subpackage  Cache
  * @author      Frank Bültge
  * @since       2.0.0
+ * @version     03/01/2014
  */
 
 if ( ! function_exists( 'add_action' ) ) {
@@ -24,6 +25,12 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 	
 	if ( ! defined( 'STACKTRACE' ) )
 		define( 'STACKTRACE', FALSE );
+	
+	if ( ! defined( 'SQL_FORMATTING' ) )
+		define( 'SQL_FORMATTING', TRUE );
+	
+	if ( SQL_FORMATTING )
+		require_once 'SqlFormatter/SqlFormatter.php';
 	
 	//add_action( 'admin_init', array( 'Debug_Objects_Query', 'init' ) );
 	
@@ -244,16 +251,19 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 						__( 'Query &amp; Function Chain' )
 						);
 					
+					$class = '';
 					foreach( $data as $query ) {
+						
+						$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
 						
 						$query['query'] = $query['time'] . __( 's' ) . ' / ' 
 							. number_format_i18n( sprintf( '%0.1f', $query['time'] * 1000), 1 ) . __( 'ms' ) 
-							. '<br><code>' . htmlspecialchars( $query['query'] ) . '</code>';
+							. '<br><code>' . SqlFormatter::format( htmlspecialchars( $query['query'] ) ) . '</code>';
 						// build function chain/backtrace
 						$function_chain = implode( ' &#8594; ', $query['function_chain'] );
 						
-						$output .= '<tr class="alternate">
-								<td align="center" valign="center" >' . $query['line'] . '</td>
+						$output .= '<tr'. $class .'>
+								<td>' . $query['line'] . '</td>
 								<td>' . $query['query'] . '</td>
 							</tr>';
 							
@@ -382,6 +392,7 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 					if ( isset($q[1]) && ! empty($time) ) {
 						$s = nl2br( esc_html( $q[0] ) );
 						$s = trim( preg_replace( '/[[:space:]]+/', ' ', $s) );
+						$s = SqlFormatter::format( $s );
 						$debug_queries .= '<li><strong>' 
 							. __( 'Query:' ) . '</strong> <code>' 
 							. $s . '</code></li>';
