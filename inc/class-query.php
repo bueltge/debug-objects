@@ -234,7 +234,7 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 			$x = 1;
 			foreach( $data as $plugin_data ) {
 				
-				$output .= '<h2 id="anker_' . $x . '">' . $x . '. ' . __( 'Plugin:' ) . ' ' . $plugin_data['name'] . '</h2>' . "\n";
+				$output .= '<h1 id="anker_' . $x . '">' . $x . '. ' . __( 'Plugin:' ) . ' ' . $plugin_data['name'] . '</h1>' . "\n";
 				
 				foreach( $plugin_data['backtrace'] as $filename => $data ) {
 					
@@ -277,8 +277,8 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 						
 					}
 					$output .= '</table>' . "\n"	;
-					$x ++;
 				}
+				$x ++;
 			}
 			
 			echo $output;
