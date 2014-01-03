@@ -23,6 +23,7 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Query informaton about the active plugins, nice to identifier the longrunners on the plugins
 * Conditional tags; value of the tag
 * Theme information
+* HTML Inspector is a code quality tool to check markup. Any errors will be reported to the console of the browser. This works only on front end. use [HTML Inspector](https://github.com/philipwalton/html-inspector)
 * Translation debugging helper
 * Template Information
 * Cron content and his functions to an cron

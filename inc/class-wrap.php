@@ -43,7 +43,7 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 			if ( ! current_user_can( '_debug_objects' ) )
 				return;
 			
-			$options = Debug_Objects_Settings :: return_options();
+			$options = Debug_Objects_Settings::return_options();
 			
 			// check for output on frontend
 			if ( isset( $options['frontend'] ) && '1' === $options['frontend']
