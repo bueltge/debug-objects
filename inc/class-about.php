@@ -4,9 +4,9 @@
  *
  * @package     Debug Objects
  * @subpackage  About plugin
- * @author      Frank B&uuml;ltge
+ * @author      Frank Bültge
  * @since       2.0.0
- * @version     11/23/2013
+ * @version     01/13/2014
  */
 
 if ( ! function_exists( 'add_filter' ) ) {
