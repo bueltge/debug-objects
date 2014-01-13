@@ -393,7 +393,7 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 						. __( 'Time:' ) . '</strong> ' 
 						. $time_ms . __( 'ms' ) 
 						. ' (' . $time . __( 's' ) . ')</li>';
-					//debug_to_console($q);
+					
 					if ( isset( $time ) ) {
 						
 						$s = nl2br( esc_html( $q[0] ) );
