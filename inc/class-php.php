@@ -362,10 +362,10 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			 * SQL informations
 			 */
 			$sqlversion = $wpdb->get_var( "SELECT VERSION() AS version" );
-			$mysqlinfo = $wpdb->get_results("SHOW VARIABLES LIKE 'sql_mode'");
-			if ( is_array($mysqlinfo) )
+			$mysqlinfo  = $wpdb->get_results( "SHOW VARIABLES LIKE 'sql_mode'" );
+			if ( is_array( $mysqlinfo ) )
 				$sql_mode = $mysqlinfo[0]->Value;
-			if ( empty($sql_mode) )
+			if ( empty( $sql_mode ) )
 				$sql_mode = __( 'Undefined' );
 			
 			$output .= "\n" . '<h4>' . __( 'MySQL' ) . '</h4>' . "\n";

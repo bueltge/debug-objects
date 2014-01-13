@@ -344,6 +344,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Conditional_Tags'  => __( 'Conditional Tags' ), // conditional tags
 					'Post_Meta'         => __( 'Get a list of arguments to custom post types and a list of post meta for the current post type' ),
 					'Theme'             => __( 'Theme and Template informations' ),
+					'Html_Inspector'    => __( 'HTML Inspector is a code quality tool to check markup. Any errors will be reported to the console of the browser. This works only on front end. <a href="https://github.com/philipwalton/html-inspector" title="GitHub Repository for the tool.">More information</a> about the solutions.' ),
 					'Translation'       => __( 'Get translation data: language, files, possible problems.' ),
 					'Enqueue_Stuff'     => __( 'Introduced scripts and stylesheets' ),// Scripts and styles
 					'Debug_Hooks'       => __( 'List existing Hooks and assigned functions and count of accepted args' ), // Hooks, faster

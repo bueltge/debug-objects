@@ -177,7 +177,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 						self :: $by_settings[] = ucwords( $class );
 				}
 			}
-			$classes = apply_filters( 'debug_objects_classes', self :: $by_settings );
+			$classes = apply_filters( 'debug_objects_classes', self::$by_settings );
 			
 			self::set_cookie_control();
 			
@@ -190,12 +190,12 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				add_action( 'init', array( 'Debug_Objects_Rewrite_Backtrace', 'init' ) );
 			}
 			
-			if ( $view || self::debug_control()
-			) {
+			if ( $view || self::debug_control()	) {
 				foreach ( $classes as $key => $require ) {
 					if ( ! class_exists( 'Debug_Objects_' . $require ) ) {
 						$file = dirname( __FILE__ ) . DIRECTORY_SEPARATOR 
 							. 'inc/class-' . strtolower( $require ) . '.php';
+
 						if ( file_exists( $file ) )
 							require_once $file;
 						
@@ -364,6 +364,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @return  void
 		 */
 		public function on_uninstall() {
+
 			unregister_setting( self::$option_string . '_group', self::$option_string );
 			delete_option( self::$option_string );
 				
@@ -453,13 +454,15 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 						$val = preg_replace( '/;n;/', ';N;', $val );
 						$val = str_replace( "\n", "", $val );
 						$val = normalize_whitespace($val);
+
 						if ( is_serialized_string( $val ) )
 							$obj = unserialize( $val );
 						else
 							$obj = normalize_whitespace( $val );
-						$is_serialized = ($obj !== false && preg_match("/^(O:|a:)/", $val));
+
 						$output .= "<li class=\"vt-$vt\"><span class=\"key\">" . htmlspecialchars($key) . '</span>';
 						$output .= "<br/><small><em>type</em>: $vt | <em>size</em>: ".strlen($val). " | <em>serialized</em>: ".(is_serialized($val) !== false?"true":"false"). '</small><br/>';
+
 						if ( is_serialized($val) ) {
 							$output .= Debug_Objects :: get_as_ul_tree($obj, "<small><em>value</em>:</small> <span class=\"value\">[unserialized]</span>", true);
 						} else {
@@ -468,6 +471,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 							else
 								$output .= '';
 						}
+
 						$output .= '</li>';
 					break;
 					default: //what the hell is this ?
@@ -515,13 +519,13 @@ if ( ! function_exists( 'debug_to_console' ) ) {
 	/**
 	 * Simple helper to debug to the console
 	 * 
-	 * @param  array, String $data
+	 * @param  object, array, string $data
 	 * @return string
 	 */
 	function debug_to_console( $data ) {
 		
 		$output = '';
-		
+		/*
 		if ( is_array( $data ) ) {
 			$output .= "console.warn( 'Debug Objects with Array.' ); 
 				console.log( '" . preg_replace( 
@@ -541,7 +545,11 @@ if ( ! function_exists( 'debug_to_console' ) ) {
 		} else {
 			$output .= "console.log( 'Debug Objects: {$data}' );";
 		}
-		
+		*/
+		// new and smaller version, easier to maintain
+		$output .= 'console.info( \'Debug in Console via Debug Objects Plugin:\' );';
+		$output .= 'console.log(' . json_encode( $data ) . ');';
+
 		echo '<script>' . $output . '</script>';
 	}
 }
