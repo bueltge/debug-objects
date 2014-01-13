@@ -256,9 +256,14 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 						
 						$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
 						
+						// format the query
+						$formatted_query = htmlspecialchars( $query['query'] );
+						if ( class_exists( 'SqlFormatter' ) )
+							$formatted_query = SqlFormatter::format( $formatted_query );
+						
 						$query['query'] = $query['time'] . __( 's' ) . ' / ' 
 							. number_format_i18n( sprintf( '%0.1f', $query['time'] * 1000), 1 ) . __( 'ms' ) 
-							. '<br><code>' . SqlFormatter::format( htmlspecialchars( $query['query'] ) ) . '</code>';
+							. '<br><code>' . $formatted_query . '</code>';
 						// build function chain/backtrace
 						$function_chain = implode( ' &#8594; ', $query['function_chain'] );
 						
@@ -392,7 +397,8 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 					if ( isset($q[1]) && ! empty($time) ) {
 						$s = nl2br( esc_html( $q[0] ) );
 						$s = trim( preg_replace( '/[[:space:]]+/', ' ', $s) );
-						$s = SqlFormatter::format( $s );
+						if ( class_exists( 'SqlFormatter' ) )
+							$s = SqlFormatter::format( $s );
 						$debug_queries .= '<li><strong>' 
 							. __( 'Query:' ) . '</strong> <code>' 
 							. $s . '</code></li>';
