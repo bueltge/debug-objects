@@ -40,7 +40,7 @@ if ( ! class_exists( 'Debug_Objects_About' ) ) {
 			if ( ! current_user_can( '_debug_objects' ) )
 				return;
 			
-			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
+			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ), 99 );
 		}
 
 		/**
