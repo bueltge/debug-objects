@@ -393,12 +393,16 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 						. __( 'Time:' ) . '</strong> ' 
 						. $time_ms . __( 'ms' ) 
 						. ' (' . $time . __( 's' ) . ')</li>';
-					
-					if ( isset($q[1]) && ! empty($time) ) {
+					//debug_to_console($q);
+					if ( isset( $time ) ) {
+						
 						$s = nl2br( esc_html( $q[0] ) );
 						$s = trim( preg_replace( '/[[:space:]]+/', ' ', $s) );
+						
+						// format the query
 						if ( class_exists( 'SqlFormatter' ) )
 							$s = SqlFormatter::format( $s );
+						
 						$debug_queries .= '<li><strong>' 
 							. __( 'Query:' ) . '</strong> <code>' 
 							. $s . '</code></li>';
