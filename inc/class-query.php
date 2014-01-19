@@ -46,6 +46,8 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 		 */
 		protected $_query = array();
 		
+		protected $_content_query = array();
+		
 		/**
 		 * Stored Backtrace Data from global query
 		 * @var   array
@@ -91,7 +93,12 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 			
 			$tabs[] = array(
 				'tab'      => __( 'Plugin Queries' ),
-				'function' => array( $this, 'render_data' )
+				'function' => array( $this, 'render_wp_plugins_data' )
+			);
+			
+			$tabs[] = array(
+				'tab'      => __( 'WP_Content Queries' ),
+				'function' => array( $this, 'render_wp_content_data' )
 			);
 			
 			return $tabs;
@@ -101,14 +108,14 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 		 * Filters wpdb::query
 		 * This filter stores all queries and their backtraces for later use
 		 * 
-		 * @param string $query
+		 * @param  string $query
 		 * @return string
 		 */
 		public function store_queries( $query ) {
 			
 			$trace = debug_backtrace();
 			array_splice( $trace, 0, 3 ); // Get rid of the tracer's fingerprint (and wpdb::query)
-			$this->_query[] = array( 'query' => $query, 'backtrace' => $trace );
+			$this->_query[] = $this->_content_query[] = array( 'query' => $query, 'backtrace' => $trace );
 			
 			return $query;
 		}
@@ -118,14 +125,14 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 		 * 
 		 * @return  Array  All data to query, if is a plugin query
 		 */
-		public function validate_plugins_to_query() {
+		public function validate_wp_plugins_to_query() {
 			global $wpdb;
 			
 			// Gather data about existing plugins
-			$rootData = array();
+			$root_data = array();
 			foreach( get_plugins() as $filename => $data ) {
-				list($root) = explode( '/', $filename, 2 );
-				$root_data[$root] = array_change_key_case($data);
+				list( $root ) = explode( '/', $filename, 2 );
+				$root_data[$root] = array_change_key_case( $data );
 			}
 			
 			// set var with query data
@@ -138,7 +145,7 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 				
 				foreach( $data['backtrace'] as $call ) {
 					
-					$functionChain[] = ( isset($call['class']) ? "{$call['class']}::" : '' ) . $call['function'];
+					$function_chain[] = ( isset($call['class']) ? "{$call['class']}::" : '' ) . $call['function'];
 					
 					// same strings in local and web envirement
 					$wp_plugin_dir = str_replace( '\\', '/', WP_PLUGIN_DIR );
@@ -152,7 +159,7 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 						) {
 						
 						// get only the plugin file path, without plugin dir
-						list($root) = explode( '/', plugin_basename( $call['file'] ), 2 );
+						list( $root ) = explode( '/', plugin_basename( $call['file'] ), 2 );
 						$file = str_replace( $wp_plugin_dir, '', $call['file'] );
 						
 						// Make sure the array is set up
@@ -179,7 +186,7 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 							'line'           => $call['line'],
 							'query'          => $data['query'],
 							'time'           => $data['time'],
-							'function_chain' => array_reverse( $functionChain ),
+							'function_chain' => array_reverse( $function_chain ),
 						);
 						
 						// add 1 to query counter
@@ -198,14 +205,76 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 		}
 		
 		/**
+		 * Map Queries from wp-content, typical from Theme, and create array with data
+		 * 
+		 * @return  Array  All data to query, if is a query from wp-content
+		 */
+		public function validate_wp_content_to_query() {
+			global $wpdb;
+			
+			// set var with query data
+			$raw_data = $this->_content_query;
+			// clear var
+			$this->_content_query = array();
+			
+			$query_counter = 0;
+			foreach( $raw_data as $key => $data ) {
+				
+				foreach( $data['backtrace'] as $call ) {
+					
+					$function_chain[] = ( isset($call['class']) ? "{$call['class']}::" : '' ) . $call['function'];
+					
+					// Same strings in local and web envirement
+					$wp_content_dir = str_replace( '\\', '/', WP_CONTENT_DIR );
+					
+					// Same strings in local and web envirement
+					if ( ! empty( $call['file'] ) )
+						$call['file'] = str_replace( '\\', '/', $call['file'] );
+						
+					// If is a part from wp-content
+					if ( ! empty( $call['file'] ) 
+						&& FALSE !== strpos( $call['file'], $wp_content_dir )
+						) {
+						
+						$data['time'] = 'FALSE';
+						// add time stamp of query
+						foreach( $wpdb->queries as $key => $arr ) {
+							if ( FALSE !== strpos( $arr[0], $data['query'] ) )
+								$data['time'] = $arr[1];
+						}
+						
+						// Save parsed data
+						$this->_content_query[] = array(
+							'file'           => $call['file'],
+							'line'           => $call['line'],
+							'function'       => $call['function'],
+							'query'          => $data['query'],
+							'time'           => $data['time'],
+							'function_chain' => array_reverse( $function_chain ),
+						);
+						
+						// add 1 to query counter
+						$query_counter ++;
+					}
+					
+				}
+			
+			}
+			
+			$this->_content_query['query_count'] = $query_counter;
+			
+			return $this->_content_query;
+		}
+		
+		/**
 		 * Render tracer's data
 		 * 
 		 * @param array $data
 		 */
-		public function render_data( $data = NULL ) {
+		public function render_wp_plugins_data( $data = NULL ) {
 			
 			if ( NULL === $data )
-				$data = $this->validate_plugins_to_query();
+				$data = $this->validate_wp_plugins_to_query();
 			
 			$plugin_count = count( $data ) - 1;
 			
@@ -257,12 +326,13 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 						$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
 						
 						// format the query
-						$formatted_query = htmlspecialchars( $query['query'] );
+						$formatted_query = $query['query'];
 						if ( class_exists( 'SqlFormatter' ) )
-							$formatted_query = SqlFormatter::format( $formatted_query );
+							$formatted_query = SqlFormatter::highlight( $formatted_query );
 						
-						$query['query'] = $query['time'] . __( 's' ) . ' / ' 
-							. number_format_i18n( sprintf( '%0.1f', $query['time'] * 1000), 1 ) . __( 'ms' ) 
+						$query['query'] = 
+							number_format_i18n( sprintf( '%0.1f', $query['time'] * 1000), 1 ) . __( 'ms' ) 
+							. ' (' . $query['time'] . __( 's)' )
 							. '<br><code>' . $formatted_query . '</code>';
 						// build function chain/backtrace
 						$function_chain = implode( ' &#8594; ', $query['function_chain'] );
@@ -283,6 +353,92 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 					}
 					$output .= '</table>' . "\n"	;
 				}
+				$x ++;
+			}
+			
+			echo $output;
+		}
+		
+		/**
+		 * Render tracer's data
+		 * 
+		 * @param array $data
+		 */
+		public function render_wp_content_data( $data = NULL ) {
+			
+			if ( NULL === $data )
+				$data = $this->validate_wp_content_to_query();
+			
+			$output = '';
+			
+			$output .= '<ul>' . "\n";
+			$output .= '<li><strong>' . __( 'Queries Total:' ) . ' ' . $data['query_count'] . '</strong></li>' . "\n";
+			$output .= '</ul><hr />' . "\n";
+			
+			// remove counter, not necassary from here
+			unset( $data['query_count'] );
+			
+			$output .= '<ol>' . "\n";
+		
+			$x = 1;
+			foreach( $data as $content_data ) {
+				$output .= '<li><a href="#content_anker_' . $x . '">' 
+					. $content_data['function'] . '</a></li>' . "\n";
+				$x ++;
+			}
+			
+			$output .= '</ol><hr />' . "\n";
+			
+			$x = 1;
+			$class = '';
+			foreach( $data as $content_data ) {
+				
+				$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
+				
+				$output .= '<h1 id="content_anker_' . $x . '">' . $x . '. ' . __( 'Function:' ) . ' ' . $content_data['function'] . '</h1>' . "\n";
+				
+				$filename = htmlspecialchars( $content_data['file'] );
+					
+				$output .= sprintf('<p><code>%s</code></p>
+					<table>
+						<tr>
+							<th>%s</th>
+							<th>%s</th>
+						</tr>',
+					htmlspecialchars( $filename ),
+					__( 'Line' ),
+					__( 'Query &amp; Function Chain' )
+				);
+				//var_dump($content_data);
+				
+				// format the query
+				$formatted_query = $content_data['query'];
+				if ( class_exists( 'SqlFormatter' ) )
+					$formatted_query = SqlFormatter::highlight( $formatted_query );
+				
+				$content_data['query'] = 
+					number_format_i18n( sprintf( '%0.1f', $content_data['time'] * 1000), 1 ) . __( 'ms' ) 
+					. ' (' . $content_data['time'] . __( 's)' )
+					. '<br><code>' . $formatted_query . '</code>';
+				// build function chain/backtrace
+				$function_chain = implode( ' &#8594; ', $content_data['function_chain'] );
+				
+				$output .= '<tr'. $class .'>
+						<td>' . $content_data['line'] . '</td>
+						<td>' . $content_data['query'] . '</td>
+					</tr>';
+					
+				if ( STACKTRACE ) {
+					$output .= 
+						"<tr>
+							<td></td>
+							<td>$function_chain</td>
+						</tr>";
+				}
+				
+				
+				$output .= '</table>' . "\n";
+				
 				$x ++;
 			}
 			
@@ -396,12 +552,12 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 					
 					if ( isset( $time ) ) {
 						
-						$s = nl2br( esc_html( $q[0] ) );
+						$s = nl2br( $q[0] );
 						$s = trim( preg_replace( '/[[:space:]]+/', ' ', $s) );
 						
 						// format the query
 						if ( class_exists( 'SqlFormatter' ) )
-							$s = SqlFormatter::format( $s );
+							$s = SqlFormatter::highlight( $s );
 						
 						$debug_queries .= '<li><strong>' 
 							. __( 'Query:' ) . '</strong> <code>' 
