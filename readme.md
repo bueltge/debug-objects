@@ -20,7 +20,8 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Separate user and usermeta tables
 * FTP and SSH definitions
 * Detailed Query information
-* Query informaton about the active plugins, nice to identifier the longrunners on the plugins
+* Query information about the active plugins, nice to identifier the longrunners on the plugins
+* Query information about all queries from `wp-content`-directory
 * Conditional tags; value of the tag
 * Theme information
 * HTML Inspector is a code quality tool to check markup. Any errors will be reported to the console of the browser. This works only on front end. use [HTML Inspector](https://github.com/philipwalton/html-inspector)
