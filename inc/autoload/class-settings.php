@@ -352,8 +352,8 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'All_Hooks'         => __( 'List all hooks, very slow and use many RAM' ),
 					'Page_Hooks'        => __( 'Hooks of current page' ),// Hook Instrument for active page
 					'Screen_Info'       => __( 'Shows all the screen info for the current page from the admin backend' ),
-					'Query'             => __( 'Three Tabs: Only the queries from plugins and wp-content in each tab with runtime and a tab with content of all queries and his runtime in order of runtime' ),// WP Queries
-					'Stack_Trace'       => __( 'Stack Trace, all files and functions on each query. Query options is prerequisite.<br />A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.' ),
+					'DB_Query'             => __( 'Three Tabs: Only the database queries from plugins and wp-content in each tab with runtime and a tab with content of all queries and his runtime in order of runtime' ),// WP Queries
+					'Stack_Trace'       => __( 'Stack Trace, all files and functions on each query. The Database-Query options is prerequisite.<br />A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.' ),
 					'Cache'             => __( 'Contents of Cache' ),// WP Cache
 					'Cron'              => __( 'Crons' ),
 					'Memory'            => __( 'Memory Used, Load Time and included Files, but without all file in the folder <code>wp-admin</code>, <code>wp-includes</code>' ),

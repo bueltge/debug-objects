@@ -14,7 +14,7 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Debug_Objects_Query' ) ) {
+if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 	
 	// disable mySQL Session Cache
 	if ( ! defined( 'QUERY_CACHE_TYPE_OFF' ) )
@@ -32,9 +32,7 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 	if ( SQL_FORMATTING )
 		require_once 'SqlFormatter/SqlFormatter.php';
 	
-	//add_action( 'admin_init', array( 'Debug_Objects_Query', 'init' ) );
-	
-	class Debug_Objects_Query extends Debug_Objects {
+	class Debug_Objects_Db_Query extends Debug_Objects {
 		
 		private static $replaced_functions = array( 'require_once', 'require', 'include', 'include_once' );
 		
@@ -87,17 +85,17 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 
-				'tab'      => __( 'Queries' ),
+				'tab'      => __( 'DB Queries' ),
 				'function' => array( $this, 'get_queries' )
 			);
 			
 			$tabs[] = array(
-				'tab'      => __( 'Plugin Queries' ),
+				'tab'      => __( 'Plugin DB Queries' ),
 				'function' => array( $this, 'render_wp_plugins_data' )
 			);
 			
 			$tabs[] = array(
-				'tab'      => __( 'WP_Content Queries' ),
+				'tab'      => __( 'WP_Content DB Queries' ),
 				'function' => array( $this, 'render_wp_content_data' )
 			);
 			
