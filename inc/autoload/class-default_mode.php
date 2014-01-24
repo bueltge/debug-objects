@@ -4,7 +4,7 @@
  *
  * @package     Debug Objects
  * @subpackage  Default Mode
- * @author      Frank B&uuml;ltge
+ * @author      Frank Bültge
  * @since       2.1.11
  */
 
