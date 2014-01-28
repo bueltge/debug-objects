@@ -19,7 +19,9 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 	class Debug_Objects_Query {
 	
 		private static $classobj = NULL;
-	
+		
+		public $callee;
+		
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
 		 * 
@@ -37,9 +39,16 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 	
 		public function __construct() {
 			
-			$level = defined('E_USER_DEPRECATED') ? E_USER_DEPRECATED : E_USER_WARNING;
-			trigger_error( 'Class Debug_Objects_Query was replaced with Debug_Objects_Db_Query. Please re-save the settings of the Debug Objects Plugin.', $level );
+			add_action( 'init', array( $this, 'get_message' ) );
+		}
+		
+		public function get_message() {
+			
 			_deprecated_function( __CLASS__, '2.1.17', 'Debug_Objects_Db_Query' );
+			
+			$level = defined( 'E_USER_DEPRECATED' ) ? E_USER_DEPRECATED : E_USER_WARNING;
+			$error_msg =  htmlentities( 'Class Debug_Objects_Query was replaced with Debug_Objects_Db_Query. Please re-save the settings of the Debug Objects Plugin.' );
+			//trigger_error( $error_msg, $level );
 		}
 	
 	}
