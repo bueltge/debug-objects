@@ -38,7 +38,9 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 		public function __construct() {
 			
 			$level = defined('E_USER_DEPRECATED') ? E_USER_DEPRECATED : E_USER_WARNING;
-			trigger_error( 'Class Debug_Objects_Query was replaced with Debug_Objects_Db_Query. Please re-save the settings of the Debug Objects Plugin.', $level );
+			$msg = __( 'Class Debug_Objects_Query was replaced with Debug_Objects_Db_Query. Please re-save the settings of the Debug Objects Plugin.' );
+			//trigger_error( $msg, $level );
+			_deprecated_file( 'class-query.php', '2.1.17', 'class-db_query.php', $msg );
 			_deprecated_function( __CLASS__, '2.1.17', 'Debug_Objects_Db_Query' );
 		}
 	
