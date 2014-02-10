@@ -51,13 +51,8 @@ if ( ! class_exists( 'Debug_Objects_Constants' ) ) {
 		
 		public function view_def_constants( $echo = TRUE ) {
 			
-			$get_def_constants = get_defined_constants();
-			
-			$export  = var_export( $get_def_constants, TRUE );
-			$output  = '<h4>Total Actions: ' . count( $get_def_constants ) . '</h4>';
-			$escape  = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
-			$output .= '<pre><code>' . $escape . '</code></pre>';
-			//$output .= parent :: get_as_ul_tree( $get_def_constants, '<strong class="h4">All Defined Constants</strong>' );
+			$output  = '<h4>Total Actions: ' . count( get_defined_constants() ) . '</h4>';
+			$output .= Debug_Objects::pre_print( get_defined_constants(), '', TRUE );
 			
 			if ( $echo )
 				echo $output;

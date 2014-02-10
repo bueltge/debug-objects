@@ -487,6 +487,27 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			return $output;
 		}
 		
+		/**
+		 * Print debug output
+		 *
+		 * @since     03/11/2012
+		 * @param     mixed $var
+		 * @param     string $before
+		 * @param     bool   $return
+		 * @internal  param $mixed
+		 * @return    string
+		 */
+		public static function pre_print( $var, $before = '', $return = FALSE ) {
+			
+			$export = var_export( $var, TRUE );
+			$escape = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
+			
+			if ( $return )
+				return $before . '<pre>' . $escape . '</pre>';
+			else
+				print $before . '<pre>' . $escape . '</pre>';
+		}
+		
 	} // end class
 	
 } // end if class exists
@@ -505,13 +526,7 @@ if ( ! function_exists( 'pre_print' ) ) {
 	 */
 	function pre_print( $var, $before = '', $return = FALSE ) {
 		
-		$export = var_export( $var, TRUE );
-		$escape = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
-
-		if ( $return )
-			return $escape;
-		else
-			print $before . '<pre>' . $escape . '</pre>';
+		Debug_Objects::pre_print( $var, $before, $return );
 	}
 }
 
