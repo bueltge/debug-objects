@@ -65,30 +65,14 @@ if ( ! class_exists( 'Debug_Objects_Debug' ) ) {
 			if ( ! isset( $var ) )
 				$var = $GLOBALS['wp_version'];
 			
-			$output  = '<pre>';
-			$output .= call_user_func( $function, $var );
-			$output .= '</pre>';
-			
-			$output .= '<h4>pre_print( $var )</h4>' . $this->pre_print( $var, FALSE );
+			$var    = apply_filters( 'debug_objects_debug_var', $var );
+			$output = '<h4>Debug</h4>' . Debug_Objects::pre_print( $var, '', TRUE );
 			
 			if ( $echo )
 				echo $output;
 			
 			if ( $die )
 				wp_die( __( 'Debug Objects wp_die on Debug method.', parent::get_plugin_data() ) );
-			
-			return apply_filters( 'debug_objects_debug_var', $var );
-		}
-		
-		public function pre_print( $var, $echo = FALSE ) {
-			
-			$export = var_export( $var, TRUE );
-			$escape = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
-			
-			if ( $echo )
-				print "<pre>$escape</pre>";
-			
-			return "<pre>$escape</pre>";
 		}
 		
 	} // end class

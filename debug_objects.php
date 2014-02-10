@@ -13,7 +13,7 @@
  * License:     GPLv3
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
- * Last Change: 11/20/2013
+ * Last Change: 02/10/2014
  */
 
 // avoid direct calls to this file, because now WP core and framework has been used.
