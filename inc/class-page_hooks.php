@@ -102,10 +102,17 @@ class Debug_Objects_Page_Hooks {
 		$filter_hooks     = '';
 		$filter_callbacks = '';
 		
-		// Use this hook for remove Filter Hook, like custom filter hooks
-		$filters_storage = apply_filters( 'debug_objects_wp_actions', $this->filters_storage );
+		// Use this hook for remove Filter Hook from the completly array, like custom filter hooks
+		$filters_storage = apply_filters( 'debug_objects_wp_filters', $this->filters_storage );
 		
 		foreach ( $filters_storage as $index => $the_ ) {
+			
+			// Use this hook for remove Filter Hook, like custom filter hooks
+			$filter_hook = apply_filters( 'debug_objects_filter_tag', array() );
+			// Filter Filter Hooks
+			if ( in_array( $the_['tag'], $filter_hook ) ) {
+				break;
+			}
 			
 			$hook_callbacks = array();
 			
