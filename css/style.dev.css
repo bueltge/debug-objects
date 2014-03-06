@@ -61,6 +61,11 @@ div#debugobjects #queries ul {
 	list-style-type: disc;
 }
 
+div#debugobjects #cache .root ul {
+	border-left: 1px dotted #808080;
+	padding-left: 30px;
+}
+
 div#debugobjects #constants ul li,
 div#debugobjects #queries ul {
 	padding: 10px;

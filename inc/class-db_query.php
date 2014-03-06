@@ -113,7 +113,11 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 			
 			$trace = debug_backtrace();
 			array_splice( $trace, 0, 3 ); // Get rid of the tracer's fingerprint (and wpdb::query)
-			$this->_query[] = $this->_content_query[] = array( 'query' => $query, 'backtrace' => $trace );
+			
+			$this->_query[] = $this->_content_query[] = array(
+				'query'     => $query,
+				'backtrace' => $trace
+			);
 			
 			return $query;
 		}
@@ -407,7 +411,6 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 					__( 'Line' ),
 					__( 'Query &amp; Function Chain' )
 				);
-				//var_dump($content_data);
 				
 				// format the query
 				$formatted_query = $content_data['query'];
