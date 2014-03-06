@@ -57,7 +57,8 @@ if ( ! class_exists( 'Debug_Objects_Classes' ) ) {
 		 */
 		public function get_classes( $sort = TRUE, $echo = TRUE ) {
 			
-			$classes = get_declared_classes();
+			// Use this Hook to remove or add your custom classes
+			$classes = apply_filters( 'debug_objects_declared_classes', get_declared_classes() );
 			if ( $sort )
 				sort( $classes );
 			
