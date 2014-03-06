@@ -104,10 +104,10 @@ class Debug_Objects_Options {
 		
 		if ( is_multisite() ) {
 			echo '<h4 id="multisite">Multisite Options</h4>';
-			pre_print( $this->autoload_mu_options );
+			Debug_Objects::pre_print( $this->autoload_mu_options, '', FALSE );
 		}
 		
 		echo '<h4 id="site">Site Options</h4>';
-		pre_print( $this->autoload_options );
+		Debug_Objects::pre_print( $this->autoload_options, '', FALSE );
 	}
 }

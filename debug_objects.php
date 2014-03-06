@@ -61,7 +61,8 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		public static $by_settings = array( 'Wrap' );
 		// exclude class for central include
 		public static $exclude_class = array( 'Backend', 'Frontend', 'Stack_Trace' );
-
+		// store classes from settings
+		public $store_classes = array();
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
 		 *
@@ -177,7 +178,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 						self :: $by_settings[] = ucwords( $class );
 				}
 			}
-			$classes = apply_filters( 'debug_objects_classes', self::$by_settings );
+			$classes = $this->store_classes = apply_filters( 'debug_objects_classes', self::$by_settings );
 			
 			self::set_cookie_control();
 			
@@ -204,6 +205,11 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				}
 			}
 			
+		}
+
+		public function get_classes() {
+			
+			return $this->store_classes;
 		}
 
 		/**

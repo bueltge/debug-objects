@@ -174,7 +174,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			if ( is_multisite() && ! is_plugin_active_for_network( parent :: $plugin ) )
 				return NULL;
 			
-			$classes = apply_filters( 'debug_objects_classes', array() );
+			$classes = apply_filters( 'debug_objects_css_classes', array() );
 			$classes = implode( ' ', $classes );
 			
 			$wp_admin_bar->add_menu(
@@ -188,7 +188,8 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 				)
 			);
 			
-			$url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$scheme = ( is_ssl() ? 'https' : 'http' );
+			$url = $scheme . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 			$str = array( '?debug', '&debug', '#debugobjects' );
 			$url = esc_url( str_replace( $str, '', $url ) );
 			$get = '?';

@@ -36,6 +36,9 @@ if ( ! class_exists( 'Debug_Objects_Classes' ) ) {
 				return;
 			
 			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
+			
+			// Filter classes from this plugin
+			add_filter( 'debug_objects_declared_classes', array( $this, 'remove_debug_objects_classes' ) );	
 		}
 		
 		public function get_conditional_tab( $tabs ) {
@@ -46,6 +49,16 @@ if ( ! class_exists( 'Debug_Objects_Classes' ) ) {
 			);
 			
 			return $tabs;
+		}
+		
+		public function remove_debug_objects_classes( $classes ) {
+			
+			foreach ( $classes as $count => $class ) {
+				if ( 'Debug_Objects' === substr( $class, 0, 13 ) )
+					unset( $classes[ $count ] );
+			}
+			
+			return $classes;
 		}
 		
 		/**
@@ -65,13 +78,14 @@ if ( ! class_exists( 'Debug_Objects_Classes' ) ) {
 			if ( ! $echo ) {
 				return $classes;
 			} else {
-				$i         = 0;
+				
 				$style     = '';
 				$substyle  = '';
 				$output    = '';
 				$suboutput = '';
 				foreach ( $classes as $count => $class ) {
 					
+					$count ++;
 					$subclasses = '';
 					$style      = ( ' class="alternate"' == $style ) ? '' : ' class="alternate"';
 					$output    .= '<tr' . $style . '><td>' . $count . '</td><td>' . $class . '</td>';
@@ -84,7 +98,6 @@ if ( ! class_exists( 'Debug_Objects_Classes' ) ) {
 					}
 					
 					$output .= '</tr>';
-					$i ++;
 				}
 				echo '<h4>Total Classes: ' . count( $classes ) . '</h4>';
 				echo '<table>' . $output . '</table>';
