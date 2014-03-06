@@ -94,7 +94,7 @@ class Debug_Objects_Page_Hooks {
 	public function get_hooks() {
 		global $wp_actions;
 		
-		// Use this hook for remove Hook, like custom action hooks
+		// Use this hook for remove Action Hook, like custom action hooks
 		$wp_actions = apply_filters( 'debug_objects_wp_actions', $wp_actions );
 		
 		$callbacks        = array();
@@ -102,7 +102,10 @@ class Debug_Objects_Page_Hooks {
 		$filter_hooks     = '';
 		$filter_callbacks = '';
 		
-		foreach ( $this->filters_storage as $index => $the_ ) {
+		// Use this hook for remove Filter Hook, like custom filter hooks
+		$filters_storage = apply_filters( 'debug_objects_wp_actions', $this->filters_storage );
+		
+		foreach ( $filters_storage as $index => $the_ ) {
 			
 			$hook_callbacks = array();
 			
