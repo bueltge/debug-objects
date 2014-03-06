@@ -498,10 +498,15 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 				}
 				
 				$debug_queries .= '<h3>' . __( 'Queries' ) . '</h3>';
+				
 				$debug_queries .= '<ul>' . "\n";
 				$debug_queries .= '<li><strong>' . __( 'Total:' ) . ' ' 
 					. count($this->_queries) . ' ' . __( 'queries' ) 
 					. '</strong></li>';
+				$debug_queries .= '<li><strong>' . __( 'Page generated in' ) . ' '
+					. number_format_i18n( sprintf('%0.1f', $total_time * 1000), 1 ) . __( 'ms ( ' )
+					. timer_stop() . __( 's' ) . ' )</strong></li>';
+				
 				if ( count($this->_queries) != get_num_queries() ) {
 					$debug_queries .= '<li><strong>' . __( 'Total:' ) . ' ' 
 						. get_num_queries() . ' ' 
@@ -510,6 +515,7 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 						. __( '&raquo; Different values in num_query and query? - please set the constant' ) 
 						. ' <code>define( \'SAVEQUERIES\', TRUE );</code>' . __( 'in your' ) . ' <code>wp-config.php</code></li>' . "\n";
 				}
+				
 				$debug_queries .= '</ul>' . "\n";
 				
 				// Database errors
