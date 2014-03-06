@@ -159,7 +159,7 @@ class Debug_Objects_Page_Hooks {
 		$output .= '<tr class="nohover">';
 		
 		$output .= "\t" . '<td><table>';
-		$output .= "\t" . '<tr><td>Fired in order</td><td>Hook</td></tr>';
+		$output .= "\t" . '<tr><td>Fired in order</td><td>Action Hook</td></tr>';
 		
 		$order = 1;
 		foreach ( $wp_actions as $key => $val ) {
@@ -183,6 +183,8 @@ class Debug_Objects_Page_Hooks {
 		*/
 		$output .= "\t" . '<td>';
 		$output .= "\t\t" . '<table>';
+		$output .= "\t" . '<tr><td>Fired in order</td><td>Filter Hook & Callback</td></tr>';
+		$order = 1;
 		foreach ( $callbacks as $hook => $values ) {
 			
 			// remove dublicate items
@@ -194,11 +196,12 @@ class Debug_Objects_Page_Hooks {
 					$escape = __( 'Empty' );
 				
 				$output .= '<tr>';
-				$output .= "\t" . '<td>' . __( 'Hook:' ) 
+				$output .= "\t" . '<td>'. $order . '.</td><td>' . __( 'Hook:' ) 
 					. ' <code>' . $hook . '</code><br> ' . $escape . '</td>';
 				$output .= '</tr>';
 			}
-
+			
+			$order ++;
 		}
 		$output .= "\t\t" . '</table>';
 		$output .= "\t" . '</td>';
