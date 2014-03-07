@@ -19,6 +19,7 @@ div#debugobjects {
 
 div#debugobjects code {
 	word-wrap: break-word;
+	padding: 0;
 }
 
 div#debugobjects pre {
@@ -26,7 +27,8 @@ div#debugobjects pre {
 	background-color: transparent !important;
 	width: 100%;
 	overflow: auto;
-	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }
 
 div#debugobjectstabs {
