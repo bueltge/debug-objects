@@ -6,7 +6,7 @@
  * @subpackage  Cache
  * @author      Frank Bültge
  * @since       2.0.0
- * @version     03/01/2014
+ * @version     03/07/2014
  */
 
 if ( ! function_exists( 'add_action' ) ) {
@@ -377,70 +377,76 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 			$output .= '<li><strong>' . __( 'Queries Total:' ) . ' ' . $data['query_count'] . '</strong></li>' . "\n";
 			$output .= '</ul><hr />' . "\n";
 			
-			// remove counter, not necassary from here
-			unset( $data['query_count'] );
+			if ( 0 === $data['query_count'] )
+				$output .= __( 'No queries from wp-content.' ); 
 			
-			$output .= '<ol>' . "\n";
-		
-			$x = 1;
-			foreach( $data as $content_data ) {
-				$output .= '<li><a href="#content_anker_' . $x . '">' 
-					. $content_data['function'] . '</a></li>' . "\n";
-				$x ++;
-			}
+			if ( 0 !== $data['query_count'] ) {
+				
+				// remove counter, not necassary from here
+				unset( $data['query_count'] );
 			
-			$output .= '</ol><hr />' . "\n";
+				$output .= '<ol>' . "\n";
 			
-			$x = 1;
-			$class = '';
-			foreach( $data as $content_data ) {
-				
-				$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
-				
-				$output .= '<h1 id="content_anker_' . $x . '">' . $x . '. ' . __( 'Function:' ) . ' ' . $content_data['function'] . '</h1>' . "\n";
-				
-				$filename = htmlspecialchars( $content_data['file'] );
-					
-				$output .= sprintf('<p><code>%s</code></p>
-					<table>
-						<tr>
-							<th>%s</th>
-							<th>%s</th>
-						</tr>',
-					htmlspecialchars( $filename ),
-					__( 'Line' ),
-					__( 'Query &amp; Function Chain' )
-				);
-				
-				// format the query
-				$formatted_query = $content_data['query'];
-				if ( class_exists( 'SqlFormatter' ) )
-					$formatted_query = SqlFormatter::highlight( $formatted_query );
-				
-				$content_data['query'] = 
-					number_format_i18n( sprintf( '%0.1f', $content_data['time'] * 1000), 1 ) . __( 'ms' ) 
-					. ' (' . $content_data['time'] . __( 's)' )
-					. '<br><code>' . $formatted_query . '</code>';
-				// build function chain/backtrace
-				$function_chain = implode( ' &#8594; ', $content_data['function_chain'] );
-				
-				$output .= '<tr'. $class .'>
-						<td>' . $content_data['line'] . '</td>
-						<td>' . $content_data['query'] . '</td>
-					</tr>';
-					
-				if ( STACKTRACE ) {
-					$output .= 
-						"<tr>
-							<td></td>
-							<td>$function_chain</td>
-						</tr>";
+				$x = 1;
+				foreach( $data as $content_data ) {
+					$output .= '<li><a href="#content_anker_' . $x . '">' 
+						. $content_data['function'] . '</a></li>' . "\n";
+					$x ++;
 				}
 				
+				$output .= '</ol><hr />' . "\n";
 				
-				$output .= '</table>' . "\n";
-				
-				$x ++;
+				$x = 1;
+				$class = '';
+				foreach( $data as $content_data ) {
+					
+					$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
+					
+					$output .= '<h1 id="content_anker_' . $x . '">' . $x . '. ' . __( 'Function:' ) . ' ' . $content_data['function'] . '</h1>' . "\n";
+					
+					$filename = htmlspecialchars( $content_data['file'] );
+						
+					$output .= sprintf('<p><code>%s</code></p>
+						<table>
+							<tr>
+								<th>%s</th>
+								<th>%s</th>
+							</tr>',
+						htmlspecialchars( $filename ),
+						__( 'Line' ),
+						__( 'Query &amp; Function Chain' )
+					);
+					
+					// format the query
+					$formatted_query = $content_data['query'];
+					if ( class_exists( 'SqlFormatter' ) )
+						$formatted_query = SqlFormatter::highlight( $formatted_query );
+					
+					$content_data['query'] = 
+						number_format_i18n( sprintf( '%0.1f', $content_data['time'] * 1000), 1 ) . __( 'ms' ) 
+						. ' (' . $content_data['time'] . __( 's)' )
+						. '<br><code>' . $formatted_query . '</code>';
+					// build function chain/backtrace
+					$function_chain = implode( ' &#8594; ', $content_data['function_chain'] );
+					
+					$output .= '<tr'. $class .'>
+							<td>' . $content_data['line'] . '</td>
+							<td>' . $content_data['query'] . '</td>
+						</tr>';
+						
+					if ( STACKTRACE ) {
+						$output .= 
+							"<tr>
+								<td></td>
+								<td>$function_chain</td>
+							</tr>";
+					}
+					
+					
+					$output .= '</table>' . "\n";
+					
+					$x ++;
+				}
 			}
 			
 			echo $output;

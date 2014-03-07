@@ -6,6 +6,7 @@
  * @subpackage  Helper for Debug
  * @author      Frank Bültge
  * @since       2.1.5
+ * @version     03/07/2014
  */
 if ( ! function_exists( 'add_filter' ) ) {
 	echo "Hi there! I'm just a part of plugin, not much I can do when called directly.";
