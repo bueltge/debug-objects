@@ -111,21 +111,19 @@ if ( class_exists( 'Debug_Objects_Debug_Hooks' ) )
 				return;
 			}
 			
+			// Filter hook, files from this plugin, not helpful
+			if (
+				isset( $options[ 'filter' ] ) 
+				&& '1' === $options[ 'filter' ] 
+				&& preg_match( '/debug_objects/', $tag )
+				)
+				return;
+			
 			$tag = esc_html( $tag );
 			
 			$output = '<ul><li><strong>' . $tag . '</strong><ul>';
 			
 			foreach( $hook as $priority => $functions ) {
-				//var_dump($functions);
-				var_dump(Debug_Objects::array_find( 'Debug_Objects', $functions ));
-				// Filter Debug Objects Hooks
-				if ( 
-					isset( $options[ 'filter' ] ) 
-					&& '1' === $options[ 'filter' ] 
-					&& Debug_Objects::array_find( 'Debug_Objects', $functions )
-					) {
-					break;
-				}
 				
 				$output .= '<li>Priority: ' . $priority . '<ul>';
 				
