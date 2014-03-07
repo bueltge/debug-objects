@@ -81,6 +81,10 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 			$i = 1;
 			foreach ( $loaded_scripts as $loaded_script ) {
 				
+				// Filter scripts from this plugin, not helpful
+				if ( 'debug_objects' === substr( $loaded_script, 0, 13 ) )
+					break;
+				
 				$class = ( $i % 2 === 0 ) ? '' : ' class="alternate"';
 				echo '<tr' . $class . '>';
 				echo '<td>' . $i . '</td>';
@@ -111,6 +115,10 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 			$class = '';
 			$i = 1;
 			foreach ( $loaded_styles as $loaded_style ) {
+				
+				// Filter scripts from this plugin, not helpful
+				if ( 'debug_objects' === substr( $loaded_style, 0, 13 ) )
+					break;
 				
 				$class = ( $i % 2 === 0 ) ? '' : ' class="alternate"';
 				echo '<tr' . $class . '>';

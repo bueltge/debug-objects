@@ -561,7 +561,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			if ( ! isset( $_SERVER ) || empty( $_SERVER ) )
 				$output .= __( 'Undefined or empty' );
 			else 
-				$output .= '<li class="alternate">' . var_export( $_SERVER, TRUE ) . '</li>';
+				$output .= '<li class="alternate">' . Debug_Objects::pre_print( $_SERVER, '', TRUE ) . '</li>';
 			$output .= '</ul>' . "\n";
 			
 			// error
@@ -570,7 +570,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			if ( ! isset( $_GET['error'] ) || empty( $_GET['error'] ) )
 				$output .= __( 'Undefined or empty' );
 			else
-				$output .= '<li class="alternate">' . var_export( $_GET['error'], TRUE ) . '</li>';
+				$output .= '<li class="alternate">' . Debug_Objects::pre_print( $_GET['error'], '', TRUE ) . '</li>';
 			$output .= '</li></ul>' . "\n";
 			
 			// Globals 
@@ -579,7 +579,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			if ( ! isset( $_GET ) || empty( $_GET ) )
 				$output .= __( 'Undefined or empty' );
 			else 
-				$output .= var_export( $_GET, TRUE );
+				$output .= Debug_Objects::pre_print( $_GET, '', TRUE );
 			$output .= '</li></ul>' . "\n";
 			
 			$output .= "\n" . '<h4>' . __( 'HTTP $_POST variables' ) . '</h4>' . "\n";
@@ -587,7 +587,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			if ( ! isset( $_POST ) || empty( $_POST ) )
 				$output .= __( 'Undefined or empty' );
 			else 
-				$output .= var_export( $_POST, TRUE );
+				$output .= Debug_Objects::pre_print( $_POST, '', TRUE );
 			$output .= '</li></ul>' . "\n";
 			
 			// cookies
@@ -596,7 +596,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			if ( ! isset( $_COOKIE ) || empty( $_COOKIE ) )
 				$output .= __( 'Undefined or empty' );
 			else 
-				$output .= var_export( $_COOKIE, TRUE );
+				$output .= Debug_Objects::pre_print( $_COOKIE, '', TRUE );
 			$output .= '</li></ul>' . "\n";
 			
 			

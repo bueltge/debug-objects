@@ -65,7 +65,7 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 			NULL === self::$classobj and self::$classobj = new self();
 			
 			return self::$classobj;
-	}
+		}
 		
 		public function __construct() {
 			
@@ -113,7 +113,11 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 			
 			$trace = debug_backtrace();
 			array_splice( $trace, 0, 3 ); // Get rid of the tracer's fingerprint (and wpdb::query)
-			$this->_query[] = $this->_content_query[] = array( 'query' => $query, 'backtrace' => $trace );
+			
+			$this->_query[] = $this->_content_query[] = array(
+				'query'     => $query,
+				'backtrace' => $trace
+			);
 			
 			return $query;
 		}
@@ -407,7 +411,6 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 					__( 'Line' ),
 					__( 'Query &amp; Function Chain' )
 				);
-				//var_dump($content_data);
 				
 				// format the query
 				$formatted_query = $content_data['query'];
@@ -487,17 +490,23 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 			
 			if ( ! empty( $this->_queries ) ) {
 
-			$php_time = $total_time - $total_query_time;
-			// Create the percentages
-			if ( 0 < $total_time ) {
-				$mysqlper = number_format_i18n( $total_query_time / $total_time * 100, 2 );
-				$phpper   = number_format_i18n( $php_time / $total_time * 100, 2 );
-			}
-			
+				$php_time = $total_time - $total_query_time;
+				// Create the percentages
+				if ( 0 < $total_time ) {
+					$mysqlper = number_format_i18n( $total_query_time / $total_time * 100, 2 );
+					$phpper   = number_format_i18n( $php_time / $total_time * 100, 2 );
+				}
+				
+				$debug_queries .= '<h3>' . __( 'Queries' ) . '</h3>';
+				
 				$debug_queries .= '<ul>' . "\n";
 				$debug_queries .= '<li><strong>' . __( 'Total:' ) . ' ' 
 					. count($this->_queries) . ' ' . __( 'queries' ) 
 					. '</strong></li>';
+				$debug_queries .= '<li><strong>' . __( 'Page generated in' ) . ' '
+					. number_format_i18n( sprintf('%0.1f', $total_time * 1000), 1 ) . __( 'ms ( ' )
+					. timer_stop() . __( 's' ) . ' )</strong></li>';
+				
 				if ( count($this->_queries) != get_num_queries() ) {
 					$debug_queries .= '<li><strong>' . __( 'Total:' ) . ' ' 
 						. get_num_queries() . ' ' 
@@ -506,8 +515,24 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 						. __( '&raquo; Different values in num_query and query? - please set the constant' ) 
 						. ' <code>define( \'SAVEQUERIES\', TRUE );</code>' . __( 'in your' ) . ' <code>wp-config.php</code></li>' . "\n";
 				}
+				
 				$debug_queries .= '</ul>' . "\n";
-
+				
+				// Database errors
+				$debug_queries .= '<hr /><h3>' . __( 'Database Errors' ) . '</h3>';
+				if ( ! empty( $EZSQL_ERROR ) ) {
+					
+					$debug_queries .= '<ol>';
+					
+					foreach ( $EZSQL_ERROR as $e ) {
+						$query = nl2br( esc_html( $e['query'] ) );
+						$debug_queries .= "<li>$query<br/><div class='qdebug'>{$e['error_str']}</div></li>\n";
+					}
+					$debug_queries .= '</ol>';
+				} else {
+					$debug_queries .= '<ul><li>' . __( 'No database errors.' ) . '</li></ul>';
+				}
+				
 				$debug_queries .= '<hr /><ol>' . "\n";
 				
 				/**
@@ -591,17 +616,6 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 			
 			}
 			
-			if ( ! empty($EZSQL_ERROR) ) {
-				$debug_queries .= '<h3>' . __( 'Database Errors' ) . '</h3>';
-				$debug_queries .= '<ol>';
-	
-				foreach ( $EZSQL_ERROR as $e ) {
-					$query = nl2br( esc_html( $e['query'] ) );
-					$debug_queries .= "<li>$query<br/><div class='qdebug'>{$e['error_str']}</div></li>\n";
-				}
-				$debug_queries .= '</ol>';
-			}
-			
 			$php_time = $total_time - $total_query_time;
 			// Create the percentages
 			if ( 0 < $total_time ) {
@@ -610,10 +624,12 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 			}
 			
 			$debug_queries .= '<ul>' . "\n";
+			
 			$debug_queries .= '<li><strong>' . __( 'Total query time:' ) . ' ' 
 				. number_format_i18n( sprintf('%0.1f', $total_query_time * 1000), 1 ) 
 				. __( 'ms for' ) . ' ' . count($this->_queries) . ' ' . __( 'queries (' ) 
 				. number_format_i18n( $total_query_time, 15 ) . __( 's) ' ). '</strong></li>';
+			
 			if ( count($this->_queries) != get_num_queries() ) {
 				$debug_queries .= '<li><strong>' . __( 'Total num_query time:' ) . ' ' 
 					. timer_stop() . ' ' . __( 'for' ) . ' ' . get_num_queries() . ' ' 
@@ -622,16 +638,19 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 					. __( '&raquo; Different values in num_query and query? - please set the constant' ) 
 					. ' <code>define( \'SAVEQUERIES\', TRUE );</code>' . __( 'in your' ) . ' <code>wp-config.php</code></li>' . "\n";
 			}
+			
 			if ( $total_query_time == 0 )
 				$debug_queries .= '<li>' . __( '&raquo; Query time is null (0)? - please set the constant' ) 
 					. ' <code>SAVEQUERIES</code>' . ' ' . __( 'at' ) . ' <code>TRUE</code> ' . __( 'in your' ) 
 					. ' <code>wp-config.php</code></li>' . "\n";
+			
 			if ( 0 < $total_time )
 				$debug_queries .= '<li>' . __( 'Page generated in' ). ' ' 
 					. number_format_i18n( sprintf('%0.1f', $total_time * 1000), 1 ) . __( 'ms; (' ) 
 					. $total_time . __( 's); ' )
 					. $phpper . __( '% PHP' ) . '; ' . $mysqlper 
 					. __( '% MySQL' ) . '</li>' . "\n";
+			
 			$debug_queries .= '</ul>' . "\n";
 			
 			if ( $echo )

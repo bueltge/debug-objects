@@ -106,27 +106,21 @@ class Debug_Objects_Rewrite_Backtrace {
 		if ( empty( $data['_post'] ) ) {
 			$output .= 'Empty';
 		} else {
-			$export  = var_export( $data['_post'], TRUE );
-			$escape  = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
-			$output .= '<pre>' . $escape . '</pre>';
+			$output .= Debug_Objects::pre_print( $data['_post'], '', TRUE );
 		}
 		
 		$output .= '<h4>$_GET</h4>';
 		if ( empty( $data['_get'] ) ) {
 			$output .= 'Empty';
 		} else {
-			$export  = var_export( $data['_get'], TRUE );
-			$escape  = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
-			$output .= '<pre>' . $escape . '</pre>';
+			$output .= Debug_Objects::pre_print( $data['_get'], '', TRUE );
 		}
 		
 		$output .= '<h4>Debug Backtrace</h4>';
 		if ( empty( $data['debug_backtrace'] ) ) {
 			$output .= 'Empty';
 		} else {
-			$export  = var_export( $data['debug_backtrace'], TRUE );
-			$escape  = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
-			$output .= '<pre>' . $escape . '</pre>';
+			$output .= Debug_Objects::pre_print( $data['debug_backtrace'], '', TRUE );
 		}
 		
 		if ( $echo )

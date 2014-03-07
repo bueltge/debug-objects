@@ -166,11 +166,15 @@ class Debug_Objects_Screen_Info {
 				// check for object
 				if ( is_object( $global_value ) ) {
 					$global_value = (array) $global_value;
-					$global_value = '<pre>' . var_export( $global_value, TRUE ) . '</pre>';
+					$global_value = Debug_Objects::pre_print( $global_value, '', TRUE );
+				} else {
+					$global_value = '<code>' . $global_value . '</code>';
 				}
 				
-				$output .= '<tr' . $class . '><td>' . $value . '</td><td>';
-				$output .= $global_value . '</td></tr>';
+				$output .= '<tr' . $class . '>';
+				$output .= '<td><code>' . $value . '</code></td>';
+				$output .= '<td>' . $global_value . '</td>';
+				$output .= '</tr>';
 				
 				unset( $globals[ $key ] );
 			}

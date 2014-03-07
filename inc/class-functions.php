@@ -58,7 +58,9 @@ if ( ! class_exists( 'Debug_Objects_Functions' ) ) {
 		 */
 		public function get_functions( $sort = TRUE, $echo = TRUE ) {
 			
-			$functions = get_defined_functions();
+			// Use this Hook to remove or add your custom functions
+			$functions = apply_filters( 'debug_objects_defined_functions', get_defined_functions() );
+			
 			if ( $sort )
 				sort( $functions );
 			

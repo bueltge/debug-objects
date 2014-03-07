@@ -94,12 +94,25 @@ class Debug_Objects_Page_Hooks {
 	public function get_hooks() {
 		global $wp_actions;
 		
+		// Use this hook for remove Action Hook, like custom action hooks
+		$wp_actions = apply_filters( 'debug_objects_wp_actions', $wp_actions );
+		
 		$callbacks        = array();
 		$hooks            = array();
 		$filter_hooks     = '';
 		$filter_callbacks = '';
 		
-		foreach ( $this->filters_storage as $index => $the_ ) {
+		// Use this hook for remove Filter Hook from the completly array, like custom filter hooks
+		$filters_storage = apply_filters( 'debug_objects_wp_filters', $this->filters_storage );
+		
+		foreach ( $filters_storage as $index => $the_ ) {
+			
+			// Use this hook for remove Filter Hook, like custom filter hooks
+			$filter_hook = apply_filters( 'debug_objects_filter_tag', array() );
+			// Filter Filter Hooks
+			if ( in_array( $the_['tag'], $filter_hook ) ) {
+				break;
+			}
 			
 			$hook_callbacks = array();
 			
@@ -109,6 +122,7 @@ class Debug_Objects_Page_Hooks {
 			}
 			
 			foreach( $the_['hooked'] as $priority => $hooked ) {
+				
 				foreach( $hooked as $id => $function ) {
 					if ( is_string( $function['function'] ) ) {
 						// as array
@@ -121,11 +135,12 @@ class Debug_Objects_Page_Hooks {
 						$filter_callbacks = "Function: {$function['function']}(), Arguments: {$function['accepted_args']}, Priority: {$priority}";
 					}
 				}
+				
 			}
 			$callbacks[$the_['tag']][] = $filter_callbacks; //$hook_callbacks;
 		}
 		
-		// format important hooks, that you easier identifier this hooks 
+		// Format important hooks, that you easier identifier this hooks 
 		$this->my_important_hooks = apply_filters(
 			'debug_objects_important_hooks',
 			array( 'admin_print_' , 'admin_head-', 'admin_footer-', 'add_meta_boxes' )
@@ -144,12 +159,12 @@ class Debug_Objects_Page_Hooks {
 		$output .= '<tr class="nohover">';
 		
 		$output .= "\t" . '<td><table>';
-		$output .= "\t" . '<tr><td>Fired in order</td><td>Hook</td></tr>';
+		$output .= "\t" . '<tr><td>Fired in order</td><td>Action Hook</td></tr>';
 		
 		$order = 1;
 		foreach ( $wp_actions as $key => $val ) {
 			
-			// format, if the key is inside the important list of hooks
+			// Format, if the key is inside the important list of hooks
 			foreach( $this->my_important_hooks as $hook ) {
 				
 				if ( FALSE !== strpos( $key, $hook ) )
@@ -168,6 +183,8 @@ class Debug_Objects_Page_Hooks {
 		*/
 		$output .= "\t" . '<td>';
 		$output .= "\t\t" . '<table>';
+		$output .= "\t" . '<tr><td>Fired in order</td><td>Filter Hook & Callback</td></tr>';
+		$order = 1;
 		foreach ( $callbacks as $hook => $values ) {
 			
 			// remove dublicate items
@@ -179,11 +196,12 @@ class Debug_Objects_Page_Hooks {
 					$escape = __( 'Empty' );
 				
 				$output .= '<tr>';
-				$output .= "\t" . '<td>' . __( 'Hook:' ) 
+				$output .= "\t" . '<td>'. $order . '.</td><td>' . __( 'Hook:' ) 
 					. ' <code>' . $hook . '</code><br> ' . $escape . '</td>';
 				$output .= '</tr>';
 			}
-
+			
+			$order ++;
 		}
 		$output .= "\t\t" . '</table>';
 		$output .= "\t" . '</td>';

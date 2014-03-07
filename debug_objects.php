@@ -13,7 +13,7 @@
  * License:     GPLv3
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
- * Last Change: 11/20/2013
+ * Last Change: 02/10/2014
  */
 
 // avoid direct calls to this file, because now WP core and framework has been used.
@@ -61,7 +61,8 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		public static $by_settings = array( 'Wrap' );
 		// exclude class for central include
 		public static $exclude_class = array( 'Backend', 'Frontend', 'Stack_Trace' );
-
+		// store classes from settings
+		public $store_classes = array();
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
 		 *
@@ -177,7 +178,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 						self :: $by_settings[] = ucwords( $class );
 				}
 			}
-			$classes = apply_filters( 'debug_objects_classes', self::$by_settings );
+			$classes = $this->store_classes = apply_filters( 'debug_objects_classes', self::$by_settings );
 			
 			self::set_cookie_control();
 			
@@ -204,6 +205,11 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				}
 			}
 			
+		}
+
+		public function get_classes() {
+			
+			return $this->store_classes;
 		}
 
 		/**
@@ -487,6 +493,27 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			return $output;
 		}
 		
+		/**
+		 * Print debug output
+		 *
+		 * @since     03/11/2012
+		 * @param     mixed $var
+		 * @param     string $before
+		 * @param     bool   $return
+		 * @internal  param $mixed
+		 * @return    string
+		 */
+		public static function pre_print( $var, $before = '', $return = FALSE ) {
+			
+			$export = var_export( $var, TRUE );
+			$escape = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
+			
+			if ( $return )
+				return $before . '<pre>' . $escape . '</pre>';
+			else
+				print $before . '<pre>' . $escape . '</pre>';
+		}
+		
 	} // end class
 	
 } // end if class exists
@@ -505,13 +532,7 @@ if ( ! function_exists( 'pre_print' ) ) {
 	 */
 	function pre_print( $var, $before = '', $return = FALSE ) {
 		
-		$export = var_export( $var, TRUE );
-		$escape = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
-
-		if ( $return )
-			return $escape;
-		else
-			print $before . '<pre>' . $escape . '</pre>';
+		Debug_Objects::pre_print( $var, $before, $return );
 	}
 }
 
