@@ -380,7 +380,52 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			// remove hook table
 			$GLOBALS['wpdb']->query( "DROP TABLE IF EXISTS " . self::$table );
 		}
-
+		
+		/**
+		 * Recursive search in array for string
+		 * 
+		 * @param  String  $needle
+		 * @param  Array   $haystack
+		 * @return Boolean
+		 */
+		public function recursive_in_array( $needle, $haystack ) {
+	
+			if ( '' != $haystack ) {
+				foreach ( $haystack as $stalk ) {
+					if ( $needle == $stalk || (is_array( $stalk ) && $this->recursive_in_array( $needle, $stalk ) ) ) {
+						return TRUE;
+					}
+				}
+				return FALSE;
+			}
+	
+		}
+		
+		/**
+		 *  Find the position of the first occurrence of a case-insensitive substring in a array
+		 * 
+		 * @param  String  $needle
+		 * @param  Array   $haystack
+		 * @return Boolean
+		 */
+		public function array_find( $needle, $haystack ) {
+			
+			foreach ( $haystack as $key => $value ) {
+				
+				if ( is_object( $value ) )
+					$value = get_object_vars( $value );
+				
+				if ( is_array( $value ) ) {
+					return $this->array_find( $needle, $value );
+				
+				} else if ( FALSE !== stripos( $needle, $value ) ) {
+					return TRUE;
+				}
+			}
+			
+			return FALSE;
+		}
+		
 		/**
 		 * Return undefined list as tree
 		 *

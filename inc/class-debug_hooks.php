@@ -13,7 +13,9 @@ if ( ! function_exists( 'add_filter' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Debug_Objects_Debug_Hooks' ) ) {
+if ( class_exists( 'Debug_Objects_Debug_Hooks' ) )
+	return NULL;
+
 	class Debug_Objects_Debug_Hooks extends Debug_Objects {
 		
 		static public $wp_func = 0;
@@ -97,15 +99,38 @@ if ( ! class_exists( 'Debug_Objects_Debug_Hooks' ) ) {
 			
 			ksort($hook);
 			
+			// Get settings
+			$options = Debug_Objects_Settings::return_options();
+			
+			// Filter Debug Objects Hooks
+			if ( 
+				isset( $options[ 'filter' ] ) 
+				&& '1' === $options[ 'filter' ] 
+				&& Debug_Objects::array_find( 'Debug_Objects', $hook )
+				) {
+				return;
+			}
+			
 			$tag = esc_html( $tag );
 			
 			$output = '<ul><li><strong>' . $tag . '</strong><ul>';
 			
 			foreach( $hook as $priority => $functions ) {
+				//var_dump($functions);
+				var_dump(Debug_Objects::array_find( 'Debug_Objects', $functions ));
+				// Filter Debug Objects Hooks
+				if ( 
+					isset( $options[ 'filter' ] ) 
+					&& '1' === $options[ 'filter' ] 
+					&& Debug_Objects::array_find( 'Debug_Objects', $functions )
+					) {
+					break;
+				}
 				
 				$output .= '<li>Priority: ' . $priority . '<ul>';
 				
 				foreach( $functions as $function ) {
+					
 					if ( $function['function'] != 'list_hook_details' ) {
 						
 						$output .= "\t" . '<li>&gt;&gt;&gt;&gt;&gt; <code>';
@@ -141,4 +166,3 @@ if ( ! class_exists( 'Debug_Objects_Debug_Hooks' ) ) {
 		}
 		
 	} // end class
-} // end if class exists

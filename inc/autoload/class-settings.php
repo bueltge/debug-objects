@@ -365,6 +365,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					//'Debug'            => __( '' ),
 					'Php_Error'         => __( 'A alternative PHP Error reporting; works only with PHP 5.3. Set the url param <code>php_error</code> for all strict messages.' ),
 					'Default_Mode'      => __( 'Add the url-param \'<code>default</code>\', like \'<code>?debug&default</code>\', for run WordPress in a safe mode. Plugins are not loaded and set the default theme as active theme, is it available.' ),
+					'Filter'            => __( 'Filter class, hooks, scripts and styles from this plugin Debug Objects.' ),
 					'About'             => __( 'About the plugin' ),// about plugin
 				);
 				

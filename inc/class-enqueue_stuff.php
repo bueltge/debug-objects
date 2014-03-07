@@ -52,6 +52,9 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 		public function get_enqueued_stuff() {
 			global $wp_scripts, $wp_styles;
 			
+			// Get settings
+			$options = Debug_Objects_Settings::return_options();
+			
 			/**
 			 * Get all enqueue scripts
 			 * Current is do_items() not usable, echo all scripts
@@ -82,7 +85,11 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 			foreach ( $loaded_scripts as $loaded_script ) {
 				
 				// Filter scripts from this plugin, not helpful
-				if ( 'debug_objects' === substr( $loaded_script, 0, 13 ) )
+				if (
+					isset( $options[ 'filter' ] ) 
+					&& '1' === $options[ 'filter' ] 
+					&& 'debug_objects' === substr( $loaded_script, 0, 13 )
+					)
 					break;
 				
 				$class = ( $i % 2 === 0 ) ? '' : ' class="alternate"';
@@ -117,7 +124,11 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 			foreach ( $loaded_styles as $loaded_style ) {
 				
 				// Filter scripts from this plugin, not helpful
-				if ( 'debug_objects' === substr( $loaded_style, 0, 13 ) )
+				if (
+					isset( $options[ 'filter' ] ) 
+					&& '1' === $options[ 'filter' ] 
+					&& 'debug_objects' === substr( $loaded_style, 0, 13 )
+					)
 					break;
 				
 				$class = ( $i % 2 === 0 ) ? '' : ' class="alternate"';

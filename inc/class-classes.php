@@ -40,8 +40,12 @@ class Debug_Objects_Classes {
 		
 		add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 		
+		// Get settings
+		$options = Debug_Objects_Settings::return_options();
+		
 		// Filter classes from this plugin
-		add_filter( 'debug_objects_declared_classes', array( $this, 'remove_debug_objects_classes' ) );	
+		if ( isset( $options[ 'filter' ] ) && '1' === $options[ 'filter' ] )
+			add_filter( 'debug_objects_declared_classes', array( $this, 'remove_debug_objects_classes' ) );	
 	}
 	
 	/**
