@@ -357,6 +357,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Db_Query'          => __( 'Three Tabs: Only the database queries from plugins and wp-content in each tab with runtime and a tab with content of all queries and his runtime in order of runtime' ),// WP Queries
 					'Stack_Trace'       => __( 'Stack Trace, all files and functions on each query. The Database-Query options is prerequisite.<br />A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.' ),
 					'Cache'             => __( 'Contents of Cache' ),// WP Cache
+					'Rewrites'          => __( 'A list of all cached rewrites.' ),
 					'Cron'              => __( 'Crons' ),
 					'Memory'            => __( 'Memory Used, Load Time and included Files, but without all file in the folder <code>wp-admin</code>, <code>wp-includes</code>' ),
 					'Inspector'         => __( 'Provide information about a given domain' ),
