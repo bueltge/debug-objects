@@ -86,11 +86,11 @@ class Debug_Objects_Options {
 		
 		if ( is_multisite() )
 			$this->autoload_mu_options = $wpdb->get_results(
-				"SELECT option_id, option_name, option_value, autoload FROM " . $wpdb->base_prefix . "options WHERE autoload = 'yes'"
+				"SELECT option_id, option_name, option_value, autoload FROM " . $wpdb->base_prefix . "options"
 			);
 		
 		$this->autoload_options = $wpdb->get_results(
-			"SELECT option_id, option_name, option_value, autoload FROM $wpdb->options WHERE autoload = 'yes'"
+			"SELECT option_id, option_name, option_value, autoload FROM $wpdb->options"
 		);
 		//$this->options = wp_load_alloptions();
 		
@@ -104,10 +104,67 @@ class Debug_Objects_Options {
 		
 		if ( is_multisite() ) {
 			echo '<h4 id="multisite">Multisite Options</h4>';
-			Debug_Objects::pre_print( $this->autoload_mu_options, '', FALSE );
+			echo $this->table_content( $this->autoload_mu_options );
+			//Debug_Objects::pre_print( $this->autoload_mu_options, '', FALSE );
 		}
 		
 		echo '<h4 id="site">Site Options</h4>';
-		Debug_Objects::pre_print( $this->autoload_options, '', FALSE );
+		echo $this->table_content( $this->autoload_options );
+	}
+	
+	/**
+	 * Format the data values in table, sortable
+	 * 
+	 * @since   03/18/2014
+	 * @param   Array
+	 * @return  Array
+	 */
+	public function table_content( $data ) {
+		
+		$output = '';
+		
+		$output .= '<table class="tablesorter">';
+		$output .= '<thead>';
+		$output .= '<tr><th>' . __( 'ID' ) . '</th><th>' 
+			. __( 'Name' ) . '</th><th>' 
+			. __( 'Value' ) . '</th><th>' 
+			. __( 'Autoload' ) . '</th>';
+		$output .= '</tr>';
+		$output .= '</thead>';
+		
+		foreach( $data as $key => $values ) {
+			
+			$class = '';
+			
+			$output .= '<tr>';
+			$output .= '<td>' . $values->option_id . '</td>';
+			
+			// Check for serilalized data
+			if ( is_serialized( $values->option_value ) ) {
+				
+				$name = $values->option_name . ' ' .__( '(SERIALIZED DATA)' );
+				
+				if ( is_serialized_string( $values->option_value ) ) {
+					$value = maybe_unserialize( $values->option_value );
+				} else {
+					$value = $values->option_value;
+					$class = ' class="alternate"';
+				}
+				
+			} else {
+				
+				$name  = $values->option_name;
+				$value = $values->option_value;
+			}
+			
+			$output .= '<td' . $class . '>' . $name . '</td>';
+			$output .= '<td' . $class . ' style="word-break: break-all">' . esc_attr( $value ) . '</td>';
+			$output .= '<td>' . $values->autoload . '</td>';
+			$output .= '</tr>';
+		}
+		
+		$output .= '</table>';
+		
+		return $output;
 	}
 }

@@ -120,6 +120,7 @@ div#debugobjects ul li:hover, div#debugobjects ol li:hover,
 div#debugobjects tr:hover,
 div#debugobjects .alternate:hover, div#debugobjects .alt:hover {
 	background: #F7D0C3;
+	border: 2px solid #333
 }
 
 div#debugobjects tr.nohover:hover {

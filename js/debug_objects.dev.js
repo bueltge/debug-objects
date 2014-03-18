@@ -48,6 +48,6 @@ function debug_objects_toggle( obj ) {
 	} );
 	
 	// Add tablesorter function
-	$( "#debugobjects table.tablesorter" ).tablesorter(); 
+	$( '#debugobjects table.tablesorter' ).tablesorter(); 
 	
 } )( jQuery );
