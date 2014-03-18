@@ -3,7 +3,7 @@ Contributors: Bueltge, inpsyde
 Donate link: http://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, cron, cache
 Requires at least: 3.3
-Tested up to: 3.9-alpha
+Tested up to: 3.9-beta1
 Stable tag: trunk
 
 The Plugin Debug Objects provides a large number of information: query, cache, cron, constants, hooks, functions and many more.
@@ -12,6 +12,7 @@ The Plugin Debug Objects provides a large number of information: query, cache, c
 The Plugin Debug Objects provides the user, which has the appropriate rights, normally the administrator, a large number of information: query, cache, cron, constants, hooks, functions and many many more. Values and content get displayed at the frontend and backend of the blog, to analyze errors but also to better understand and develop with/for WordPress.
 
 = The Plugin provides in various tabs information to: =
+
 * PHP
 * Memory usage
 * Load Time
@@ -22,7 +23,6 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Language
 * Very extensive definitions of various constants
 * Cookie definitions
-* File Permissions
 * Separate user and usermeta tables
 * FTP and SSH definitions
 * Detailed Query information
@@ -30,24 +30,28 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Query information about all queries from `wp-content`-directory
 * Conditional tags; value of the tag
 * Theme information
+* HTML Inspector is a code quality tool to check markup. Any errors will be reported to the console of the browser. This works only on front end. use [HTML Inspector](https://github.com/philipwalton/html-inspector)
 * Translation debugging helper
 * Template Information
 * Cron content and his functions to an cron
 * Cache content
 * Hooks and filters
+* All options from table, for single and multisite installation
+* Rewrites, a list of cached rewrites and the rule
 * Current screen information to find the right backend page and hook
+* List Custom Post Type Arguments
 * Functions, which respond on hooks and filters
 * Contents of arrays to hooks and filters
 * All defined constants
 * All classes
 * All shortcodes
 * Post Meta data
-* List Custom Post Type Arguments
-* See data from `$_POST`; `$_GET` and debug backtrace before rewrite; usefull for forms in backend, see [Support Forum Discussion](http://wordpress.org/support/topic/feature-suggestion-to-debug-pre-redirect)
+* See data from `$_POST`; `$_GET` and debug backtrace before rewrite; usefull for forms in backend
 * Run WordPress in default mode via url-param
 * Add alternative PHP Error reporting: [PHP Error](http://phperror.net/)
-* Inlcude Logging in Chrome Console: [ChromeLogger](http://chromelogger.com/)
+* Include Logging in Chrome Console: [ChromeLogger](http://chromelogger.com/)
 * and many more ...
+
 
 The plugin does not filter values and should only be used for information and optimization, I don't recommended to use it on a live blog. For developers it can rapidly deliver data, which is useful in a development environment.
 There are no data in the database and there are no settings. Therefore, the installation is pretty simple: Just upload the Plugin in the Plugin directory or use the automatic installation of the backend to install and activate the Plugin. In the footer of the frontend of the blog, you can see the information.
@@ -89,6 +93,9 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 * Add [HTML Inspector](https://github.com/philipwalton/html-inspector) for check in front end
 * Different changes on formatting output
 * Format SQL Statements in Query and Plugin Query Tab
+* Add new tab to list all options, options from single and multisite installations
+* More comfort on read tables, all tables now sortable
+* Add option to filter all classes, functions, hooks from this plugin Debug Objects
 
 = 2.1.16 (11/14/2013) =
 * Mark important globals for better view [#28](https://github.com/bueltge/Debug-Objects/issues/28)
