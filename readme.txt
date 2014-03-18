@@ -96,6 +96,8 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 * Add new tab to list all options, options from single and multisite installations
 * More comfort on read tables, all tables now sortable
 * Add option to filter all classes, functions, hooks from this plugin Debug Objects
+* Update, enhance Stylesheet
+* Different changes in the core
 
 = 2.1.16 (11/14/2013) =
 * Mark important globals for better view [#28](https://github.com/bueltge/Debug-Objects/issues/28)

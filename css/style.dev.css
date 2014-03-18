@@ -120,11 +120,11 @@ div#debugobjects ul li:hover, div#debugobjects ol li:hover,
 div#debugobjects tr:hover,
 div#debugobjects .alternate:hover, div#debugobjects .alt:hover {
 	background: #F7D0C3;
-	border: 2px solid #333
 }
 
 div#debugobjects tr.nohover:hover {
 	background: none;
+	border: none;
 }
 
 div#debugobjects li.none_list {
@@ -182,6 +182,9 @@ div#debugobjects #cron td {
 	border: 1px solid #FFF;
 	font-size: 8pt;
 	padding: 4px;
+}
+#debugobjects table.tablesorter tbody tr:hover {
+	border: 2px solid #333;
 }
 #debugobjects table.tablesorter thead tr .header {
 	background-image: url( '../img/bg.gif' );
