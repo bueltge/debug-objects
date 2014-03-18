@@ -88,7 +88,8 @@ class Debug_Objects_Memory extends Debug_Objects {
 			
 			$files .= '<tr' . $class . '><td>' . ucwords( str_replace( '_', ' ', $key ) ) . '</td><td>' . $value['name'] . '</td><td>(' . $value['size'] . ')</td></tr>';
 		}
-		$output .= '<table>' . $files . '</table>';
+		$output .= '<table class="tablesorter"><thead><tr><th>' . __( 'No' ) . '</th><th>' . __( 'Path' ) . '</th><th>' . __( 'Size' ) . '</th></tr></thead>' 
+			. $files . '</table>';
 		
 		if ( $echo )
 			echo $output;

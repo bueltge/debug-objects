@@ -183,15 +183,15 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 			$class = ' class="alternate"';
 			
 			$output  = '';
-			$output .= '<table>';
-			$output .= '<thead>';
+			$output .= '<table class="tablesorter">';
+			$output .= '<thead><tr>';
 			$output .= '<th>' . $thead[0] . '</th>';
 			$output .= '<th>' . $thead[1] . '</th>';
 			$output .= '<th>' . $thead[2] . '</th>';
 			$output .= '<th>' . $thead[3] . '</th>';
 			$output .= '<th>' . $thead[4] . '</th>';
 			$output .= '<th>' . $thead[5] . '</th>';
-			$output .= '</thead>';
+			$output .= '</tr></thead>';
 			
 			foreach ( $events as $time => $time_cron_array ) {
 				
@@ -325,14 +325,14 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 		private function get_schedules( $echo = TRUE ) {
 			
 			$output  = '';
-			$output .= '<table>';
-			$output .= '<thead>';
+			$output .= '<table class="tablesorter">';
+			$output .= '<thead><tr>';
 			$output .= '<th> Interval Hook</th>';
 			$output .= '<th> Interval (second)</th>';
 			$output .= '<th> Interval (minute)</th>';
 			$output .= '<th> Interval (hour)</th>';
 			$output .= '<th> Display Name</th>';
-			$output .= '</thead>';
+			$output .= '</tr></thead>';
 			
 			$class = ' class="alternate"';
 			

@@ -312,11 +312,13 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 					$filename = htmlspecialchars( $filename );
 					
 					$output .= sprintf('<p><code>%s</code></p>
-						<table>
-							<tr>
-								<th>%s</th>
-								<th>%s</th>
-							</tr>',
+						<table class="tablesorter">
+							<thead>
+								<tr>
+									<th>%s</th>
+									<th>%s</th>
+								</tr>
+							</thead>',
 						htmlspecialchars( $filename ),
 						__( 'Line' ),
 						__( 'Query &amp; Function Chain' )
@@ -407,11 +409,13 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 					$filename = htmlspecialchars( $content_data['file'] );
 						
 					$output .= sprintf('<p><code>%s</code></p>
-						<table>
-							<tr>
-								<th>%s</th>
-								<th>%s</th>
-							</tr>',
+						<table class="tablesorter">
+							<thead>
+								<tr>
+									<th>%s</th>
+									<th>%s</th>
+								</tr>
+							</thead>',
 						htmlspecialchars( $filename ),
 						__( 'Line' ),
 						__( 'Query &amp; Function Chain' )

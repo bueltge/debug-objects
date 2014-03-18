@@ -47,4 +47,7 @@ function debug_objects_toggle( obj ) {
 		active: selected_tab,
 	} );
 	
+	// Add tablesorter function
+	$( "#debugobjects table.tablesorter" ).tablesorter(); 
+	
 } )( jQuery );

@@ -158,8 +158,8 @@ class Debug_Objects_Page_Hooks {
 		
 		$output .= '<tr class="nohover">';
 		
-		$output .= "\t" . '<td><table>';
-		$output .= "\t" . '<tr><td>Fired in order</td><td>Action Hook</td></tr>';
+		$output .= "\t" . '<td><table class="tablesorter">';
+		$output .= "\t" . '<thead><tr><th>Fired in order</th><th>Action Hook</th></tr></thead>';
 		
 		$order = 1;
 		foreach ( $wp_actions as $key => $val ) {
@@ -182,8 +182,9 @@ class Debug_Objects_Page_Hooks {
 		$output .= '</table></td>';
 		*/
 		$output .= "\t" . '<td>';
-		$output .= "\t\t" . '<table>';
-		$output .= "\t" . '<tr><td>Fired in order</td><td>Filter Hook & Callback</td></tr>';
+		$output .= "\t\t" . '<table class="tablesorter">';
+		$output .= "\t" . '<thead><tr><th>Fired in order</th><th>Filter Hook & Callback</th></tr></thead>';
+		
 		$order = 1;
 		foreach ( $callbacks as $hook => $values ) {
 			

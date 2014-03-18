@@ -119,7 +119,8 @@ class Debug_Objects_Classes {
 				$output .= '</tr>';
 			}
 			echo '<h4>Total Classes: ' . count( $classes ) . '</h4>';
-			echo '<table>' . $output . '</table>';
+			echo '<table class="tablesorter"><thead><tr><th>' . __( 'No' ) . '</th><th>' . __( 'Class' ) . '</th><th>' . __( 'Parent class' ) . '</th></tr></thead>' 
+				. $output . '</table>';
 		}
 		
 	}

@@ -139,9 +139,9 @@ class Debug_Objects_Screen_Info {
 			
 		}
 		
-		$output = '<table><tr><th><code>current_screen</code> ' 
+		$output = '<table class="tablesorter"><thead><tr><th><code>current_screen</code> ' 
 			. __( 'Key, <a href="http://codex.wordpress.org/Function_Reference/get_current_screen">Help</a>' ) 
-			. '</th><th>' . __( 'Data' ) . '</th></tr>' 
+			. '</th><th>' . __( 'Data' ) . '</th></tr></thead>'
 			. $output . '</table>';
 		
 		return $output;
@@ -181,7 +181,7 @@ class Debug_Objects_Screen_Info {
 			
 		}
 		
-		$output = '<table><tr><th>' . __( 'Global variable' ) . '</th><th>' . __( 'Value' ) . '</th></tr>' 
+		$output = '<table class="tablesorter"><thead><tr><th>' . __( 'Global variable' ) . '</th><th>' . __( 'Value' ) . '</th></tr></thead>' 
 			. $output . '</table>';
 		
 		return $output;

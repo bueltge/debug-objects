@@ -93,7 +93,7 @@ class Debug_Objects_Rewrites {
 		
 		$output .= '<h4>' . __('Rewrite Rules' ) . '</h4>';
 		if ( ! empty( $wp_rewrite->rules ) ) {
-			$output .= '<table><thead><tr>';
+			$output .= '<table class="tablesorter"><thead><tr>';
 			$output .= '<th>' . __( 'Rule') . '</th>';
 			$output .= '<th><strong>' . __( 'Rewrite' ) . '</th>';
 			$output .= '</tr></thead><tbody>';

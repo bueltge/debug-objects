@@ -82,7 +82,8 @@ if ( ! class_exists( 'Debug_Objects_Functions' ) ) {
 					$output .= '<tr' . $class . '><td>' . $count . '</td><td>' . $func . '</td></tr>';
 					$i++;
 				}
-				echo '<table>' . $output . '</table>' . "\n";
+				echo '<table class="tablesorter"><thead><tr><th>' . __( 'No' ) . '</th><th>' . __( 'Function' ) . '</th></tr></thead>'
+					. $output . '</table>' . "\n";
 				
 				$i      = 0;
 				$class  = '';
@@ -95,7 +96,8 @@ if ( ! class_exists( 'Debug_Objects_Functions' ) ) {
 					$output .= '<tr' . $class . '><td>' . $count . '</td><td>' . $func . '</td></tr>';
 					$i++;
 				}
-				echo '<table>' . $output . '</table>' . "\n";
+				echo '<table class="tablesorter"><thead><tr><th>' . __( 'No' ) . '</th><th>' . __( 'Function' ) . '</th></tr></thead>'
+					. $output . '</table>' . "\n";
 				
 				echo '<p class="alternate">' . __( 'Functions total:', parent :: get_plugin_data() ) . ' ' . $i . '</p>';
 			}
