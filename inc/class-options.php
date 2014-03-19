@@ -130,7 +130,7 @@ class Debug_Objects_Options {
 			. __( 'Value' ) . '</th><th>' 
 			. __( 'Autoload' ) . '</th>';
 		$output .= '</tr>';
-		$output .= '</thead>';
+		$output .= '</thead><tbody>';
 		
 		foreach( $data as $key => $values ) {
 			
@@ -163,7 +163,7 @@ class Debug_Objects_Options {
 			$output .= '</tr>';
 		}
 		
-		$output .= '</table>';
+		$output .= '</tbody></table>';
 		
 		return $output;
 	}
