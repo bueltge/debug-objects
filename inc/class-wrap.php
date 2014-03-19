@@ -118,7 +118,7 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 			
 			// jquery tablesorter plugin
 			wp_enqueue_script(
-				parent::get_plugin_data() . '_tablesorter', 
+				parent::get_plugin_data() . '_datatables', 
 				str_replace( '/inc/', '', plugins_url( 'js/jquery.dataTables.min.js', dirname( __FILE__ ) ) ), 
 				array( 'jquery' ),
 				filemtime( 
@@ -142,7 +142,7 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 			wp_enqueue_script(
 				parent::get_plugin_data() . '_script', 
 				str_replace( '/inc/', '', plugins_url( 'js/debug_objects' . $suffix. '.js', dirname( __FILE__ ) ) ), 
-				array( 'jquery-ui-tabs', parent::get_plugin_data() . '_tablesorter', parent :: get_plugin_data() . '_cookie_script' ),
+				array( 'jquery-ui-tabs', parent::get_plugin_data() . '_datatables', parent :: get_plugin_data() . '_cookie_script' ),
 				filemtime( 
 					str_replace( '/inc/', '', plugin_dir_path( dirname( __FILE__ ) ) . 'js/debug_objects' . $suffix. '.js' )
 				),
