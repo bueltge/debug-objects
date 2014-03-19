@@ -53,7 +53,8 @@ function debug_objects_toggle( obj ) {
 	// Add tablesorter function
 	$( '#debugobjects table.tablesorter' ).DataTable( {
 		"iDisplayLength": 25,
-		"aLengthMenu": [ 10, 25, 50, 75, 100, 200, 500 ]
+		"aLengthMenu": [ 10, 25, 50, 75, 100, 200, 500 ],
+		"bJQueryUI": true
 	} ); 
 	
 } )( jQuery );

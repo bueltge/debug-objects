@@ -80,11 +80,7 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 			
 			wp_register_style( 'jquery-ui-css', $path . '/css/jquery-ui-demo.css' );
 			
-			// check user style
-			if ( 'classic' == get_user_option( 'admin_color') )
-				wp_register_style( 'jquery-ui-wp', $path . '/css/jquery-ui-classic.css', 'jquery-ui-css' );
-			else
-				wp_register_style( 'jquery-ui-wp', $path . '/css/jquery-ui-fresh.css', 'jquery-ui-css' );
+			wp_register_style( 'jquery-ui-wp', $path . '/css/jquery-ui-fresh.css', 'jquery-ui-css' );
 
 			wp_register_style(
 				parent::get_plugin_data() . '_jquery_dataTables',
