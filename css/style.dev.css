@@ -167,49 +167,4 @@ div#debugobjects #cron td {
 #debugobjects #pagehooks code span {
 	font-weight: 900;
 }
-
-/* tables */
-#debugobjects table.tablesorter {
-	font-family:arial;
-	background-color: #CDCDCD;
-	margin:10px 0pt 15px;
-	font-size: 8pt;
-	width: 100%;
-	text-align: left;
-}
-#debugobjects table.tablesorter thead tr th, #debugobjects table.tablesorter tfoot tr th {
-	background-color: #e6EEEE;
-	border: 1px solid #FFF;
-	font-size: 8pt;
-	padding: 4px;
-}
-#debugobjects table.tablesorter tbody tr:hover {
-	border: 2px solid #333;
-}
-#debugobjects table.tablesorter thead tr .header {
-	background-image: url( '../img/bg.gif' );
-	background-repeat: no-repeat;
-	background-position: center right;
-	cursor: pointer;
-}
-#debugobjects table.tablesorter tbody td {
-	color: #3D3D3D;
-	padding: 4px;
-	background-color: #FFF;
-	vertical-align: top;
-}
-#debugobjects table.tablesorter tbody tr.odd td {
-	background-color:#F0F0F6;
-}
-#debugobjects table.tablesorter thead tr .headerSortUp {
-	background-image: url( '../img/asc.gif' );
-}
-#debugobjects table.tablesorter thead tr .headerSortDown {
-	background-image: url( '../img/desc.gif' );
-}
-#debugobjects table.tablesorter thead tr .headerSortDown,
-#debugobjects table.tablesorter thead tr .headerSortUp {
-	background-color: #8dbdd8;
-}
-
 /* End Debug Objects CSS */

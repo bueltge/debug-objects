@@ -85,11 +85,19 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 				wp_register_style( 'jquery-ui-wp', $path . '/css/jquery-ui-classic.css', 'jquery-ui-css' );
 			else
 				wp_register_style( 'jquery-ui-wp', $path . '/css/jquery-ui-fresh.css', 'jquery-ui-css' );
+
+			wp_register_style(
+				parent::get_plugin_data() . '_jquery_dataTables',
+				$path . '/css/jquery.dataTables.css',
+				array(),
+				FALSE,
+				'screen'
+			);
 			
 			wp_register_style(
 				parent::get_plugin_data() . '_style',
 				$path . '/css/style' . $suffix. '.css',
-				array( 'jquery-ui-css', 'jquery-ui-wp' ),
+				array( 'jquery-ui-css', 'jquery-ui-wp', parent::get_plugin_data() . '_jquery_dataTables' ),
 				FALSE,
 				'screen'
 			);
@@ -111,10 +119,10 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 			// jquery tablesorter plugin
 			wp_enqueue_script(
 				parent::get_plugin_data() . '_tablesorter', 
-				str_replace( '/inc/', '', plugins_url( 'js/jquery.tablesorter.min.js', dirname( __FILE__ ) ) ), 
+				str_replace( '/inc/', '', plugins_url( 'js/jquery.dataTables.min.js', dirname( __FILE__ ) ) ), 
 				array( 'jquery' ),
 				filemtime( 
-					str_replace( '/inc/', '', plugin_dir_path( dirname( __FILE__ ) ) . 'js/jquery.tablesorter.min.js' )
+					str_replace( '/inc/', '', plugin_dir_path( dirname( __FILE__ ) ) . 'js/jquery.dataTables.min.js' )
 				),
 				TRUE
 			);

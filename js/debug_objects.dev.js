@@ -1,5 +1,8 @@
+
 function debug_objects_toggle( obj ) {
-	var el = document.getElementById(obj);
+	
+	var el = document.getElementById( obj );
+	
 	if ( el.style.display != 'block' ) {
 		el.style.display = 'block';
 	} else {
@@ -48,6 +51,8 @@ function debug_objects_toggle( obj ) {
 	} );
 	
 	// Add tablesorter function
-	$( '#debugobjects table.tablesorter' ).tablesorter(); 
+	$( '#debugobjects table.tablesorter' ).DataTable( {
+		"iDisplayLength": 25
+	} ); 
 	
 } )( jQuery );
