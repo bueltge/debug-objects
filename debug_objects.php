@@ -8,7 +8,7 @@
  * Plugin URI:  http://bueltge.de/debug-objects-wordpress-plugin/966/
  * Text Domain: debug_objects
  * Domain Path: /languages
- * Description: List filter and action-hooks, cache data, defined constants, qieries, included scripts and styles, php and memory informations and return of conditional tags only for admins; for debug, informations or learning purposes. Setting output in the settings of the plugin and use output via link in Admin Bar, via setting, via url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days.
+ * Description: List filter and action-hooks, cache data, defined constants, queries, included scripts and styles, php and memory information and return of conditional tags only for admins; for debug, information or learning purposes. Setting output in the settings of the plugin and use output via link in Admin Bar, via setting, via url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days.
  * Version:     2.1.17-RC2
  * License:     GPLv3
  * Author:      Frank Bültge
@@ -27,7 +27,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 	// include plugin on hook
 	add_action( 'plugins_loaded',       array( 'Debug_Objects', 'get_object' ) );
 	register_activation_hook( __FILE__, array( 'Debug_Objects', 'on_activation' ) );
-	
+
 	// include the ChromePHP very early
 	require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'inc/class-chromephp.php';
 	$debug_objects_chromephp = Debug_Objects_Chromephp::init();
@@ -63,6 +63,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		public static $exclude_class = array( 'Backend', 'Frontend', 'Stack_Trace' );
 		// store classes from settings
 		public $store_classes = array();
+
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
 		 *
