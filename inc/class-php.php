@@ -184,7 +184,13 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 				$locale = WPLANG;
 			if ( empty($locale) )
 				$locale = 'en_US';
-			
+
+			// @TODO: use WP_Locale
+			if ( isset( $GLOBALS['text_direction'] ) )
+				$text_direction = $GLOBALS['text_direction'];
+			else
+				$text_direction = 'ltr';
+
 			$class = '';
 			$memory_usage = function_exists( 'memory_get_usage' ) ? round(memory_get_usage() / 1024 / 1024, 2) : 0;
 			$memory_limit = (int) ini_get( 'memory_limit' ) ;
@@ -388,8 +394,9 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			$output .= "\n" . '<h4>' . __( 'WordPress Informations' ) . '</h4>' . "\n";
 			$output .= '<ul>' . "\n";
 			$output .= '<li>' . __( 'Version:' ) . ' ' . get_bloginfo( 'version' ) . '</li>' . "\n";
-			$output .= '<li>' . __( 'Multisite:' ) . ' ' . $ms . '</li>' . "\n";
-			$output .= '<li class="alternate">' . __( 'Language, constant' ) . ' <code>WPLANG</code>: ' . $locale . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __( 'Multisite:' ) . ' ' . $ms . '</li>' . "\n";
+			$output .= '<li>' . __( 'Language, constant' ) . ' <code>WPLANG</code>: ' . $locale . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __( 'Text direction, global' ) . ' <code>$GLOBALS[\'text_direction\']</code>: ' . $text_direction . '</li>' . "\n";
 			$output .= '<li>' . __( 'Language folder, constant' ) . ' <code>WP_LANG_DIR</code>: ' . WP_LANG_DIR . '</li>' . "\n";
 			$output .= '<li class="alternate">' . __( 'Content URL, constant' ) . ' <code>WP_CONTENT_URL</code>: ' . WP_CONTENT_URL . '</li>' . "\n";
 			$output .= '<li>' . __( 'Content folder, constant' ) . ' <code>WP_CONTENT_DIR</code>: ' . WP_CONTENT_DIR . '</li>' . "\n";
