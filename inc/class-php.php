@@ -185,7 +185,11 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			if ( empty($locale) )
 				$locale = 'en_US';
 
-			// @TODO: use WP_Locale
+			/**
+			 * Get text direction
+			 * 
+			 * @see class WP_Locale(), wp-inlcudes/locale.php
+			 */
 			if ( isset( $GLOBALS['text_direction'] ) )
 				$text_direction = $GLOBALS['text_direction'];
 			else
