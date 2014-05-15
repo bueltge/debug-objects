@@ -187,7 +187,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 
 			/**
 			 * Get text direction
-			 * 
+			 *
 			 * @see class WP_Locale(), wp-inlcudes/locale.php
 			 */
 			if ( isset( $GLOBALS['text_direction'] ) )
