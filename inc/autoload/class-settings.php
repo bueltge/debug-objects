@@ -113,13 +113,16 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			// add item on admin bar for go faster to the settings
 			add_action( 'admin_bar_menu', array( $this, 'add_wp_admin_bar_item' ), 9999 );
 		}
-		
+
 		/**
 		 * Add settings link on plugins.php in backend
-		 * 
-		 * @uses   
+		 *
+		 * @uses
 		 * @access public
-		 * @param  array $links, string $file
+		 *
+		 * @param  array $links , string $file
+		 * @param        $file
+		 *
 		 * @since  2.0.0
 		 * @return string $links
 		 */
@@ -505,19 +508,22 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 				echo $notice;
 			}
 		}
-		
+
 		/**
 		 * Validate settings for options
-		 * 
-		 * @uses    normalize_whitespace
-		 * @access  public
-		 * @param   array $value
-		 * @since   2.0.0
+		 *
+		 * @uses     normalize_whitespace
+		 * @access   public
+		 *
+		 * @param $values
+		 *
+		 * @internal param array $value
+		 * @since    2.0.0
 		 * @return  string $value
 		 */
 		public function validate_settings( $values ) {
 			
-			foreach ( $values as $key => $value ) {
+			foreach ( (array) $values as $key => $value ) {
 				
 				if ( isset($value[$key]) ) {
 					
