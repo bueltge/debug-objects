@@ -89,6 +89,9 @@ After this version you find the other verison on the [github repo](https://githu
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a [small donation](http://bueltge.de/wunschliste/ "Wishliste and Donate") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 == Changelog ==
+= 2.1.17 (05/19/2014) =
+* Solve SVN Bug, now with all files also inside the SVN, not only the git
+
 = 2.1.17 (05/15/2014) =
 * Add [HTML Inspector](https://github.com/philipwalton/html-inspector) for check in front end
 * Different changes on formatting output
