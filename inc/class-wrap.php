@@ -162,16 +162,31 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 					/**
 					 *  use this filter for include new tabs with content
 					$tabs[] = array( 
-						'tab' => __( 'Conditional Tags', parent :: get_plugin_data() ),
-						'function' => array( __CLASS__, 'get_conditional_tags' )
+					    'tab' => __( 'Conditional Tags', parent :: get_plugin_data() ),
+					    'class => ' your_class_name', //optional
+					    'function' => array( __CLASS__, 'get_conditional_tags' )
 					);
 					*/
 					$tabs = apply_filters( 'debug_objects_tabs', $tabs = array() );
 					if ( empty( $tabs ) )
 						echo '<li>Debug Objects: No active settings.</li>';
-					
+
+					$classes = '';
 					foreach( $tabs as $tab ) {
-						echo '<li><a href="#' . htmlentities2( tag_escape( $tab['tab'] ) ) . '">' . esc_attr( $tab['tab'] ) . '</a></li>';
+
+						if ( ! isset( $tab['class'] ) )
+							$tab['class'] = '';
+
+						/**
+						 * Filter Hook to enhance, change classes to hint to important content
+						 */
+						$classes = apply_filters( 'debug_objects_tab_css_classes', $tab['class'], $tab['tab'] );
+						if ( is_array( $classes ) )
+							$classes = implode( ' ', $classes );
+						$classes = sprintf( ' class="%s"', $classes );
+
+
+						echo '<li' . $classes . '><a href="#' . htmlentities2( tag_escape( $tab['tab'] ) ) . '">' . esc_attr( $tab['tab'] ) . '</a></li>';
 					}
 					?>
 					</ul>

@@ -1,4 +1,13 @@
 /* Begin Debug Objects CSS */
+
+/* Set Admin Bar Item, if error message */
+#wpadminbar .debug_objects_php_warning, #debugobjects li.debug_objects_php_warning,
+#wpadminbar .debug_objects_php_notice, #debugobjects li.debug_objects_php_notice,
+#wpadminbar .debug_objects_php_message, #debugobjects li.debug_objects_php_message {
+	background-color: #D54E21 !important;
+	background-image: none !important;
+}
+
 #debugobjects * {
 	margin: 0;
 	font-size: 12px;

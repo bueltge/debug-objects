@@ -19,7 +19,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 		protected static $classobj = NULL;
 
 		var $warnings = array();
-		var $notices = array();
+		var $notices  = array();
 		var $messages = array();
 		var $real_error_handler = array();
 
@@ -31,7 +31,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 		 */
 		public static function init() {
 
-			NULL === self::$classobj and self::$classobj = new self();
+			NULL === self::$classobj && self::$classobj = new self();
 
 			return self::$classobj;
 		}
@@ -49,11 +49,17 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 
 			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 
+			$this->warnings = array();
+			$this->notices  = array();
+			$this->messages = array();
+
 			// @see http://php.net/manual/de/function.set-error-handler.php
 			$this->real_error_handler = set_error_handler( array( $this, 'error_handler' ) );
 
 			// set classes for admin bar item
-			add_filter( 'debug_objects_classes', array( $this, 'get_debug_objects_classes' ) );
+			add_filter( 'debug_objects_css_classes', array( $this, 'get_css_classes' ) );
+
+			add_filter( 'debug_objects_tab_css_classes', array( $this, 'set_tab_css_classes' ), 10, 2 );
 		}
 
 		/**
@@ -71,6 +77,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 
 			$tabs[ ] = array(
 				'tab'      => __( 'System' ),
+				'class'    => '',
 				'function' => array( $this, 'get_different_stuff' )
 			);
 
@@ -78,29 +85,13 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 		}
 
 		/**
-		 * Get different classes for admin bar item to format to see easier a problem on php
+		 * @param $type
+		 * @param $message
+		 * @param $file
+		 * @param $line
 		 *
-		 * @param  Array $classes
-		 *
-		 * @return Array $classes
+		 * @return bool|mixed
 		 */
-		public function get_debug_objects_classes( $classes ) {
-
-			if ( 0 < count( $this->warnings ) ) {
-				$classes[ ] = ' debug_objects_php_warning';
-			}
-
-			if ( 0 < count( $this->notices ) ) {
-				$classes[ ] = ' debug_objects_php_notice';
-			}
-
-			if ( 0 < count( $this->messages ) ) {
-				$classes[ ] = ' debug_objects_php_message';
-			}
-
-			return $classes;
-		}
-
 		public function error_handler( $type, $message, $file, $line ) {
 
 			$_key = md5( $file . ':' . $line . ':' . $message );
@@ -131,6 +122,38 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			} else {
 				return FALSE;
 			}
+		}
+
+		/**
+		 * Get different classes for admin bar item to format to see easier a problem on php
+		 *
+		 * @param  Array $classes
+		 *
+		 * @return Array $classes
+		 */
+		public function get_css_classes( $classes = '' ) {
+
+			if ( count( $this->warnings ) ) {
+				$classes[ ] = ' debug_objects_php_warning';
+			}
+
+			if ( count( $this->notices ) ) {
+				$classes[ ] = ' debug_objects_php_notice';
+			}
+
+			if ( count( $this->messages ) ) {
+				$classes[ ] = ' debug_objects_php_message';
+			}
+
+			return $classes;
+		}
+
+		public function set_tab_css_classes( $classes = '', $tab ) {
+
+			if ( 'System' === $tab )
+				$classes = $this->get_css_classes();
+
+			return $classes;
 		}
 
 		public function get_different_stuff( $echo = TRUE ) {
