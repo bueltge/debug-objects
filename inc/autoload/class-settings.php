@@ -15,7 +15,7 @@ if ( ! function_exists( 'add_filter' ) ) {
 }
 
 if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
-	
+
 	class Debug_Objects_Settings extends Debug_Objects {
 		
 		protected static $classobj = NULL;
@@ -25,30 +25,28 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		public static $option_string;
 		// string for nonce fields
 		public static $nonce_string;
-		
+
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
-		 * 
+		 *
 		 * @access  public
 		 * @since   2.0.0
-		 * @return  $classobj
+		 * @return \Debug_Objects_Settings|null $classobj
 		 */
 		public static function get_object() {
-			
-			if ( NULL === self::$classobj ) {
-				self::$classobj = new self;
-			}
+
+			NULL === self::$classobj && self::$classobj = new self();
 			
 			return self::$classobj;
 		}
-		
+
 		/**
 		 * Constructor, init on defined hooks of WP and include second class
-		 * 
+		 *
 		 * @access  public
 		 * @since   0.0.2
 		 * @uses    register_activation_hook, register_uninstall_hook, add_action
-		 * @return  void
+		 * @return \Debug_Objects_Settings
 		 */
 		public function __construct() {
 			
@@ -74,17 +72,15 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 				// use settings API
 				add_action( 'admin_init',            array( $this, 'register_settings' ) );
 			}
-			// todos on init of WP
-			add_action( 'init', array( $this, 'on_init' ) );
+
+			// add item on admin bar for go faster to the settings
+			add_action( 'admin_bar_menu', array( $this, 'add_wp_admin_bar_item' ), 9999 );
 			// content for settings page
 			add_action( 'debug_objects_settings_page', array( $this, 'get_inside_form' ) );
 			// add meta boxes on settings pages
 			add_action( 'debug_objects_settings_page_sidebar', array( $this, 'get_plugin_infos' ) );
 			add_action( 'debug_objects_settings_page_sidebar', array( $this, 'get_about_plugin' ) );
 		}
-		
-		
-		public function init() {}
 		
 		/**
 		 * Return Textdomain string
@@ -98,22 +94,6 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 			return self::$textdomain;
 		}
 		
-		/**
-		 * Doing on init of WordPress
-		 * 
-		 * @since   07/24/2012
-		 * @param   void
-		 * @return  void
-		 */
-		public function on_init() {
-			
-			// set classes for admin bar item
-			add_filter( 'debug_objects_classes', array( $this, 'get_debug_objects_classes' ) );
-			
-			// add item on admin bar for go faster to the settings
-			add_action( 'admin_bar_menu', array( $this, 'add_wp_admin_bar_item' ), 9999 );
-		}
-
 		/**
 		 * Add settings link on plugins.php in backend
 		 *
@@ -152,17 +132,6 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		}
 		
 		/**
-		 * Return classes for the Debug Objects Item
-		 * 
-		 * @param  Array $classes
-		 * @return Array $classes
-		 */
-		public function get_debug_objects_classes( $classes ) {
-			
-			return $classes;
-		}
-		
-		/**
 		 * Add item in admin bar
 		 * 
 		 * @since   07/24/2012
@@ -178,6 +147,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 				return NULL;
 			
 			$classes = apply_filters( 'debug_objects_css_classes', array() );
+
 			$classes = implode( ' ', $classes );
 			
 			$wp_admin_bar->add_menu(
@@ -212,7 +182,12 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 				)
 			);
 		}
-		
+
+		public function get_debug_objects_css_classes( $classes ) {
+
+			return $classes;
+		}
+
 		/**
 		 * Add settings page in WP backend
 		 * 

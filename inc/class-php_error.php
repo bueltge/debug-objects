@@ -22,12 +22,12 @@ if ( class_exists( 'Debug_Objects_Php_Error' ) )
 class Debug_Objects_Php_Error {
 	
 	protected static $classobj = NULL;
-	
+
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
-	 * 
+	 *
 	 * @access  public
-	 * @return  $classobj
+	 * @return \Debug_Objects_Php_Error|null $classobj
 	 */
 	public static function init() {
 		
@@ -36,6 +36,9 @@ class Debug_Objects_Php_Error {
 		return self::$classobj;
 	}
 
+	/**
+	 *
+	 */
 	public function __construct() {
 		
 		// use namespace, only PHP 5.3*
@@ -48,12 +51,18 @@ class Debug_Objects_Php_Error {
 		self::include_php_error();
 		self::set_php_error();
 	}
-	
+
+	/**
+	 *
+	 */
 	public function include_php_error() {
 		
 		require_once( plugin_dir_path( __FILE__ ) . 'PHP-Error-master/src/php_error.php' );
 	}
-	
+
+	/**
+	 *
+	 */
 	public function set_php_error() {
 		
 		if ( ! isset( $_GET['php_error'] ) )
