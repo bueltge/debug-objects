@@ -1,6 +1,6 @@
 <?php
 /**
- * Add small screen with informations about queries of WP
+ * Add small screen with information about queries of WP
  *
  * @package	    Debug Queries
  * @subpackage  Cache
@@ -53,12 +53,12 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 		protected $_queries = array();
 		
 		protected static $classobj = NULL;
-		
+
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
-		 * 
+		 *
 		 * @access  public
-		 * @return  $classobj
+		 * @return \Debug_Objects_Db_Query|null $classobj
 		 */
 		public static function init() {
 			
