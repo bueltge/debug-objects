@@ -71,14 +71,20 @@ class Debug_Objects_Page_Hooks {
 	public function store_fired_filters( $tag ) {
 		global $wp_filter;
 
-		if ( ! isset( $wp_filter[ $tag ] ) )
+		if ( ! isset( $wp_filter[ $tag ] ) ) {
 			return;
+		}
 
 		$hooked = $wp_filter[ $tag ];
 		ksort( $hooked );
 
-		foreach ( $hooked as $priority => $function )
-			$hooked[] = $function;
+		foreach ( $hooked as $priority => $function ) {
+
+			//prevent buffer overflows of PHP_INT_MAX on array keys
+ 	 	 	//so reset the array keys
+			$hooked = array_values( $hooked );
+			array_push( $hooked, $function );
+		}
 
 		$this->filters_storage[] = array(
 			'tag'    => $tag,
