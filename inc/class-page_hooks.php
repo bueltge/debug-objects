@@ -87,6 +87,7 @@ class Debug_Objects_Page_Hooks {
 			if ( doing_filter( $tag ) ) {
 				$fired = 'Fired: TRUE, ';
 			}
+
 		}
 
 		ksort( $hooked );
@@ -179,11 +180,15 @@ class Debug_Objects_Page_Hooks {
 		$output .= '<tr class="nohover">';
 
 		$output .= "\t" . '<td><table class="tablesorter">';
-		$output .= "\t" . '<thead><tr><th>Fired in order</th><th>Action Hook</th></tr></thead>';
+
+		// Usable since WP 3.9
+		if ( function_exists( 'did_action' ) ) {
+			$count_fired = '<th>Count Fired</th>';
+		}
+		$output .= "\t" . '<thead><tr><th>Fired in order</th><th>Action Hook</th>' . $count_fired . '</tr></thead>';
 
 		$order = 1;
 		foreach ( $wp_actions as $key => $val ) {
-
 			// Format, if the key is inside the important list of hooks
 			foreach ( $this->my_important_hooks as $hook ) {
 
@@ -192,7 +197,12 @@ class Debug_Objects_Page_Hooks {
 				}
 			}
 
-			$output .= '<tr><td>' . $order . '.</td><td><code>' . $key . '</code></td></tr>';
+			// Usable since WP 3.9
+			if ( function_exists( 'did_action' ) ) {
+				$count_fired = '<td>' . (int) did_action( $key ) . '</td>';
+			}
+
+			$output .= '<tr><td>' . $order . '.</td><td><code>' . $key . '</code></td>' . $count_fired . '</tr>';
 			$order ++;
 		}
 		$output .= '</table>';
