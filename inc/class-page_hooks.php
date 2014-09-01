@@ -21,6 +21,8 @@ class Debug_Objects_Page_Hooks {
 
 	protected static $classobj = NULL;
 
+	public $actions_storage = array();
+
 	public $filters_storage = array();
 	// define strings for important hooks to easier identify
 	public $my_important_hooks = array();
@@ -29,7 +31,7 @@ class Debug_Objects_Page_Hooks {
 	 * Handler for the action 'init'. Instantiates this class.
 	 *
 	 * @access  public
-	 * @return  $classobj
+	 * @return \Debug_Objects_Page_Hooks|null $classobj
 	 */
 	public static function init() {
 
@@ -41,8 +43,8 @@ class Debug_Objects_Page_Hooks {
 	/**
 	 * Constructor, init the methods
 	 *
-	 * @return  void
-	 * @since   2.1.11
+	 * @return \Debug_Objects_Page_Hooks
+	@since   2.1.11
 	 */
 	public function __construct() {
 
@@ -69,6 +71,12 @@ class Debug_Objects_Page_Hooks {
 		);
 
 		return $tabs;
+	}
+
+	// @TODO: Write new storage for action hocks to get callbacks to each action hock
+	public function store_fired_actions( $tag ) {
+		global $wp_actions;
+
 	}
 
 	public function store_fired_filters( $tag ) {
@@ -130,7 +138,7 @@ class Debug_Objects_Page_Hooks {
 
 			// Use this hook for remove Filter Hook, like custom filter hooks
 			$filter_hook = apply_filters( 'debug_objects_filter_tag', array() );
-			// Filter Filter Hooks
+			// Filter the Filter Hooks
 			if ( in_array( $the_[ 'tag' ], $filter_hook ) ) {
 				break;
 			}
@@ -153,7 +161,7 @@ class Debug_Objects_Page_Hooks {
 							'priority' => $priority
 						);
 						// readable
-						$filter_callbacks = "{$the_[ 'fired' ]}Function: {$function['function']}(), Arguments: {$function['accepted_args']}, Priority: {$priority}";
+						$filter_callbacks = "{$the_['fired']}Function: {$function['function']}(), Arguments: {$function['accepted_args']}, Priority: {$priority}";
 					}
 				}
 
@@ -188,6 +196,7 @@ class Debug_Objects_Page_Hooks {
 		$output .= "\t" . '<thead><tr><th>Fired in order</th><th>Action Hook</th>' . $count_fired . '</tr></thead>';
 
 		$order = 1;
+
 		foreach ( $wp_actions as $key => $val ) {
 			// Format, if the key is inside the important list of hooks
 			foreach ( $this->my_important_hooks as $hook ) {
@@ -199,10 +208,12 @@ class Debug_Objects_Page_Hooks {
 
 			// Usable since WP 3.9
 			if ( function_exists( 'did_action' ) ) {
-				$count_fired = '<td>' . (int) did_action( $key ) . '</td>';
+				$count_fired = (int) did_action( $key );
+			} else {
+				$count_fired = (int) $val;
 			}
 
-			$output .= '<tr><td>' . $order . '.</td><td><code>' . $key . '</code></td>' . $count_fired . '</tr>';
+			$output .= '<tr><td>' . $order . '.</td><td><code>' . $key . '</code></td><td>' . $count_fired . '</td></tr>';
 			$order ++;
 		}
 		$output .= '</table>';
