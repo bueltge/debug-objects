@@ -79,6 +79,16 @@ class Debug_Objects_Page_Hooks {
 		}
 
 		$hooked = $wp_filter[ $tag ];
+
+		// Usable since WP 3.9
+		$fired = '';
+		if ( function_exists( 'doing_filter' ) ) {
+			$fired = 'Fired: FALSE, ';
+			if ( doing_filter( $tag ) ) {
+				$fired = 'Fired: TRUE, ';
+			}
+		}
+
 		ksort( $hooked );
 
 		foreach ( $hooked as $priority => $function ) {
@@ -92,6 +102,7 @@ class Debug_Objects_Page_Hooks {
 		$this->filters_storage[ ] = array(
 			'tag'    => $tag,
 			'hooked' => $wp_filter[ $tag ],
+			'fired'  => $fired
 		);
 	}
 
@@ -111,7 +122,7 @@ class Debug_Objects_Page_Hooks {
 		$filter_hooks     = '';
 		$filter_callbacks = '';
 
-		// Use this hook for remove Filter Hook from the completly array, like custom filter hooks
+		// Use this hook for remove Filter Hook from the completely array, like custom filter hooks
 		$filters_storage = apply_filters( 'debug_objects_wp_filters', $this->filters_storage );
 
 		foreach ( $filters_storage as $index => $the_ ) {
@@ -141,7 +152,7 @@ class Debug_Objects_Page_Hooks {
 							'priority' => $priority
 						);
 						// readable
-						$filter_callbacks = "Function: {$function['function']}(), Arguments: {$function['accepted_args']}, Priority: {$priority}";
+						$filter_callbacks = "{$the_[ 'fired' ]}Function: {$function['function']}(), Arguments: {$function['accepted_args']}, Priority: {$priority}";
 					}
 				}
 
@@ -198,7 +209,7 @@ class Debug_Objects_Page_Hooks {
 		$order = 1;
 		foreach ( $callbacks as $hook => $values ) {
 
-			// remove dublicate items
+			// remove duplicate items
 			$values = array_unique( $values );
 			foreach ( $values as $key => $value ) {
 				$escape = htmlspecialchars( $value, ENT_QUOTES, 'utf-8', FALSE );

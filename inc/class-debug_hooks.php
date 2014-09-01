@@ -87,11 +87,11 @@ if ( class_exists( 'Debug_Objects_Debug_Hooks' ) )
 		
 		public static function list_hook_details( $input = NULL ) {
 			global $wp_filter;
-			
+
 			$tag = current_filter();
 			if ( isset( $wp_filter[$tag] ) )
 				self::dump_hook( $tag, $wp_filter[$tag] );
-			
+
 			return $input;
 		}
 		
@@ -122,7 +122,7 @@ if ( class_exists( 'Debug_Objects_Debug_Hooks' ) )
 			$tag = esc_html( $tag );
 			
 			$output = '<ul><li><strong>' . $tag . '</strong><ul>';
-			
+
 			foreach( $hook as $priority => $functions ) {
 				
 				$output .= '<li>Priority: ' . $priority . '<ul>';
