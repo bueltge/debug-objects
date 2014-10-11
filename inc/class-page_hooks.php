@@ -77,13 +77,42 @@ class Debug_Objects_Page_Hooks {
 	public function store_fired_actions( $tag ) {
 		global $wp_actions;
 
+		if ( ! isset( $wp_actions[ $tag ] ) ) {
+			return NULL;
+		}
+
+		$hooked = $wp_actions[ $tag ];
+
+		// Usable since WP 3.9
+		$fired = '';
+		if ( function_exists( 'doing_filter' ) ) {
+			$fired = 'Fired: FALSE, ';
+			if ( doing_filter( $tag ) ) {
+				$fired = 'Fired: TRUE, ';
+			}
+
+		}
+
+		foreach ( $hooked as $priority => $function ) {
+
+			//prevent buffer overflows of PHP_INT_MAX on array keys
+			//so reset the array keys
+			$hooked = array_values( $hooked );
+			array_push( $hooked, $function );
+		}
+
+		$this->actions_storage[ ] = array(
+			'tag'    => $tag,
+			'hooked' => $wp_actions[ $tag ],
+			'fired'  => $fired
+		);
 	}
 
 	public function store_fired_filters( $tag ) {
 		global $wp_filter;
 
 		if ( ! isset( $wp_filter[ $tag ] ) ) {
-			return;
+			return NULL;
 		}
 
 		$hooked = $wp_filter[ $tag ];
