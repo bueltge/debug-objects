@@ -54,10 +54,10 @@ if ( ! class_exists( 'Debug_Objects_Debug' ) ) {
 		 * 
 		 * @since 2.1.5 03/27/2012
 		 * @param mixed $var the var to debug
-		 * @param bool $die whether to die after outputting
-		 * @param string $function the function to call, usually either print_r or var_dump, but can be anything
+		 * @param bool $echo True for echo
+		 * @param bool $die  whether to die after outputting
 		 */
-		public function debug( $var = NULL, $function = 'var_dump', $echo = TRUE, $die = FALSE ) {
+		public function debug( $var = NULL, $echo = TRUE, $die = FALSE ) {
 			
 			if ( isset( $_GET['debug_var'] ) )
 				$var = esc_attr( $_GET['debug_var'] );

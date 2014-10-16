@@ -1,9 +1,5 @@
 <?php
 /**
- * @package Debug Objects
- * @author  Frank Bültge
- * 
- * 
  * Plugin Name: Debug Objects
  * Plugin URI:  http://bueltge.de/debug-objects-wordpress-plugin/966/
  * Text Domain: debug_objects
@@ -300,8 +296,8 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			
 			if ( $echo )
 				echo $plugin_value;
-			else
-				return $plugin_value;
+
+			return $plugin_value;
 		}
 		
 		/**
@@ -399,7 +395,8 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				}
 				return FALSE;
 			}
-	
+
+			return FALSE;
 		}
 		
 		/**
@@ -554,10 +551,10 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			$export = var_export( $var, TRUE );
 			$escape = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
 			
-			if ( $return )
-				return $before . '<pre>' . $escape . '</pre>';
-			else
+			if ( ! $return )
 				print $before . '<pre>' . $escape . '</pre>';
+
+			return $before . '<pre>' . $escape . '</pre>';
 		}
 		
 	} // end class

@@ -93,8 +93,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 		/**
 		 * Adds a backtrace to PHP errors
 		 *
-		 * Copied from: https://gist.github.com/625769
-		 * Forked from: http://stackoverflow.com/questions/1159216/how-can-i-get-php-to-produce-a-backtrace-upon-errors/1159235#1159235
+		 * @see http://stackoverflow.com/questions/1159216/how-can-i-get-php-to-produce-a-backtrace-upon-errors/1159235#1159235
 		 */
 		public function process_error_backtrace( $errno, $errstr, $errfile, $errline ) {
 
@@ -102,6 +101,8 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 				return;
 			}
 
+			$type = '';
+			$fatal = FALSE;
 			$_key = md5( $errfile . ':' . $errline . ':' . $errstr );
 
 			switch ( $errno ) {
@@ -869,11 +870,10 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			}
 			$output .= '</li></ul>' . "\n";
 
-			if ( $echo ) {
+			if ( $echo )
 				echo $output;
-			} else {
+
 				return $output;
-			}
 		}
 
 	} // end class

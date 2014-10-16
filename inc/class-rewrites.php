@@ -113,7 +113,7 @@ class Debug_Objects_Rewrites {
 		
 		if ( $echo )
 			echo $output;
-		else
-			return $output;
+
+		return $output;
 	}
 }

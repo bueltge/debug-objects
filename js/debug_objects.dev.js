@@ -28,7 +28,7 @@ function debug_objects_toggle( obj ) {
 					// Set which tab should be selected. Older jQuery UI API
 					tabs.tabs('select',value);
 				}
-			},
+			}
 		} );
 		
 		$(".ui-tabs-anchor").click(function() {
@@ -41,17 +41,16 @@ function debug_objects_toggle( obj ) {
 	});
 	
 	// read cookie
-	// $.cookie( 'debug-objects-selected-tab', { path: '/' } );
 	var selected_tab = $.cookie( 'debug-objects-selected-tab' );
 	if ( typeof selected_tab  == 'undefined' ) selected_tab = 0;
 	
 	$( '#debugobjectstabs' ).tabs( {
 		collapsible: true,
-		active: selected_tab,
+		active: selected_tab
 	} );
 	
 	// Add tablesorter function
-	$( '#debugobjects table.tablesorter' ).DataTable( {
+	$( '#debugobjects').find('table.tablesorter' ).DataTable( {
 		"iDisplayLength": 25,
 		"aLengthMenu": [ 10, 25, 50, 75, 100, 200, 500 ],
 		"bJQueryUI": true

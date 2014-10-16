@@ -57,8 +57,8 @@ if ( ! class_exists( 'Debug_Objects_Cache' ) ) {
 			
 			if ( $echo )
 				echo $output;
-			else
-				return $output;
+
+			return $output;
 		}
 		
 	} // end class

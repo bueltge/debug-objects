@@ -97,10 +97,7 @@ if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 			}
 			
 			$theme_data = array();
-			if ( function_exists( 'wp_get_theme' ) )
-				$theme_data = wp_get_theme( get_stylesheet_directory() . '/style.css' );
-			else
-				$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
+			$theme_data = wp_get_theme( get_stylesheet_directory() . '/style.css' );
 			
 			$output .=  "\n" . '<h4>' . __( 'Theme Values', parent :: get_plugin_data() ) . '</h4>' . "\n";
 			$output .= '<ul>' . "\n";
@@ -179,8 +176,8 @@ if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 			
 			if ( $echo )
 				echo $output;
-			else
-				return $output;
+
+			return $output;
 		}
 		
 		public function get_active_plugins( $echo = TRUE ) {
@@ -210,8 +207,8 @@ if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 			
 			if ( $echo )
 				echo $output;
-			else
-				return $output;
+
+			return $output;
 		}
 		
 		public function get_list_ids() {

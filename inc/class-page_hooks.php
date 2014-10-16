@@ -1,6 +1,6 @@
 <?php
 /**
- * Add small screen with informations about hooks on current page of WP
+ * Add small screen with information about hooks on current page of WP
  *
  * @package     Debug Objects
  * @subpackage  Current Hooks
@@ -21,9 +21,8 @@ class Debug_Objects_Page_Hooks {
 
 	protected static $classobj = NULL;
 
-	public $actions_storage = array();
-
 	public $filters_storage = array();
+
 	// define strings for important hooks to easier identify
 	public $my_important_hooks = array();
 
@@ -73,42 +72,8 @@ class Debug_Objects_Page_Hooks {
 		return $tabs;
 	}
 
-	// @TODO: Write new storage for action hocks to get callbacks to each action hock
-	public function store_fired_actions( $tag ) {
-		global $wp_actions;
-
-		if ( ! isset( $wp_actions[ $tag ] ) ) {
-			return NULL;
-		}
-
-		$hooked = $wp_actions[ $tag ];
-
-		// Usable since WP 3.9
-		$fired = '';
-		if ( function_exists( 'doing_filter' ) ) {
-			$fired = 'Fired: FALSE, ';
-			if ( doing_filter( $tag ) ) {
-				$fired = 'Fired: TRUE, ';
-			}
-
-		}
-
-		foreach ( $hooked as $priority => $function ) {
-
-			//prevent buffer overflows of PHP_INT_MAX on array keys
-			//so reset the array keys
-			$hooked = array_values( $hooked );
-			array_push( $hooked, $function );
-		}
-
-		$this->actions_storage[ ] = array(
-			'tag'    => $tag,
-			'hooked' => $wp_actions[ $tag ],
-			'fired'  => $fired
-		);
-	}
-
 	public function store_fired_filters( $tag ) {
+
 		global $wp_filter;
 
 		if ( ! isset( $wp_filter[ $tag ] ) ) {
@@ -150,6 +115,7 @@ class Debug_Objects_Page_Hooks {
 	 * @return String
 	 */
 	public function get_hooks() {
+
 		global $wp_actions;
 
 		// Use this hook for remove Action Hook, like custom action hooks
@@ -195,17 +161,16 @@ class Debug_Objects_Page_Hooks {
 				}
 
 			}
-			$callbacks[ $the_[ 'tag' ] ][ ] = $filter_callbacks; //$hook_callbacks;
+			$callbacks[ $the_[ 'tag' ] ][ ] = $filter_callbacks;
 		}
 
-		// Format important hooks, that you easier identifier this hooks 
+		// Format important hooks, that you easier identifier this hooks
 		$this->my_important_hooks = apply_filters(
 			'debug_objects_important_hooks',
 			array( 'admin_print_', 'admin_head-', 'admin_footer-', 'add_meta_boxes' )
 		);
 
 		$output = '';
-
 		$output .= '<table>';
 
 		$output .= '<tr class="nohover">';
@@ -247,11 +212,7 @@ class Debug_Objects_Page_Hooks {
 		}
 		$output .= '</table>';
 		$output .= '</td>';
-		/*
-		$output .= '<td><table>';
-		$output .= $filter_hooks;
-		$output .= '</table></td>';
-		*/
+
 		$output .= "\t" . '<td>';
 		$output .= "\t\t" . '<table class="tablesorter">';
 		$output .= "\t" . '<thead><tr><th>Fired in order</th><th>Filter Hook & Callback</th></tr></thead>';
@@ -270,7 +231,7 @@ class Debug_Objects_Page_Hooks {
 
 				$output .= '<tr>';
 				$output .= "\t" . '<td>' . $order . '.</td><td>' . __( 'Hook:' )
-				           . ' <code>' . $hook . '</code><br> ' . $escape . '</td>';
+					. ' <code>' . $hook . '</code><br> ' . $escape . '</td>';
 				$output .= '</tr>';
 			}
 

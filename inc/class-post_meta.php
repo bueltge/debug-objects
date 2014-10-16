@@ -144,8 +144,8 @@ if ( ! class_exists( 'Debug_Objects_Post_Meta' ) ) {
 			
 			if ( $echo )
 				echo $output;
-			else
-				return $output;
+
+			return $output;
 		}
 		
 		public function get_string_disk_size( $string ) {

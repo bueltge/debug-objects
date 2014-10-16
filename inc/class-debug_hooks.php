@@ -108,7 +108,7 @@ if ( class_exists( 'Debug_Objects_Debug_Hooks' ) )
 				&& '1' === $options[ 'filter' ] 
 				&& Debug_Objects::array_find( 'Debug_Objects', $hook )
 				) {
-				return;
+				return NULL;
 			}
 			
 			// Filter hook, files from this plugin, not helpful
@@ -117,7 +117,7 @@ if ( class_exists( 'Debug_Objects_Debug_Hooks' ) )
 				&& '1' === $options[ 'filter' ] 
 				&& preg_match( '/debug_objects/', $tag )
 				)
-				return;
+				return NULL;
 			
 			$tag = esc_html( $tag );
 			
@@ -159,8 +159,8 @@ if ( class_exists( 'Debug_Objects_Debug_Hooks' ) )
 			
 			if ( $echo )
 				echo $output;
-			else
-				return $output;
+
+			return $output;
 		}
 		
 	} // end class

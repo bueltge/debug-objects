@@ -665,8 +665,8 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 			
 			if ( $echo )
 				echo $debug_queries;
-			else
-				return $debug_queries;
+
+			return $debug_queries;
 		}
 		
 	} // end class
