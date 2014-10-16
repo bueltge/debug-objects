@@ -18,9 +18,14 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 
 		protected static $classobj = NULL;
 
+		var $content  = '';
+
 		var $warnings = array();
-		var $notices  = array();
+
+		var $notices = array();
+
 		var $messages = array();
+
 		var $real_error_handler = array();
 
 		/**
@@ -49,12 +54,13 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 
 			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 
+			$this->content  = '';
 			$this->warnings = array();
 			$this->notices  = array();
 			$this->messages = array();
 
 			// @see http://php.net/manual/de/function.set-error-handler.php
-			$this->real_error_handler = set_error_handler( array( $this, 'error_handler' ) );
+			$this->real_error_handler = set_error_handler( array( $this, 'process_error_backtrace' ) );
 
 			// set classes for admin bar item
 			add_filter( 'debug_objects_css_classes', array( $this, 'get_css_classes' ) );
@@ -82,6 +88,85 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			);
 
 			return $tabs;
+		}
+
+		/**
+		 * Adds a backtrace to PHP errors
+		 *
+		 * Copied from: https://gist.github.com/625769
+		 * Forked from: http://stackoverflow.com/questions/1159216/how-can-i-get-php-to-produce-a-backtrace-upon-errors/1159235#1159235
+		 */
+		public function process_error_backtrace( $errno, $errstr, $errfile, $errline ) {
+
+			if ( ! ( error_reporting() & $errno ) ) {
+				return;
+			}
+
+			$_key = md5( $errfile . ':' . $errline . ':' . $errstr );
+
+			switch ( $errno ) {
+				case E_WARNING      :
+				case E_USER_WARNING :
+					$this->warnings[ $_key ] = array( $errfile . ':' . $errline, $errstr );
+					break;
+				case E_STRICT      :
+				case E_NOTICE      :
+				case ( defined( 'E_DEPRECATED' ) ? E_DEPRECATED : 8192 ) :
+				case E_USER_NOTICE  :
+					$type  = 'warning';
+					$fatal = FALSE;
+					$this->notices[ $_key ] = array( $errfile . ':' . $errline, $errstr );
+					break;
+				default       :
+					$type  = 'fatal error';
+					$fatal = TRUE;
+					$this->messages[ $_key ] = array( $type, $errstr );
+					break;
+			}
+
+			$trace = debug_backtrace();
+			array_shift( $trace );
+
+			if ( php_sapi_name() == 'cli' && ini_get( 'display_errors' ) ) {
+				$this->content .= 'Backtrace from ' . $type . ' \'' . $errstr . '\' at ' . $errfile . ' ' . $errline . ':' . "\n";
+				foreach ( $trace as $item ) {
+					$this->content .= '  ' . ( isset( $item[ 'file' ] ) ? $item[ 'file' ]
+							: '<unknown file>' ) . ' ' . ( isset( $item[ 'line' ] ) ? $item[ 'line' ]
+							: '<unknown line>' ) . ' calling ' . $item[ 'function' ] . '()' . "\n";
+				}
+
+				flush();
+			} else if ( ini_get( 'display_errors' ) ) {
+				$this->content .= '<p class="error_backtrace">' . "\n";
+				$this->content .= '  Backtrace from ' . $type . ' \'' . $errstr . '\' at ' . $errfile . ' ' . $errline . ':' . "\n";
+				$this->content .= '  <ol>' . "\n";
+				foreach ( $trace as $item ) {
+					$this->content .= '	<li>' . ( isset( $item[ 'file' ] ) ? $item[ 'file' ]
+							: '<unknown file>' ) . ' ' . ( isset( $item[ 'line' ] ) ? $item[ 'line' ]
+							: '<unknown line>' ) . ' calling ' . $item[ 'function' ] . '()</li>' . "\n";
+				}
+				$this->content .= '  </ol>' . "\n";
+				$this->content .= '</p>' . "\n";
+
+				flush();
+			}
+
+			if ( ini_get( 'log_errors' ) ) {
+				$items = array();
+				foreach ( $trace as $item ) {
+					$items[ ] = ( isset( $item[ 'file' ] ) ? $item[ 'file' ]
+							: '<unknown file>' ) . ' ' . ( isset( $item[ 'line' ] ) ? $item[ 'line' ]
+							: '<unknown line>' ) . ' calling ' . $item[ 'function' ] . '()';
+				}
+				$message = 'Backtrace from ' . $type . ' \'' . $errstr . '\' at ' . $errfile . ' ' . $errline . ': ' . join(
+						' | ', $items
+					);
+				error_log( $message );
+			}
+
+			if ( $fatal ) {
+				exit( 1 );
+			}
 		}
 
 		/**
@@ -150,18 +235,24 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 
 		public function set_tab_css_classes( $classes = '', $tab ) {
 
-			if ( 'System' === $tab )
+			if ( 'System' === $tab ) {
 				$classes = $this->get_css_classes();
+			}
 
 			return $classes;
 		}
 
 		public function get_different_stuff( $echo = TRUE ) {
+
 			global $wpdb, $locale;
 
 			$class     = '';
 			$important = '';
 			$output    = '';
+
+			$output .= '<div class="important"><h4>PHP Error Backtrace</h4>' ."\n";
+			$output .= $this->content;
+			$output .= '</div>';
 
 			// php warnings
 			if ( 0 < count( $this->warnings ) ) {
@@ -169,17 +260,18 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			} else {
 				$important = '';
 			}
-			$output .= "<h2$important>Total PHP Warnings: " . number_format( count( $this->warnings ) ) . "</h2>\n";
+			$output .= "<div$important><h2>Total PHP Warnings: " . number_format( count( $this->warnings ) ) . "</h2>\n";
 			if ( count( $this->warnings ) ) {
 				$output .= '<ol>';
 				foreach ( $this->warnings as $location_message ) {
 					$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
 					list( $location, $message ) = $location_message;
 					$output .= "<li$class>WARNING: " . str_replace( ABSPATH, '', $location )
-					           . ' - ' . strip_tags( $message ) . '</li>';
+						. ' - ' . strip_tags( $message ) . '</li>';
 				}
 				$output .= '</ol>';
 			}
+			$output .= '</div>';
 
 			// php notices
 			if ( 0 < count( $this->notices ) ) {
@@ -187,17 +279,18 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			} else {
 				$important = '';
 			}
-			$output .= "<h2$important>Total PHP Notices: " . number_format( count( $this->notices ) ) . "</h2>\n";
+			$output .= "<div$important><h2>Total PHP Notices: " . number_format( count( $this->notices ) ) . "</h2>\n";
 			if ( count( $this->notices ) ) {
 				echo '<ol>';
 				foreach ( $this->notices as $location_message ) {
 					$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
 					list( $location, $message ) = $location_message;
 					$output .= "<li$class>NOTICE: " . str_replace( ABSPATH, '', $location ) .
-					           ' - ' . strip_tags( $message ) . "</li>";
+						' - ' . strip_tags( $message ) . "</li>";
 				}
 				$output .= '</ol>';
 			}
+			$output .= '</div>';
 
 			// default messages, unknown error type
 			if ( 0 < count( $this->messages ) ) {
@@ -205,17 +298,20 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			} else {
 				$important = '';
 			}
-			$output .= "<h2$important>Total unknown Error Messages: " . number_format( count( $this->messages ) ) . "</h2>\n";
+			$output .= "<div$important><h2>Total unknown Error Messages: " . number_format(
+					count( $this->messages )
+				) . "</h2>\n";
 			if ( count( $this->messages ) ) {
 				$output .= '<ol>';
 				foreach ( $this->messages as $location_message ) {
 					$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
 					list( $location, $message ) = $location_message;
 					$output .= "<li$class>Error Message: " . str_replace( ABSPATH, '', $location )
-					           . ' - ' . strip_tags( $message ) . '</li>';
+						. ' - ' . strip_tags( $message ) . '</li>';
 				}
 				$output .= '</ol>';
 			}
+			$output .= '</div>';
 
 			if ( defined( 'WPLANG' ) ) {
 				$locale = WPLANG;
@@ -409,7 +505,9 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			$output .= '<ul>' . "\n";
 			$php_info = array(
 				__( 'PHP version:' )                              => PHP_VERSION,
-				__( 'Server:' )                                   => substr( esc_attr( $_SERVER[ 'SERVER_SOFTWARE' ] ), 0, 14 ),
+				__( 'Server:' )                                   => substr(
+					esc_attr( $_SERVER[ 'SERVER_SOFTWARE' ] ), 0, 14
+				),
 				__( 'Server SW:' )                                => esc_attr( $_SERVER[ 'SERVER_SOFTWARE' ] ),
 				__( 'OS version:' )                               => $os,
 				__( 'Memory usage in MByte:' )                    => $memory_usage,
@@ -472,20 +570,46 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			$output .= '<li>' . __( 'Version:' ) . ' ' . get_bloginfo( 'version' ) . '</li>' . "\n";
 			$output .= '<li class="alternate">' . __( 'Multisite:' ) . ' ' . $ms . '</li>' . "\n";
 			$output .= '<li>' . __( 'Language, constant' ) . ' <code>WPLANG</code>: ' . $locale . '</li>' . "\n";
-			$output .= '<li class="alternate">' . __( 'Text direction, global' ) . ' <code>$GLOBALS[\'text_direction\']</code>: ' . $text_direction . '</li>' . "\n";
-			$output .= '<li>' . __( 'Language folder, constant' ) . ' <code>WP_LANG_DIR</code>: ' . WP_LANG_DIR . '</li>' . "\n";
-			$output .= '<li class="alternate">' . __( 'Content URL, constant' ) . ' <code>WP_CONTENT_URL</code>: ' . WP_CONTENT_URL . '</li>' . "\n";
-			$output .= '<li>' . __( 'Content folder, constant' ) . ' <code>WP_CONTENT_DIR</code>: ' . WP_CONTENT_DIR . '</li>' . "\n";
-			$output .= '<li class="alternate">' . __( 'Memory limit, constant' ) . ' <code>WP_MEMORY_LIMIT</code>: ' . WP_MEMORY_LIMIT . ' Byte</li>' . "\n";
-			$output .= '<li>' . __( 'Post revision, constant' ) . ' <code>WP_POST_REVISIONS</code>: ' . $post_revisions . '</li>' . "\n";
-			$output .= '<li class="alternate">' . __( 'Save queries, constant' ) . ' <code>SAVEQUERIES</code>: ' . $savequeries . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'Text direction, global'
+				) . ' <code>$GLOBALS[\'text_direction\']</code>: ' . $text_direction . '</li>' . "\n";
+			$output .= '<li>' . __(
+					'Language folder, constant'
+				) . ' <code>WP_LANG_DIR</code>: ' . WP_LANG_DIR . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'Content URL, constant'
+				) . ' <code>WP_CONTENT_URL</code>: ' . WP_CONTENT_URL . '</li>' . "\n";
+			$output .= '<li>' . __(
+					'Content folder, constant'
+				) . ' <code>WP_CONTENT_DIR</code>: ' . WP_CONTENT_DIR . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'Memory limit, constant'
+				) . ' <code>WP_MEMORY_LIMIT</code>: ' . WP_MEMORY_LIMIT . ' Byte</li>' . "\n";
+			$output .= '<li>' . __(
+					'Post revision, constant'
+				) . ' <code>WP_POST_REVISIONS</code>: ' . $post_revisions . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'Save queries, constant'
+				) . ' <code>SAVEQUERIES</code>: ' . $savequeries . '</li>' . "\n";
 			$output .= '<li>' . __( 'Debug option, constant' ) . ' <code>WP_DEBUG</code>: ' . $debug . '</li>' . "\n";
-			$output .= '<li class="alternate">' . __( 'SSL Login, constant' ) . ' <code>FORCE_SSL_LOGIN</code>: ' . $ssl_login . '</li>' . "\n";
-			$output .= '<li>' . __( 'Concatenate scripts, constant' ) . ' <code>CONCATENATE_SCRIPTS</code>: ' . $concatenate_scripts . '</li>' . "\n";
-			$output .= '<li class="alternate">' . __( 'Compress scripts, constant' ) . ' <code>COMPRESS_SCRIPTS</code>: ' . $compress_scripts . '</li>' . "\n";
-			$output .= '<li>' . __( 'Compress stylesheet, constant' ) . ' <code>COMPRESS_CSS</code>: ' . $compress_css . '</li>' . "\n";
-			$output .= '<li class="alternate">' . __( 'Enforce GZIP, constant' ) . ' <code>ENFORCE_GZIP</code>: ' . $enforce_gzip . '</li>' . "\n";
-			$output .= '<li>' . __( 'Autosave interval, constant' ) . ' <code>AUTOSAVE_INTERVAL</code>: ' . $autosave_interval . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'SSL Login, constant'
+				) . ' <code>FORCE_SSL_LOGIN</code>: ' . $ssl_login . '</li>' . "\n";
+			$output .= '<li>' . __(
+					'Concatenate scripts, constant'
+				) . ' <code>CONCATENATE_SCRIPTS</code>: ' . $concatenate_scripts . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'Compress scripts, constant'
+				) . ' <code>COMPRESS_SCRIPTS</code>: ' . $compress_scripts . '</li>' . "\n";
+			$output .= '<li>' . __(
+					'Compress stylesheet, constant'
+				) . ' <code>COMPRESS_CSS</code>: ' . $compress_css . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'Enforce GZIP, constant'
+				) . ' <code>ENFORCE_GZIP</code>: ' . $enforce_gzip . '</li>' . "\n";
+			$output .= '<li>' . __(
+					'Autosave interval, constant'
+				) . ' <code>AUTOSAVE_INTERVAL</code>: ' . $autosave_interval . '</li>' . "\n";
 			$output .= '</ul>' . "\n";
 
 			if ( ! defined( 'COOKIE_DOMAIN' ) ) {
@@ -520,11 +644,21 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 
 			$output .= "\n" . '<h4>' . __( 'WordPress Cookie Informations' ) . '</h4>' . "\n";
 			$output .= '<ul>' . "\n";
-			$output .= '<li class="alternate">' . __( 'Cookie domain, constant' ) . ' <code>COOKIE_DOMAIN</code>: ' . $cookie_domain . '</li>' . "\n";
-			$output .= '<li>' . __( 'Cookie path, constant' ) . ' <code>COOKIEPATH</code>: ' . $cookiepath . '</li>' . "\n";
-			$output .= '<li class="alternate">' . __( 'Site cookie path, constant' ) . ' <code>SITECOOKIEPATH</code>: ' . $sitecookiepath . '</li>' . "\n";
-			$output .= '<li>' . __( 'Plugin cookie path, constant' ) . ' <code>PLUGINS_COOKIE_PATH</code>: ' . $plugins_cookie_path . '</li>' . "\n";
-			$output .= '<li class="alternate">' . __( 'Admin cookie path, constant' ) . ' <code>ADMIN_COOKIE_PATH</code>: ' . $admin_cookie_path . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'Cookie domain, constant'
+				) . ' <code>COOKIE_DOMAIN</code>: ' . $cookie_domain . '</li>' . "\n";
+			$output .= '<li>' . __(
+					'Cookie path, constant'
+				) . ' <code>COOKIEPATH</code>: ' . $cookiepath . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'Site cookie path, constant'
+				) . ' <code>SITECOOKIEPATH</code>: ' . $sitecookiepath . '</li>' . "\n";
+			$output .= '<li>' . __(
+					'Plugin cookie path, constant'
+				) . ' <code>PLUGINS_COOKIE_PATH</code>: ' . $plugins_cookie_path . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'Admin cookie path, constant'
+				) . ' <code>ADMIN_COOKIE_PATH</code>: ' . $admin_cookie_path . '</li>' . "\n";
 			$output .= '</ul>' . "\n";
 
 			if ( ! defined( 'FS_CHMOD_FILE' ) ) {
@@ -541,8 +675,12 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 
 			$output .= "\n" . '<h4>' . __( 'WordPress File Permissions Informations' ) . '</h4>' . "\n";
 			$output .= '<ul>' . "\n";
-			$output .= '<li class="alternate">' . __( 'File Permissions, constant' ) . ' <code>FS_CHMOD_FILE</code>: ' . $fs_chmod_file . '</li>' . "\n";
-			$output .= '<li>' . __( 'DIR Permissions, constant' ) . ' <code>FS_CHMOD_DIR</code>: ' . $fs_chmod_dir . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'File Permissions, constant'
+				) . ' <code>FS_CHMOD_FILE</code>: ' . $fs_chmod_file . '</li>' . "\n";
+			$output .= '<li>' . __(
+					'DIR Permissions, constant'
+				) . ' <code>FS_CHMOD_DIR</code>: ' . $fs_chmod_dir . '</li>' . "\n";
 			$output .= '</ul>' . "\n";
 
 			if ( ! defined( 'CUSTOM_USER_TABLE' ) ) {
@@ -559,8 +697,12 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 
 			$output .= "\n" . '<h4>' . __( 'WordPress Custom User &amp; Usermeta Tables' ) . '</h4>' . "\n";
 			$output .= '<ul>' . "\n";
-			$output .= '<li class="alternate">' . __( 'Custom User Table, constant' ) . ' <code>CUSTOM_USER_TABLE</code>: ' . $custom_user_table . '</li>' . "\n";
-			$output .= '<li>' . __( 'Cookie path, constant' ) . ' <code>CUSTOM_USER_META_TABLE</code>: ' . $custom_user_meta_table . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'Custom User Table, constant'
+				) . ' <code>CUSTOM_USER_TABLE</code>: ' . $custom_user_table . '</li>' . "\n";
+			$output .= '<li>' . __(
+					'Cookie path, constant'
+				) . ' <code>CUSTOM_USER_META_TABLE</code>: ' . $custom_user_meta_table . '</li>' . "\n";
 			$output .= '</ul>' . "\n";
 
 			if ( ! defined( 'FS_METHOD' ) ) {
@@ -619,15 +761,33 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 
 			$output .= "\n" . '<h4>' . __( 'WordPress FTP/SSH Informations' ) . '</h4>' . "\n";
 			$output .= '<ul>' . "\n";
-			$output .= '<li class="alternate">' . __( 'Forces the filesystem method, constant' ) . ' <code>FS_METHOD</code> (<code>direct</code>, <code>ssh</code>, <code>ftpext</code> or <code>ftpsockets</code>): ' . $fs_method . '</li>' . "\n";
-			$output .= '<li>' . __( 'Path to root install directory, constant' ) . ' <code>FTP_BASE</code>: ' . $ftp_base . '</li>' . "\n";
-			$output .= '<li class="alternate">' . __( 'Absolute path to wp-content directory, constant' ) . ' <code>FTP_CONTENT_DIR</code>: ' . $ftp_content_dir . '</li>' . "\n";
-			$output .= '<li>' . __( 'Absolute path to plugin directory, constant' ) . ' <code>FTP_PLUGIN_DIR</code>: ' . $ftp_plugin_dir . '</li>' . "\n";
-			$output .= '<li class="alternate">' . __( 'Absolute path to SSH public key, constant' ) . ' <code>FTP_PUBKEY</code>: ' . $ftp_pubkey . '</li>' . "\n";
-			$output .= '<li>' . __( 'dorector path to SSH private key, constant' ) . ' <code>FTP_PRIVKEY</code>: ' . $ftp_privkey . '</li>' . "\n";
-			$output .= '<li class="alternate">' . __( 'FTP or SSH username, constant' ) . ' <code>FTP_USER</code>: ' . $ftp_user . '</li>' . "\n";
-			$output .= '<li>' . __( 'FTP or SSH password, constant' ) . ' <code>FTP_PASS</code>: ' . $ftp_pass . '</li>' . "\n";
-			$output .= '<li class="alternate">' . __( 'Hostname, constant' ) . ' <code>FTP_HOST</code>: ' . $ftp_host . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'Forces the filesystem method, constant'
+				) . ' <code>FS_METHOD</code> (<code>direct</code>, <code>ssh</code>, <code>ftpext</code> or <code>ftpsockets</code>): ' . $fs_method . '</li>' . "\n";
+			$output .= '<li>' . __(
+					'Path to root install directory, constant'
+				) . ' <code>FTP_BASE</code>: ' . $ftp_base . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'Absolute path to wp-content directory, constant'
+				) . ' <code>FTP_CONTENT_DIR</code>: ' . $ftp_content_dir . '</li>' . "\n";
+			$output .= '<li>' . __(
+					'Absolute path to plugin directory, constant'
+				) . ' <code>FTP_PLUGIN_DIR</code>: ' . $ftp_plugin_dir . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'Absolute path to SSH public key, constant'
+				) . ' <code>FTP_PUBKEY</code>: ' . $ftp_pubkey . '</li>' . "\n";
+			$output .= '<li>' . __(
+					'dorector path to SSH private key, constant'
+				) . ' <code>FTP_PRIVKEY</code>: ' . $ftp_privkey . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'FTP or SSH username, constant'
+				) . ' <code>FTP_USER</code>: ' . $ftp_user . '</li>' . "\n";
+			$output .= '<li>' . __(
+					'FTP or SSH password, constant'
+				) . ' <code>FTP_PASS</code>: ' . $ftp_pass . '</li>' . "\n";
+			$output .= '<li class="alternate">' . __(
+					'Hostname, constant'
+				) . ' <code>FTP_HOST</code>: ' . $ftp_host . '</li>' . "\n";
 			$output .= '</ul>' . "\n";
 
 			$output .= "\n" . '<h4>' . __( 'WordPress Query Informations' ) . '</h4>' . "\n";
@@ -708,7 +868,6 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 				$output .= Debug_Objects::pre_print( $_COOKIE, '', TRUE );
 			}
 			$output .= '</li></ul>' . "\n";
-
 
 			if ( $echo ) {
 				echo $output;

@@ -103,6 +103,7 @@ div#debugobjects #memory li a:hover, div#debugobjects #conditional_tags li a:hov
 div#debugobjects .important {
 	border: 2px solid #D54E21;
 	padding: .5%;
+	margin: 1em 0;
 }
 
 .admin-color-classic div#debugobjects .alternate, .admin-color-classic div#debugobjects .alt {
