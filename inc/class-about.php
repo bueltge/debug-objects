@@ -53,7 +53,7 @@ if ( ! class_exists( 'Debug_Objects_About' ) ) {
 			
 			$tabs[] = array( 
 				'tab' => __( 'About', parent :: get_plugin_data() ),
-				'function' => array( $this, 'get_plugin_data' )
+				'function' => array( $this, 'get_plugin_content' )
 			);
 			
 			return $tabs;
@@ -65,7 +65,7 @@ if ( ! class_exists( 'Debug_Objects_About' ) ) {
 		 * @param   bool   $echo
 		 * @return  string $output
 		 */
-		public function get_plugin_data( $echo = TRUE ) {
+		public function get_plugin_content( $echo = TRUE ) {
 
 			$output  = '';
 			$output .= '<h3>' . parent :: get_plugin_data( 'Title' ) . '</h3>';
