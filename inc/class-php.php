@@ -52,8 +52,6 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 				return;
 			}
 
-			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
-
 			$this->content  = '';
 			$this->warnings = array();
 			$this->notices  = array();
@@ -66,6 +64,8 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			add_filter( 'debug_objects_css_classes', array( $this, 'get_css_classes' ) );
 
 			add_filter( 'debug_objects_tab_css_classes', array( $this, 'set_tab_css_classes' ), 10, 2 );
+
+			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 		}
 
 		/**
@@ -217,7 +217,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 		 *
 		 * @return Array $classes
 		 */
-		public function get_css_classes( $classes = '' ) {
+		public function get_css_classes( $classes ) {
 
 			if ( count( $this->warnings ) ) {
 				$classes[ ] = ' debug_objects_php_warning';
@@ -253,7 +253,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 
 			$output .= '<div class="important"><h4>PHP Error Backtrace</h4>' ."\n";
 			$output .= $this->content;
-			$output .= '</div>';
+			$output .= '</div>' ."\n";
 
 			// php warnings
 			if ( 0 < count( $this->warnings ) ) {
@@ -282,7 +282,7 @@ if ( ! class_exists( 'Debug_Objects_Php' ) ) {
 			}
 			$output .= "<div$important><h2>Total PHP Notices: " . number_format( count( $this->notices ) ) . "</h2>\n";
 			if ( count( $this->notices ) ) {
-				echo '<ol>';
+				$output .= '<ol>';
 				foreach ( $this->notices as $location_message ) {
 					$class = ( ' class="alternate"' == $class ) ? '' : ' class="alternate"';
 					list( $location, $message ) = $location_message;

@@ -19,7 +19,8 @@ div#debugobjects {
 	right: 1%;
 	margin: 30px 10px;
 	font-size: 12px !important; /* fix for all themes */
-	color: #fff;
+	color: #333;
+	background: #f0f0f0;
 	text-align: left;
 	position: relative;
 	z-index: 99990;
