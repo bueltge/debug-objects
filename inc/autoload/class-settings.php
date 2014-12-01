@@ -336,6 +336,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Stack_Trace'       => __( 'Stack Trace, all files and functions on each query. The Database-Query options is prerequisite.<br />A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.' ),
 					'Cache'             => __( 'Contents of Cache' ),// WP Cache
 					'Rewrites'          => __( 'A list of all cached rewrites.' ),
+					'Permalink_Performance' => __( 'Analyze the performance for the permalink rule settings.' ),
 					'Cron'              => __( 'Crons' ),
 					'Memory'            => __( 'Memory Used, Load Time and included Files, but without all file in the folder <code>wp-admin</code>, <code>wp-includes</code>' ),
 					'Inspector'         => __( 'Provide information about a given domain' ),
