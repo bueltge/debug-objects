@@ -32,6 +32,7 @@ Values and content get displayed at the frontend and backend of the blog, to ana
 * Hooks and filters
 * All options from table, for single and multisite installation
 * Rewrites, a list of cached rewrites and the rule
+* Time values for inspect Permalink Rules
 * Current screen information to find the right backend page and hook
 * List Custom Post Type Arguments
 * Functions, which respond on hooks and filters
