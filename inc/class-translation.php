@@ -2,7 +2,7 @@
 /**
  * Return different information about translation files
  *
- * Kudos to Toscho <info@toscho.de> for the idea and code ressource
+ * Kudos to Toscho <info@toscho.de> for the idea and code resource
  *
  * @package     Debug Objects
  * @subpackage  Translation Information

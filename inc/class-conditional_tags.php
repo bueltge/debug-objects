@@ -218,8 +218,8 @@ if ( ! class_exists( 'Debug_Objects_Conditional_Tags' ) ) {
 			
 			if ( $echo )
 				echo $is;
-			else
-				return $echo;
+
+			return $echo;
 		}
 		
 	} // end class

@@ -3,11 +3,12 @@
 /**
  * Adding PHP 5.4.x specific improvements for the Debug Objects capabilities
  *
- * @package     Debug Objects
- * @subpackage  PHP 5.4 improvements
- * @since       09/13/2013  2.1.16
- * @author      nofearinc, bueltge
+ * PHP Version 5.4
  *
+ * @package    Debug_Objects
+ * @subpackage Debug_Objects_Php54
+ * @since      09/13/2013  2.1.16
+ * @author     nofearinc, frank@bueltge.de
  */
  
 if ( ! function_exists( 'add_filter' ) ) {
@@ -15,6 +16,11 @@ if ( ! function_exists( 'add_filter' ) ) {
 	exit;
 }
 
+/**
+ * Class Debug_Objects_Php54
+ *
+ * PHP Version 5.4
+ */
 class Debug_Objects_Php54 {
 	
 	/**
@@ -26,10 +32,12 @@ class Debug_Objects_Php54 {
 	}
 	
 	/**
-	 * Sort queries for the class-query listing if PHP 5.4 is active (using shorthand for arrays)
+	 * Sort queries for the class-query listing if PHP 5.4 is active
+	 *   (using shorthand for arrays)
 	 *
 	 * @param array $queries WP_Query array
 	 * @param int|false $sorting
+	 *
 	 * @return array $queries sorted queries list
 	 */
 	public function sort_queries( $queries, $sorting ) {

@@ -49,13 +49,12 @@ class Debug_Objects_Rewrite_Backtrace {
 	}
 	
 	/**
-	 * Parse data and save in transient dat in DB
+	 * Parse data and save in transient data in DB
 	 * 
 	 * @param  $location
-	 * @param  $status
 	 * @return $location
 	 */
-	public function redirect_debug( $location, $status ) {
+	public function redirect_debug( $location ) {
 		
 		ob_start();
 		debug_print_backtrace();
@@ -125,8 +124,8 @@ class Debug_Objects_Rewrite_Backtrace {
 		
 		if ( $echo )
 			echo $output;
-		else
-			return $output;
+
+		return $output;
 	}
 	
 } // end class

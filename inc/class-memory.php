@@ -93,8 +93,8 @@ class Debug_Objects_Memory extends Debug_Objects {
 		
 		if ( $echo )
 			echo $output;
-		else
-			return $output;
+
+		return $output;
 	}
 	
 	public function get_speed_data() {

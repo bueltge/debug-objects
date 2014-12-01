@@ -171,11 +171,10 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 			$output .= '<h4>Schedules</h4>';
 			$output .= self::get_schedules( FALSE );
 
-			if ( $echo ) {
+			if ( $echo )
 				echo $output;
-			} else {
-				return $output;
-			}
+
+			return $output;
 		}
 
 		/**
@@ -298,7 +297,7 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 		 * Get crons, there registered in WP
 		 *
 		 * @since   2.1.5 11/04/2012
-		 * @return  void
+		 * @return  Array
 		 */
 		public function get_crons() {
 
@@ -378,11 +377,10 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 
 			$output .= '</table>';
 
-			if ( $echo ) {
+			if ( $echo )
 				echo $output;
-			} else {
-				return $output;
-			}
+
+			return $output;
 		}
 
 		/**

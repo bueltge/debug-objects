@@ -140,12 +140,15 @@ if ( ! class_exists( 'Debug_Objects_Hooks' ) ) {
 			
 			$output .= '</ol>' . "\n";
 			
-			$output .= '<p class="alternate">' . __( 'Hooks total:', parent :: get_plugin_data() ) . ' ' . $wp_hook . '<br />' . __( 'Register filter/actions total:', parent :: get_plugin_data() ) . ' ' . $wp_func . '</p>';
+			$output .= '<p class="alternate">' . __( 'Hooks total:', parent :: get_plugin_data() )
+				. ' ' . $wp_hook . '<br />'
+				. __( 'Register filter/actions total:', parent :: get_plugin_data() )
+				. ' ' . $wp_func . '</p>';
 			
 			if ( $echo )
 				echo $output;
-			else
-				return $output;
+
+			return $output;
 		}
 		
 	} // end class

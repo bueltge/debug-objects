@@ -136,6 +136,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 * 
 		 * @since   07/24/2012
 		 * @param   Array $wp_admin_bar
+		 * @return void
 		 */
 		public function add_wp_admin_bar_item( $wp_admin_bar ) {
 			
@@ -248,7 +249,6 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		public function get_settings_page() {
 			?>
 			<div class="wrap">
-				<?php screen_icon('options-general'); ?>
 				<h2><?php echo parent :: get_plugin_data( 'Name' ); ?> <?php _e('Settings' ); ?></h2>
 				
 				<div id="poststuff">

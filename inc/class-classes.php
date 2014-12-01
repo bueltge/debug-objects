@@ -86,6 +86,7 @@ class Debug_Objects_Classes {
 	 * @since 2.1.5 03/27/2012
 	 * @param bool $sort sort classes
 	 * @param bool $echo return or echo
+	 * @return void
 	 */
 	public function get_classes( $sort = TRUE, $echo = TRUE ) {
 		
