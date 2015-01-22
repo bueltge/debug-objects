@@ -2,10 +2,13 @@
 /**
  * Return different information about transients
  *
- * @package     Debug Objects
- * @subpackage  Transient Information
- * @author      Frank Bültge
+ * @package     Debug_Objects
+ * @subpackage  Debug_Objects_Transient
+ * @author      Frank Bültge <frank@bueltge.de>
+ * @license     http://opensource.org/licenses/gpl-license.php GNU Public License
  * @since       2014-08-26
+ *
+ * Php Version 5.3
  */
 
 if ( ! function_exists( 'add_filter' ) ) {
@@ -13,6 +16,9 @@ if ( ! function_exists( 'add_filter' ) ) {
 	exit;
 }
 
+/**
+ * Class Debug_Objects_Transient
+ */
 class Debug_Objects_Transient {
 
 	/**
