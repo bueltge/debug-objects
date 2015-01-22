@@ -40,7 +40,7 @@ class Debug_Objects_Transient {
 	 *
 	 * @type array
 	 */
-	protected $log = array();
+	protected $cache_key = 'debug_objects_transients';
 
 	/**
 	 * Load the object and get the current state
@@ -94,11 +94,13 @@ class Debug_Objects_Transient {
 		$transients = $this->get_transients();
 		?>
 		<div class="wrap">
+			<h4>Total Transients</h4>
 
-			<table class="wp-list-table widefat fixed posts tablesorter">
+			<p><?php echo (int) count( $transients ); ?></p>
+			<table class="tablesorter">
 				<thead>
 				<tr>
-					<th style="width:40px;"><?php _e( 'ID' ); ?></th>
+					<th><?php _e( 'ID' ); ?></th>
 					<th><?php _e( 'Name' ); ?></th>
 					<th><?php _e( 'Value' ); ?></th>
 					<th><?php _e( 'Expires In' ); ?></th>
@@ -130,45 +132,25 @@ class Debug_Objects_Transient {
 	/**
 	 * Retrieve transients from the database
 	 *
-	 * @access  private
+	 * @access   private
+	 * @return   array
+	 * @internal param array $args
 	 *
-	 * @param array $args
-	 *
-	 * @return array
-	 * @since   2015-01-22
+	 * @since    2015-01-22
 	 */
-	private function get_transients( $args = array() ) {
+	private function get_transients() {
 
 		global $wpdb;
 
-		$defaults = array(
-			'offset' => 0,
-			'number' => 30,
-			'search' => '',
-		);
-
-		$args       = wp_parse_args( $args, $defaults );
-		$cache_key  = md5( serialize( $args ) );
-		$transients = wp_cache_get( $cache_key );
+		$transients = wp_cache_get( $this->cache_key );
 
 		if ( FALSE === $transients ) {
 
-			$sql = "SELECT * FROM $wpdb->options WHERE option_name LIKE '\_transient\_%' AND option_name NOT LIKE '\_transient\_timeout%'";
-
-			if ( ! empty( $args[ 'search' ] ) ) {
-
-				$search = esc_sql( $args[ 'search' ] );
-				$sql .= " AND option_name LIKE '%{$search}%'";
-
-			}
-
-			$offset = absint( $args[ 'offset' ] );
-			$number = absint( $args[ 'number' ] );
-			$sql .= " ORDER BY option_id DESC LIMIT $offset,$number;";
+			$sql = "SELECT * FROM $wpdb->options WHERE option_name LIKE '\_transient\_%' AND option_name NOT LIKE '\_transient\_timeout%' ORDER BY option_id DESC;";
 
 			$transients = $wpdb->get_results( $sql );
 
-			wp_cache_set( $cache_key, $transients, '', 3600 );
+			wp_cache_set( $this->cache_key, $transients, '', 3600 );
 
 		}
 

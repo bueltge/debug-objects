@@ -137,7 +137,7 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 					date( 'Y-m-d H:i:s' ) => array(
 						'hook' => array(
 							'schedule' => ' ',
-							'args'     => ''
+							'args'     => '',
 						)
 					)
 				)
@@ -149,7 +149,7 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 				'',
 				'',
 				'',
-				''
+				'',
 			);
 
 			$output .= self::display_events( $_next_events, $thead );
@@ -171,8 +171,9 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 			$output .= '<h4>Schedules</h4>';
 			$output .= self::get_schedules( FALSE );
 
-			if ( $echo )
+			if ( $echo ) {
 				echo $output;
+			}
 
 			return $output;
 		}
@@ -182,7 +183,9 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 		 *
 		 * @since  1.0.0  10/04/2012
 		 *
-		 * @param  $events  Array
+		 * @param              $events  Array
+		 *
+		 * @param bool | array $thead
 		 *
 		 * @return String
 		 */
@@ -195,7 +198,7 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 					'Hooked functions',
 					'Interval Hook',
 					'Interval Value',
-					'Args'
+					'Args',
 				);
 			}
 
@@ -220,7 +223,9 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 
 				foreach ( $time_cron_array as $hook => $data ) {
 					$output .= '<tr' . $class . '>';
-					$output .= '<td valign="top">' . date( 'Y-m-d H:i:s', $time ) . '<br />' . $time . '<br />' . human_time_diff( $time ) . '</td>';
+					$output .= '<td valign="top">' . date(
+							'Y-m-d H:i:s', $time
+						) . '<br />' . $time . '<br />' . human_time_diff( $time ) . '</td>';
 					$output .= '<td valign="top"><code>' . wp_strip_all_tags( $hook ) . '</code></td>';
 
 					$functions = array();
@@ -232,10 +237,14 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 
 								if ( is_object( $hook_details[ 'function' ][ 0 ] ) ) {
 
-									$functions[ ] = get_class( $hook_details[ 'function' ][ 0 ] ) . '::' . $hook_details[ 'function' ][ 1 ] . '()';
+									$functions[ ] = get_class(
+											$hook_details[ 'function' ][ 0 ]
+										) . '::' . $hook_details[ 'function' ][ 1 ] . '()';
 								} else {
 
-									$functions[ ] = ( isset( $hook_details[ 'class' ] ) ? $hook_details[ 'class' ] . '::' : '' ) . $hook_details[ 'function' ] . '()';
+									$functions[ ] = ( isset( $hook_details[ 'class' ] )
+											? $hook_details[ 'class' ] . '::'
+											: '' ) . $hook_details[ 'function' ] . '()';
 								}
 
 							}
@@ -247,7 +256,6 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 					$output .= '<td valign="top">';
 					$output .= implode( ', ', $functions );
 					$output .= '</td>';
-
 
 					foreach ( $data as $hash => $info ) {
 						// Report the schedule
@@ -322,7 +330,7 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 				'do_pings',
 				'wp_version_check',
 				'wp_update_plugins',
-				'wp_update_themes'
+				'wp_update_themes',
 			);
 
 			// Sort and count crons
@@ -340,7 +348,6 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 
 			return self::$_crons;
 		}
-
 
 		/**
 		 * Displays all of the schedules defined
@@ -377,8 +384,9 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 
 			$output .= '</table>';
 
-			if ( $echo )
+			if ( $echo ) {
 				echo $output;
+			}
 
 			return $output;
 		}
@@ -389,6 +397,8 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 		 * @param      $response
 		 * @param      $type
 		 * @param bool $transport
+		 *
+		 * @return null|void
 		 */
 		public function log_cron_http_api_debug( $response, $type, $transport = FALSE ) {
 
@@ -401,11 +411,11 @@ if ( ! class_exists( 'Debug_Objects_Cron' ) ) {
 			}
 
 			if ( is_array( $response )
-			     && is_array( $response[ 'response' ] )
-			     && ! empty( $response[ 'response' ][ 'code' ] )
-			     && '200' == $response[ 'response' ][ 'code' ]
+				&& is_array( $response[ 'response' ] )
+				&& ! empty( $response[ 'response' ][ 'code' ] )
+				&& '200' == $response[ 'response' ][ 'code' ]
 			) {
-				return;
+				return NULL;
 			}
 
 			$meta_key = $this->transient_key . $transport . time();

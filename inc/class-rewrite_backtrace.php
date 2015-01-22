@@ -35,11 +35,10 @@ class Debug_Objects_Rewrite_Backtrace {
 		
 		return self::$classobj;
 	}
-	
+
 	/**
 	 * Constructor, init the methods
-	 * 
-	 * @return  void
+	 *
 	 * @since   2.1.11
 	 */
 	public function __construct() {

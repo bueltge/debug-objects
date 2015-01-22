@@ -17,12 +17,12 @@ if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 	class Debug_Objects_Theme extends Debug_Objects {
 		
 		protected static $classobj = NULL;
-		
+
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
-		 * 
+		 *
 		 * @access  public
-		 * @return  $classobj
+		 * @return Debug_Objects_Theme|null $classobj
 		 */
 		public static function init() {
 			

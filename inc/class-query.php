@@ -25,13 +25,13 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 	class Debug_Objects_Query {
 	
 		private static $classobj = NULL;
-		
+
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
-		 * 
+		 *
 		 * @access  public
 		 * @since   2.0.0
-		 * @return  $classobj
+		 * @return Debug_Objects_Query|null $classobj
 		 */
 		public static function init() {
 			
@@ -40,11 +40,10 @@ if ( ! class_exists( 'Debug_Objects_Query' ) ) {
 			
 			return self::$classobj;
 		}
-		
+
 		/**
 		 * Init the message
-		 * 
-		 * @return  void
+		 *
 		 */
 		public function __construct() {
 			

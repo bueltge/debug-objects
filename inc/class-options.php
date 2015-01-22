@@ -48,12 +48,11 @@ class Debug_Objects_Options {
 		
 		return self::$class_object;
 	}
-	
+
 	/**
 	 * Init function to register all used hooks
-	 * 
+	 *
 	 * @since   09/25/2013
-	 * @return  void
 	 */
 	public function __construct() {
 		
