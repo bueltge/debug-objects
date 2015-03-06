@@ -25,12 +25,12 @@ class Debug_Objects_Rewrites {
 	 * @var    String
 	 */
 	static protected $class_object = NULL;
-	
+
 	/**
 	 * Load the object and get the current state
 	 *
 	 * @since   09/24/2013
-	 * @return  $class_object
+	 * @return Debug_Objects_Rewrites|String $class_object
 	 */
 	public static function init() {
 
@@ -39,12 +39,11 @@ class Debug_Objects_Rewrites {
 		
 		return self::$class_object;
 	}
-	
+
 	/**
 	 * Init function to register all used hooks
-	 * 
+	 *
 	 * @since   09/25/2013
-	 * @return  void
 	 */
 	public function __construct() {
 		

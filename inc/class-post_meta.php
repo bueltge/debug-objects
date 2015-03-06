@@ -21,13 +21,13 @@ if ( ! class_exists( 'Debug_Objects_Post_Meta' ) ) {
 		public static $builtin = array();
 	 
 		public static $args = array();
-		
+
 		/**
-		* Handler for the action 'init'. Instantiates this class.
-		* 
-		* @access  public
-		* @return  $classobj
-		*/
+		 * Handler for the action 'init'. Instantiates this class.
+		 *
+		 * @access  public
+		 * @return Debug_Objects_Post_Meta|null $classobj
+		 */
 		public static function init() {
 			
 			NULL === self::$classobj and self::$classobj = new self();
@@ -61,23 +61,25 @@ if ( ! class_exists( 'Debug_Objects_Post_Meta' ) ) {
 			
 			return $tabs;
 		}
-		
+
 		/**
 		 * Get arguments of CPTs, write in var
-		 * 
-		 * @return void
+		 *
+		 * @param $post_type
+		 * @param $args
 		 */
 		public function get_args( $post_type, $args ) {
 			
 			! $args->_builtin
 				&& self::$args[ $post_type ] = $args;
 		}
-		
+
 		/**
 		 * Get data and create output
-		 * 
-		 * @param  String  $echo
-		 * @return String  $output
+		 *
+		 * @param  bool $echo
+		 *
+		 * @return String $output
 		 */
 		public function get_post_meta_data( $echo = TRUE ) {
 			

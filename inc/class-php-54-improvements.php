@@ -95,12 +95,12 @@ class Debug_Objects_Php54 {
 	
 	/**
 	 * Sorting of Multidimensional arrays
-	 * Hint: Slow and inefficent which to much foreach, usort is a better way
+	 * Hint: Slow and inefficient which to much foreach, usort is a better way
 	 *
 	 * @since   08/18/2013
 	 * @see     http://stackoverflow.com/questions/2699086/sort-multidimensional-array-by-value-2
 	 * @param   Array,  Input array
-	 * @param   String of key in array
+	 * @param   String, key in array
 	 */
 	public function aasort( &$array, $key ) {
 			

@@ -16,12 +16,12 @@ if ( ! class_exists( 'Debug_Objects_Cache' ) ) {
 	class Debug_Objects_Cache extends Debug_Objects {
 		
 		protected static $classobj = NULL;
-		
+
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
-		 * 
+		 *
 		 * @access  public
-		 * @return  $classobj
+		 * @return Debug_Objects_Cache|null $classobj
 		 */
 		public static function init() {
 			

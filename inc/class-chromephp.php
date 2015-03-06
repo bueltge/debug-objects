@@ -22,12 +22,12 @@ if ( class_exists( 'Debug_Objects_Chromephp' ) )
 class Debug_Objects_Chromephp {
 	
 	protected static $classobj = NULL;
-	
+
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
-	 * 
+	 *
 	 * @access  public
-	 * @return  $classobj
+	 * @return Debug_Objects_Chromephp|null $classobj
 	 */
 	public static function init() {
 		

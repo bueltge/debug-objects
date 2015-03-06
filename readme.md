@@ -40,6 +40,7 @@ Values and content get displayed at the frontend and backend of the blog, to ana
 * All defined constants
 * All classes
 * All shortcodes
+* List transients
 * Post Meta data
 * See data from `$_POST`; `$_GET` and debug backtrace before rewrite; usefull for forms in backend
 * Run WordPress in default mode via url-param
