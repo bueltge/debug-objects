@@ -394,7 +394,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Rewrites'              => __( 'A list of all cached rewrites.' ),
 					'Permalink_Performance' => __( 'Analyze the performance for the permalink rule settings.' ),
 					'Cron'                  => __( 'Crons' ),
-					'Transients'             => __( 'List all transients.' ),
+					'Transient'             => __( 'List all transients.' ),
 					'Memory'                => __(
 						'Memory Used, Load Time and included Files, but without all file in the folder <code>wp-admin</code>, <code>wp-includes</code>'
 					),
