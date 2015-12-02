@@ -6,29 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12b92351-166e-4f18-b7be-bf3d52043286" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-cache.php" afterPath="$PROJECT_DIR$/inc/class-cache.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-chromephp.php" afterPath="$PROJECT_DIR$/inc/class-chromephp.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-classes.php" afterPath="$PROJECT_DIR$/inc/class-classes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-cron.php" afterPath="$PROJECT_DIR$/inc/class-cron.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-db_query.php" afterPath="$PROJECT_DIR$/inc/class-db_query.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-debug.php" afterPath="$PROJECT_DIR$/inc/class-debug.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-enqueue_stuff.php" afterPath="$PROJECT_DIR$/inc/class-enqueue_stuff.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-memory.php" afterPath="$PROJECT_DIR$/inc/class-memory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-options.php" afterPath="$PROJECT_DIR$/inc/class-options.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-php-54-improvements.php" afterPath="$PROJECT_DIR$/inc/class-php-54-improvements.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-post_meta.php" afterPath="$PROJECT_DIR$/inc/class-post_meta.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-query.php" afterPath="$PROJECT_DIR$/inc/class-query.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-rewrite_backtrace.php" afterPath="$PROJECT_DIR$/inc/class-rewrite_backtrace.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-rewrites.php" afterPath="$PROJECT_DIR$/inc/class-rewrites.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-screen_info.php" afterPath="$PROJECT_DIR$/inc/class-screen_info.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-shortcodes.php" afterPath="$PROJECT_DIR$/inc/class-shortcodes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-site-inspector.php" afterPath="$PROJECT_DIR$/inc/class-site-inspector.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-super_var_dump.php" afterPath="$PROJECT_DIR$/inc/class-super_var_dump.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-theme.php" afterPath="$PROJECT_DIR$/inc/class-theme.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-transient.php" afterPath="$PROJECT_DIR$/inc/class-transient.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inc/class-wrap.php" afterPath="$PROJECT_DIR$/inc/class-wrap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.txt" afterPath="$PROJECT_DIR$/readme.txt" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="debug-objects.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,9 +23,6 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
-  </component>
-  <component name="DaemonCodeAnalyzer">
-    <disable_hints />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -100,6 +77,8 @@
       </list>
     </option>
   </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
   </component>
@@ -180,9 +159,12 @@
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -224,18 +206,18 @@
     <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner />
       <method />
     </configuration>
-    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
     <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
       <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
       <method />
     </configuration>
     <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="46d7e099-ee88-497e-8d55-aee70e2ac410" server_name="Local">
@@ -250,7 +232,6 @@
       <envs />
       <method />
     </configuration>
-    <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration">
@@ -269,26 +250,26 @@
     <frame x="43" y="24" width="1877" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32953367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885212" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.50027245" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959128" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2719346" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4" sideWeight="0.49972752" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27799016" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.50027245" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959128" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4" sideWeight="0.49972752" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885212" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -302,11 +283,6 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="myTodoPanelSettings">
-      <TodoPanelSettings />
-    </option>
-  </component>
   <component name="WordPressConfiguration" enabled="true">
     <wordpressPath>C:\xampp\htdocs\wpbeta</wordpressPath>
   </component>
@@ -316,177 +292,149 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/readme.txt">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2376" max-vertical-offset="5742">
+        <state vertical-scroll-proportion="0.0">
           <caret line="108" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-transient.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1980">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/autoload/class-settings.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="11154" max-vertical-offset="14850">
+        <state vertical-scroll-proportion="0.0">
           <caret line="507" column="36" selection-start-line="507" selection-start-column="36" selection-end-line="507" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/debug-objects.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="13750">
+        <state vertical-scroll-proportion="0.0">
           <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/readme.txt">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2376" max-vertical-offset="5742">
+        <state vertical-scroll-proportion="0.0">
           <caret line="108" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-transient.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1980">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/autoload/class-settings.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12628">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/debug-objects.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="13750">
+        <state vertical-scroll-proportion="0.0">
           <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/readme.txt">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2156" max-vertical-offset="5522">
+        <state vertical-scroll-proportion="0.0">
           <caret line="98" column="17" selection-start-line="98" selection-start-column="17" selection-end-line="98" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-transient.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1980">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/autoload/class-settings.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12452">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-conditional_tags.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0010905" vertical-offset="1361" max-vertical-offset="3655">
+        <state vertical-scroll-proportion="2.0010905">
           <caret line="188" column="8" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-php_error.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.26923" vertical-offset="141" max-vertical-offset="1606">
+        <state vertical-scroll-proportion="-18.26923">
           <caret line="38" column="7" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/style.dev.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4114">
+        <state vertical-scroll-proportion="0.0">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="8" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="616">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="164" selection-start-line="0" selection-start-column="164" selection-end-line="0" selection-end-column="164" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-translation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.076923" vertical-offset="1452" max-vertical-offset="4334">
+        <state vertical-scroll-proportion="-16.076923">
           <caret line="85" column="5" selection-start-line="21" selection-start-column="0" selection-end-line="85" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="220">
+        <state vertical-scroll-proportion="0.0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/autoload/deprecated.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="621">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/autoload/class-settings.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.077738516" vertical-offset="0" max-vertical-offset="15136">
+        <state vertical-scroll-proportion="0.077738516">
           <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40947548" vertical-offset="726" max-vertical-offset="2398">
+        <state vertical-scroll-proportion="0.40947548">
           <caret line="42" column="2" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="MarkdownPreviewEditor">
@@ -495,282 +443,211 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-php.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2932862" vertical-offset="8106" max-vertical-offset="20812">
+        <state vertical-scroll-proportion="0.2932862">
           <caret line="376" column="34" selection-start-line="376" selection-start-column="29" selection-end-line="376" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-cron.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46586347" vertical-offset="8832" max-vertical-offset="9526">
+        <state vertical-scroll-proportion="0.46586347">
           <caret line="412" column="38" selection-start-line="412" selection-start-column="38" selection-end-line="412" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/readme.txt">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.248566" vertical-offset="0" max-vertical-offset="6006">
+        <state vertical-scroll-proportion="4.248566">
           <caret line="93" column="19" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-transient.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2610441" vertical-offset="2892" max-vertical-offset="5500">
+        <state vertical-scroll-proportion="1.2610441">
           <caret line="159" column="0" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
-          <folding>
-            <marker date="1421938000444" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..wp_options..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/debug-objects.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-103.07692" vertical-offset="11092" max-vertical-offset="15004">
+        <state vertical-scroll-proportion="-103.07692">
           <caret line="626" column="78" selection-start-line="626" selection-start-column="78" selection-end-line="626" selection-end-column="78" />
-          <folding>
-            <marker date="1421930185544" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
-            <marker date="1421930185544" expanded="true" signature="-1:-1" placeholder="DROP TABLE I..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-classes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.730769" vertical-offset="1937" max-vertical-offset="3212">
+        <state vertical-scroll-proportion="-6.730769">
           <caret line="96" column="21" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
-          <folding>
-            <marker date="1421938334100" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1421938334100" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1421938334100" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1421938334100" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/chromephp/ChromePhp.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34980989" vertical-offset="7736" max-vertical-offset="9944">
+        <state vertical-scroll-proportion="0.34980989">
           <caret line="360" column="4" selection-start-line="360" selection-start-column="4" selection-end-line="360" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/html-inspector/html-inspector.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32427537" vertical-offset="39091" max-vertical-offset="50710">
+        <state vertical-scroll-proportion="0.32427537">
           <caret line="1764" column="39" selection-start-line="1764" selection-start-column="39" selection-end-line="1764" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="10.076923" vertical-offset="2044" max-vertical-offset="2860">
+        <state vertical-scroll-proportion="10.076923">
           <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding>
-            <marker date="1413492647348" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1413492647348" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1413492647348" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1413492647348" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1413492647348" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1413492647348" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1413492647348" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1413492647348" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/PHP-Error-master/src/php_error.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34980989" vertical-offset="45642" max-vertical-offset="112024">
+        <state vertical-scroll-proportion="0.34980989">
           <caret line="2087" column="45" selection-start-line="2087" selection-start-column="45" selection-end-line="2087" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-site-inspector.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-446.76923" vertical-offset="0" max-vertical-offset="20460">
+        <state vertical-scroll-proportion="-446.76923">
           <caret line="528" column="4" selection-start-line="528" selection-start-column="4" selection-end-line="528" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-cache.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34980989" vertical-offset="234" max-vertical-offset="1562">
+        <state vertical-scroll-proportion="0.34980989">
           <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-debug.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.307693" vertical-offset="234" max-vertical-offset="1848">
+        <state vertical-scroll-proportion="-11.307693">
           <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-enqueue_stuff.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.461538" vertical-offset="256" max-vertical-offset="3498">
+        <state vertical-scroll-proportion="-10.461538">
           <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-inspector.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34980989" vertical-offset="1356" max-vertical-offset="3850">
+        <state vertical-scroll-proportion="0.34980989">
           <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-php-54-improvements.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.807693" vertical-offset="1937" max-vertical-offset="2838">
+        <state vertical-scroll-proportion="-11.807693">
           <caret line="102" column="23" selection-start-line="102" selection-start-column="23" selection-end-line="102" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-page_hooks.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5475285" vertical-offset="5234" max-vertical-offset="5786">
+        <state vertical-scroll-proportion="0.5475285">
           <caret line="250" column="25" selection-start-line="250" selection-start-column="25" selection-end-line="250" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-memory.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.961538" vertical-offset="2245" max-vertical-offset="5544">
+        <state vertical-scroll-proportion="-10.961538">
           <caret line="115" column="5" selection-start-line="115" selection-start-column="5" selection-end-line="115" selection-end-column="5" />
-          <folding>
-            <marker date="1421942207136" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1421942207136" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1421942207136" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1421942207136" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-chromephp.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.846154" vertical-offset="300" max-vertical-offset="1694">
+        <state vertical-scroll-proportion="-13.846154">
           <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-db_query.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="428" max-vertical-offset="15862">
+        <state vertical-scroll-proportion="0.33333334">
           <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <marker date="1421942268328" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1421942268328" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1421942268328" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1421942268328" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1421942268328" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1421942268328" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1421942268328" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1421942268328" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1421942268328" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1421942268328" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-wrap.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.576923" vertical-offset="287" max-vertical-offset="5060">
+        <state vertical-scroll-proportion="-7.576923">
           <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-theme.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.076923" vertical-offset="256" max-vertical-offset="5258">
+        <state vertical-scroll-proportion="-7.076923">
           <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-super_var_dump.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.076923" vertical-offset="366" max-vertical-offset="1254">
+        <state vertical-scroll-proportion="-7.076923">
           <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-shortcodes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5" vertical-offset="309" max-vertical-offset="2816">
+        <state vertical-scroll-proportion="0.5">
           <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-screen_info.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.730769" vertical-offset="1079" max-vertical-offset="4290">
+        <state vertical-scroll-proportion="-6.730769">
           <caret line="57" column="4" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-rewrites.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.730769" vertical-offset="441" max-vertical-offset="2706">
+        <state vertical-scroll-proportion="-6.730769">
           <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-rewrite_backtrace.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.076923" vertical-offset="652" max-vertical-offset="2970">
+        <state vertical-scroll-proportion="-7.076923">
           <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-query.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.076923" vertical-offset="432" max-vertical-offset="1628">
+        <state vertical-scroll-proportion="-7.076923">
           <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-post_meta.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.076923" vertical-offset="344" max-vertical-offset="3740">
+        <state vertical-scroll-proportion="-7.076923">
           <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/class-options.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33269963" vertical-offset="2773" max-vertical-offset="3850">
+        <state vertical-scroll-proportion="0.33269963">
           <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-          <folding>
-            <marker date="1421942644068" expanded="true" signature="-1:-1" placeholder="SELECT optio..wp_base_prefixoptions..." />
-            <marker date="1421942644068" expanded="true" signature="-1:-1" placeholder="SELECT optio..wp_options..." />
-          </folding>
         </state>
       </provider>
     </entry>
