@@ -48,7 +48,11 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 			
 			return $tabs;
 		}
-		
+
+		/**
+		 * Get all stuff on enqueued scripts and styles
+		 *
+		 */
 		public function get_enqueued_stuff() {
 			global $wp_scripts, $wp_styles;
 			
@@ -77,6 +81,7 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 						<th>Loaded</th>
 						<th>Dependencies</th>
 						<th>Path</th>
+						<th>Version</th>
 					</tr>
 				</thead>
 			<?php
@@ -93,13 +98,14 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 					break;
 				
 				$class = ( $i % 2 === 0 ) ? '' : ' class="alternate"';
+				$deps = $wp_scripts->registered[$loaded_script]->deps;
+				$dependencies = ( count( $deps ) > 0 ) ? implode( __( ', ' ), $deps ) : '';
 				echo '<tr' . $class . '>';
 				echo '<td>' . $i . '</td>';
-				echo '<td>' . esc_attr( $loaded_script ) . '</td>';
-				echo '<td>';
-				echo ( count( $wp_scripts->registered[$loaded_script]->deps ) > 0 ) ? implode( __( ', ' ), $wp_scripts->registered[$loaded_script]->deps ) : '';
-				echo '</td>';
-				echo '<td>' . $wp_scripts->registered[$loaded_script]->src . '</td>';
+				echo '<td>' . esc_html( $loaded_script ) . '</td>';
+				echo '<td>' . esc_html( $dependencies ) . '</td>';
+				echo '<td>' . esc_html( $wp_scripts->registered[$loaded_script]->src ) . '</td>';
+				echo '<td>' . esc_html( $wp_scripts->registered[$loaded_script]->ver ) . '</td>';
 				echo '</tr>' . "\n";
 				
 				$i++;
@@ -115,6 +121,7 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 						<th>Loaded</th>
 						<th>Dependencies</th>
 						<th>Path</th>
+						<th>Version</th>
 					</tr>
 				</thead>
 				
@@ -132,13 +139,14 @@ if ( ! class_exists( 'Debug_Objects_Enqueue_Stuff' ) ) {
 					break;
 				
 				$class = ( $i % 2 === 0 ) ? '' : ' class="alternate"';
+				$deps = $wp_styles->registered[$loaded_style]->deps;
+				$dependencies = ( count( $deps ) > 0 ) ? implode( __( ', ' ), $deps ) : '';
 				echo '<tr' . $class . '>';
 				echo '<td>' . $i . '</td>';
-				echo '<td>' . esc_attr( $loaded_style ) . '</td>';
-				echo '<td>';
-				echo ( count( $wp_styles->registered[$loaded_style]->deps ) > 0 ) ? implode( __( ', ' ), $wp_styles->registered[$loaded_style]->deps ) : '';
-				echo '</td>';
-				echo '<td>' . $wp_styles->registered[$loaded_style]->src . '</td>';
+				echo '<td>' . esc_html( $loaded_style ) . '</td>';
+				echo '<td>' . esc_html( $dependencies ) . '</td>';
+				echo '<td>' . esc_html( $wp_styles->registered[$loaded_style]->src ) . '</td>';
+				echo '<td>' . esc_html( $wp_styles->registered[$loaded_style]->ver ) . '</td>';
 				echo '</tr>' . "\n";
 				
 				$i++;
