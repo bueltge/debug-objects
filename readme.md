@@ -46,6 +46,7 @@ Values and content get displayed at the frontend and backend of the blog, to ana
 * Run WordPress in default mode via url-param
 * Add alternative PHP Error reporting: [PHP Error](http://phperror.net/)
 * Include Logging in Chrome Console: [ChromeLogger](http://chromelogger.com/)
+* Support (WP Fields API)[https://github.com/sc0ttkclark/wordpress-fields-api]
 * and many more ...
 
 The plugin does not filter values and should only be used for information and optimization, I don't recommended to use it on a live blog. For developers it can rapidly deliver data, which is useful in a development environment.

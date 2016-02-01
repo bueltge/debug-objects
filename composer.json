@@ -2,8 +2,8 @@
   "name": "bueltge/Debug-Objects",
   "description": "WordPress Plugin for debugging and learning with and at system.",
   "minimum-stability": "stable",
-  "license": "GPL 2+",
-  "version": "2.1.19",
+  "license": "GPL 3+",
+  "version": "2.2.1",
   "type": "wordpress-plugin",
   "authors": [
     {
