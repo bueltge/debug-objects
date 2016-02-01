@@ -6,7 +6,7 @@
  * @subpackage  Settings
  * @author      Frank Bültge
  * @since       2.0.0
- * @version     06/18/2013
+ * @version     2016-02-01
  */
 
 if ( ! function_exists( 'add_filter' ) ) {
@@ -413,6 +413,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Filter'                => __(
 						'Filter class, hooks, scripts and styles from this plugin Debug Objects.'
 					),
+					'Fields API' => __( 'WordPress Fields API (Currently is this core proposal for a new wide-reaching API for WordPress core)' ),
 					'About'                 => __( 'About the plugin' ),
 					// about plugin
 				);
