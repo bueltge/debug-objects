@@ -3,7 +3,6 @@
   "description": "WordPress Plugin for debugging and learning with and at system.",
   "minimum-stability": "stable",
   "license": "GPL 3+",
-  "version": "2.2.1",
   "type": "wordpress-plugin",
   "authors": [
     {

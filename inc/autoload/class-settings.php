@@ -6,7 +6,7 @@
  * @subpackage  Settings
  * @author      Frank Bültge
  * @since       2.0.0
- * @version     2016-02-01
+ * @version     2016-02-15
  */
 
 if ( ! function_exists( 'add_filter' ) ) {
@@ -116,7 +116,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		public function plugin_action_links( $links, $file ) {
 
 			if ( parent:: get_plugin_string() === $file ) {
-				$links[ ] = '<a href="tools.php?page=' . plugin_basename( __FILE__ ) . '">' . __( 'Settings' ) . '</a>';
+				$links[] = '<a href="tools.php?page=' . plugin_basename( __FILE__ ) . '">' . __( 'Settings' ) . '</a>';
 			}
 
 			return $links;
@@ -135,8 +135,8 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 */
 		public function network_admin_plugin_action_links( $links, $file ) {
 
-			if ( parent:: get_plugin_string() == $file ) {
-				$links[ ] = '<a href="' . network_admin_url(
+			if ( parent::get_plugin_string() === $file ) {
+				$links[] = '<a href="' . network_admin_url(
 						'settings.php?page=' . plugin_basename( __FILE__ )
 					) . '">' . __( 'Settings' ) . '</a>';
 			}
@@ -168,6 +168,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 
 			$classes = implode( ' ', $classes );
 
+			/** @var $wp_admin_bar WP_Admin_Bar */
 			$wp_admin_bar->add_menu(
 				array(
 					'parent'    => 'network-admin',
@@ -240,7 +241,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		}
 
 		/**
-		 * Return options as array; observed install in MU or single install
+		 * Return options as array, observed install in MU or single install.
 		 *
 		 * @access  public
 		 * @since   2.0.0
@@ -248,10 +249,12 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		 */
 		public static function return_options() {
 
-			if ( is_multisite() && is_plugin_active_for_network( parent:: $plugin ) ) {
-				$options = get_site_option( self::$option_string );
+			if ( is_multisite() && is_plugin_active_for_network( parent::$plugin ) ) {
+				wp_nonce_field( self::$nonce_string );
+				$options = (array) get_site_option( self::$option_string );
 			} else {
-				$options = get_option( self::$option_string );
+				settings_fields( self::$option_string . '_group' );
+				$options = (array) get_option( self::$option_string );
 			}
 
 			return $options;
@@ -269,7 +272,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 
 			?>
 			<div class="wrap">
-				<h2><?php echo parent:: get_plugin_data( 'Name' ); ?> <?php _e( 'Settings' ); ?></h2>
+				<h2><?php echo parent:: get_plugin_data( 'Name' ); ?><?php _e( 'Settings' ); ?></h2>
 
 				<div id="poststuff">
 					<div id="post-body" class="metabox-holder columns-2">
@@ -283,11 +286,14 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 						}
 						?>
 						<form method="post" action="<?php echo $action; ?>">
+							<?php
+							$options = self::return_options();
+							?>
 							<!-- main content -->
 							<div id="post-body-content">
 								<div class="meta-box-sortables ui-sortable">
 
-									<?php do_action( 'debug_objects_settings_page', self::return_options() ); ?>
+									<?php do_action( 'debug_objects_settings_page', $options ); ?>
 
 								</div>
 								<!-- .meta-box-sortables .ui-sortable -->
@@ -298,7 +304,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 							<div id="postbox-container-1" class="postbox-container">
 								<div class="meta-box-sortables">
 
-									<?php do_action( 'debug_objects_settings_page_sidebar', self::return_options() ); ?>
+									<?php do_action( 'debug_objects_settings_page_sidebar', $options ); ?>
 
 								</div>
 								<!-- .meta-box-sortables -->
@@ -315,7 +321,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 				<!-- #poststuff -->
 
 			</div> <!-- .wrap -->
-		<?php
+			<?php
 		}
 
 		/**
@@ -405,7 +411,9 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Filter'                => __(
 						'Filter class, hooks, scripts and styles from this plugin Debug Objects.'
 					),
-					'Fields_API' => __( 'WordPress Fields API (Currently is this core proposal for a new wide-reaching API for WordPress core)' ),
+					'Fields_API'            => __(
+						'WordPress Fields API (Currently is this core proposal for a new wide-reaching API for WordPress core)'
+					),
 					'About'                 => __( 'About the plugin' ),
 					// about plugin
 				);
@@ -435,11 +443,11 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 							<span class="description"><?php _e( $hint ); ?></span>
 						</td>
 					</tr>
-				<?php
+					<?php
 				}
 				?>
 			</table>
-		<?php
+			<?php
 		}
 
 		/*
@@ -480,7 +488,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					</ul>
 				</div>
 			</div>
-		<?php
+			<?php
 		}
 
 		/*
@@ -526,7 +534,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					</p>
 				</div>
 			</div>
-		<?php
+			<?php
 		}
 
 		/*

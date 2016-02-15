@@ -92,6 +92,9 @@ After this version you find the other verison on the [github repo](https://githu
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a [small donation](http://bueltge.de/wunschliste/ "Wishliste and Donate") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 == Changelog ==
+= 2.2.2 (2016-02-15) =
+* Fix for update settings in Single Site Install.
+
 = 2.2.1 (2016-02-01) =
 * Support now [WP Fiels API](https://github.com/sc0ttkclark/wordpress-fields-api).
 * Fix for deprecated `mysql_query`.
