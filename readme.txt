@@ -3,7 +3,7 @@ Contributors: Bueltge, inpsyde
 Donate link: http://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, cron, cache
 Requires at least: 3.3
-Tested up to: 4.2-alpha
+Tested up to: 4.5-alpha
 Stable tag: trunk
 
 The Plugin Debug Objects provides a large number of information: query, cache, cron, constants, hooks, functions and many more.
@@ -52,6 +52,7 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Run WordPress in default mode via url-param
 * Add alternative PHP Error reporting: [PHP Error](http://phperror.net/)
 * Include Logging in Chrome Console: [ChromeLogger](http://chromelogger.com/)
+* Support (WP Fields API)[https://github.com/sc0ttkclark/wordpress-fields-api]
 * and many more ...
 
 
@@ -68,7 +69,7 @@ Have a look at the premium plugins in our [market](http://marketpress.com).
 == Installation ==
 = Requirements =
 * WordPress (also Multisite) version 3.3 and later (tested at 3.3)
-* PHP 5.2.4
+* PHP 5.2.4, Tested with PHP 5.4
 
 = Installation =
 1. Unpack the download-package
@@ -87,10 +88,19 @@ Have a look at the premium plugins in our [market](http://marketpress.com).
 You find older version on this repo, [here](http://wordpress.org/plugins/debug-objects/developers/) But only to version 2.1.14
 After this version you find the other verison on the [github repo](https://github.com/bueltge/Debug-Objects)
 
-= Licence =
+= License =
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a [small donation](http://bueltge.de/wunschliste/ "Wishliste and Donate") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 == Changelog ==
+= 2.2.2 (2016-02-15) =
+* Fix for update settings in Single Site Install.
+
+= 2.2.1 (2016-02-01) =
+* Support now [WP Fiels API](https://github.com/sc0ttkclark/wordpress-fields-api).
+* Fix for deprecated `mysql_query`.
+* Fix for transient view.
+* Add verison string for script/style in enqueue tab.
+
 = 2.2.0 (2015-01-22) =
 * Add new tab for check timeline of Permalink rules
 * Add more visibility for php errors, warnings, notice

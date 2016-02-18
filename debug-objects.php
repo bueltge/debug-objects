@@ -8,12 +8,12 @@
  * and memory information and return of conditional tags only for admins; for debug, information or learning purposes.
  * Setting output in the settings of the plugin and use output via link in Admin Bar, via setting, via url-param
  * '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days.
- * Version:     2.2.1-dev
- * License:     GPLv2+
+ * Version:     2.2.2
+ * License:     GPLv3+
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
  *
- * @version 2015-09-08
+ * @version 2016-02-15
  */
 
 // avoid direct calls to this file, because now WP core and framework has been used.
@@ -119,7 +119,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			}
 
 			// load all files form autoload folder
-			$this->load();
+			self::load();
 
 			// add custom capability
 			add_action( 'admin_init', array( $this, 'add_capabilities' ) );
@@ -153,7 +153,9 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 */
 		public function add_capabilities() {
 
-			$GLOBALS[ 'wp_roles' ]->add_cap( 'administrator', '_debug_objects' );
+			/** @var $wp_roles WP_Role */
+			global $wp_roles;
+			$wp_roles->add_cap( 'administrator', '_debug_objects' );
 		}
 
 		/**
@@ -166,9 +168,9 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		public function init_classes() {
 
 			if ( is_multisite() && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) {
-				$options = get_site_option( self::$option_string );
+				$options = (array) get_site_option( self::$option_string );
 			} else {
-				$options = get_option( self::$option_string );
+				$options = (array) get_option( self::$option_string );
 			}
 
 			if ( ( isset( $options[ 'frontend' ] ) && '1' === $options[ 'frontend' ] ) || ( isset( $options[ 'backend' ] ) && '1' === $options[ 'backend' ] ) ) {
@@ -201,7 +203,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			self::set_cookie_control();
 
 			// Load class backtrace without output, if option is active
-			if ( in_array( 'Rewrite_backtrace', $classes ) ) {
+			if ( in_array( 'Rewrite_backtrace', $classes, FALSE ) ) {
 
 				$file = dirname( __FILE__ ) . DIRECTORY_SEPARATOR
 					. 'inc/class-rewrite_backtrace.php';
@@ -267,11 +269,13 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 */
 		public function get_cookie_control( $debug ) {
 
+
 			if ( ! isset( $_COOKIE[ self::get_plugin_data() . '_cookie' ] ) ) {
 				return FALSE;
 			}
 
-			if ( 'Debug_Objects_True' === $_COOKIE[ self::get_plugin_data() . '_cookie' ] ) {
+			$cookie = $_COOKIE[ self::get_plugin_data() . '_cookie' ];
+			if ( 'Debug_Objects_True' === $cookie ) {
 				$debug = TRUE;
 			}
 
@@ -292,13 +296,16 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			}
 
 			if ( $_GET[ 'debugcookie' ] ) {
-				$cookie_live = time() + 60 * 60 * 24 * intval( $_GET[ 'debugcookie' ] ); // days
+				//$cookie_live = time() + 60 * 60 * 24 * (int) $_GET[ 'debugcookie' ]; // days
+				$cookie_live = new DateTime( 'now' );
+				$user_value = (int) $_GET[ 'debugcookie' ];
+				$cookie_live->add( new DateInterval( 'P' . $user_value . 'D' ) );
 				setcookie(
 					$this->get_plugin_data() . '_cookie', 'Debug_Objects_True', $cookie_live, COOKIEPATH, COOKIE_DOMAIN
 				);
 			}
 
-			if ( 0 == intval( $_GET[ 'debugcookie' ] ) ) {
+			if ( 0 === (int) $_GET[ 'debugcookie' ] ) {
 				setcookie( $this->get_plugin_data() . '_cookie', '', time() - 3600, COOKIEPATH, COOKIE_DOMAIN );
 			}
 		}
@@ -369,12 +376,14 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			}
 
 			// add capability
-			$GLOBALS[ 'wp_roles' ]->add_cap( 'administrator', '_debug_objects' );
+			global $wp_roles;
+			$wp_roles->add_cap( 'administrator', '_debug_objects' );
 
 			// add table
 			$table = $GLOBALS[ 'wpdb' ]->base_prefix . self::$table;
 
-			$GLOBALS[ 'wpdb' ]->query(
+			global $wpdb;
+			$wpdb->query(
 				"CREATE TABLE IF NOT EXISTS $table (
 				called_by varchar(96) NOT NULL,
 				hook_name varchar(96) NOT NULL,
@@ -396,7 +405,8 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		public function on_deactivation() {
 
 			// remove retired administrator capability
-			$GLOBALS[ 'wp_roles' ]->remove_cap( 'administrator', '_debug_objects' );
+			global $wp_roles;
+			$wp_roles->remove_cap( 'administrator', '_debug_objects' );
 		}
 
 		/**
@@ -411,10 +421,12 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			delete_option( self::$option_string );
 
 			// remove retired administrator capability
-			$GLOBALS[ 'wp_roles' ]->remove_cap( 'administrator', '_debug_objects' );
+			global $wp_roles;
+			$wp_roles->remove_cap( 'administrator', '_debug_objects' );
 
 			// remove hook table
-			$GLOBALS[ 'wpdb' ]->query( 'DROP TABLE IF EXISTS ' . self::$table );
+			global $wpdb;
+			$wpdb->query( 'DROP TABLE IF EXISTS ' . self::$table );
 		}
 
 		/**
@@ -427,9 +439,9 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 */
 		public function recursive_in_array( $needle, $haystack ) {
 
-			if ( '' != $haystack ) {
+			if ( '' !== $haystack ) {
 				foreach ( $haystack as $stalk ) {
-					if ( $needle == $stalk || ( is_array( $stalk ) && $this->recursive_in_array( $needle, $stalk ) ) ) {
+					if ( $needle === $stalk || ( is_array( $stalk ) && $this->recursive_in_array( $needle, $stalk ) ) ) {
 						return TRUE;
 					}
 				}
@@ -444,7 +456,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 *  Find the position of the first occurrence of a case-insensitive substring in a array
 		 *
 		 * @param  String $needle
-		 * @param  Array  $haystack
+		 * @param  array  $haystack
 		 *
 		 * @return Boolean
 		 */
@@ -648,7 +660,6 @@ if ( ! function_exists( 'pre_print' ) ) {
 	 * @param     string $before
 	 * @param     bool   $return
 	 *
-	 * @internal  param $mixed
 	 * @return    string
 	 */
 	function pre_print( $var, $before = '', $return = FALSE ) {

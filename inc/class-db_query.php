@@ -515,7 +515,7 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 			// @see  http://www.mysqlfaqs.net/mysql-faqs/Speed-Up-Queries/What-is-query-cache-in-MySQL
 			// Disable query cache for current client
 			if ( QUERY_CACHE_TYPE_OFF ) {
-				mysql_query( "SET SESSION query_cache_type = OFF" );
+				$wpdb->query( 'SET SESSION query_cache_type = OFF' );
 			}
 			// return php warnings on the default Wpd-query
 			//$wpdb->query( "SET SESSION query_cache_type = OFF;" );
