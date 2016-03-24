@@ -159,6 +159,15 @@ div#debugobjects li.none_list {
 	overflow:hidden;
 }
 
+#roleinspector td {
+	text-align: center;
+}
+#roleinspector td.has-capability {
+	font-weight: 900;
+	color: #f0f0f0;
+	background-color: #114477;
+}
+
 div#debugobjects #cron td {
 	width: 16%;
 }

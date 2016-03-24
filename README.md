@@ -23,6 +23,7 @@ Values and content get displayed at the frontend and backend of the blog, to ana
 * Query information about the active plugins, nice to identifier the longrunners on the plugins
 * Query information about all queries from `wp-content`-directory
 * Conditional tags; value of the tag
+* Roles and his capabilities
 * Theme information
 * HTML Inspector is a code quality tool to check markup. Any errors will be reported to the console of the browser. This works only on front end. use [HTML Inspector](https://github.com/philipwalton/html-inspector)
 * Translation debugging helper
