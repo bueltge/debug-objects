@@ -8,12 +8,12 @@
  * and memory information and return of conditional tags only for admins; for debug, information or learning purposes.
  * Setting output in the settings of the plugin and use output via link in Admin Bar, via setting, via url-param
  * '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days.
- * Version:     2.2.2
- * License:     GPLv3+
+ * Version:     2.3.1
+ * License:     GPL-3+
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
  *
- * @version 2016-02-15
+ * @version 2016-03-31
  */
 
 // avoid direct calls to this file, because now WP core and framework has been used.

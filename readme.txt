@@ -3,8 +3,8 @@ Contributors: Bueltge, inpsyde
 Donate link: http://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, cron, cache
 Requires at least: 3.3
-Tested up to: 4.5-alpha
-Stable tag: trunk
+Tested up to: 4.5
+Stable tag: 2.3.1
 
 The Plugin Debug Objects provides a large number of information: query, cache, cron, constants, hooks, functions and many more.
 
@@ -29,6 +29,7 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Query information about the active plugins, nice to identifier the longrunners on the plugins
 * Query information about all queries from `wp-content`-directory
 * Conditional tags; value of the tag
+* Roles and his capabilities
 * Theme information
 * HTML Inspector is a code quality tool to check markup. Any errors will be reported to the console of the browser. This works only on front end. use [HTML Inspector](https://github.com/philipwalton/html-inspector)
 * Translation debugging helper
@@ -92,6 +93,12 @@ After this version you find the other verison on the [github repo](https://githu
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a [small donation](http://bueltge.de/wunschliste/ "Wishliste and Donate") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 == Changelog ==
+= 2.3.1 (2016-03-31) =
+* Fix small issue for Inspector and his records.
+
+= 2.3.0 (2016-03-24) =
+* Add tab to analyze each role and his capabilities.
+
 = 2.2.2 (2016-02-15) =
 * Fix for update settings in Single Site Install.
 

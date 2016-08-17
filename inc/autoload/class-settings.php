@@ -352,13 +352,13 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 					'Functions'             => __( 'List all defined functions' ),
 					'Constants'             => __( 'All Constants' ),
 					// All active Constants
-					'Shortcodes'            => __( 'List all shortcodes' ),
 					'Rewrite_Backtrace'     => __(
 						'Filter to temporarily get a "debug object" prior to redirecting with a backtrace'
 					),
 					'Conditional_Tags'      => __( 'Conditional Tags' ),
-					// conditional tags
+					'Roles'                 => __( 'Role and his capabilities'),
 					'Options'               => __( 'This tab shows a list of all saved options' ),
+					'Shortcodes'            => __( 'List all shortcodes' ),
 					'Post_Meta'             => __(
 						'Get a list of arguments to custom post types and a list of post meta for the current post type'
 					),

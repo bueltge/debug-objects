@@ -66,8 +66,8 @@ div#debugobjects div div th {
 	border: 1px solid #bbb;
 }
 
-div#debugobjects #memory ul, div#debugobjects #conditional_tags ul, 
-div#debugobjects #hooks ul, div#debugobjects #template ul, 
+div#debugobjects #memory ul, div#debugobjects #conditional_tags ul,
+div#debugobjects #hooks ul, div#debugobjects #template ul,
 div#debugobjects #cache ul, div#debugobjects #constants ul,
 div#debugobjects #queries ul {
 	list-style-type: disc;
@@ -157,6 +157,15 @@ div#debugobjects li.none_list {
 	padding: 2px 0;
 	vertical-align:top;
 	overflow:hidden;
+}
+
+#roleinspector td {
+	text-align: center;
+}
+#roleinspector td.has-capability {
+	font-weight: 900;
+	color: #f0f0f0;
+	background-color: #114477;
 }
 
 div#debugobjects #cron td {
