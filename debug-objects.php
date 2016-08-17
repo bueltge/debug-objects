@@ -672,16 +672,23 @@ if ( ! function_exists( 'debug_to_console' ) ) {
 	/**
 	 * Simple helper to debug to the console
 	 *
-	 * @param  object , array, string $data
+	 * @param        object , array, string $data
+	 *
+	 * @param string $description
 	 *
 	 * @return string
 	 */
-	function debug_to_console( $data ) {
+	function debug_to_console( $data, $description = '' ) {
 
-		$output = 'console.info( \'Debug in Console via Debug Objects Plugin:\' );';
+		if ( '' === $description ) {
+			$description = 'Debug in Console via Debug Objects Plugin:';
+		}
+
+		// Buffering to solve problems with WP core, header() etc.
+		ob_start();
+		$output  = 'console.info(' . json_encode( $description ) . ');';
 		$output .= 'console.log(' . json_encode( $data ) . ');';
-		$output = sprintf( '<script>%s</script>', $output );
-
+		$output  = sprintf( '<script>%s</script>', $output );
 		echo $output;
 	}
 }
