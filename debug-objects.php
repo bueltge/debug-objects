@@ -8,7 +8,7 @@
  * and memory information and return of conditional tags only for admins; for debug, information or learning purposes.
  * Setting output in the settings of the plugin and use output via link in Admin Bar, via setting, via url-param
  * '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days.
- * Version:     2.3.1
+ * Version:     2.3.2-dev
  * License:     GPL-3+
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
@@ -322,7 +322,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 *
 		 * @return  string
 		 */
-		public function get_plugin_data( $value = 'TextDomain', $echo = FALSE ) {
+		public static function get_plugin_data( $value = 'TextDomain', $echo = FALSE ) {
 
 			static $plugin_data = array();
 
@@ -370,7 +370,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				wp_die(
 					wp_sprintf(
 						'<strong>%s:</strong> ' . __( 'Sorry, This plugin requires PHP 5.2.4' ),
-						self:: get_plugin_data( 'Name' )
+						self::get_plugin_data( 'Name' )
 					)
 				);
 			}

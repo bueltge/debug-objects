@@ -3,7 +3,7 @@ Contributors: Bueltge, inpsyde
 Donate link: http://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, cron, cache
 Requires at least: 3.3
-Tested up to: 4.5
+Tested up to: 4.7-alpha
 Stable tag: 2.3.1
 
 The Plugin Debug Objects provides a large number of information: query, cache, cron, constants, hooks, functions and many more.
@@ -93,6 +93,9 @@ After this version you find the other verison on the [github repo](https://githu
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a [small donation](http://bueltge.de/wunschliste/ "Wishliste and Donate") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 == Changelog ==
+= 2.3.2 () =
+* Enhance debug helper function `debug_to_console`. Now with a second param to add a description for output and add a buffer.
+
 = 2.3.1 (2016-03-31) =
 * Fix small issue for Inspector and his records.
 
