@@ -526,10 +526,10 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 						); ?>
 						<br>
 						<?php _e(
-							'&middot; <em>Simple Debug in Browser Console:<br> <code>debug_to_console( $data );</code></em><br>'
+							'&middot; <em>Simple Debug in Browser Console:<br> <code>debug_to_console( $data, $description = \'\' );</code></em><br>'
 						);
 						_e(
-							'You can use the function <code>debug_to_console( $data );</code> for debug the content of a variable to your console inside the browser, simple and easy, but useful. More comfort for debug on console is the possibilities with ChromePhp, active and documented in the settings.'
+							'You can use the function <code>debug_to_console( $data, $description = \'\' );</code> for debug the content of a variable to your console inside the browser, simple and easy, but useful. More comfort for debug on console is the possibilities with ChromePhp, active and documented in the settings. The second param is optional for a helpful description in the console.'
 						); ?>
 					</p>
 				</div>
