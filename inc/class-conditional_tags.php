@@ -126,10 +126,7 @@ if ( ! class_exists( 'Debug_Objects_Conditional_Tags' ) ) {
 			
 			if ( is_tax() ) $is .= "\t" . '<li><a href="http://codex.wordpress.org/Function_Reference/is_tax" title="' . __( 'Documentation in Codex' ) . '">is_tag</a></li>' . "\n";
 			else $is_not .= '<li><i>' . __( 'no' ) . ' </i>is_tax</li>' . "\n";
-			
-			if ( is_comments_popup() ) $is .= "\t" . '<li class="alternate"><a href="http://codex.wordpress.org/Function_Reference/is_comments_popup" title="' . __( 'Documentation in Codex' ) . '">is_comments_popup</a></li>' . "\n";
-			else $is_not .= '<li><i>' . __( 'no' ) . ' </i>is_comments_popup</li>' . "\n";
-		
+
 			if ( is_date() ) $is .= "\t" . '<li class="alternate"><a href="http://codex.wordpress.org/Function_Reference/is_date" title="' . __( 'Documentation in Codex' ) . '">is_date</a></li>' . "\n";
 			else $is_not .= '<li><i>' . __( 'no' ) . ' </i>is_date</li>' . "\n";
 			
