@@ -43,7 +43,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @since  0.0.1
 		 * @var    String
 		 */
-		protected static $classobj = NULL;
+		protected static $classobj;
 
 		/**
 		 * Define folder, there have inside the autoload files
@@ -103,7 +103,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			self::$plugin = plugin_basename( __FILE__ );
 
 			if ( is_multisite() && ! function_exists( 'is_plugin_active_for_network' ) ) {
-				require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+				require_once ABSPATH . '/wp-admin/includes/plugin.php';
 			}
 
 			// add and remove settings, the table for the plugin
@@ -115,7 +115,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 
 			// Load 5.4 improvements 
 			if ( version_compare( phpversion(), '5.4.0', '>=' ) ) {
-				require_once( dirname( __FILE__ ) . '/inc/class-php-54-improvements.php' );
+				require_once dirname( __FILE__ ) . '/inc/class-php-54-improvements.php';
 			}
 
 			// load all files form autoload folder
@@ -124,7 +124,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			// add custom capability
 			add_action( 'admin_init', array( $this, 'add_capabilities' ) );
 
-			self::init_classes();
+			$this->init_classes();
 		}
 
 		/**
@@ -141,6 +141,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 
 			// load files
 			foreach ( $autoload_files as $path ) {
+				/* @noinspection */
 				require_once $path;
 			}
 		}
@@ -173,10 +174,10 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				$options = (array) get_option( self::$option_string );
 			}
 
-			if ( ( isset( $options[ 'frontend' ] ) && '1' === $options[ 'frontend' ] ) || ( isset( $options[ 'backend' ] ) && '1' === $options[ 'backend' ] ) ) {
+			$view = FALSE;
+			if ( ( isset( $options[ 'frontend' ] ) && '1' === $options[ 'frontend' ] )
+			     || ( isset( $options[ 'backend' ] ) && '1' === $options[ 'backend' ] ) ) {
 				$view = TRUE;
-			} else {
-				$view = FALSE;
 			}
 
 			if ( isset( $options[ 'stack_trace' ] ) && '1' === $options[ 'stack_trace' ] ) {
@@ -198,20 +199,20 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 					}
 				}
 			}
-			$classes = $this->store_classes = apply_filters( 'debug_objects_classes', self::$by_settings );
+			$classes = (array) $this->store_classes = apply_filters( 'debug_objects_classes', self::$by_settings );
 
-			self::set_cookie_control();
+			$this->set_cookie_control();
 
 			// Load class backtrace without output, if option is active
 			if ( in_array( 'Rewrite_backtrace', $classes, FALSE ) ) {
 
 				$file = dirname( __FILE__ ) . DIRECTORY_SEPARATOR
 					. 'inc/class-rewrite_backtrace.php';
-				require_once( $file );
+				require_once $file;
 				add_action( 'init', array( 'Debug_Objects_Rewrite_Backtrace', 'init' ) );
 			}
 
-			if ( $view || self::debug_control() ) {
+			if ( $view || $this->debug_control() ) {
 				foreach ( $classes as $key => $require ) {
 					if ( ! class_exists( 'Debug_Objects_' . $require ) ) {
 						$file = dirname( __FILE__ ) . DIRECTORY_SEPARATOR
@@ -301,12 +302,12 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				$user_value = (int) $_GET[ 'debugcookie' ];
 				$cookie_live->add( new DateInterval( 'P' . $user_value . 'D' ) );
 				setcookie(
-					$this->get_plugin_data() . '_cookie', 'Debug_Objects_True', $cookie_live, COOKIEPATH, COOKIE_DOMAIN
+					static::get_plugin_data() . '_cookie', 'Debug_Objects_True', $cookie_live, COOKIEPATH, COOKIE_DOMAIN
 				);
 			}
 
 			if ( 0 === (int) $_GET[ 'debugcookie' ] ) {
-				setcookie( $this->get_plugin_data() . '_cookie', '', time() - 3600, COOKIEPATH, COOKIE_DOMAIN );
+				setcookie( static::get_plugin_data() . '_cookie', '', time() - 3600, COOKIEPATH, COOKIE_DOMAIN );
 			}
 		}
 
@@ -332,7 +333,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			}
 
 			if ( ! function_exists( 'get_plugin_data' ) ) {
-				require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+				require_once ABSPATH . '/wp-admin/includes/plugin.php';
 			}
 
 			$plugin_data  = get_plugin_data( __FILE__ );

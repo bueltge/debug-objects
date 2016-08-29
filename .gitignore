@@ -1,7 +1,6 @@
 ## PhpStorm
 ## Directory-based project format
 .idea/
-.idea/*
 # if you remove the above rule, at least ignore user-specific stuff:
 # .idea/workspace.xml
 # .idea/tasks.xml
@@ -14,7 +13,6 @@
 ## File-based project format
 *.ipr
 *.iws
-*.iml
 
 ## Additional for IntelliJ
 out/

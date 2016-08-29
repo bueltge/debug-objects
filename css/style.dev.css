@@ -15,9 +15,7 @@
 }
 
 div#debugobjects {
-	left: 1%;
-	right: 1%;
-	margin: 30px 10px;
+	margin: 30px 0;
 	font-size: 12px !important; /* fix for all themes */
 	color: #333;
 	background: #f0f0f0;
