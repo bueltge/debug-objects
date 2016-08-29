@@ -95,6 +95,7 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 == Changelog ==
 = 2.3.2 () =
 * Enhance debug helper function `debug_to_console`. Now with a second param to add a description for output and add a buffer.
+* Enhance the view of DB queries, smaller, easier - faster to read.
 
 = 2.3.1 (2016-03-31) =
 * Fix small issue for Inspector and his records.
