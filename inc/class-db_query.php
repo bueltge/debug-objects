@@ -541,14 +541,58 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 
 				$debug_queries .= '<h3>' . __( 'Queries' ) . '</h3>';
 
-				$debug_queries .= '<ul>' . "\n";
-				$debug_queries .= '<li><strong>' . __( 'Total:' ) . ' '
-					. count( $this->_queries ) . ' ' . __( 'queries' )
-					. '</strong></li>';
-				$debug_queries .= '<li><strong>' . __( 'Page generated in' ) . ' '
-					. number_format_i18n( sprintf( '%0.1f', $total_time * 1000 ), 1 ) . __( 'ms ( ' )
-					. timer_stop() . __( 's' ) . ' )</strong></li>';
+				// Database errors
+				$debug_queries .= '<hr /><h3>' . __( 'Database Errors' ) . '</h3>';
+				if ( ! empty( $EZSQL_ERROR ) ) {
 
+					$debug_queries .= '<ol class="important">';
+
+					foreach ( $EZSQL_ERROR as $e ) {
+						$query = nl2br( esc_html( $e[ 'query' ] ) );
+						$debug_queries .= "<li>$query<br/><div class='qdebug'>{$e['error_str']}</div></li>\n";
+					}
+					$debug_queries .= '</ol>';
+				} else {
+					$debug_queries .= '<ul><li>' . __( 'No database errors.' ) . '</li></ul>';
+				}
+
+				// List time for generated the page.
+				$debug_queries .= '<hr /><h3><strong>' . __( 'Page generated in' ) . ' '
+					. number_format_i18n( sprintf( '%0.1f', $total_time * 1000 ), 1 ) . __( 'ms ( ' )
+					. timer_stop() . __( 's' ) . ' )</strong></h3>';
+
+				$debug_queries .= '<hr /><ul>' . "\n";
+				$debug_queries .= '<h3><strong>' . __( 'Total:' ) . ' '
+					. count( $this->_queries ) . ' ' . __( 'queries' )
+					. '</strong></h3>';
+
+				// List caller to each query, filtered to the caller.
+				$debug_queries .= __( 'Queries by Caller' );
+				$caller = array();
+				foreach ( $this->_queries as $q ) {
+
+					if ( isset( $q[ 2 ] ) && ! empty( $q[ 2 ] ) ) {
+
+						$st       = explode( ', ', $q[ 2 ] );
+						$caller[ 'calls' ][] = end( array_diff( $st, self::$replaced_functions ) );
+					}
+				}
+				// Remove redundant values and count redundant call.
+				$caller[ 'counter' ] = array_count_values( $caller[ 'calls' ] );
+				//arsort( $caller[ 'counter' ] );
+				//$caller[ 'calls' ] = array_unique( $caller[ 'calls' ] );
+
+				$debug_queries .= '<table class="tablesorter"><thead><tr><th>'
+					. __( 'Count' ) . '</th><th>'
+					. __( 'Call' ) . '</th></tr></thead>';
+
+				foreach ( $caller[ 'counter' ] as $call => $value ) {
+					$class = ( ' class="alternate"' === $class ) ? '' : ' class="alternate"';
+					$debug_queries .= '<tr><td>' . $value . '</td><td><code>' . $call . '</code></td></tr>';
+				}
+				$debug_queries .= '</table>';
+
+				$debug_queries .= '<hr /><ul>';
 				if ( count( $this->_queries ) != get_num_queries() ) {
 					$debug_queries .= '<li><strong>' . __( 'Total:' ) . ' '
 						. get_num_queries() . ' '
@@ -561,23 +605,7 @@ if ( ! class_exists( 'Debug_Objects_Db_Query' ) ) {
 				}
 
 				$debug_queries .= '</ul>' . "\n";
-
-				// Database errors
-				$debug_queries .= '<hr /><h3>' . __( 'Database Errors' ) . '</h3>';
-				if ( ! empty( $EZSQL_ERROR ) ) {
-
-					$debug_queries .= '<ol>';
-
-					foreach ( $EZSQL_ERROR as $e ) {
-						$query = nl2br( esc_html( $e[ 'query' ] ) );
-						$debug_queries .= "<li>$query<br/><div class='qdebug'>{$e['error_str']}</div></li>\n";
-					}
-					$debug_queries .= '</ol>';
-				} else {
-					$debug_queries .= '<ul><li>' . __( 'No database errors.' ) . '</li></ul>';
-				}
-
-				$debug_queries .= '<hr /><ol>' . "\n";
+				$debug_queries .= '<hr />' . "\n";
 
 				/**
 				 * Hook to filter the queries array
