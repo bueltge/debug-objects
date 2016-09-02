@@ -166,21 +166,21 @@ if ( class_exists( 'Debug_Objects_Debug_Hooks' ) )
 			// Get settings
 			$options = Debug_Objects_Settings::return_options();
 
+			if ( ! isset( $options[ 'filter' ] ) )
+				return FALSE;
+
+			if ( '1' !== $options[ 'filter' ] )
+				return FALSE;
+
 			// Filter Debug Objects Hooks
-			if (
-				isset( $options[ 'filter' ] )
-				&& '1' === $options[ 'filter' ]
-				&& Debug_Objects::array_find( 'Debug_Objects', $hook )
-			) {
+			if ( Debug_Objects::array_find( 'Debug_Objects', $hook ) )
 				return TRUE;
-			}
+
+			if ( $hook[ array_search( 'Debug_Objects', $hook ) ] )
+				return TRUE;
 
 			// Filter hook, files from this plugin, not helpful
-			if (
-				isset( $options[ 'filter' ] )
-				&& '1' === $options[ 'filter' ]
-				&& preg_match( '/debug_objects/', $tag )
-			)
+			if ( preg_match( '/debug_objects/', $tag ) )
 				return TRUE;
 
 			return FALSE;
