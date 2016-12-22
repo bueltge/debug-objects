@@ -13,7 +13,7 @@
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
  *
- * @version 2016-03-31
+ * @version 2016-12-22
  */
 
 // avoid direct calls to this file, because now WP core and framework has been used.
