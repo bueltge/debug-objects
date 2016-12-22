@@ -19,7 +19,7 @@ if ( class_exists( 'Debug_Objects_Page_Hooks' ) ) {
 
 class Debug_Objects_Page_Hooks {
 
-	protected static $classobj = NULL;
+	protected static $classobj;
 
 	public $filters_storage = array();
 
@@ -40,15 +40,14 @@ class Debug_Objects_Page_Hooks {
 	}
 
 	/**
-	 * Constructor, init the methods
+	 * Constructor, init the methods.
 	 *
-	 * @return \Debug_Objects_Page_Hooks
-	@since   2.1.11
+	 * @since   2.1.11
 	 */
 	public function __construct() {
 
 		if ( ! current_user_can( '_debug_objects' ) ) {
-			return NULL;
+			return;
 		}
 
 		add_action( 'all', array( $this, 'store_fired_filters' ) );
@@ -58,9 +57,9 @@ class Debug_Objects_Page_Hooks {
 	/**
 	 * Add content for tabs
 	 *
-	 * @param  Array $tabs
+	 * @param  array $tabs
 	 *
-	 * @return Array $tabs
+	 * @return array $tabs
 	 */
 	public function get_conditional_tab( $tabs ) {
 
@@ -80,7 +79,7 @@ class Debug_Objects_Page_Hooks {
 			return NULL;
 		}
 
-		$hooked = $wp_filter[ $tag ];
+		$hooked = (array) $wp_filter[ $tag ];
 
 		// Usable since WP 3.9
 		$fired = '';
@@ -110,9 +109,7 @@ class Debug_Objects_Page_Hooks {
 	}
 
 	/**
-	 * Get hooks for current page
-	 *
-	 * @return String
+	 * Print hooks for current page
 	 */
 	public function get_hooks() {
 
@@ -129,25 +126,23 @@ class Debug_Objects_Page_Hooks {
 		// Use this hook for remove Filter Hook from the completely array, like custom filter hooks
 		$filters_storage = apply_filters( 'debug_objects_wp_filters', $this->filters_storage );
 
-		foreach ( $filters_storage as $index => $the_ ) {
+		foreach ( (array) $filters_storage as $index => $the_ ) {
 
 			// Use this hook for remove Filter Hook, like custom filter hooks
 			$filter_hook = apply_filters( 'debug_objects_filter_tag', array() );
 			// Filter the Filter Hooks
-			if ( in_array( $the_[ 'tag' ], $filter_hook ) ) {
+			if ( in_array( $the_[ 'tag' ], $filter_hook, true ) ) {
 				break;
 			}
 
-			$hook_callbacks = array();
-
-			if ( ! in_array( $the_[ 'tag' ], $hooks ) ) {
+			if ( ! in_array( $the_[ 'tag' ], $hooks, true ) ) {
 				$hooks[ ] = $the_[ 'tag' ];
 				$filter_hooks .= "<tr><td><code>{$the_['tag']}</code></td></tr>";
 			}
 
-			foreach ( $the_[ 'hooked' ] as $priority => $hooked ) {
+			foreach ( (array) $the_[ 'hooked' ] as $priority => $hooked ) {
 
-				foreach ( $hooked as $id => $function ) {
+				foreach ( (array) $hooked as $id => $function ) {
 					if ( is_string( $function[ 'function' ] ) ) {
 						// as array
 						$hook_callbacks[ ] = array(
@@ -183,6 +178,7 @@ class Debug_Objects_Page_Hooks {
 
 		$output .= "\t" . '<td><table class="tablesorter">';
 
+		$count_fired = '';
 		// Usable since WP 3.9
 		if ( function_exists( 'did_action' ) ) {
 			$count_fired = '<th>Count Fired</th>';
@@ -191,9 +187,9 @@ class Debug_Objects_Page_Hooks {
 
 		$order = 1;
 
-		foreach ( $wp_actions as $key => $val ) {
+		foreach ( (array) $wp_actions as $key => $val ) {
 			// Format, if the key is inside the important list of hooks
-			foreach ( $this->my_important_hooks as $hook ) {
+			foreach ( (array) $this->my_important_hooks as $hook ) {
 
 				if ( FALSE !== strpos( $key, $hook ) ) {
 					$key = '<span>' . $key . ' </span>';
@@ -245,12 +241,4 @@ class Debug_Objects_Page_Hooks {
 
 		echo $output;
 	}
-
-	public function search_string( $haystack ) {
-
-		$needle = $this->needle;
-
-		return ( strpos( $haystack, $needle ) ); // or stripos() if you want case-insensitive searching.
-	}
-
 } // end class
