@@ -26,7 +26,7 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 		 * @return Debug_Objects_Wrap|null $classobj
 		 */
 		public static function init() {
-
+			debug_to_console('test2');
 			NULL === self::$classobj and self::$classobj = new self();
 
 			return self::$classobj;

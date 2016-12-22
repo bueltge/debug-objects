@@ -223,7 +223,8 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 							require_once $file;
 						}
 
-						add_action( 'plugins_loaded', array( 'Debug_Objects_' . $require, 'init' ), - 1 );
+						$class = 'Debug_Objects_' . $require;
+						new $class;
 					}
 				}
 			}
