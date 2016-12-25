@@ -87,7 +87,6 @@ Please let me know if you like the plugin or you hate it or whatever ... Please 
 
 #### Use & Thanks
  * [SqlFormatter](https://github.com/jdorn/sql-formatter) is a lightweight php class for formatting sql statements.
- * [Chrome Logger](http://www.chromelogger.com) is a Google Chrome extension for debugging server side applications in the Chrome console.
  * [PHP Error](http://phperror.net/) Improve Error Reporting for PHP.
  
 #### Disclaimer

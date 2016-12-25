@@ -52,7 +52,6 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * See data from `$_POST`; `$_GET` and debug backtrace before rewrite; usefull for forms in backend
 * Run WordPress in default mode via url-param
 * Add alternative PHP Error reporting: [PHP Error](http://phperror.net/)
-* Include Logging in Chrome Console: [ChromeLogger](http://chromelogger.com/)
 * Support (WP Fields API)[https://github.com/sc0ttkclark/wordpress-fields-api]
 * and many more ...
 
