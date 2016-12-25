@@ -10,13 +10,15 @@
 
 #debugobjects * {
 	margin: 0;
+	padding: 1px 4px;
+	font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 	font-size: 12px;
-	line-height: 2em;
+	line-height: 1.6em;
 }
 
 div#debugobjects {
 	margin: 30px 0;
-	font-size: 12px !important; /* fix for all themes */
+	font-size: 11px !important; /* fix for all themes */
 	color: #333;
 	background: #f0f0f0;
 	text-align: left;
