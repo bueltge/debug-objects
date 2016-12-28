@@ -557,7 +557,7 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		}
 
 		/*
-		 * Retrun string before update message
+		 * Return string before update message
 		 * 
 		 * @uses   
 		 * @access  public
@@ -590,9 +590,8 @@ if ( ! class_exists( 'Debug_Objects_Settings' ) ) {
 		public function validate_settings( $values ) {
 
 			foreach ( (array) $values as $key => $value ) {
-
+				$value = (int) $value;
 				if ( isset( $value[ $key ] ) ) {
-
 					if ( 1 === $value[ $key ] ) {
 						$value[ $key ] = 1;
 					} else {

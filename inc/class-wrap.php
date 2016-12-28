@@ -6,7 +6,7 @@
  * @subpackage  Markup and Hooks for include content
  * @author      Frank Bültge
  * @since       2.0.0
- * @version     03/18/2014
+ * @version     2016-12-28
  */
 
 if ( ! function_exists( 'add_filter' ) ) {
@@ -15,9 +15,16 @@ if ( ! function_exists( 'add_filter' ) ) {
 }
 
 if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
+
+	/**
+	 * Class Debug_Objects_Wrap
+	 */
 	class Debug_Objects_Wrap extends Debug_Objects {
 
-		protected static $classobj = NULL;
+		/**
+		 * @var null
+		 */
+		protected static $classobj;
 
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
@@ -26,7 +33,7 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 		 * @return Debug_Objects_Wrap|null $classobj
 		 */
 		public static function init() {
-			debug_to_console('test2');
+
 			NULL === self::$classobj and self::$classobj = new self();
 
 			return self::$classobj;
@@ -40,24 +47,30 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 		 */
 		public function __construct() {
 
+			parent::__construct();
 			// not enough right - back
 			if ( ! current_user_can( '_debug_objects' ) ) {
 				return;
 			}
 
 			$options = Debug_Objects_Settings::return_options();
+			if ( ! isset( $options[ 'frontend' ] ) ) {
+				$options[ 'frontend' ] = 0;
+			}
 
 			// check for output on frontend
-			if ( isset( $options[ 'frontend' ] ) && '1' === $options[ 'frontend' ]
-				|| self::debug_control()
+			if ( 1 === (int) $options[ 'frontend' ] || $this->debug_control()
 			) {
 				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 				add_action( 'wp_footer', array( $this, 'get_content' ), 9999 );
 			}
+
+			if ( ! isset( $options[ 'backend' ] ) ) {
+				$options[ 'backend' ] = 0;
+			}
 			// check for output on backend
-			if ( isset( $options[ 'backend' ] ) && '1' === $options[ 'backend' ]
-				|| self::debug_control()
+			if ( 1 === (int) $options[ 'backend' ] || $this->debug_control()
 			) {
 				add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 				add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
@@ -116,10 +129,10 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 			// jquery tablesorter plugin
 			wp_enqueue_script(
 				parent::get_plugin_data() . '_datatables',
-				str_replace( '/inc/', '', plugins_url( 'js/jquery.dataTables.min.js', dirname( __FILE__ ) ) ),
+				str_replace( '/inc/', '', plugins_url( 'js/jquery.dataTables.min.js', __DIR__ ) ),
 				array( 'jquery' ),
 				filemtime(
-					str_replace( '/inc/', '', plugin_dir_path( dirname( __FILE__ ) ) . 'js/jquery.dataTables.min.js' )
+					str_replace( '/inc/', '', plugin_dir_path( __DIR__ ) . 'js/jquery.dataTables.min.js' )
 				),
 				TRUE
 			);
@@ -127,10 +140,10 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 			// jquery cookie plugin
 			wp_enqueue_script(
 				parent::get_plugin_data() . '_cookie_script',
-				str_replace( '/inc/', '', plugins_url( 'js/jquery.cookie.js', dirname( __FILE__ ) ) ),
+				str_replace( '/inc/', '', plugins_url( 'js/jquery.cookie.js', __DIR__ ) ),
 				array( 'jquery' ),
 				filemtime(
-					str_replace( '/inc/', '', plugin_dir_path( dirname( __FILE__ ) ) . 'js/jquery.cookie.js' )
+					str_replace( '/inc/', '', plugin_dir_path( __DIR__ ) . 'js/jquery.cookie.js' )
 				),
 				TRUE
 			);
@@ -138,15 +151,15 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 			// Debug Objects script
 			wp_enqueue_script(
 				parent::get_plugin_data() . '_script',
-				str_replace( '/inc/', '', plugins_url( 'js/debug_objects' . $suffix . '.js', dirname( __FILE__ ) ) ),
+				str_replace( '/inc/', '', plugins_url( 'js/debug_objects' . $suffix . '.js', __DIR__ ) ),
 				array(
 					'jquery-ui-tabs',
 					parent::get_plugin_data() . '_datatables',
-					parent:: get_plugin_data() . '_cookie_script'
+					parent:: get_plugin_data() . '_cookie_script',
 				),
 				filemtime(
 					str_replace(
-						'/inc/', '', plugin_dir_path( dirname( __FILE__ ) ) . 'js/debug_objects' . $suffix . '.js'
+						'/inc/', '', plugin_dir_path( __DIR__ ) . 'js/debug_objects' . $suffix . '.js'
 					)
 				),
 				TRUE
@@ -158,29 +171,26 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 		 *
 		 * @access  public
 		 * @since   2.0.0
-		 * @return  string
 		 */
 		public function get_content() {
-
 			?>
 			<div id="debugobjects">
 				<div id="debugobjectstabs">
 					<ul>
 						<?php
 						/**
-						 *  use this filter for include new tabs with content
+						 *  Use this filter for include new tabs with content
 						 * $tabs[] = array(
 						 * 'tab' => __( 'Conditional Tags', parent :: get_plugin_data() ),
 						 * 'class => ' your_class_name', //optional
 						 * 'function' => array( __CLASS__, 'get_conditional_tags' )
 						 * );
 						 */
-						$tabs = apply_filters( 'debug_objects_tabs', $tabs = array() );
+						$tabs = (array) apply_filters( 'debug_objects_tabs', $tabs = array() );
 						if ( empty( $tabs ) ) {
 							echo '<li>Debug Objects: No active settings.</li>';
 						}
 
-						$classes = '';
 						foreach ( $tabs as $tab ) {
 
 							if ( ! isset( $tab[ 'class' ] ) ) {
@@ -194,9 +204,8 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 							if ( is_array( $classes ) ) {
 								$classes = implode( ' ', $classes );
 							}
-							$classes = sprintf( ' class="%s"', $classes );
 
-							echo '<li' . $classes . '><a href="#' . htmlentities2(
+							echo '<li  class="' . esc_attr( $classes ) . '"><a href="#' . esc_html(
 									tag_escape( $tab[ 'tab' ] )
 								) . '">' . esc_attr( $tab[ 'tab' ] ) . '</a></li>';
 						}
@@ -205,12 +214,10 @@ if ( ! class_exists( 'Debug_Objects_Wrap' ) ) {
 
 					<?php
 					foreach ( $tabs as $tab ) {
-						echo '<div id="' . htmlentities2( tag_escape( $tab[ 'tab' ] ) ) . '">';
+						echo '<div id="' . esc_html( tag_escape( $tab[ 'tab' ] ) ) . '">';
 						call_user_func( array( $tab[ 'function' ][ 0 ], $tab[ 'function' ][ 1 ] ) );
-						// only with php 5.3 and higher
-						//$tab['function'][0] :: $tab['function'][1]();
-						do_action( 'debug_objects_function' );
-						echo '</div>';
+						do_action( 'debug_objects_function' . $tab[ 'tab' ] );
+						echo '</div><!-- ' . esc_html( tag_escape( $tab[ 'tab' ] ) ) . '-->';
 					}
 					?>
 				</div>

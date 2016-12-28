@@ -13,7 +13,7 @@
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
  *
- * @version 2016-12-22
+ * @version 2016-12-28
  * @package Debug_Objects
  */
 
@@ -110,7 +110,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			// define folder for autoload, settings was load via settings and init_classes()
 			self::$file_base = __DIR__ . '/inc/autoload';
 
-			// Load 5.4 improvements 
+			// Load 5.4 improvements
 			if ( version_compare( phpversion(), '5.4.0', '>=' ) ) {
 				require_once __DIR__ . '/inc/class-php-54-improvements.php';
 			}
@@ -170,13 +170,22 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				$options = (array) get_option( self::$option_string );
 			}
 
+			if ( ! isset( $options[ 'frontend' ] ) ) {
+				$options[ 'frontend' ] = 0;
+			}
+			if ( ! isset( $options[ 'backend' ] ) ) {
+				$options[ 'backend' ] = 0;
+			}
+			if ( ! isset( $options[ 'stack_trace' ] ) ) {
+				$options[ 'stack_trace' ] = 0;
+			}
+
 			$view = FALSE;
-			if ( ( isset( $options[ 'frontend' ] ) && '1' === $options[ 'frontend' ] )
-			     || ( isset( $options[ 'backend' ] ) && '1' === $options[ 'backend' ] ) ) {
+			if ( 1 === (int) $options[ 'frontend' ] || 1 === (int) $options[ 'backend' ] ) {
 				$view = TRUE;
 			}
 
-			if ( isset( $options[ 'stack_trace' ] ) && '1' === $options[ 'stack_trace' ] ) {
+			if ( 1 === (int) $options[ 'stack_trace' ] ) {
 				define( 'STACKTRACE', TRUE );
 			}
 
@@ -190,20 +199,22 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 
 			if ( ! empty( $options ) ) {
 				foreach ( $options as $class => $check ) {
-					if ( '1' === $check ) {
+					if ( 1 === (int) $check ) {
 						self:: $by_settings[ ] = ucwords( $class );
 					}
 				}
 			}
-			$classes = (array) $this->store_classes = apply_filters( 'debug_objects_classes', self::$by_settings );
+
+			$classes = (array) $this->store_classes = apply_filters(
+				'debug_objects_classes', self::$by_settings
+			);
 
 			$this->set_cookie_control();
 
 			// Load class backtrace without output, if option is active
 			if ( in_array( 'Rewrite_backtrace', $classes, TRUE ) ) {
 
-				$file = __DIR__ . DIRECTORY_SEPARATOR
-				        . 'inc/class-rewrite_backtrace.php';
+				$file = __DIR__ . DIRECTORY_SEPARATOR . 'inc/class-rewrite_backtrace.php';
 				require_once $file;
 				add_action( 'init', array( 'Debug_Objects_Rewrite_Backtrace', 'init' ) );
 			}
@@ -443,11 +454,11 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 *
 		 * @return Boolean
 		 */
-		public function recursive_in_array( $needle, $haystack ) {
+		public static function recursive_in_array( $needle, $haystack ) {
 
 			if ( '' !== $haystack ) {
 				foreach ( $haystack as $stalk ) {
-					if ( $needle === $stalk || ( is_array( $stalk ) && $this->recursive_in_array( $needle, $stalk ) ) ) {
+					if ( $needle === $stalk || ( is_array( $stalk ) && static::recursive_in_array( $needle, $stalk ) ) ) {
 						return TRUE;
 					}
 				}

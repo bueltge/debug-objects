@@ -19,19 +19,37 @@ if ( ! function_exists( 'add_filter' ) ) {
 /**
  * Class Debug_Objects_Php
  */
-class Debug_Objects_Php extends Debug_Objects {
+class Debug_Objects_Php {
 
-	protected static $classobj = NULL;
+	/**
+	 * @var
+	 */
+	protected static $classobj;
 
-	var $content = '';
+	/**
+	 * @var string
+	 */
+	private $content = '';
 
-	var $warnings = array();
+	/**
+	 * @var array
+	 */
+	private $warnings = array();
 
-	var $notices = array();
+	/**
+	 * @var array
+	 */
+	private $notices = array();
 
-	var $messages = array();
+	/**
+	 * @var array
+	 */
+	private $messages = array();
 
-	var $real_error_handler = array();
+	/**
+	 * @var array|mixed
+	 */
+	private $real_error_handler = array();
 
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
@@ -76,9 +94,9 @@ class Debug_Objects_Php extends Debug_Objects {
 	/**
 	 * Get data for the generated tabs
 	 *
-	 * @param  Array $tabs
+	 * @param  array $tabs
 	 *
-	 * @return Array $tabs
+	 * @return array $tabs
 	 */
 	public function get_conditional_tab( $tabs ) {
 
@@ -87,9 +105,9 @@ class Debug_Objects_Php extends Debug_Objects {
 		}
 
 		$tabs[ ] = array(
-			'tab'      => __( 'System' ),
+			'tab'      => esc_html__( 'System' ),
 			'class'    => '',
-			'function' => array( $this, 'get_different_stuff' )
+			'function' => array( $this, 'get_different_stuff' ),
 		);
 
 		return $tabs;
@@ -278,6 +296,10 @@ class Debug_Objects_Php extends Debug_Objects {
 		$output = '';
 
 		$output .= '<div class="important"><h4>PHP Error Backtrace</h4>' . "\n";
+
+		if ( '' === $this->content ) {
+			$this->content = esc_html__( 'No errors found.', 'debug_objects' );
+		}
 		$output .= $this->content;
 		$output .= '</div>' . "\n";
 

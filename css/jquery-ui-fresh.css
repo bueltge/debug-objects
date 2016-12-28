@@ -41,19 +41,6 @@
 .ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
 
-/*
- * jQuery UI CSS Framework 1.8.16
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Theming/API
- *
- * To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=sans-serif&fwDefault=normal&fsDefault=12px&cornerRadius=4px&bgColorHeader=ececec&bgTextureHeader=04_highlight_hard.png&bgImgOpacityHeader=75&borderColorHeader=dfdfdf&fcHeader=333333&iconColorHeader=999999&bgColorContent=ffffff&bgTextureContent=01_flat.png&bgImgOpacityContent=75&borderColorContent=dfdfdf&fcContent=333333&iconColorContent=333333&bgColorDefault=ececec&bgTextureDefault=04_highlight_hard.png&bgImgOpacityDefault=75&borderColorDefault=dfdfdf&fcDefault=333333&iconColorDefault=333333&bgColorHover=ececec&bgTextureHover=06_inset_hard.png&bgImgOpacityHover=75&borderColorHover=ccc&fcHover=000000&iconColorHover=333333&bgColorActive=ffffff&bgTextureActive=01_flat.png&bgImgOpacityActive=65&borderColorActive=dfdfdf&fcActive=333333&iconColorActive=333333&bgColorHighlight=ffffe0&bgTextureHighlight=01_flat.png&bgImgOpacityHighlight=55&borderColorHighlight=e6db55&fcHighlight=333333&iconColorHighlight=21759b&bgColorError=ffebe8&bgTextureError=01_flat.png&bgImgOpacityError=95&borderColorError=cc0000&fcError=cc0000&iconColorError=cc0000&bgColorOverlay=aaaaaa&bgTextureOverlay=01_flat.png&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=aaaaaa&bgTextureShadow=01_flat.png&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=8px&offsetTopShadow=-8px&offsetLeftShadow=-8px&cornerRadiusShadow=3px
- */
-
-
 /* Component containers
 ----------------------------------*/
 .ui-widget { font-family: sans-serif; font-size: 12px; }
@@ -277,13 +264,6 @@
 
 /* Misc visuals
 ----------------------------------*/
-
-/* Corner radius */
-.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl { -moz-border-radius-topleft: 3px; -webkit-border-top-left-radius: 3px; border-top-left-radius: 3px; }
-.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr { -moz-border-radius-topright: 3px; -webkit-border-top-right-radius: 3px; border-top-right-radius: 3px; }
-.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl { -moz-border-radius-bottomleft: 3px; -webkit-border-bottom-left-radius: 3px; border-bottom-left-radius: 3px; }
-.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br { -moz-border-radius-bottomright: 3px; -webkit-border-bottom-right-radius: 3px; border-bottom-right-radius: 3px; }
-
 /* Overlays */
 .ui-widget-overlay { background: #000000; opacity: .6;filter:Alpha(Opacity=60); }
 .ui-widget-shadow { box-shadow: 0 0 16px rgba(0, 0, 0, 0.3); }/*

@@ -17,6 +17,9 @@ if ( class_exists( 'Debug_Objects_Roles' ) ) {
 	return NULL;
 }
 
+/**
+ * Class Debug_Objects_Roles
+ */
 class Debug_Objects_Roles {
 
 	/**
@@ -25,7 +28,7 @@ class Debug_Objects_Roles {
 	 * @since  2016-03-24
 	 * @var    String
 	 */
-	static protected $class_object;
+	protected static $class_object;
 
 	/**
 	 * Load the object and get the current state
@@ -68,7 +71,7 @@ class Debug_Objects_Roles {
 	public function get_conditional_tab( $tabs ) {
 
 		$tabs[] = array(
-			'tab'      => __( 'Role Inspector' ),
+			'tab'      => esc_html__( 'Role Inspector' ),
 			'function' => array( $this, 'print_roles' ),
 		);
 
