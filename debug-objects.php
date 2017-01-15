@@ -255,11 +255,10 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 */
 		public function debug_control() {
 
+			$debug = TRUE;
 			// Debug via _GET Param on URL
 			if ( ! isset( $_GET[ 'debug' ] ) ) {
 				$debug = FALSE;
-			} else {
-				$debug = TRUE;
 			}
 
 			if ( ! $debug ) {
@@ -280,7 +279,6 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * @return  bool $debug
 		 */
 		public function get_cookie_control( $debug ) {
-
 
 			if ( ! isset( $_COOKIE[ self::get_plugin_data() . '_cookie' ] ) ) {
 				return FALSE;

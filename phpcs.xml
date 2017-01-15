@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<ruleset name="Debug Objects WordPress Plugin">
+	<!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
+	<!-- @see https://github.com/squizlabs/PHP_CodeSniffer/wiki/Advanced-Usage#using-a-default-configuration-file -->
+	<description>The code standard changes for the Debug Objects WordPress plugin for WordPress CodeSniffer rules.</description>
+
+	<file>*.php</file>
+	<file>inc/*.php</file>
+
+	<exclude-pattern>vendor/*</exclude-pattern>
+	<exclude-pattern>node_modules/*</exclude-pattern>
+	<exclude-pattern>*.min.js</exclude-pattern>
+
+	<!-- TRUE, FALSE, NULL are constant, we write in uppercase. -->
+	<rule ref="Generic.PHP.UpperCaseConstant" />
+
+	<!-- Allow . in hook names -->
+	<rule ref="WordPress.NamingConventions.ValidHookName">
+		<properties>
+			<property name="additionalWordDelimiters" value="."/>
+		</properties>
+	</rule>
+
+	<!-- Include the WordPress ruleset, with exclusions. -->
+	<rule ref="WordPress">
+		<exclude name="WordPress.VIP.RestrictedFunctions.runtime_configuration" />
+		<exclude name="WordPress.VIP.RestrictedVariables.cache_constraints" />
+
+		<!-- Yoda conditions are not helpful, cost only time. -->
+		<exclude name="WordPress.PHP.YodaConditions" />
+
+		<exclude name="Generic.PHP.LowerCaseConstant" />
+		<exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
+		<exclude name="Generic.Commenting.DocComment.MissingShort" />
+
+		<exclude name="PEAR.Functions.FunctionCallSignature" />
+
+		<!-- Remove spaces before types check. -->
+		<exclude name="Squiz.Commenting.VariableComment.VarIndent" />
+		<exclude name="Squiz.Commenting.FunctionComment.SpacingBeforeParamType" />
+		<exclude name="Squiz.Commenting.FunctionComment.SpacingBeforeParams" />
+
+		<!-- Exclude Full Stops on inline comment. -->
+		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
+		<exclude name="Squiz.Commenting.FunctionComment.MissingParamComment" />
+
+		<!-- Remove empty line not required before block comment -->
+		<exclude name="Squiz.Commenting.BlockComment.HasEmptyLineBefore" />
+		<!-- Remove rule for /** style for each var -->
+		<exclude name="Squiz.Commenting.VariableComment.WrongStyle" />
+
+		<!-- <exclude name="WordPress.XSS.EscapeOutput" /> -->
+		<exclude name="WordPress.WhiteSpace.ScopeIndent.Incorrect" />
+		<exclude name="WordPress.Arrays.ArrayKeySpacingRestrictions" />
+		<exclude name="WordPress.Arrays.ArrayDeclaration.KeyNotAligned" />
+		<!-- Remove spaces instead of tabs check -->
+		<exclude name="WordPress.Arrays.ArrayDeclaration.ValueNotAligned" />
+		<exclude name="WordPress.Arrays.ArrayDeclaration.CloseBraceNotAligned" />
+		<!-- <exclude name="WordPress.Variables.GlobalVariables" /> -->
+	</rule>
+</ruleset>
