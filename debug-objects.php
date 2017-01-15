@@ -71,6 +71,10 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		// store classes from settings
 		public $store_classes = array();
 
+		// Store debug data.
+		protected static $data;
+		protected static $desc;
+
 		/**
 		 * Handler for the action 'init'. Instantiates this class.
 		 *
@@ -654,6 +658,46 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			}
 
 			return $escape;
+		}
+
+		/**
+		 * Simple helper to debug to the console
+		 *
+		 * @param mixed  $data
+		 *
+		 * @param string $description
+		 */
+		public static function debug_to_console( $data, $description = '' ) {
+
+			if ( defined('DOING_AJAX') && DOING_AJAX ) {
+				return;
+			}
+
+			if ( '' === $description ) {
+				$description = 'Debug in Console via Debug Objects Plugin:';
+			}
+
+			self::$data = $data;
+			self::$desc = $description;
+
+			if ( is_admin()  ) {
+				add_action( 'admin_footer', array( 'Debug_Objects', 'print_to_console' ) );
+			} else {
+				add_action( 'wp_footer', array( 'Debug_Objects', 'print_to_console' ) );
+			}
+		}
+
+		/**
+		 * Print debug and description data to the console of the browser.
+		 *
+		 * @since  2017-01-15
+		 */
+		public static function print_to_console() {
+			// Buffering to solve problems with WP core, header() etc.
+			ob_start();
+			$output  = 'console.info(' . wp_json_encode( self::$desc ) . ');';
+			$output .= 'console.log(' . wp_json_encode( self::$data ) . ');';
+			echo wp_kses( '<script>' . $output . '</script>', array( 'script' => array() ) );
 		}
 
 	} // end class

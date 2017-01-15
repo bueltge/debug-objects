@@ -33,6 +33,8 @@ if ( ! function_exists( 'debug_to_console' ) ) {
 	 */
 	function debug_to_console( $data, $description = '' ) {
 
+		Debug_Objects::debug_to_console( $data, $description );
+		/*
 		if ( '' === $description ) {
 			$description = 'Debug in Console via Debug Objects Plugin:';
 		}
@@ -42,5 +44,6 @@ if ( ! function_exists( 'debug_to_console' ) ) {
 		$output  = 'console.info(' . wp_json_encode( $description ) . ');';
 		$output .= 'console.log(' . wp_json_encode( $data ) . ');';
 		echo wp_kses( '<script>' . $output . '</script>', array( 'script' => array() ) );
+		*/
 	}
 }
