@@ -13,7 +13,7 @@
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
  *
- * @version 2016-12-28
+ * @version 2017-01-15
  * @package Debug_Objects
  */
 
@@ -89,7 +89,6 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 * Init other methods via hook; install settings and capabilities
 		 *
 		 * @since   2.0.0
-		 * @return \Debug_Objects
 		 */
 		public function __construct() {
 
@@ -278,14 +277,10 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 *
 		 * @return  bool $debug
 		 */
-		public function get_cookie_control( $debug ) {
+		public function get_cookie_control( $debug = FALSE ) {
 
-			if ( ! isset( $_COOKIE[ self::get_plugin_data() . '_cookie' ] ) ) {
-				return FALSE;
-			}
-
-			$cookie = $_COOKIE[ self::get_plugin_data() . '_cookie' ];
-			if ( 'Debug_Objects_True' === $cookie ) {
+			if ( isset( $_COOKIE[ self::get_plugin_data() . '_cookie' ] ) &&
+			     'Debug_Objects_True' === $_COOKIE[ self::get_plugin_data() . '_cookie' ] ) {
 				$debug = TRUE;
 			}
 
@@ -380,11 +375,11 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		public static function on_activation() {
 
 			// Check for PHP Version
-			if ( ! version_compare( PHP_VERSION, '5.2.4', '>=' ) ) {
+			if ( ! version_compare( PHP_VERSION, '5.3.0', '>=' ) ) {
 				deactivate_plugins( __FILE__ );
 				wp_die(
 					wp_sprintf(
-						'<strong>%s:</strong> ' . esc_html__( 'Sorry, This plugin requires PHP 5.2.4' ),
+						'<strong>%s:</strong> ' . esc_html__( 'Sorry, This plugin requires PHP 5.3.0' ),
 						esc_html( self::get_plugin_data( 'Name' ) )
 					)
 				);
@@ -541,7 +536,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				}
 			}
 
-			foreach ( $arr as $key => $val ) {
+			foreach ( (array) $arr as $key => $val ) {
 				$wp_object ++;
 
 				if ( is_numeric( $key ) ) {
@@ -597,7 +592,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 						$output .= "<li class=\"vt-$vt\"><span class=\"key\">" . htmlspecialchars( $key ) . '</span>';
 						$output .= "<br/><small><em>type</em>: $vt | <em>size</em>: " . strlen(
 								$val
-							) . " | <em>serialized</em>: " . ( is_serialized( $val ) !== FALSE ? 'TRUE'
+							) . ' | <em>serialized</em>: ' . ( is_serialized( $val ) !== FALSE ? 'TRUE'
 								: 'FALSE' ) . '</small><br/>';
 
 						if ( is_serialized( $val ) ) {
@@ -651,55 +646,16 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		public static function pre_print( $var, $before = '', $return = FALSE ) {
 
 			$export = var_export( $var, TRUE );
-			$escape = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
+			$escape = esc_attr( $before ) . '<pre>'
+			          . htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE ) . '</pre>';
 
 			if ( ! $return ) {
-				print $before . '<pre>' . $escape . '</pre>';
+				print wp_kses( $escape, array( 'pre' => array() ) );
 			}
 
-			return $before . '<pre>' . $escape . '</pre>';
+			return $escape;
 		}
 
 	} // end class
 
 } // end if class exists
-
-if ( ! function_exists( 'pre_print' ) ) {
-
-	/**
-	 * Print debug output
-	 *
-	 * @since     03/11/2012
-	 *
-	 * @param     mixed  $var
-	 * @param     string $before
-	 * @param     bool   $return
-	 */
-	function pre_print( $var, $before = '', $return = FALSE ) {
-
-		Debug_Objects::pre_print( $var, $before, $return );
-	}
-}
-
-if ( ! function_exists( 'debug_to_console' ) ) {
-	/**
-	 * Simple helper to debug to the console
-	 *
-	 * @param mixed  $data
-	 *
-	 * @param string $description
-	 */
-	function debug_to_console( $data, $description = '' ) {
-
-		if ( '' === $description ) {
-			$description = 'Debug in Console via Debug Objects Plugin:';
-		}
-
-		// Buffering to solve problems with WP core, header() etc.
-		ob_start();
-		$output  = 'console.info(' . wp_json_encode( $description ) . ');';
-		$output .= 'console.log(' . wp_json_encode( $data ) . ');';
-		$output  = sprintf( '<script>%s</script>', $output );
-		echo $output;
-	}
-}

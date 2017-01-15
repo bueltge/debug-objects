@@ -25,6 +25,8 @@
 	<rule ref="WordPress">
 		<exclude name="WordPress.VIP.RestrictedFunctions.runtime_configuration" />
 		<exclude name="WordPress.VIP.RestrictedVariables.cache_constraints" />
+		<exclude name="WordPress.VIP.RestrictedFunctions.cookies" />
+		<exclude name="WordPress.PHP.DiscouragedFunctions.Discouraged" />
 
 		<!-- Yoda conditions are not helpful, cost only time. -->
 		<exclude name="WordPress.PHP.YodaConditions" />
