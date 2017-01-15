@@ -661,7 +661,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		}
 
 		/**
-		 * Simple helper to debug to the console
+		 * Simple helper to debug to the console.
 		 *
 		 * @param mixed  $data
 		 *

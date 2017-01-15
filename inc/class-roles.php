@@ -6,15 +6,12 @@
  * @subpackage  Roles and his capabilities
  * @author      Frank Bültge
  * @since       2016-03-24
+ * @version     2017-01-15
  */
 
 if ( ! function_exists( 'add_filter' ) ) {
 	echo "Hi there! I'm just a part of plugin, not much I can do when called directly.";
 	exit;
-}
-
-if ( class_exists( 'Debug_Objects_Roles' ) ) {
-	return NULL;
 }
 
 /**
@@ -78,6 +75,9 @@ class Debug_Objects_Roles {
 		return $tabs;
 	}
 
+	/**
+	 * Display roles of the installation.
+	 */
 	public function print_roles() {
 
 		echo '<table class="tablesorter">';
@@ -85,14 +85,14 @@ class Debug_Objects_Roles {
 		echo '<tr>';
 		echo '<th>Capability</th>';
 		foreach ( $this->get_roles() as $role ) {
-			echo '<th>' . $role['name'] . '</th>';
+			echo '<th>' . esc_attr( $role[ 'name' ] ) . '</th>';
 		}
 		echo '</tr>';
 		echo '</thead>';
 		echo '<tbody>';
 		foreach ( $this->get_capabilities() as $capability ) {
 			echo '<tr>';
-			echo '<td>' . $capability . '</td>';
+			echo '<td>' . esc_attr( $capability ) . '</td>';
 			foreach ( $this->get_roles() as $role ) {
 				if ( array_key_exists( $capability, $role['capabilities'] ) ) {
 					echo '<td class="has-capability">X</td>';
