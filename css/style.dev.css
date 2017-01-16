@@ -18,6 +18,7 @@
 #debugobjects a {
 	color: #fff;
 	background-color: #333;
+	padding: 0 3px;
 }
 
 #debugobjects a:hover, .ui-state-active a {
@@ -150,6 +151,7 @@ div#debugobjects td {
 
 div#debugobjects ul li:hover, div#debugobjects ol li:hover,
 div#debugobjects tr:hover,
+div#debugobjects tr:hover > td, div#debugobjects tr:hover > th,
 div#debugobjects .alternate:hover, div#debugobjects .alt:hover {
 	background: #F7D0C3;
 }

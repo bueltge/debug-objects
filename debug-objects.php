@@ -13,7 +13,7 @@
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
  *
- * @version 2017-01-15
+ * @version 2017-01-16
  * @package Debug_Objects
  */
 
@@ -118,7 +118,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				require_once __DIR__ . '/inc/class-php-54-improvements.php';
 			}
 
-			// load all files form autoload folder
+			// Load all files from autoload directory.
 			self::load();
 
 			// add custom capability

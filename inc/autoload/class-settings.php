@@ -6,7 +6,7 @@
  * @subpackage  Settings
  * @author      Frank Bültge
  * @since       2.0.0
- * @version     2016-02-15
+ * @version     2017-01-16
  */
 
 if ( ! function_exists( 'add_filter' ) ) {
@@ -32,20 +32,6 @@ class Debug_Objects_Settings extends Debug_Objects {
 
 	// string for nonce fields
 	public static $nonce_string;
-
-	/**
-	 * Handler for the action 'init'. Instantiates this class.
-	 *
-	 * @access  public
-	 * @since   2.0.0
-	 * @return \Debug_Objects_Settings|null $classobj
-	 */
-	public static function get_object() {
-
-		NULL === self::$classobj && self::$classobj = new self();
-
-		return self::$classobj;
-	}
 
 	/**
 	 * Constructor, init on defined hooks of WP and include second class
@@ -246,10 +232,10 @@ class Debug_Objects_Settings extends Debug_Objects {
 
 		if ( is_multisite() && is_plugin_active_for_network( parent::$plugin ) ) {
 			wp_nonce_field( self::$nonce_string );
-			$options = (array) get_site_option( self::$option_string );
+			$options = (array) get_site_option( parent::$option_string );
 		} else {
-			settings_fields( self::$option_string . '_group' );
-			$options = (array) get_option( self::$option_string );
+			settings_fields( parent::$option_string . '_group' );
+			$options = (array) get_option( parent::$option_string );
 		}
 
 		return $options;
@@ -330,82 +316,106 @@ class Debug_Objects_Settings extends Debug_Objects {
 		?>
 		<table class="form-table">
 			<?php
-			$defaults = array(
-				'Backend'               => __(
-					'Output in WordPress Admin Footer. <br />Alternatively use url param "<code>debug</code>" or set a cookie via url param "<code>debugcookie</code>" in days. <br />Example: <code>example.com/?debug</code>'
+			$allowed_tags = array(
+				'br'   => array(),
+				'code' => array(),
+				'a'    => array(
+					'href'  => array(),
+					'title' => array(),
+				)
+			);
+			$defaults     = array(
+				'Backend'               => wp_kses(
+					__( 'Output in WordPress Admin Footer. <br>Alternatively use url param <code>debug</code> or set a cookie via url param <code>debugcookie</code> in days. <br>Example: <code>example.com/?debug</code>',
+					    'debug_objects' ),
+					$allowed_tags
 				),
-				'Frontend'              => __(
-					'Output in Footer of Frontend. <br />Alternatively use url param "<code>debug</code>" or set a cookie via url param "<code>debugcookie</code>" in days <br />Example: <code>example.com/?debugcookie=5</code>'
+				'Frontend'              => wp_kses(
+					__( 'Output in Footer of Frontend. <br>Alternatively use url param "<code>debug</code>" or set a cookie via url param "<code>debugcookie</code>" in days <br>Example: <code>example.com/?debugcookie=5</code>',
+					    'debug_objects' ),
+					$allowed_tags
 				),
-				'Php'                   => __( 'PHP, WordPress and global Stuff' ),
+				'Php'                   => esc_attr__( 'PHP, WordPress and global Stuff', 'debug_objects' ),
 				// php, WordPress, globals and more
-				'Classes'               => __( 'List all declared classes and his subclasses' ),
-				'Functions'             => __( 'List all defined functions' ),
-				'Constants'             => __( 'All Constants' ),
+				'Classes'               => esc_attr__( 'List all declared classes and his subclasses',
+				                                       'debug_objects' ),
+				'Functions'             => esc_attr__( 'List all defined functions', 'debug_objects' ),
+				'Constants'             => esc_attr__( 'All Constants', 'debug_objects' ),
 				// All active Constants
-				'Rewrite_Backtrace'     => __(
-					'Filter to temporarily get a "debug object" prior to redirecting with a backtrace'
+				'Rewrite_Backtrace'     => esc_attr__(
+					'Filter to temporarily get a "debug object" prior to redirecting with a backtrace', 'debug_objects'
 				),
-				'Conditional_Tags'      => __( 'Conditional Tags' ),
-				'Roles'                 => __( 'Role and his capabilities' ),
-				'Options'               => __( 'This tab shows a list of all saved options' ),
-				'Shortcodes'            => __( 'List all shortcodes' ),
-				'Post_Meta'             => __(
-					'Get a list of arguments to custom post types and a list of post meta for the current post type'
+				'Conditional_Tags'      => esc_attr__( 'Conditional Tags', 'debug_objects' ),
+				'Roles'                 => esc_attr__( 'Role and his capabilities', 'debug_objects' ),
+				'Options'               => esc_attr__( 'This tab shows a list of all saved options', 'debug_objects' ),
+				'Shortcodes'            => esc_attr__( 'List all shortcodes', 'debug_objects' ),
+				'Post_Meta'             => esc_attr__(
+					'Get a list of arguments to custom post types and a list of post meta for the current post type',
+					'debug_objects'
 				),
-				'Theme'                 => __( 'Theme and Template informations' ),
-				'Html_Inspector'        => __(
-					'HTML Inspector is a code quality tool to check markup. Any errors will be reported to the console of the browser. This works only on front end. <a href="https://github.com/philipwalton/html-inspector" title="GitHub Repository for the tool.">More information</a> about the solutions.'
+				'Theme'                 => esc_attr__( 'Theme and Template informations', 'debug_objects' ),
+				'Html_Inspector'        => wp_kses(
+					__( 'HTML Inspector is a code quality tool to check markup. Any errors will be reported to the console of the browser. This works only on front end. <a href="https://github.com/philipwalton/html-inspector" title="GitHub Repository for the tool.">More information</a> about the solutions.',
+					    'debug_objects' ),
+					$allowed_tags
 				),
-				'Translation'           => __( 'Get translation data: language, files, possible problems.' ),
-				'Enqueue_Stuff'         => __( 'Introduced scripts and stylesheets' ),
+				'Translation'           => esc_attr__(
+					'Get translation data: language, files, possible problems.', 'debug_objects' ),
+				'Enqueue_Stuff'         => esc_attr__( 'Introduced scripts and stylesheets', 'debug_objects' ),
 				// Scripts and styles
-				'Debug_Hooks'           => __(
-					'List existing Hooks and assigned functions and count of accepted args'
-				),
+				'Debug_Hooks'           => esc_attr__(
+					'List existing Hooks and assigned functions and count of accepted args', 'debug_objects' ),
 				// Hooks, faster @ToDo check it is usable, better?
 				//'Hooks'            => __( 'List existing Hooks and assigned functions' ), // Hooks
-				'All_Hooks'             => __( 'List all hooks, very slow and use many RAM' ),
-				'Page_Hooks'            => __( 'Hooks of current page' ),
+				'All_Hooks'             => esc_attr__( 'List all hooks, very slow and use many RAM', 'debug_objects' ),
+				'Page_Hooks'            => esc_attr__( 'Hooks of current page', 'debug_objects' ),
 				// Hook Instrument for active page
-				'Screen_Info'           => __(
-					'Shows all the screen info for the current page from the admin backend'
-				),
-				'Db_Query'              => __(
-					'Three Tabs: Only the database queries from plugins and wp-content in each tab with runtime and a tab with content of all queries and his runtime in order of runtime'
+				'Screen_Info'           => esc_attr__(
+					'Shows all the screen info for the current page from the admin backend', 'debug_objects' ),
+				'Db_Query'              => esc_attr__(
+					'Three Tabs: Only the database queries from plugins and wp-content in each tab with runtime and a tab with content of all queries and his runtime in order of runtime',
+					'debug_objects'
 				),
 				// WP Queries
-				'Stack_Trace'           => __(
-					'Stack Trace, all files and functions on each query. The Database-Query options is prerequisite.<br />A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.'
+				'Stack_Trace'           => wp_kses(
+					__( 'Stack Trace, all files and functions on each query. The Database-Query options is prerequisite.<br>A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.',
+					'debug_objects' ),
+					$allowed_tags
 				),
-				'Cache'                 => __( 'Contents of Cache' ),
+				'Cache'                 => esc_attr__( 'Contents of Cache', 'debug_objects' ),
 				// WP Cache
-				'Rewrites'              => __( 'A list of all cached rewrites.' ),
-				'Permalink_Performance' => __( 'Analyze the performance for the permalink rule settings.' ),
-				'Cron'                  => __( 'Crons' ),
-				'Transient'             => __( 'List all transients.' ),
-				'Memory'                => __(
-					'Memory Used, Load Time and included Files, but without all file in the folder <code>wp-admin</code>, <code>wp-includes</code>'
+				'Rewrites'              => esc_attr__( 'A list of all cached rewrites.', 'debug_objects' ),
+				'Permalink_Performance' => esc_attr__( 'Analyze the performance for the permalink rule settings.',
+				                                       'debug_objects' ),
+				'Cron'                  => esc_attr__( 'Crons', 'debug_objects' ),
+				'Transient'             => esc_attr__( 'List all transients.', 'debug_objects' ),
+				'Memory'                => wp_kses(
+					__( 'Memory Used, Load Time and included Files, but without all file in the folder <code>wp-admin</code>, <code>wp-includes</code>',
+					'debug_objects' ),
+					$allowed_tags
 				),
-				'Inspector'             => __( 'Provide information about a given domain' ),
-				'Php_Error'             => __(
-					'A alternative PHP Error reporting; works only with PHP 5.3. Set the url param <code>php_error</code> for all strict messages.'
+				'Inspector'             => esc_attr__( 'Provide information about a given domain', 'debug_objects' ),
+				'Php_Error'             => esc_attr__(
+					'A alternative PHP Error reporting; works only with PHP 5.3. Set the url param <code>php_error</code> for all strict messages.',
+					'debug_objects'
 				),
-				'Default_Mode'          => __(
-					'Add the url-param \'<code>default</code>\', like \'<code>?debug&default</code>\', for run WordPress in a safe mode. Plugins are not loaded and set the default theme as active theme, is it available.'
+				'Default_Mode'          => wp_kses(
+					__( 'Add the url-param <code>default</code>, like <code>?debug&default</code>, for run WordPress in a safe mode. Plugins are not loaded and set the default theme as active theme, is it available.',
+					'debug_objects' ),
+					$allowed_tags
 				),
-				'Filter'                => __(
-					'Filter class, hooks, scripts and styles from this plugin Debug Objects.'
+				'Filter'                => esc_attr__(
+					'Filter class, hooks, scripts and styles from this plugin Debug Objects.', 'debug_objects'
 				),
-				'Fields_API'            => __(
-					'WordPress Fields API (Currently is this core proposal for a new wide-reaching API for WordPress core)'
+				'Fields_API'            => esc_attr__(
+					'WordPress Fields API (Currently is this core proposal for a new wide-reaching API for WordPress core)',
+					'debug_objects'
 				),
-				'About'                 => __( 'About the plugin' ),
-				// about plugin
+				'About'                 => esc_attr__( 'About the plugin', 'debug_objects' ),
 			);
 
 			$classes          = (array) apply_filters( 'debug_objects_classes', $defaults );
-			$disabled_options = apply_filters( 'debug_objects_disabled_options', array( 'Chromephp' ) );
+			$disabled_options = (array) apply_filters( 'debug_objects_disabled_options', array() );
 
 			foreach ( $classes as $class => $hint ) {
 				$key = strtolower( $class );
@@ -432,8 +442,8 @@ class Debug_Objects_Settings extends Debug_Objects {
 							?> />
 						<span class="description"><?php
 							$args = array(
-								'a' => array(
-									'href' => array(),
+								'a'    => array(
+									'href'  => array(),
 									'title' => array(),
 								),
 								'code' => array(),
@@ -464,8 +474,8 @@ class Debug_Objects_Settings extends Debug_Objects {
 			<div class="inside">
 				<p>
 					<img style="float:right;" src="<?php echo esc_url( plugins_url(
-						'/img/bug-32.png', parent::$plugin
-					) ); ?>" alt="The Bug" />
+						                                                   '/img/bug-32.png', parent::$plugin
+					                                                   ) ); ?>" alt="The Bug" />
 					<?php esc_attr_e( 'Here\'s how you can give back:' ); ?></p>
 				<ul>
 					<li><a href="http://wordpress.org/extend/plugins/debug-objects/" title="<?php esc_attr_e(
@@ -518,15 +528,19 @@ class Debug_Objects_Settings extends Debug_Objects {
 					<strong><?php esc_attr_e( 'Hints:' ) ?></strong><br>
 					<?php
 					$allowed_tags = array(
-						'em' => array(),
-						'br' => array(),
+						'em'   => array(),
+						'br'   => array(),
 						'code' => array(),
 					);
-					echo wp_kses( __( '&middot; <em>Comfort on debug output:<br> <code>pre_print( $var );</code></em><br>', 'debug_objects' ), $allowed_tags );
-					echo wp_kses( __( 'You can use the function <code>pre_print( $var );</code> for little bid comfort on debug output, like <code>var_dump()</code>, but more readable. More features or helpers you can activate in the settings.', 'debug_objects' ), $allowed_tags ); ?>
+					echo wp_kses( __( '&middot; <em>Comfort on debug output:<br> <code>pre_print( $var );</code></em><br>',
+					                  'debug_objects' ), $allowed_tags );
+					echo wp_kses( __( 'You can use the function <code>pre_print( $var );</code> for little bid comfort on debug output, like <code>var_dump()</code>, but more readable. More features or helpers you can activate in the settings.',
+					                  'debug_objects' ), $allowed_tags ); ?>
 					<br>
-					<?php echo wp_kses( __( '&middot; <em>Simple Debug in Browser Console:<br> <code>debug_to_console( $data, $description = \'\' );</code></em><br>', 'debug_objects' ), $allowed_tags );
-					echo wp_kses( __( 'You can use the function <code>debug_to_console( $data, $description = \'\' );</code> for debug the content of a variable to your console inside the browser, simple and easy, but useful. More comfort for debug on console is the possibilities with ChromePhp, active and documented in the settings. The second param is optional for a helpful description in the console.', 'debug_objects' ), $allowed_tags ); ?>
+					<?php echo wp_kses( __( '&middot; <em>Simple Debug in Browser Console:<br> <code>debug_to_console( $data, $description = \'\' );</code></em><br>',
+					                        'debug_objects' ), $allowed_tags );
+					echo wp_kses( __( 'You can use the function <code>debug_to_console( $data, $description = \'\' );</code> for debug the content of a variable to your console inside the browser, simple and easy, but useful. More comfort for debug on console is the possibilities with ChromePhp, active and documented in the settings. The second param is optional for a helpful description in the console.',
+					                  'debug_objects' ), $allowed_tags ); ?>
 				</p>
 			</div>
 		</div>
@@ -542,7 +556,7 @@ class Debug_Objects_Settings extends Debug_Objects {
 	public function save_network_settings_page() {
 
 		// validate options
-		$value = self::validate_settings( $_POST[ self::$option_string ] );
+		$value = $this->validate_settings( $_POST[ self::$option_string ] );
 		// update options
 		update_site_option( self::$option_string, $value );
 		// redirect to settings page in network
@@ -628,4 +642,4 @@ class Debug_Objects_Settings extends Debug_Objects {
 	}
 }
 
-$Debug_Objects_Settings = Debug_Objects_Settings::get_object();
+new Debug_Objects_Settings();
