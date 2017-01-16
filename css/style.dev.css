@@ -154,6 +154,8 @@ div#debugobjects tr:hover,
 div#debugobjects tr:hover > td, div#debugobjects tr:hover > th,
 div#debugobjects .alternate:hover, div#debugobjects .alt:hover {
 	background: #F7D0C3;
+	color: #333;
+	font-weight: bold;
 }
 
 div#debugobjects tr.nohover:hover {
