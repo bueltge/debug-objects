@@ -31,7 +31,7 @@ function debug_objects_toggle( obj ) {
 			}
 		} );
 		
-		$(".ui-tabs-anchor").click(function() {
+		$( '.ui-tabs-anchor' ).click( function() {
 			var value = $(this).attr( "id" );
 			// cut value and -1. tab counter start with 0
 			value = jQuery.trim( value ).substring(6, 10) - 1;
@@ -48,12 +48,12 @@ function debug_objects_toggle( obj ) {
 		collapsible: true,
 		active: selected_tab
 	} );
-	
+
 	// Add tablesorter function
-	$( '#debugobjects').find('table.tablesorter' ).DataTable( {
+	$( '#debugobjects' ).find( 'table.tablesorter' ).DataTable( {
 		"iDisplayLength": 25,
 		"aLengthMenu": [ 10, 25, 50, 75, 100, 200, 500 ],
 		"bJQueryUI": true
-	} ); 
-	
+	} );
+
 } )( jQuery );
