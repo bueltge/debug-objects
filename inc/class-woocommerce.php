@@ -44,6 +44,10 @@ class Debug_Objects_Woocommerce {
 	 */
 	public function __construct() {
 
+		if ( ! class_exists( 'WooCommerce' ) ) {
+			return;
+		}
+
 		if ( ! current_user_can( '_debug_objects' ) ) {
 			return;
 		}
