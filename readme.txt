@@ -67,7 +67,7 @@ Please give us feedback, contribute and file technical bugs on [GitHub Repo](htt
 
 == Installation ==
 = Requirements =
-* WordPress (also Multisite) version 3.3 and later (tested at 3.3)
+* WordPress (also Multisite) version 3.3 and later (tested at 4.7)
 * PHP 5.2.4, Tested with PHP 7
 
 = Installation =
