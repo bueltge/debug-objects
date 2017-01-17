@@ -3,8 +3,8 @@ Contributors: Bueltge, inpsyde
 Donate link: http://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, cron, cache
 Requires at least: 3.3
-Tested up to: 4.7-alpha
-Stable tag: 2.3.1
+Tested up to: 4.7.1
+Stable tag: 2.4.0
 
 The Plugin Debug Objects provides a large number of information: query, cache, cron, constants, hooks, functions and many more.
 
@@ -53,6 +53,7 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Run WordPress in default mode via url-param
 * Add alternative PHP Error reporting: [PHP Error](http://phperror.net/)
 * Support (WP Fields API)[https://github.com/sc0ttkclark/wordpress-fields-api]
+* WooCommerce, list current hooks and template arguments.
 * and many more ...
 
 
@@ -69,7 +70,7 @@ Have a look at the premium plugins in our [market](http://marketpress.com).
 == Installation ==
 = Requirements =
 * WordPress (also Multisite) version 3.3 and later (tested at 3.3)
-* PHP 5.2.4, Tested with PHP 5.4
+* PHP 5.2.4, Tested with PHP 7
 
 = Installation =
 1. Unpack the download-package
@@ -92,10 +93,13 @@ After this version you find the other verison on the [github repo](https://githu
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a [small donation](http://bueltge.de/wunschliste/ "Wishliste and Donate") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 == Changelog ==
-= 2.3.2 () =
+= 2.4.0 (2017-01-17) =
+* Remove ChromePHP and SuperVarDump Library; simple custom function is helpful enough.
+* Changes for Codex rules.
 * Enhance debug helper function `debug_to_console`. Now with a second param to add a description for output and add a buffer.
 * Enhance the view of DB queries, smaller, easier - faster to read.
 * Remove deprecated function `is_comments_popup` in conditional tags.
+* Add WooCommerce Helper, list all WooCommerce hooks, there fired and template arguments.
 
 = 2.3.1 (2016-03-31) =
 * Fix small issue for Inspector and his records.

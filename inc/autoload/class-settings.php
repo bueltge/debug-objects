@@ -6,7 +6,7 @@
  * @subpackage  Settings
  * @author      Frank Bültge
  * @since       2.0.0
- * @version     2017-01-16
+ * @version     2017-01-17
  */
 
 if ( ! function_exists( 'add_filter' ) ) {

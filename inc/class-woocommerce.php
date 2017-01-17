@@ -140,6 +140,7 @@ class Debug_Objects_Woocommerce {
 	public function print_stuff() {
 
 		$this->filter = array_unique( $this->filter );
+		$count = count( $this->filter );
 		?>
 		<div class="wrap">
 			<h4><?php esc_attr_e( 'Template parts, via Hook' ); ?> <code>woocommerce_before_template_part</code></h4>
@@ -167,11 +168,14 @@ class Debug_Objects_Woocommerce {
 				</tbody>
 			</table>
 
-			<h4><?php esc_attr_e( 'Fired WooCommerce Hooks' ); ?></h4>
+			<h4><?php esc_attr_e( 'Fired Hooks, filtered for \'wc\' or \'woocommerce\'' ); ?></h4>
 			<table class="tablesorter">
 				<thead>
 				<tr>
-					<th><?php esc_attr_e( 'Filter Hooks' ); ?></th>
+					<th><?php
+						echo (int) $count . ' ';
+						esc_attr_e( 'Filter Hooks' );
+						?></th>
 				</tr>
 				</thead>
 				<tbody>
