@@ -73,7 +73,6 @@ div#debugobjectstabs, .ui-corner-all {
 	border-radius: 0;
 }
 
-
 div#debugobjects ol li {
 	margin: 5px 0 5px 15px;
 }
@@ -81,6 +80,10 @@ div#debugobjects ol li {
 div#debugobjects div div ul li, div#debugobjects div div td,
 div#debugobjects div div th {
 	padding: 5px;
+}
+
+div#debugobjects table th {
+	text-align: left;
 }
 
 div#debugobjects div div table, div#debugobjects div div td,
@@ -130,10 +133,11 @@ div#debugobjects .important {
 	margin: 1em 0;
 }
 
-.admin-color-classic div#debugobjects .alternate, .admin-color-classic div#debugobjects .alt {
-	background: #d1e5ee;
+div#debugobjects table th:nth-child( odd ) {
+	background: #ccc;
 }
-.admin-color-fresh div#debugobjects .alternate, .admin-color-fresh div#debugobjects .alt {
+div#debugobjects .alternate, div#debugobjects .alt,
+div#debugobjects table tr:nth-child( odd ) {
 	background: #e6e6e6;
 }
 

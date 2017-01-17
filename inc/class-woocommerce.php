@@ -8,8 +8,7 @@
  * @license     http://opensource.org/licenses/gpl-license.php GNU Public License
  * @since       2017-01-17
  * @version     2017-01-17
- *
- * Php Version 5.6
+ *              Php Version 5.6
  */
 
 /**
@@ -24,6 +23,7 @@ class Debug_Objects_Woocommerce {
 	 */
 	static protected $class_object;
 	private $template = array();
+	private $filter;
 
 	/**
 	 * Load the object and get the current state
@@ -74,23 +74,60 @@ class Debug_Objects_Woocommerce {
 	 */
 	public function run() {
 
-		add_action( 'woocommerce_before_template_part', array( $this, 'get_template' ), 10, 4 );
+		add_action( 'all', array( $this, 'get_wc_hooks' ) );
+		add_filter( 'template_include', array( $this, 'get_include_template' ) );
+		add_action( 'woocommerce_before_template_part', array( $this, 'get_template_data' ), 10, 4 );
+	}
+
+	/**
+	 * Filter global filter for hooks from WooCommerce.
+	 */
+	public function get_wc_hooks() {
+
+		global $wp_current_filter;
+
+		$needles = array( 'wc', 'woocommerce' );
+
+		// Search needles for a string part in values of the filter array.
+		foreach ( $needles as $needle ) {
+			array_filter(
+				$wp_current_filter,
+				function( $var ) use ( $needle ) {
+					if ( FALSE !== strpos( $var, $needle ) ) {
+						$this->filter[] = $var;
+					}
+				} );
+		}
+	}
+
+	/**
+	 * Return the current use template.
+	 *
+	 * @param  string $template
+	 *
+	 * @return string $template
+	 */
+	public function get_include_template( $template ) {
+
+		$this->template[ 'theme_template' ] = $template;
+
+		return $template;
 	}
 
 	/**
 	 * Store data from callback of hook.
 	 *
-	 * @param $template_name
-	 * @param $template_path
-	 * @param $located
-	 * @param $args
+	 * @param string $template_name
+	 * @param string $template_path
+	 * @param string $located
+	 * @param array  $args
 	 */
-	public function get_template( $template_name, $template_path, $located, $args ) {
+	public function get_template_data( $template_name, $template_path, $located, $args ) {
 
 		$this->template[ 'template_name' ] = $template_name;
 		$this->template[ 'template_path' ] = $template_path;
-		$this->template[ 'located' ] = $located;
-		$this->template[ 'args' ] = $args;
+		$this->template[ 'located' ]       = $located;
+		$this->template[ 'args' ]          = $args;
 	}
 
 	/**
@@ -98,6 +135,7 @@ class Debug_Objects_Woocommerce {
 	 */
 	public function print_stuff() {
 
+		$this->filter = array_unique( $this->filter );
 		?>
 		<div class="wrap">
 			<h4><?php esc_attr_e( 'Template parts, via Hook' ); ?> <code>woocommerce_before_template_part</code></h4>
@@ -125,6 +163,25 @@ class Debug_Objects_Woocommerce {
 				</tbody>
 			</table>
 
+			<h4><?php esc_attr_e( 'Fired WooCommerce Hooks' ); ?></h4>
+			<table class="tablesorter">
+				<thead>
+				<tr>
+					<th><?php esc_attr_e( 'Filter Hooks' ); ?></th>
+				</tr>
+				</thead>
+				<tbody>
+				<?php
+				foreach ( $this->filter as $key => $filter ) {
+					?>
+					<tr>
+						<td><?php echo esc_attr( $filter ); ?></td>
+					</tr>
+					<?php
+				}
+				?>
+				</tbody>
+			</table>
 		</div>
 		<?php
 	}
