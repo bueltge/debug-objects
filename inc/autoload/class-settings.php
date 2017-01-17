@@ -322,7 +322,7 @@ class Debug_Objects_Settings extends Debug_Objects {
 				'a'    => array(
 					'href'  => array(),
 					'title' => array(),
-				)
+				),
 			);
 			$defaults     = array(
 				'Backend'               => wp_kses(
@@ -411,6 +411,7 @@ class Debug_Objects_Settings extends Debug_Objects {
 					'WordPress Fields API (Currently is this core proposal for a new wide-reaching API for WordPress core)',
 					'debug_objects'
 				),
+				'WooCommerce'           => esc_attr__( 'A simple helper for develop and debug the WooCommerce data.', 'debug_objects' ),
 				'About'                 => esc_attr__( 'About the plugin', 'debug_objects' ),
 			);
 

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Display data from the Fields API
  *
@@ -15,6 +14,10 @@
  * @version     2016-02-01
  *
  * Php Version 5.3
+ */
+
+/**
+ * Class Debug_Objects_Fields_API
  */
 class Debug_Objects_Fields_API {
 
