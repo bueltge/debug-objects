@@ -113,7 +113,7 @@ if ( ! class_exists( 'Debug_Objects_Post_Meta' ) ) {
 				
 				$export = var_export( get_post_meta( get_the_ID(), $key, FALSE ), TRUE );
 				$escape = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
-				
+
 				$output .= '<tr>';
 				$output .= '<td><code>' . $key . '</code><br>' . $valuecount;
 				$output .= '</td>';
@@ -133,11 +133,11 @@ if ( ! class_exists( 'Debug_Objects_Post_Meta' ) ) {
 				foreach ( self::$args as $post_type => $var ) {
 					$export = var_export( $var, TRUE );
 					$escape = htmlspecialchars( $export, ENT_QUOTES, 'utf-8', FALSE );
-					
+
 					$output .= sprintf(
 						'<br><h4 class="alternate">Post Type: %s</h4><pre>%s</pre>',
 						$post_type,
-						$escape
+						highlight_string( "<?php\n" . $export . ";\n?>", TRUE )
 					);
 				}
 			} else {
