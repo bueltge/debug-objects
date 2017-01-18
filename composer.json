@@ -1,18 +1,18 @@
 {
   "name": "bueltge/debug-objects",
   "description": "WordPress Plugin for debugging and learning with and at system.",
-  "minimum-stability": "stable",
   "license": "GPL-3+",
+  "keywords": ["wordpress", "plugin", "debug"],
   "type": "wordpress-plugin",
   "authors": [
     {
       "name": "Frank Bültge",
-      "email": "frank@bueltge.de"
+      "email": "frank@bueltge.de",
+      "homepage": "https://bueltge.de",
+      "role": "Developer"
     }
   ],
   "require": {
-    "php": ">5.2.4",
-    "composer/installers": "~1.0",
-    "phpmd/phpmd": "2.1.3"
+    "php": ">5.6"
   }
 }
