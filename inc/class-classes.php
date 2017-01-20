@@ -6,7 +6,7 @@
  * @subpackage  Helper for Debug
  * @author      Frank Bültge
  * @since       2.1.5
- * @version     03/07/2014
+ * @version     2017-01-20
  */
 if ( ! function_exists( 'add_filter' ) ) {
 	echo "Hi there! I'm just a part of plugin, not much I can do when called directly.";
@@ -19,13 +19,13 @@ if ( class_exists( 'Debug_Objects_Classes' ) ) {
 
 class Debug_Objects_Classes {
 
-	protected static $classobj = NULL;
+	protected static $classobj;
 
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
 	 *
 	 * @access  public
-	 * @return  $classobj
+	 * @return  Debug_Objects_Classes $classobj
 	 */
 	public static function init() {
 
@@ -45,8 +45,12 @@ class Debug_Objects_Classes {
 		// Get settings
 		$options = Debug_Objects_Settings::return_options();
 
+		if ( ! isset( $options[ 'filter' ] ) ) {
+			return;
+		}
+
 		// Filter classes from this plugin
-		if ( isset( $options[ 'filter' ] ) && '1' === $options[ 'filter' ] ) {
+		if ( 1 === (int) $options[ 'filter' ] ) {
 			add_filter( 'debug_objects_declared_classes', array( $this, 'remove_debug_objects_classes' ) );
 		}
 	}
@@ -54,14 +58,14 @@ class Debug_Objects_Classes {
 	/**
 	 * Add content for tabs
 	 *
-	 * @param  Array $tabs
+	 * @param  array $tabs
 	 *
-	 * @return Array $tabs
+	 * @return array $tabs
 	 */
 	public function get_conditional_tab( $tabs ) {
 
-		$tabs[ ] = array(
-			'tab'      => __( 'Classes' ),
+		$tabs[] = array(
+			'tab'      => esc_attr__( 'Classes', 'debug_objects' ),
 			'function' => array( $this, 'get_classes' )
 		);
 
@@ -71,14 +75,14 @@ class Debug_Objects_Classes {
 	/**
 	 * Filter classes to remove the classes from this plugin
 	 *
-	 * @param  Array
+	 * @param  array
 	 *
-	 * @return Array
+	 * @return array
 	 */
-	public function remove_debug_objects_classes( $classes ) {
+	public function remove_debug_objects_classes( array $classes ) {
 
 		foreach ( $classes as $count => $class ) {
-			if ( 'Debug_Objects' === substr( $class, 0, 13 ) ) {
+			if ( 0 === strpos( $class, 'Debug_Objects' ) ) {
 				unset( $classes[ $count ] );
 			}
 		}
@@ -99,42 +103,35 @@ class Debug_Objects_Classes {
 	public function get_classes( $sort = TRUE, $echo = TRUE ) {
 
 		// Use this Hook to remove or add your custom classes
-		$classes = apply_filters( 'debug_objects_declared_classes', get_declared_classes() );
+		$classes = (array) apply_filters( 'debug_objects_declared_classes', get_declared_classes() );
 		if ( $sort ) {
 			sort( $classes );
 		}
 
-		if ( ! $echo ) {
-			return $classes;
-		} else {
-
-			$style     = '';
-			$substyle  = '';
+		if ( $echo ) {
 			$output    = '';
-			$suboutput = '';
 			foreach ( $classes as $count => $class ) {
 
 				$count ++;
-				$subclasses = '';
-				$style      = ( ' class="alternate"' == $style ) ? '' : ' class="alternate"';
-				$output .= '<tr' . $style . '><td>' . $count . '</td><td>' . $class . '</td>';
+				$output .= '<tr><td>' . $count . '</td><td>' . $class . '</td>';
 				$subclasses = get_parent_class( $class );
 
 				if ( ! empty( $subclasses ) ) {
 					$output .= '<td><code>extend</code> ' . $subclasses . '</td>';
 				} else {
-					$output .= '<td> </td>';
+					$output .= '<td></td>';
 				}
 
 				$output .= '</tr>';
 			}
-			echo '<h4>Total Classes: ' . count( $classes ) . '</h4>';
+			echo '<h4>' . esc_attr__( 'Total Classes: ', 'debug_objects' ) . count( $classes ) . '</h4>';
 			echo '<table class="tablesorter"><thead><tr><th>' . __( 'No' ) . '</th><th>' . __(
 					'Class'
-				) . '</th><th>' . __( 'Parent class' ) . '</th></tr></thead>'
+				) . '</th><th>' . esc_attr__( 'Parent class', 'debug_objetcs' ) . '</th></tr></thead>'
 				. $output . '</table>';
 		}
 
+		return $classes;
 	}
 
 } // end class
