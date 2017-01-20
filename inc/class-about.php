@@ -1,6 +1,6 @@
 <?php
 /**
- * Add small screen with informations about the plugin
+ * Add small screen with information about the plugin
  *
  * @package     Debug Objects
  * @subpackage  About plugin
@@ -55,7 +55,7 @@ class Debug_Objects_About extends Debug_Objects {
 	public function get_conditional_tab( $tabs ) {
 
 		$tabs[] = array(
-			'tab'      => __( 'About', 'debug_objects' ),
+			'tab'      => esc_attr__( 'About', 'debug_objects' ),
 			'function' => array( $this, 'get_plugin_content' )
 		);
 
@@ -74,26 +74,28 @@ class Debug_Objects_About extends Debug_Objects {
 		$output = '';
 		$output .= '<h3>' . parent::get_plugin_data( 'Title' ) . '</h3>';
 		$output .= '<p>';
-		$output .= '<strong>' . __( 'Description:', 'debug_objects' ) . '</strong> ';
+		$output .= '<strong>' . esc_attr__( 'Description:', 'debug_objects' ) . '</strong> ';
 		$output .= parent::get_plugin_data( 'Description' ) . '</p>';
 		$output .= '<p>';
-		$output .= '<strong>' . __( 'Version:', 'debug_objects' ) . '</strong> ';
+		$output .= '<strong>' . esc_attr__( 'Version:', 'debug_objects' ) . '</strong> ';
 		$output .= parent::get_plugin_data( 'Version' ) . '</p>';
 
-		$output .= '<p><strong>' . __( 'Here\'s how you can give back:', 'debug_objects' ) . '</strong></p>';
+		$output .= '<p><strong>' . esc_attr__( 'Here\'s how you can give back:', 'debug_objects' ) . '</strong></p>';
 		$output .= '<ul>';
 		$output .= '<li><a href="http://wordpress.org/extend/plugins/debug-objects/" title="'
 		           . esc_attr__( 'The Plugin on the WordPress plugin repository', 'debug_objects' )
-		           . '">' . __( 'Give the plugin a good rating.', 'debug_objects' ) . '</a></li>';
+		           . '">' . esc_attr__( 'Give the plugin a good rating.', 'debug_objects' ) . '</a></li>';
 		$output .= '<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=6069955" title="'
 		           . esc_attr__( 'Donate via PayPal', 'debug_objects' )
-		           . '">' . __( 'Donate a few euros.', 'debug_objects' ) . '</a></li>';
+		           . '">' . esc_attr__( 'Donate a few euros.', 'debug_objects' ) . '</a></li>';
 		$output .= '<li><a href="http://www.amazon.de/gp/registry/3NTOGEK181L23/ref=wl_s_3" title="'
 		           . esc_attr__( 'Frank Bültge\'s Amazon Wish List', 'debug_objects' )
-		           . '">' . __( 'Get me something from my wish list.', 'debug_objects' ) . '</a></li>';
-		$output .= '<li><a href="https://github.com/bueltge/Debug-Objects" title="' . esc_attr__( 'Please give me feedback, contribute and file technical bugs on this GitHub Repo, use Issues.',
-		                                                                                          'debug_objects' ) . '">' . esc_attr__( 'Github Repo for Contribute, Issues & Bugs',
-		                                                                                                                                            'debug_objects' ) . '</a></li>';
+		           . '">' . esc_attr__( 'Get me something from my wish list.', 'debug_objects' ) . '</a></li>';
+		$output .= '<li><a href="https://github.com/bueltge/Debug-Objects" title="'
+		           . esc_attr__( 'Please give me feedback, contribute and file technical bugs on this GitHub Repo, use Issues.',
+		                         'debug_objects' ) . '">'
+		           . esc_attr__( 'Github Repo for Contribute, Issues & Bugs',
+		                         'debug_objects' ) . '</a></li>';
 		$output .= '</ul>';
 
 		if ( $echo ) {
