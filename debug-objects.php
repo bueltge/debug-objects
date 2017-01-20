@@ -188,7 +188,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				$view = TRUE;
 			}
 
-			if ( 1 === (int) $options[ 'stack_trace' ] ) {
+			if ( 1 === (int) $options[ 'stack_trace' ] && ! defined( 'STACKTRACE' ) ) {
 				define( 'STACKTRACE', TRUE );
 			}
 
