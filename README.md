@@ -86,7 +86,6 @@ Please let me know if you like the plugin or you hate it or whatever ... Please 
 
 #### Use & Thanks
  * [SqlFormatter](https://github.com/jdorn/sql-formatter) is a lightweight php class for formatting sql statements.
- * [PHP Error](http://phperror.net/) Improve Error Reporting for PHP.
  
 #### Disclaimer
 I'm German and my English might be gruesome here and there. So please be patient with me and let me know of typos or grammatical farts. Thanks
