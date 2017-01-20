@@ -503,7 +503,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_as_ul_tree( $arr, $root_name = '', $unserialized_string = FALSE ) {
+		public static function get_as_ul_tree( $arr, $root_name = '', $unserialized_string = FALSE ) {
 
 			global $wp_object;
 
