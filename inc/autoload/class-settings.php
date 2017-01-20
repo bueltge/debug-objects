@@ -331,7 +331,7 @@ class Debug_Objects_Settings extends Debug_Objects {
 					$allowed_tags
 				),
 				'Frontend'              => wp_kses(
-					__( 'Output in Footer of Frontend. <br>Alternatively use url param "<code>debug</code>" or set a cookie via url param "<code>debugcookie</code>" in days <br>Example: <code>example.com/?debugcookie=5</code>',
+					__( 'Output in Footer of Frontend. <br>Alternatively use url param <code>debug</code> or set a cookie via url param <code>debugcookie</code> in days <br>Example: <code>example.com/?debugcookie=5</code>',
 					    'debug_objects' ),
 					$allowed_tags
 				),
@@ -378,7 +378,7 @@ class Debug_Objects_Settings extends Debug_Objects {
 				),
 				// WP Queries
 				'Stack_Trace'           => wp_kses(
-					__( 'Stack Trace, all files and functions on each query. The Database-Query options is prerequisite.<br>A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.',
+					__( 'Stack Trace, all files and functions on each query. The Database-Query options is prerequisite. <br>A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.',
 					'debug_objects' ),
 					$allowed_tags
 				),
