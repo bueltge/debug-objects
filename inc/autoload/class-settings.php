@@ -395,10 +395,6 @@ class Debug_Objects_Settings extends Debug_Objects {
 					$allowed_tags
 				),
 				'Inspector'             => esc_attr__( 'Provide information about a given domain', 'debug_objects' ),
-				'Php_Error'             => esc_attr__(
-					'A alternative PHP Error reporting; works only with PHP 5.3. Set the url param <code>php_error</code> for all strict messages.',
-					'debug_objects'
-				),
 				'Default_Mode'          => wp_kses(
 					__( 'Add the url-param <code>default</code>, like <code>?debug&default</code>, for run WordPress in a safe mode. Plugins are not loaded and set the default theme as active theme, is it available.',
 					'debug_objects' ),
