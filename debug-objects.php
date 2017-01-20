@@ -474,7 +474,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 *
 		 * @return Boolean
 		 */
-		public function array_find( $needle, $haystack ) {
+		public static function array_find( $needle, $haystack ) {
 
 			foreach ( $haystack as $key => $value ) {
 
@@ -483,7 +483,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				}
 
 				if ( is_array( $value ) ) {
-					return $this->array_find( $needle, $value );
+					return self::array_find( $needle, $value );
 
 				} elseif ( FALSE !== stripos( $needle, $value ) ) {
 					return TRUE;

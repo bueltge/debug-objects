@@ -6,6 +6,7 @@
  * @subpackage  Current Hooks
  * @author      Frank Bültge
  * @since       2.0.0
+ * @version     2017-01-20
  */
 
 if ( ! function_exists( 'add_filter' ) ) {
@@ -14,7 +15,7 @@ if ( ! function_exists( 'add_filter' ) ) {
 }
 
 if ( class_exists( 'Debug_Objects_Page_Hooks' ) ) {
-	return NULL;
+	return;
 }
 
 class Debug_Objects_Page_Hooks {
@@ -63,8 +64,8 @@ class Debug_Objects_Page_Hooks {
 	 */
 	public function get_conditional_tab( $tabs ) {
 
-		$tabs[ ] = array(
-			'tab'      => __( 'Page Hooks' ),
+		$tabs[] = array(
+			'tab'      => esc_attr__( 'Page Hooks', 'debug_objects' ),
 			'function' => array( $this, 'get_hooks' )
 		);
 
@@ -97,11 +98,11 @@ class Debug_Objects_Page_Hooks {
 
 			//prevent buffer overflows of PHP_INT_MAX on array keys
 			//so reset the array keys
-			$hooked = array_values( $hooked );
-			array_push( $hooked, $function );
+			$hooked   = array_values( $hooked );
+			$hooked[] = $function;
 		}
 
-		$this->filters_storage[ ] = array(
+		$this->filters_storage[] = array(
 			'tag'    => $tag,
 			'hooked' => $wp_filter[ $tag ],
 			'fired'  => $fired
@@ -131,32 +132,40 @@ class Debug_Objects_Page_Hooks {
 			// Use this hook for remove Filter Hook, like custom filter hooks
 			$filter_hook = apply_filters( 'debug_objects_filter_tag', array() );
 			// Filter the Filter Hooks
-			if ( in_array( $the_[ 'tag' ], $filter_hook, true ) ) {
+			if ( in_array( $the_[ 'tag' ], $filter_hook, TRUE ) ) {
 				break;
 			}
 
-			if ( ! in_array( $the_[ 'tag' ], $hooks, true ) ) {
-				$hooks[ ] = $the_[ 'tag' ];
+			if ( ! in_array( $the_[ 'tag' ], $hooks, TRUE ) ) {
+				$hooks[] = $the_[ 'tag' ];
 				$filter_hooks .= "<tr><td><code>{$the_['tag']}</code></td></tr>";
 			}
 
 			foreach ( (array) $the_[ 'hooked' ] as $priority => $hooked ) {
 
-				foreach ( (array) $hooked as $id => $function ) {
-					if ( is_string( $function[ 'function' ] ) ) {
-						// as array
-						$hook_callbacks[ ] = array(
-							'name'     => $function[ 'function' ],
-							'args'     => $function[ 'accepted_args' ],
-							'priority' => $priority
-						);
-						// readable
-						$filter_callbacks = "{$the_['fired']}Function: {$function['function']}(), Arguments: {$function['accepted_args']}, Priority: {$priority}";
+				foreach ( (array) $hooked as $id => $functions ) {
+
+					if ( is_array( $functions ) ) {
+						foreach ( (array) $functions as $function ) {
+							//pre_print( $function );
+
+							if ( is_string( $function[ 'function' ] ) ) {
+								// as array
+								$hook_callbacks[] = array(
+									'name'     => $function[ 'function' ],
+									'args'     => $function[ 'accepted_args' ],
+									'priority' => $priority
+								);
+								// readable
+								$filter_callbacks = "{$the_['fired']}Function: {$function['function']}(), Arguments: {$function['accepted_args']}, Priority: {$priority}";
+							}
+						}
 					}
+
 				}
 
 			}
-			$callbacks[ $the_[ 'tag' ] ][ ] = $filter_callbacks;
+			$callbacks[ $the_[ 'tag' ] ][] = $filter_callbacks;
 		}
 
 		// Format important hooks, that you easier identifier this hooks
@@ -227,7 +236,7 @@ class Debug_Objects_Page_Hooks {
 
 				$output .= '<tr>';
 				$output .= "\t" . '<td>' . $order . '.</td><td>' . __( 'Hook:' )
-					. ' <code>' . $hook . '</code><br> ' . $escape . '</td>';
+				           . ' <code>' . $hook . '</code><br> ' . $escape . '</td>';
 				$output .= '</tr>';
 			}
 
