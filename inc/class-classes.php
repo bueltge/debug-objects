@@ -51,7 +51,7 @@ class Debug_Objects_Classes {
 
 		// Filter classes from this plugin
 		if ( 1 === (int) $options[ 'filter' ] ) {
-			add_filter( 'debug_objects_declared_classes', array( $this, 'remove_debug_objects_classes' ) );
+			add_filter( 'debug_objects_declared_classes', array( $this, 'filter_debug_objects_classes' ) );
 		}
 	}
 
@@ -79,7 +79,7 @@ class Debug_Objects_Classes {
 	 *
 	 * @return array
 	 */
-	public function remove_debug_objects_classes( array $classes ) {
+	public function filter_debug_objects_classes( array $classes ) {
 
 		foreach ( $classes as $count => $class ) {
 			if ( 0 === strpos( $class, 'Debug_Objects' ) ) {
