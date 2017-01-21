@@ -363,8 +363,6 @@ class Debug_Objects_Settings extends Debug_Objects {
 					'Get translation data: language, files, possible problems.', 'debug_objects' ),
 				'Enqueue_Stuff'         => esc_attr__( 'Introduced scripts and stylesheets', 'debug_objects' ),
 				// Scripts and styles
-				'Debug_Hooks'           => esc_attr__(
-					'List existing Hooks and assigned functions and count of accepted args', 'debug_objects' ),
 				// Hooks, faster @ToDo check it is usable, better?
 				//'Hooks'            => __( 'List existing Hooks and assigned functions' ), // Hooks
 				'All_Hooks'             => esc_attr__( 'List all hooks, very slow and use many RAM', 'debug_objects' ),
@@ -621,7 +619,7 @@ class Debug_Objects_Settings extends Debug_Objects {
 		register_setting(
 			self::$option_string . '_group', self::$option_string, array( $this, 'validate_settings' )
 		);
-		add_option( self::$option_string, array( 'php' => '1', 'debug_hooks' => '1', 'about' => '1' ) );
+		add_option( self::$option_string, array( 'php' => '1', 'about' => '1' ) );
 	}
 
 	/**
