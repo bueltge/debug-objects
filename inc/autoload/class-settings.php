@@ -410,6 +410,7 @@ class Debug_Objects_Settings extends Debug_Objects {
 			);
 
 			$classes          = (array) apply_filters( 'debug_objects_classes', $defaults );
+			ksort( $classes, SORT_STRING );
 			$disabled_options = (array) apply_filters( 'debug_objects_disabled_options', array() );
 
 			foreach ( $classes as $class => $hint ) {
