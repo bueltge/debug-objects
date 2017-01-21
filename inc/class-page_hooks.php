@@ -256,7 +256,7 @@ class Debug_Objects_Page_Hooks {
 	 *
 	 * @return array
 	 */
-	public function filter_debug_objects_hooks( array $data ) {
+	private function filter_debug_objects_hooks( array $data ) {
 
 		if ( ! isset( $this->options[ 'filter' ] ) ) {
 			return $data;
