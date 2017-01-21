@@ -11,9 +11,9 @@
  * @author      Frank Bültge <frank@bueltge.de>
  * @license     http://opensource.org/licenses/gpl-license.php GNU Public License
  * @since       2016-02-01
- * @version     2016-02-01
+ * @version     2017-01-21
  *
- * Php Version 5.3
+ * Php Version 5.6
  */
 
 /**
@@ -69,7 +69,7 @@ class Debug_Objects_Fields_API {
 	public function get_conditional_tab( $tabs ) {
 
 		$tabs[] = array(
-			'tab'      => __( 'Fields API' ),
+			'tab'      => esc_attr__( 'Fields API', 'debug_objects' ),
 			'function' => array( $this, 'print_stats' ),
 		);
 
@@ -92,15 +92,15 @@ class Debug_Objects_Fields_API {
 	 */
 	public function print_stats() {
 
-		$stats = $this->get_fields();
+		$stats = (array) $this->get_fields();
 		?>
 		<div class="wrap">
 			<h4>Fields API <code>global $wp_fields</code></h4>
 			<table class="tablesorter">
 				<thead>
 				<tr>
-					<th><?php _e( 'Field' ); ?></th>
-					<th><?php _e( 'Count' ); ?></th>
+					<th><?php esc_attr_e( 'Field', 'debug_objects' ); ?></th>
+					<th><?php esc_attr_e( 'Count', 'debug_objects' ); ?></th>
 				</tr>
 				</thead>
 				<tbody>
