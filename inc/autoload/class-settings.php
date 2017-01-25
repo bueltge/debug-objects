@@ -253,7 +253,7 @@ class Debug_Objects_Settings extends Debug_Objects {
 
 		?>
 		<div class="wrap">
-			<h2><?php echo esc_attr( parent::get_plugin_data( 'Name' ) ); ?><?php esc_attr_e( 'Settings' ); ?></h2>
+			<h2><?php echo esc_attr( parent::get_plugin_data( 'Name' ) ); ?> <?php esc_attr_e( 'Settings' ); ?></h2>
 
 			<div id="poststuff">
 				<div id="post-body" class="metabox-holder columns-2">
