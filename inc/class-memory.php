@@ -20,7 +20,7 @@ if ( class_exists( 'Debug_Objects_Memory' ) ) {
 
 class Debug_Objects_Memory {
 
-	public static $start_time;
+	private static $start_time;
 
 	protected static $classobj;
 
@@ -49,8 +49,8 @@ class Debug_Objects_Memory {
 
 	public function get_conditional_tab( $tabs ) {
 
-		$tabs[ ] = array(
-			'tab'      => __( 'Time, Mem & Files', 'debug_objects' ),
+		$tabs[] = array(
+			'tab'      => esc_attr__( 'Time, Mem & Files', 'debug_objects' ),
 			'function' => array( $this, 'get_output' )
 		);
 
@@ -59,18 +59,18 @@ class Debug_Objects_Memory {
 
 	public function get_output( $echo = TRUE ) {
 
-		$data  = array();
-		$data  = array_merge( $data, $this->get_speed_data() );
-		$data  = array_merge( $data, $this->get_memory_data() );
+		$data = array();
+		$data = array_merge( $data, $this->get_speed_data() );
+		$data = array_merge( $data, $this->get_memory_data() );
 
-		$output    = '<h4>' . __( 'Memory & Load Time' ) . ' </h4>';
+		$output    = '<h4>' . esc_attr__( 'Memory & Load Time' ) . ' </h4>';
 		$mem_speed = '';
 		foreach ( $data as $key => $item ) {
 			$mem_speed .= '<li>' . ucwords( str_replace( '_', ' ', $key ) ) . ': ' . $item . '</li>';
 		}
 		$output .= '<ul>' . $mem_speed . '</ul>';
 
-		$output .= '<h4>' . __( 'Included Files, without' ) . ' <code>wp-admin</code>, <code>wp-includes</code></h4>';
+		$output .= '<h4>' . esc_attr__( 'Included Files, without' ) . ' <code>wp-admin</code>, <code>wp-includes</code></h4>';
 		$file_data   = $this->get_file_data();
 		$file_totals = '';
 		foreach ( (array) $file_data[ 'file_totals' ] as $key => $value ) {
@@ -78,17 +78,17 @@ class Debug_Objects_Memory {
 		}
 		$output .= '<ul>' . $file_totals . '</ul>';
 
-		$output .= '<h4>' . __( 'Files' ) . ' </h4>';
+		$output .= '<h4>' . esc_attr__( 'Files' ) . ' </h4>';
 		$files = '';
 		foreach ( (array) $file_data[ 'files' ] as $key => $value ) {
 			$files .= '<tr><td>' . ucwords(
 					str_replace( '_', ' ', $key )
 				) . '</td><td>' . $value[ 'name' ] . '</td><td>(' . $value[ 'size' ] . ')</td></tr>';
 		}
-		$output .= '<table class="tablesorter"><thead><tr><th>' . __( 'No' ) . '</th><th>' . __(
-				'Path'
-			) . '</th><th>' . __( 'Size' ) . '</th></tr></thead>'
-			. $files . '</table>';
+		$output .= '<table class="tablesorter"><thead><tr><th>' . esc_attr__( 'No' )
+		           . '</th><th>' . esc_attr__( 'Path' ) . '</th><th>'
+		           . esc_attr__( 'Size' ) . '</th></tr></thead>'
+		           . $files . '</table>';
 
 		if ( $echo ) {
 			echo $output;
@@ -97,18 +97,18 @@ class Debug_Objects_Memory {
 		return $output;
 	}
 
-	public function get_speed_data() {
+	private function get_speed_data() {
 
 		$speed_totals                         = array();
 		$speed_totals[ 'load_time' ]          = $this->get_readable_time(
 			( $this->get_micro_time() - self::$start_time ) * 1000
 		);
-		$speed_totals[ 'max_execution_time' ] = ini_get( 'max_execution_time' );
+		$speed_totals[ 'max_execution_time' ] = ini_get( 'max_execution_time' ) . 's';
 
 		return $speed_totals;
 	}
 
-	public function get_micro_time() {
+	private function get_micro_time() {
 
 		$time = microtime();
 		$time = explode( ' ', $time );
@@ -116,7 +116,7 @@ class Debug_Objects_Memory {
 		return $time[ 1 ] + $time[ 0 ];
 	}
 
-	public function get_memory_data() {
+	private function get_memory_data() {
 
 		$memory_totals                   = array();
 		$memory_totals[ 'memory_used' ]  = $this->get_readable_file_size( memory_get_peak_usage() );
@@ -129,12 +129,12 @@ class Debug_Objects_Memory {
 	 * Return File Size
 	 * adapted from code at http://aidanlister.com/repos/v/function.size_readable.php
 	 *
-	 * @param      $size
+	 * @param             $size
 	 * @param null|string $retstring
 	 *
 	 * @return string
 	 */
-	public function get_readable_file_size( $size, $retstring = NULL ) {
+	private function get_readable_file_size( $size, $retstring = NULL ) {
 
 		$sizes = array( 'bytes', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB' );
 
@@ -161,7 +161,7 @@ class Debug_Objects_Memory {
 		return sprintf( $retstring, $size, $sizestring );
 	}
 
-	public function get_readable_time( $time ) {
+	private function get_readable_time( $time ) {
 
 		$ret       = $time;
 		$formatter = 0;
@@ -184,7 +184,7 @@ class Debug_Objects_Memory {
 	 *
 	 * @return array
 	 */
-	public function get_file_data() {
+	private function get_file_data() {
 
 		$files                  = get_included_files();
 		$files_without_admin    = array();
@@ -194,7 +194,7 @@ class Debug_Objects_Memory {
 		foreach ( $files as $file ) {
 
 			if ( ! strpos( $file, 'wp-admin' ) ) {
-				$files_without_admin[ ] = $file;
+				$files_without_admin[] = $file;
 			}
 			unset( $file );
 		}
@@ -204,7 +204,7 @@ class Debug_Objects_Memory {
 		foreach ( $files as $file ) {
 
 			if ( ! strpos( $file, 'wp-includes' ) ) {
-				$files_without_includes[ ] = $file;
+				$files_without_includes[] = $file;
 			}
 			unset( $file );
 		}
@@ -220,8 +220,8 @@ class Debug_Objects_Memory {
 		);
 
 		foreach ( $filtered_files as $key => $file ) {
-			$size         = filesize( $file );
-			$file_list[ ] = array(
+			$size        = filesize( $file );
+			$file_list[] = array(
 				'name' => $file,
 				'size' => $this->get_readable_file_size( $size )
 			);
