@@ -138,7 +138,7 @@ class Debug_Objects_Memory {
 
 		$sizes = array( 'bytes', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB' );
 
-		if ( NULL === $retstring ) {
+		if ( ! $retstring ) {
 			$retstring = '%01.2f%s';
 		}
 

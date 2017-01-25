@@ -137,7 +137,8 @@ div#debugobjects table th:nth-child( odd ) {
 	background: #ccc;
 }
 div#debugobjects .alternate, div#debugobjects .alt,
-div#debugobjects table tr:nth-child( odd ) {
+div#debugobjects table tr:nth-child( odd ),
+div#debugobjects ul li:nth-child( odd ){
 	background: #e6e6e6;
 }
 
