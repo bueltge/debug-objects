@@ -10,15 +10,12 @@
  * @subpackage  Permalink Performace
  * @author      Frank Bültge <frank@bueltge.de>
  * @since       2014-12-01
+ * @version     2017-01-25
  */
 
 if ( ! function_exists( 'add_filter' ) ) {
 	echo "Hi there! I'm just a part of plugin, not much I can do when called directly.";
 	exit;
-}
-
-if ( class_exists( 'Debug_Objects_Permalink_Performance' ) ) {
-	return NULL;
 }
 
 /**
@@ -32,7 +29,7 @@ class Debug_Objects_Permalink_Performance {
 	 * @since  09/24/2013
 	 * @var    String
 	 */
-	static protected $class_object = NULL;
+	protected static $class_object;
 
 	/**
 	 * Save time values.
@@ -49,7 +46,7 @@ class Debug_Objects_Permalink_Performance {
 	 */
 	public static function init() {
 
-		if ( NULL == self::$class_object ) {
+		if ( NULL === self::$class_object ) {
 			self::$class_object = new self;
 		}
 
@@ -60,12 +57,11 @@ class Debug_Objects_Permalink_Performance {
 	 * Init function to register all used hooks
 	 *
 	 * @since   2014-12-01
-	 * @return \Debug_Objects_Permalink_Performance
 	 */
 	public function __construct() {
 
 		if ( ! current_user_can( '_debug_objects' ) ) {
-			return NULL;
+			return;
 		}
 
 		$this->query_timer = 0;
@@ -81,14 +77,14 @@ class Debug_Objects_Permalink_Performance {
 	/**
 	 * Create tab for this data
 	 *
-	 * @param  Array $tabs
+	 * @param  array $tabs
 	 *
-	 * @return Array $tabs
+	 * @return array $tabs
 	 */
 	public function get_conditional_tab( $tabs ) {
 
-		$tabs[ ] = array(
-			'tab'      => __( 'Permalink Performance' ),
+		$tabs[] = array(
+			'tab'      => esc_attr__( 'Permalink Performance', 'debug_objects' ),
 			'function' => array( $this, 'get_formated_result' )
 		);
 
@@ -116,9 +112,7 @@ class Debug_Objects_Permalink_Performance {
 	 */
 	public function get_timer() {
 
-		$time = microtime( TRUE ) - $this->query_timer;
-
-		return $time;
+		return microtime( TRUE ) - $this->query_timer;
 	}
 
 	/**
@@ -128,29 +122,33 @@ class Debug_Objects_Permalink_Performance {
 	 *
 	 * @return integer $time
 	 */
-	public function get_formated_result( $echo = FALSE ) {
+	public function get_formated_result( $echo = TRUE ) {
 
 		$time = $this->get_timer();
 
-		if ( is_admin() )
+		if ( is_admin() ) {
 			$time = 'Not usable in Admin area.';
-
-		if ( $echo ) {
-			return $time;
 		}
 
-		$view = '';
-		$view .= '<p>WordPress does all of the conversion from URLs to parameters for WP_Query in the <code>parse_request()</code> method of the global <code>wp</code> object. This is a simple timer at the beginning of the function’s execution and check the value of that timer against the current system time when the function is complete and get it on the next line.</p>';
+		$allowed_tags = array(
+			'code' => array(),
+		);
+		$view = '<h4>' . esc_attr__( 'Permalink Performance' ) . '</h4>';
+		$view .= '<p>' . wp_kses( 'WordPress does all of the conversion from URLs to parameters for WP_Query in the <code>parse_request()</code> method of the global <code>wp</code> object. This is a simple timer at the beginning of the function’s execution and check the value of that timer against the current system time when the function is complete and get it on the next line.', $allowed_tags ) . '</p>';
 		if ( is_float( $time ) ) {
-			$view .= '<p><strong>' . 'Time line (extracted): ' . substr( $time, 0, 5 ) . 's</strong> / ' . substr(
+			$view .= '<p><strong>' . 'Time line (extracted): ' . number_format( $time, 2 ) . 's</strong> / ' . substr(
 					$time * 1000, 0, 5
-				) . 'ms' . '</p>';;
-			$view .= '<p><strong>' . 'Time line: ' . $time . 's</strong> / ' . $time * 1000 . 'ms' . '</p>';
+				) . 'ms' . '</p>';
+			$view .= '<p><strong>' . 'Time line: ' . number_format( $time, 2 ) . 's</strong> / ' . $time * 1000 . 'ms' . '</p>';
 		} else {
 			$view .= '<p><strong>' . $time . '</p>';
 		}
 
-		echo $view;
+		if ( $echo ) {
+			echo $view;
+		}
+
+		return $time;
 	}
 
 } // end class
