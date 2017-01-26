@@ -45,8 +45,7 @@ Values and content get displayed at the frontend and backend of the blog, to ana
 * Post Meta data
 * See data from `$_POST`; `$_GET` and debug backtrace before rewrite; usefull for forms in backend
 * Run WordPress in default mode via url-param
-* Add alternative PHP Error reporting: [PHP Error](http://phperror.net/)
-* Support (WP Fields API)[https://github.com/sc0ttkclark/wordpress-fields-api]
+* Support [WP Fields API](https://github.com/sc0ttkclark/wordpress-fields-api)
 * WooCommerce, list current hooks and template arguments.
 * and many more ...
 
@@ -81,13 +80,12 @@ There are no data in the database and there are no settings. Therefore, the inst
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a [small donation](http://bueltge.de/wunschliste/ "Wishliste and Donate") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 #### Contact & Feedback
-The plugin is designed and developed by me [Frank Bültge](http://bueltge.de), [G+ Page](https://plus.google.com/111291152590065605567/about?rel=author)
+The plugin is designed and developed by me [Frank Bültge](http://bueltge.de)
 
 Please let me know if you like the plugin or you hate it or whatever ... Please fork it, add an issue for ideas and bugs.
 
 #### Use & Thanks
  * [SqlFormatter](https://github.com/jdorn/sql-formatter) is a lightweight php class for formatting sql statements.
- * [PHP Error](http://phperror.net/) Improve Error Reporting for PHP.
  
 #### Disclaimer
 I'm German and my English might be gruesome here and there. So please be patient with me and let me know of typos or grammatical farts. Thanks

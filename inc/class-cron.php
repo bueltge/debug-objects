@@ -90,16 +90,16 @@ class Debug_Objects_Cron {
 			return;
 		}
 
-		add_action( 'http_api_debug', array( $this, 'log_cron_http_api_debug' ), 10, 3 );
+		add_action( 'http_api_debug',     array( $this, 'log_cron_http_api_debug' ), 10, 3 );
 		add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 	}
 
 	/**
-	 * Add this content and render tab
+	 * Add this content and render tab.
 	 *
-	 * @param  array $tabs Array.
+	 * @param  array $tabs
 	 *
-	 * @return array $tabs Array.
+	 * @return array $tabs
 	 */
 	public function get_conditional_tab( $tabs ) {
 
@@ -116,7 +116,7 @@ class Debug_Objects_Cron {
 	 *
 	 * @param   bool $echo boolean for display or return data.
 	 *
-	 * @return  void|string
+	 * @return  string
 	 */
 	public function render_data( $echo = TRUE ) {
 
@@ -176,9 +176,9 @@ class Debug_Objects_Cron {
 
 		if ( $echo ) {
 			echo $output;
-		} else {
-			return $output;
 		}
+
+		return $output;
 	}
 
 	/**
@@ -186,8 +186,8 @@ class Debug_Objects_Cron {
 	 *
 	 * @since  1.0.0  10/04/2012
 	 *
-	 * @param array        $events Array.
-	 * @param bool | array $thead
+	 * @param array      $events
+	 * @param bool|array $thead
 	 *
 	 * @return string
 	 */

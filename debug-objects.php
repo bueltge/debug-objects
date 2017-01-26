@@ -8,12 +8,12 @@
  * and memory information and return of conditional tags only for admins; for debug, information or learning purposes.
  * Setting output in the settings of the plugin and use output via link in Admin Bar, via setting, via url-param
  * '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days.
- * Version:     2.4.0
+ * Version:     2.5.0-dev
  * License:     GPL-3+
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de/
  *
- * @version 2017-01-17
+ * @version 2017-01-22
  * @package Debug_Objects
  */
 
@@ -188,7 +188,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				$view = TRUE;
 			}
 
-			if ( 1 === (int) $options[ 'stack_trace' ] ) {
+			if ( 1 === (int) $options[ 'stack_trace' ] && ! defined( 'STACKTRACE' ) ) {
 				define( 'STACKTRACE', TRUE );
 			}
 
@@ -474,7 +474,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 *
 		 * @return Boolean
 		 */
-		public function array_find( $needle, $haystack ) {
+		public static function array_find( $needle, $haystack ) {
 
 			foreach ( $haystack as $key => $value ) {
 
@@ -483,7 +483,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				}
 
 				if ( is_array( $value ) ) {
-					return $this->array_find( $needle, $value );
+					return self::array_find( $needle, $value );
 
 				} elseif ( FALSE !== stripos( $needle, $value ) ) {
 					return TRUE;
@@ -503,7 +503,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_as_ul_tree( $arr, $root_name = '', $unserialized_string = FALSE ) {
+		public static function get_as_ul_tree( $arr, $root_name = '', $unserialized_string = FALSE ) {
 
 			global $wp_object;
 

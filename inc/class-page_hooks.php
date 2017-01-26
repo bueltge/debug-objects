@@ -6,6 +6,7 @@
  * @subpackage  Current Hooks
  * @author      Frank Bültge
  * @since       2.0.0
+ * @version     2017-01-20
  */
 
 if ( ! function_exists( 'add_filter' ) ) {
@@ -14,17 +15,23 @@ if ( ! function_exists( 'add_filter' ) ) {
 }
 
 if ( class_exists( 'Debug_Objects_Page_Hooks' ) ) {
-	return NULL;
+	return;
 }
 
 class Debug_Objects_Page_Hooks {
 
 	protected static $classobj;
 
-	public $filters_storage = array();
+	public $filter_storage = array();
 
 	// define strings for important hooks to easier identify
 	public $my_important_hooks = array();
+	/**
+	 * Store options.
+	 *
+	 * @var array
+	 */
+	private $options;
 
 	/**
 	 * Handler for the action 'init'. Instantiates this class.
@@ -63,45 +70,47 @@ class Debug_Objects_Page_Hooks {
 	 */
 	public function get_conditional_tab( $tabs ) {
 
-		$tabs[ ] = array(
-			'tab'      => __( 'Page Hooks' ),
+		$this->get_options();
+
+		$tabs[] = array(
+			'tab'      => esc_attr__( 'Page Hooks', 'debug_objects' ),
 			'function' => array( $this, 'get_hooks' )
 		);
 
 		return $tabs;
 	}
 
+	/**
+	 * Store tag of filter hooks in var.
+	 *
+	 * @param  string $tag
+	 */
 	public function store_fired_filters( $tag ) {
 
 		global $wp_filter;
 
 		if ( ! isset( $wp_filter[ $tag ] ) ) {
-			return NULL;
+			return;
 		}
 
 		$hooked = (array) $wp_filter[ $tag ];
 
-		// Usable since WP 3.9
-		$fired = '';
-		if ( function_exists( 'doing_filter' ) ) {
-			$fired = 'Fired: FALSE, ';
-			if ( doing_filter( $tag ) ) {
-				$fired = 'Fired: TRUE, ';
-			}
-
+		// Don't translatable the string, to heavy for the hook 'all'.
+		$fired = 'FALSE';
+		if ( doing_filter( $tag ) ) {
+			$fired = 'TRUE';
 		}
 
 		ksort( $hooked );
-
 		foreach ( $hooked as $priority => $function ) {
 
-			//prevent buffer overflows of PHP_INT_MAX on array keys
-			//so reset the array keys
-			$hooked = array_values( $hooked );
-			array_push( $hooked, $function );
+			// Prevent buffer overflows of PHP_INT_MAX on array keys.
+			// So reset the array keys.
+			$hooked   = array_values( $hooked );
+			$hooked[] = $function;
 		}
 
-		$this->filters_storage[ ] = array(
+		$this->filter_storage[] = array(
 			'tag'    => $tag,
 			'hooked' => $wp_filter[ $tag ],
 			'fired'  => $fired
@@ -116,61 +125,61 @@ class Debug_Objects_Page_Hooks {
 		global $wp_actions;
 
 		// Use this hook for remove Action Hook, like custom action hooks
-		$wp_actions = apply_filters( 'debug_objects_wp_actions', $wp_actions );
+		$wp_actions = (array) apply_filters( 'debug_objects_wp_actions', $wp_actions );
 
 		$callbacks        = array();
 		$hooks            = array();
 		$filter_hooks     = '';
 		$filter_callbacks = '';
 
-		// Use this hook for remove Filter Hook from the completely array, like custom filter hooks
-		$filters_storage = apply_filters( 'debug_objects_wp_filters', $this->filters_storage );
+		// Use this hook for remove Filter Hook from the completely array, like custom filter hooks.
+		$filters_storage = (array) apply_filters( 'debug_objects_wp_filters', $this->filter_storage );
 
-		foreach ( (array) $filters_storage as $index => $the_ ) {
+		foreach ( $filters_storage as $index => $the_ ) {
 
-			// Use this hook for remove Filter Hook, like custom filter hooks
+			// Use this hook for remove Filter Hook, like custom filter hooks.
 			$filter_hook = apply_filters( 'debug_objects_filter_tag', array() );
-			// Filter the Filter Hooks
-			if ( in_array( $the_[ 'tag' ], $filter_hook, true ) ) {
+			// Filter the Filter Hooks.
+			if ( in_array( $the_[ 'tag' ], $filter_hook, TRUE ) ) {
 				break;
 			}
 
-			if ( ! in_array( $the_[ 'tag' ], $hooks, true ) ) {
-				$hooks[ ] = $the_[ 'tag' ];
+			if ( ! in_array( $the_[ 'tag' ], $hooks, TRUE ) ) {
+				$hooks[] = $the_[ 'tag' ];
 				$filter_hooks .= "<tr><td><code>{$the_['tag']}</code></td></tr>";
 			}
 
 			foreach ( (array) $the_[ 'hooked' ] as $priority => $hooked ) {
 
-				foreach ( (array) $hooked as $id => $function ) {
-					if ( is_string( $function[ 'function' ] ) ) {
-						// as array
-						$hook_callbacks[ ] = array(
-							'name'     => $function[ 'function' ],
-							'args'     => $function[ 'accepted_args' ],
-							'priority' => $priority
-						);
-						// readable
-						$filter_callbacks = "{$the_['fired']}Function: {$function['function']}(), Arguments: {$function['accepted_args']}, Priority: {$priority}";
+				foreach ( (array) $hooked as $id => $functions ) {
+
+					if ( is_array( $functions ) ) {
+						foreach ( (array) $functions as $function ) {
+
+							if ( is_string( $function[ 'function' ] ) ) {
+								// as array
+								$hook_callbacks[] = array(
+									'name'     => $function[ 'function' ],
+									'args'     => $function[ 'accepted_args' ],
+									'priority' => $id
+								);
+								// readable
+								$filter_callbacks = "Fired: <code>{$the_['fired']}</code>, Function: <code>{$function['function']}()</code>, Arguments: <code>{$function['accepted_args']}</code>, Priority: <code>{$id}</code>";
+							}
+						}
 					}
+
 				}
 
 			}
-			$callbacks[ $the_[ 'tag' ] ][ ] = $filter_callbacks;
+			$callbacks[ $the_[ 'tag' ] ][] = $filter_callbacks;
 		}
-
-		// Format important hooks, that you easier identifier this hooks
-		$this->my_important_hooks = apply_filters(
-			'debug_objects_important_hooks',
-			array( 'admin_print_', 'admin_head-', 'admin_footer-', 'add_meta_boxes' )
-		);
 
 		$output = '';
 		$output .= '<table>';
 
 		$output .= '<tr class="nohover">';
 		$output .= "\t" . '<th>Total Action Hooks: ' . count( $wp_actions ) . '</th>';
-		//$output .= '<th>Total Filter Hooks: ' . count( $hooks ) . '</th>';
 		$output .= "\t" . '<th>Total Filter Hooks & Callback: ' . count( $callbacks ) . '</th>';
 		$output .= '</tr>';
 
@@ -178,32 +187,20 @@ class Debug_Objects_Page_Hooks {
 
 		$output .= "\t" . '<td><table class="tablesorter">';
 
-		$count_fired = '';
-		// Usable since WP 3.9
-		if ( function_exists( 'did_action' ) ) {
-			$count_fired = '<th>Count Fired</th>';
-		}
-		$output .= "\t" . '<thead><tr><th>Fired in order</th><th>Action Hook</th>' . $count_fired . '</tr></thead>';
+		$count_fired = '<th>' . esc_attr__( 'Count Fired', 'debug_objects' ) . '</th>';
+		$output .= "\t" . '<thead><tr><th>' . esc_attr__( 'Fired in order', 'debug_objects' )
+		           . '</th><th>' . esc_attr__( 'Action Hook', 'debug_objects' ) . '</th>'
+		           . $count_fired . '</tr></thead>';
+
+		// Filter hooks from this plugin.
+		$wp_actions = $this->filter_debug_objects_hooks( $wp_actions );
 
 		$order = 1;
+		foreach ( $wp_actions as $key => $val ) {
 
-		foreach ( (array) $wp_actions as $key => $val ) {
-			// Format, if the key is inside the important list of hooks
-			foreach ( (array) $this->my_important_hooks as $hook ) {
-
-				if ( FALSE !== strpos( $key, $hook ) ) {
-					$key = '<span>' . $key . ' </span>';
-				}
-			}
-
-			// Usable since WP 3.9
-			if ( function_exists( 'did_action' ) ) {
-				$count_fired = (int) did_action( $key );
-			} else {
-				$count_fired = (int) $val;
-			}
-
-			$output .= '<tr><td>' . $order . '.</td><td><code>' . $key . '</code></td><td>' . $count_fired . '</td></tr>';
+			$count_fired = (int) did_action( $key );
+			$output .= '<tr><td>' . $order . '.</td><td><code>'
+			           . $key . '</code></td><td>' . $count_fired . '</td></tr>';
 			$order ++;
 		}
 		$output .= '</table>';
@@ -211,7 +208,11 @@ class Debug_Objects_Page_Hooks {
 
 		$output .= "\t" . '<td>';
 		$output .= "\t\t" . '<table class="tablesorter">';
-		$output .= "\t" . '<thead><tr><th>Fired in order</th><th>Filter Hook & Callback</th></tr></thead>';
+		$output .= "\t" . '<thead><tr><th>' . esc_attr__( 'Fired in order', 'debug_objects' ) . '</th><th>'
+		           . esc_attr__( 'Filter Hook & Callback', 'debug_objects' ) . '</th></tr></thead>';
+
+		// Filter hooks from this plugin.
+		$callbacks = $this->filter_debug_objects_hooks( $callbacks );
 
 		$order = 1;
 		foreach ( $callbacks as $hook => $values ) {
@@ -219,15 +220,14 @@ class Debug_Objects_Page_Hooks {
 			// remove duplicate items
 			$values = array_unique( $values );
 			foreach ( $values as $key => $value ) {
-				$escape = htmlspecialchars( $value, ENT_QUOTES, 'utf-8', FALSE );
 
-				if ( empty( $escape ) ) {
-					$escape = __( 'Empty' );
+				if ( empty( $value ) ) {
+					$value = esc_attr__( 'Empty', 'debug_objects' );
 				}
 
 				$output .= '<tr>';
-				$output .= "\t" . '<td>' . $order . '.</td><td>' . __( 'Hook:' )
-					. ' <code>' . $hook . '</code><br> ' . $escape . '</td>';
+				$output .= "\t" . '<td>' . $order . '.</td><td>' . esc_attr__( 'Hook:', 'debug_objects' )
+				           . ' <code>' . $hook . '</code><br> ' . $value . '</td>';
 				$output .= '</tr>';
 			}
 
@@ -240,5 +240,38 @@ class Debug_Objects_Page_Hooks {
 		$output .= '</table>';
 
 		echo $output;
+	}
+
+	/**
+	 * Store options of the plugin.
+	 */
+	private function get_options() {
+
+		$this->options = Debug_Objects_Settings::return_options();
+	}
+	/**
+	 * Filter hooks to remove the hooks from this plugin.
+	 *
+	 * @param  array
+	 *
+	 * @return array
+	 */
+	private function filter_debug_objects_hooks( array $data ) {
+
+		if ( ! isset( $this->options[ 'filter' ] ) ) {
+			return $data;
+		}
+
+		if ( 1 !== (int) $this->options[ 'filter' ] ) {
+			return $data;
+		}
+
+		foreach ( $data as $hook => $class ) {
+			if ( 0 === strpos( strtolower( $hook ), 'debug_objects' ) ) {
+				unset( $data[ $hook ] );
+			}
+		}
+
+		return $data;
 	}
 } // end class

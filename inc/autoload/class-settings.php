@@ -253,7 +253,7 @@ class Debug_Objects_Settings extends Debug_Objects {
 
 		?>
 		<div class="wrap">
-			<h2><?php echo esc_attr( parent::get_plugin_data( 'Name' ) ); ?><?php esc_attr_e( 'Settings' ); ?></h2>
+			<h2><?php echo esc_attr( parent::get_plugin_data( 'Name' ) ); ?> <?php esc_attr_e( 'Settings' ); ?></h2>
 
 			<div id="poststuff">
 				<div id="post-body" class="metabox-holder columns-2">
@@ -331,7 +331,7 @@ class Debug_Objects_Settings extends Debug_Objects {
 					$allowed_tags
 				),
 				'Frontend'              => wp_kses(
-					__( 'Output in Footer of Frontend. <br>Alternatively use url param "<code>debug</code>" or set a cookie via url param "<code>debugcookie</code>" in days <br>Example: <code>example.com/?debugcookie=5</code>',
+					__( 'Output in Footer of Frontend. <br>Alternatively use url param <code>debug</code> or set a cookie via url param <code>debugcookie</code> in days <br>Example: <code>example.com/?debugcookie=5</code>',
 					    'debug_objects' ),
 					$allowed_tags
 				),
@@ -363,8 +363,6 @@ class Debug_Objects_Settings extends Debug_Objects {
 					'Get translation data: language, files, possible problems.', 'debug_objects' ),
 				'Enqueue_Stuff'         => esc_attr__( 'Introduced scripts and stylesheets', 'debug_objects' ),
 				// Scripts and styles
-				'Debug_Hooks'           => esc_attr__(
-					'List existing Hooks and assigned functions and count of accepted args', 'debug_objects' ),
 				// Hooks, faster @ToDo check it is usable, better?
 				//'Hooks'            => __( 'List existing Hooks and assigned functions' ), // Hooks
 				'All_Hooks'             => esc_attr__( 'List all hooks, very slow and use many RAM', 'debug_objects' ),
@@ -378,7 +376,7 @@ class Debug_Objects_Settings extends Debug_Objects {
 				),
 				// WP Queries
 				'Stack_Trace'           => wp_kses(
-					__( 'Stack Trace, all files and functions on each query. The Database-Query options is prerequisite.<br>A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.',
+					__( 'Stack Trace, all files and functions on each query. The Database-Query options is prerequisite. <br>A stack trace is a report of the active stack frames at a certain point in time during the execution of a program.',
 					'debug_objects' ),
 					$allowed_tags
 				),
@@ -395,10 +393,6 @@ class Debug_Objects_Settings extends Debug_Objects {
 					$allowed_tags
 				),
 				'Inspector'             => esc_attr__( 'Provide information about a given domain', 'debug_objects' ),
-				'Php_Error'             => esc_attr__(
-					'A alternative PHP Error reporting; works only with PHP 5.3. Set the url param <code>php_error</code> for all strict messages.',
-					'debug_objects'
-				),
 				'Default_Mode'          => wp_kses(
 					__( 'Add the url-param <code>default</code>, like <code>?debug&default</code>, for run WordPress in a safe mode. Plugins are not loaded and set the default theme as active theme, is it available.',
 					'debug_objects' ),
@@ -416,6 +410,7 @@ class Debug_Objects_Settings extends Debug_Objects {
 			);
 
 			$classes          = (array) apply_filters( 'debug_objects_classes', $defaults );
+			ksort( $classes, SORT_STRING );
 			$disabled_options = (array) apply_filters( 'debug_objects_disabled_options', array() );
 
 			foreach ( $classes as $class => $hint ) {
@@ -625,7 +620,7 @@ class Debug_Objects_Settings extends Debug_Objects {
 		register_setting(
 			self::$option_string . '_group', self::$option_string, array( $this, 'validate_settings' )
 		);
-		add_option( self::$option_string, array( 'php' => '1', 'debug_hooks' => '1', 'about' => '1' ) );
+		add_option( self::$option_string, array( 'php' => '1', 'about' => '1' ) );
 	}
 
 	/**
