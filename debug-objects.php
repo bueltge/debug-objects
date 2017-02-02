@@ -188,7 +188,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				$view = TRUE;
 			}
 
-			if ( 1 === (int) $options[ 'stack_trace' ] && ! defined( 'STACKTRACE' ) ) {
+			if ( ! defined( 'STACKTRACE' ) && 1 === (int) $options[ 'stack_trace' ] ) {
 				define( 'STACKTRACE', TRUE );
 			}
 
@@ -260,10 +260,10 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 */
 		public function debug_control() {
 
-			$debug = TRUE;
+			$debug = FALSE;
 			// Debug via _GET Param on URL
-			if ( ! isset( $_GET[ 'debug' ] ) ) {
-				$debug = FALSE;
+			if ( isset( $_GET[ 'debug' ] ) ) { // Input var okay.
+				$debug = TRUE;
 			}
 
 			if ( ! $debug ) {
@@ -285,8 +285,8 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 */
 		public function get_cookie_control( $debug = FALSE ) {
 
-			if ( isset( $_COOKIE[ self::get_plugin_data() . '_cookie' ] ) &&
-			     'Debug_Objects_True' === $_COOKIE[ self::get_plugin_data() . '_cookie' ] ) {
+			if ( isset( $_COOKIE[ self::get_plugin_data() . '_cookie' ] )
+			     && 'Debug_Objects_True' === $_COOKIE[ self::get_plugin_data() . '_cookie' ] ) { // Input var okay.
 				$debug = TRUE;
 			}
 
@@ -302,13 +302,13 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 */
 		public function set_cookie_control() {
 
-			if ( ! isset( $_GET[ 'debugcookie' ] ) ) {
+			if ( ! isset( $_GET[ 'debugcookie' ] ) ) { // Input var okay.
 				return;
 			}
 
-			if ( $_GET[ 'debugcookie' ] ) {
+			if ( absint( $_GET[ 'debugcookie' ] ) ) { // Input var okay.
 				$cookie_live = new DateTime( 'now' );
-				$user_value = (int) $_GET[ 'debugcookie' ];
+				$user_value = (int) $_GET[ 'debugcookie' ]; // Input var okay.
 				$cookie_live->add( new DateInterval( 'P' . $user_value . 'D' ) );
 				setcookie(
 					static::get_plugin_data() . '_cookie',
@@ -317,7 +317,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				);
 			}
 
-			if ( 0 === (int) $_GET[ 'debugcookie' ] ) {
+			if ( 0 === (int) $_GET[ 'debugcookie' ] ) { // Input var okay.
 				setcookie(
 					static::get_plugin_data() . '_cookie',
 					'',
