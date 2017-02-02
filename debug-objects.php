@@ -234,7 +234,9 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 						}
 
 						$class = 'Debug_Objects_' . $require;
-						new $class;
+						if ( class_exists( $class ) ) {
+							new $class;
+						}
 					}
 				}
 			}
