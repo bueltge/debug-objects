@@ -517,7 +517,17 @@ class Debug_Objects_Settings extends Debug_Objects {
 
 				<p>
 					<strong><?php esc_attr_e( 'Description:' ); ?></strong>
-					<?php echo esc_attr( parent::get_plugin_data( 'Description' ) ); ?>
+					<?php
+					$allowed_tags = array(
+						'a' => array(
+							'href' => array(),
+							'title' => array(),
+						),
+					);
+					echo wp_kses(
+						parent::get_plugin_data( 'Description' ),
+						$allowed_tags
+					); ?>
 				</p>
 
 				<p>
