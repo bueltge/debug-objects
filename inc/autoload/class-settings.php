@@ -142,12 +142,7 @@ class Debug_Objects_Settings extends Debug_Objects {
 	 */
 	public function add_wp_admin_bar_item( $wp_admin_bar ) {
 
-		if ( ! is_super_admin() || ! is_admin_bar_showing() ) {
-			return;
-		}
-
-		// Multisite install, but active only in side of Network
-		if ( is_multisite() && ! is_plugin_active_for_network( parent::$plugin ) ) {
+		if ( ! is_admin_bar_showing() ) {
 			return;
 		}
 
