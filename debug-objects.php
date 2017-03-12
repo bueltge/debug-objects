@@ -124,7 +124,8 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			// add custom capability
 			add_action( 'admin_init', array( $this, 'add_capabilities' ) );
 
-			$this->init_classes();
+			add_action( 'init', array( $this, 'init_classes' ) );
+			//$this->init_classes();
 		}
 
 		/**

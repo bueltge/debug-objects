@@ -14,6 +14,9 @@ if ( ! function_exists( 'add_filter' ) ) {
 	exit;
 }
 
+/**
+ * Class Debug_Objects_Settings
+ */
 class Debug_Objects_Settings extends Debug_Objects {
 
 	/**
