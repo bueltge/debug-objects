@@ -4,7 +4,7 @@ Donate link: http://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, cron, cache, woocommerce, role, capability
 Requires at least: 3.3
 Tested up to: 4.7.1
-Stable tag: 2.4.0
+Stable tag: 2.4.1
 
 The Plugin Debug Objects provides a large number of information: query, cache, cron, constants, hooks, functions and many more.
 
@@ -67,7 +67,7 @@ Please give us feedback, contribute and file technical bugs on [GitHub Repo](htt
 == Installation ==
 = Requirements =
 * WordPress (also Multisite) version 3.3 and later (tested at 4.7)
-* PHP 5.2.4, Tested with PHP 7
+* PHP 5.2.4, Tested with PHP 7.1
 
 = Installation =
 1. Unpack the download-package
@@ -91,6 +91,10 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 
 
 == Changelog ==
+= 2.4.1 (2017-03-16) =
+* Remove alternative [PHP Error](http://phperror.net/)
+* Fixed error to set options.
+
 = 2.4.0 (2017-01-17) =
 * Remove ChromePHP and SuperVarDump Library; simple custom function is helpful enough.
 * Changes for Codex rules.

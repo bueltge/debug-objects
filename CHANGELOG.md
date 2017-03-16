@@ -1,8 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
-* Remove alternative [PHP Error](http://phperror.net/) 
+## 2.4.1 (2017-03-16)
+* Remove alternative [PHP Error](http://phperror.net/)
+* Fixed error to set options.
 
 ## 2.4.0 (2017-01-17)
 * Remove ChromePHP and SuperVarDump Library; simple custom function is helpful enough.
