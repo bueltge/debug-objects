@@ -313,7 +313,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 					$dateintval = new \DateInterval( 'P' . $user_value . 'D' );
 					$cookie_live->add( $dateintval );
 				} catch ( \Exception $e ) {
-					$msg = esc_html( $e->getMessage();
+					$msg = esc_html( $e->getMessage() );
 					die( 'Not possible to set cookie date interval.' . $msg );
 				}
 
