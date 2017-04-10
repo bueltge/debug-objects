@@ -312,13 +312,6 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			}
 
 			try {
-
-				/*
-				$cookie_live = new DateTime( 'now' );
-				$user_value = (int) $_GET[ 'debugcookie' ]; // Input var okay.
-				$cookie_live->add( new DateInterval( 'P' . $user_value . 'D' ) );
-				*/
-
 				$dateintval = new \DateInterval( 'P' . $user_value . 'D' );
 				if ( 0 !== $dateintval->format( 'd' ) ) {
 					$cookie_live = new \DateTime( 'now' );
