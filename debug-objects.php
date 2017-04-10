@@ -4,10 +4,7 @@
  * Plugin URI:  http://bueltge.de/debug-objects-wordpress-plugin/966/
  * Text Domain: debug_objects
  * Domain Path: /languages
- * Description: List filter and action-hooks, cache data, defined constants, queries, included scripts and styles, php
- * and memory information and return of conditional tags only for admins; for debug, information or learning purposes.
- * Setting output in the settings of the plugin and use output via link in Admin Bar, via setting, via url-param
- * '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days.
+ * Description: List filter and action-hooks, cache data, defined constants, queries, included scripts and styles, php and memory information and return of conditional tags only for admins; for debug, information or learning purposes. Setting output in the settings of the plugin and use output via link in Admin Bar, via setting, via url-param '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days.
  * Version:     2.4.2-dev
  * License:     GPL-3+
  * Author:      Frank Bültge
@@ -298,6 +295,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 *
 		 * @access  public
 		 * @since   2.0.1
+		 * @version 2017-04-10
 		 * @return  bool
 		 */
 		public function set_cookie_control() {
@@ -309,20 +307,35 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				[ 'default' => 0, 'min_range' => 0 ]
 			);
 
-			if ( 0 !== $user_value ) { // Input var not okay.
+			if ( NULL === $user_value ) { // No date value, return.
 				return FALSE;
 			}
 
 			try {
+
+				/*
+				$cookie_live = new DateTime( 'now' );
+				$user_value = (int) $_GET[ 'debugcookie' ]; // Input var okay.
+				$cookie_live->add( new DateInterval( 'P' . $user_value . 'D' ) );
+				*/
+
 				$dateintval = new \DateInterval( 'P' . $user_value . 'D' );
-				if ( 0 !== $dateintval->format( 's' ) ) {
+				if ( 0 !== $dateintval->format( 'd' ) ) {
 					$cookie_live = new \DateTime( 'now' );
 					$cookie_live->add( $dateintval );
+					$cookie_live = $cookie_live->getTimestamp();
+					// COOKIE_DOMAIN ist not always set, especially in WP Multisites.
+					$cookie_domain = COOKIE_DOMAIN;
+					if ( FALSE === $cookie_domain ) {
+						$cookie_domain = get_admin_url();
+					}
 
 					setcookie(
 						static::get_plugin_data() . '_cookie',
 						'Debug_Objects_True',
-						$cookie_live, COOKIEPATH, COOKIE_DOMAIN
+						$cookie_live,
+						COOKIEPATH,
+						$cookie_domain
 					);
 
 					return TRUE;
