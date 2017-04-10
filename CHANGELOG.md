@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.4.2 (ToDo)
+* Fixed error on save options without a selected option.
+
 ## 2.4.1 (2017-03-16)
 * Remove alternative [PHP Error](http://phperror.net/)
 * Fixed error to set options.
