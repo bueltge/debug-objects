@@ -298,7 +298,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 *
 		 * @access  public
 		 * @since   2.0.1
-		 * @return  bool|null
+		 * @return  bool
 		 */
 		public function set_cookie_control() {
 
@@ -310,7 +310,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			);
 
 			if ( 0 === $user_value ) { // Input var okay.
-				return;
+				return FALSE;
 			}
 
 			try {
