@@ -309,11 +309,14 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			if ( absint( $_GET[ 'debugcookie' ] ) ) { // Input var okay.
 				$cookie_live = new DateTime( 'now' );
 				$user_value = (int) $_GET[ 'debugcookie' ]; // Input var okay.
-				$timestamp = new \DateInterval( 'P' . $user_value . 'D' );
-				if ( 0 === $timestamp->format('s' ) ) {
-					throw new \LogicException( 'Wrong interval' );
+				try {
+					$dateintval = new \DateInterval( 'P' . $user_value . 'D' );
+					$cookie_live->add( $dateintval );
+				} catch ( \Exception $e ) {
+					$msg = esc_html( $e->getMessage();
+					die( 'Not possible to set cookie date interval.' . $msg );
 				}
-				$cookie_live->add( $timestamp );
+
 				setcookie(
 					static::get_plugin_data() . '_cookie',
 					'Debug_Objects_True',
