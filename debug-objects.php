@@ -8,12 +8,12 @@
  * and memory information and return of conditional tags only for admins; for debug, information or learning purposes.
  * Setting output in the settings of the plugin and use output via link in Admin Bar, via setting, via url-param
  * '<code>debug</code>' or set a cookie via url param '<code>debugcookie</code>' in days.
- * Version:     2.4.1
+ * Version:     2.4.2-dev
  * License:     GPL-3+
  * Author:      Frank Bültge
- * Author URI:  http://bueltge.de/
+ * Author URI:  https://bueltge.de/
  *
- * @version 2017-03-16
+ * @version 2017-04-10
  * @package Debug_Objects
  */
 
@@ -114,7 +114,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			self::$file_base = __DIR__ . '/inc/autoload';
 
 			// Load 5.4 improvements
-			if ( version_compare( phpversion(), '5.4.0', '>=' ) ) {
+			if ( version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 				require_once __DIR__ . '/inc/class-php-54-improvements.php';
 			}
 
@@ -125,7 +125,6 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			add_action( 'admin_init', array( $this, 'add_capabilities' ) );
 
 			add_action( 'init', array( $this, 'init_classes' ) );
-			//$this->init_classes();
 		}
 
 		/**
@@ -310,7 +309,11 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 			if ( absint( $_GET[ 'debugcookie' ] ) ) { // Input var okay.
 				$cookie_live = new DateTime( 'now' );
 				$user_value = (int) $_GET[ 'debugcookie' ]; // Input var okay.
-				$cookie_live->add( new DateInterval( 'P' . $user_value . 'D' ) );
+				$timestamp = new \DateInterval( 'P' . $user_value . 'D' );
+				if ( 0 === $timestamp->format('s' ) ) {
+					throw new \LogicException( 'Wrong interval' );
+				}
+				$cookie_live->add( $timestamp );
 				setcookie(
 					static::get_plugin_data() . '_cookie',
 					'Debug_Objects_True',

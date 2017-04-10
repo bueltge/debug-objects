@@ -6,7 +6,7 @@
  * @subpackage  Settings
  * @author      Frank Bültge
  * @since       2.0.0
- * @version     2017-01-17
+ * @version     2017-04-10
  */
 
 if ( ! function_exists( 'add_filter' ) ) {
@@ -559,10 +559,14 @@ class Debug_Objects_Settings extends Debug_Objects {
 	 */
 	public function save_network_settings_page() {
 
-		// validate options
-		$value = $this->validate_settings( $_POST[ self::$option_string ] );
+		$value = [];
+		if ( isset( $_POST[ self::$option_string ] ) ) {
+			// validate options
+			$value = $this->validate_settings( $_POST[ self::$option_string ] );
+		}
 		// update options
 		update_site_option( self::$option_string, $value );
+
 		// redirect to settings page in network
 		wp_safe_redirect(
 			add_query_arg(
@@ -593,13 +597,13 @@ class Debug_Objects_Settings extends Debug_Objects {
 	 * @uses     normalize_whitespace
 	 * @access   public
 	 *
-	 * @param    array $values
+	 * @param    array|null $values
 	 *
 	 * @internal param array $value
 	 * @since    2.0.0
-	 * @return   string $value
+	 * @return   array|null $value
 	 */
-	public function validate_settings( array $values ) {
+	public function validate_settings( $values = [] ) {
 
 		foreach ( (array) $values as $key => $value ) {
 			$value = (int) $value;
