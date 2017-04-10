@@ -309,7 +309,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 				[ 'default' => 0, 'min_range' => 0 ]
 			);
 
-			if ( 0 === $user_value ) { // Input var okay.
+			if ( 0 !== $user_value ) { // Input var not okay.
 				return FALSE;
 			}
 
