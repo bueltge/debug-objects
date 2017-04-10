@@ -298,38 +298,40 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		 *
 		 * @access  public
 		 * @since   2.0.1
-		 * @return  void
+		 * @return  bool|null
 		 */
 		public function set_cookie_control() {
 
-			if ( ! isset( $_GET[ 'debugcookie' ] ) ) { // Input var okay.
+			$user_value = filter_input(
+				INPUT_GET,
+				'debugcookie',
+				FILTER_VALIDATE_INT,
+				[ 'default' => 0, 'min_range' => 0 ]
+			);
+
+			if ( 0 === $user_value ) { // Input var okay.
 				return;
 			}
 
-			if ( absint( $_GET[ 'debugcookie' ] ) ) { // Input var okay.
-				$cookie_live = new DateTime( 'now' );
-				$user_value = (int) $_GET[ 'debugcookie' ]; // Input var okay.
-				try {
-					$dateintval = new \DateInterval( 'P' . $user_value . 'D' );
+			try {
+				$dateintval = new \DateInterval( 'P' . $user_value . 'D' );
+				if ( 0 !== $dateintval->format( 's' ) ) {
+					$cookie_live = new \DateTime( 'now' );
 					$cookie_live->add( $dateintval );
-				} catch ( \Exception $e ) {
-					$msg = esc_html( $e->getMessage() );
-					die( 'Not possible to set cookie date interval.' . $msg );
+
+					setcookie(
+						static::get_plugin_data() . '_cookie',
+						'Debug_Objects_True',
+						$cookie_live, COOKIEPATH, COOKIE_DOMAIN
+					);
+
+					return TRUE;
 				}
-
-				setcookie(
-					static::get_plugin_data() . '_cookie',
-					'Debug_Objects_True',
-					$cookie_live, COOKIEPATH, COOKIE_DOMAIN
-				);
+			} catch ( \Exception $e ) {
+				$msg = $e->getMessage();
+				die( 'Not possible to set cookie date interval.' . esc_html( $msg ) );
 			}
-
-			if ( 0 === (int) $_GET[ 'debugcookie' ] ) { // Input var okay.
-				setcookie(
-					static::get_plugin_data() . '_cookie',
-					'',
-					time() - 3600, COOKIEPATH, COOKIE_DOMAIN );
-			}
+			return FALSE;
 		}
 
 		/**
