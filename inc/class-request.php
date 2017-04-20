@@ -28,7 +28,7 @@ class Debug_Objects_Request {
 	 *
 	 * @var array $vars
 	 */
-	public $vars = [];
+	private $vars = [];
 
 	/**
 	 * Store query value, if existent.

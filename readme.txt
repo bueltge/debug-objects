@@ -3,7 +3,7 @@ Contributors: Bueltge, inpsyde
 Donate link: http://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, cron, cache, woocommerce, role, capability
 Requires at least: 3.3
-Tested up to: 4.7.1
+Tested up to: 4.7
 Stable tag: 2.4.1
 
 The Plugin Debug Objects provides a large number of information: query, cache, cron, constants, hooks, functions and many more.
@@ -26,6 +26,7 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * Cookie definitions
 * Separate user and usermeta tables
 * FTP and SSH definitions
+* WP Requies, only data with values, for the current request
 * Detailed Query information
 * Query information about the active plugins, nice to identifier the longrunners on the plugins
 * Query information about all queries from `wp-content`-directory
@@ -67,7 +68,7 @@ Please give us feedback, contribute and file technical bugs on [GitHub Repo](htt
 == Installation ==
 = Requirements =
 * WordPress (also Multisite) version 3.3 and later (tested at 4.7)
-* PHP 5.2.4, Tested with PHP 7.1
+* PHP 5.6, Tested with PHP 7.1
 
 = Installation =
 1. Unpack the download-package

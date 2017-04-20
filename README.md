@@ -19,6 +19,7 @@ Values and content get displayed at the frontend and backend of the blog, to ana
 * Cookie definitions
 * Separate user and usermeta tables
 * FTP and SSH definitions
+* WP Requies, only data with values, for the current request
 * Detailed Query information
 * Query information about the active plugins, nice to identifier the longrunners on the plugins
 * Query information about all queries from `wp-content`-directory
