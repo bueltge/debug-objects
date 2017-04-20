@@ -368,8 +368,9 @@ class Debug_Objects_Settings extends Debug_Objects {
 				// Hook Instrument for active page
 				'Screen_Info'           => esc_attr__(
 					'Shows all the screen info for the current page from the admin backend', 'debug_objects' ),
+				'Request'               => esc_attr__( 'Shows all WP queries performed on the current request.', 'debug_objects' ),
 				'Db_Query'              => esc_attr__(
-					'Three Tabs: Only the database queries from plugins and wp-content in each tab with runtime and a tab with content of all queries and his runtime in order of runtime',
+					'Three Tabs: Only the database queries from plugins and wp-content in each tab with runtime and a tab with content of all queries and his runtime in order of runtime on the current request.',
 					'debug_objects'
 				),
 				// WP Queries
