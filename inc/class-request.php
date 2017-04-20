@@ -31,6 +31,8 @@ class Debug_Objects_Request {
 	public $vars = [];
 
 	/**
+	 * Store query value, if existent.
+	 *
 	 * @var array $query_string
 	 */
 	private $query_string = [];
@@ -79,11 +81,19 @@ class Debug_Objects_Request {
 		return $tabs;
 	}
 
+	/**
+	 * Get the request uri as string.
+	 *
+	 * @return string
+	 */
 	public function get_request() {
 
-		return esc_url( $_SERVER['REQUEST_URI'] );
+		return (string) esc_url( $_SERVER['REQUEST_URI'] );
 	}
 
+	/**
+	 * Filter WP Query to store only data with values.
+	 */
 	public function get_query_items() {
 		global $wp_query;
 
@@ -100,6 +110,9 @@ class Debug_Objects_Request {
 		ksort( $this->vars );
 	}
 
+	/**
+	 * Print all data in tables.
+	 */
 	public function print_stuff() {
 
 	?>
@@ -107,14 +120,14 @@ class Debug_Objects_Request {
 	<h4><?php esc_attr_e( 'WP Query data for this request.' ); ?></h4>
 	<table class="tablesorter">
 		<thead>
-		<tr>
-			<th><?php esc_attr_e( 'Key' ); ?></th>
-			<th><?php esc_attr_e( 'Value' ); ?></th>
-		</tr>
+			<tr>
+				<th><?php esc_attr_e( 'Key' ); ?></th>
+				<th><?php esc_attr_e( 'Value' ); ?></th>
+			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Request</td><td><?php echo $this->get_request(); ?></td>
+				<td>Request</td><td><?php echo $this->get_request(); // WPCS: XSS ok. ?></td>
 			</tr>
 			<tr>
 				<td>Query</td><td><?php print_r( $this->query_string ); ?></td>
@@ -128,7 +141,6 @@ class Debug_Objects_Request {
 				<th><?php esc_attr_e( 'Query_vars Key' ); ?></th>
 				<th><?php esc_attr_e( 'Value' ); ?></th>
 			</tr>
-		</thead>
 		</thead>
 		<tbody>
 		<?php
