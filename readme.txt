@@ -85,7 +85,7 @@ Please give us feedback, contribute and file technical bugs on [GitHub Repo](htt
 
 == Other Notes ==
 = Older versions =
-You find older version on this repo [here](http://wordpress.org/plugins/debug-objects/developers/).
+You find older version on this repo [here](https://wordpress.org/plugins/debug-objects/developers/).
 
 = License =
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a [small donation](http://bueltge.de/wunschliste/ "Wishliste and Donate") for the time I've spent writing and supporting this plugin. And I really don't want to know how many hours of my life this plugin has already eaten ;)
@@ -117,7 +117,7 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 * Support now [WP Fiels API](https://github.com/sc0ttkclark/wordpress-fields-api).
 * Fix for deprecated `mysql_query`.
 * Fix for transient view.
-* Add verison string for script/style in enqueue tab.
+* Add version string for script/style in enqueue tab.
 
 = 2.2.0 (2015-01-22) =
 * Add new tab for check timeline of Permalink rules
@@ -162,8 +162,8 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 * Fix cookie function, to cache last active tab
 
 = 2.1.14 (08/15/2013) =
-* Small fixes for php strict warnings [Forum Thread](http://wordpress.org/support/topic/strict-warnings-fix)
-* Add function `debug_to_console( $data )` for easy to use debug informations in the console from browser, see settings page for hints
+* Small fixes for php strict warnings [Forum Thread](https://wordpress.org/support/topic/strict-warnings-fix)
+* Add function `debug_to_console( $data )` for easy to use debug information in the console from browser, see settings page for hints
 
 = 2.1.13 (06/18/2013) =
 * Add new output for current hooks
@@ -172,18 +172,18 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 * Small changes on the hints on the settings to the information about ChromeLogger
 
 = 2.1.12 (02/01/2013) =
-* Add to see data from `$_POST`; `$_GET` and debig backtrace before rewrite; usefull for forms in backend, see [Support Forum Discussion](http://wordpress.org/support/topic/feature-suggestion-to-debug-pre-redirect)
+* Add to see data from `$_POST`; `$_GET` and debig backtrace before rewrite; usefull for forms in backend, see [Support Forum Discussion](https://wordpress.org/support/topic/feature-suggestion-to-debug-pre-redirect)
 * Change init of ChromePHP to load very early
 * Small changes on code
 * Remove Super Var Dump, ChromePHP is more useful
 
 = 2.1.11 (01/08/2013) =
-* Add possibility to run WP in default mode; Add the url-param 'default', like '?debug&default' for run WordPress in a safe mode. Plugins are not loaed and set the default theme as active theme, is it available.
+* Add possibility to run WP in default mode; Add the url-param 'default', like '?debug&default' for run WordPress in a safe mode. Plugins are not loaded and set the default theme as an active theme, is it available.
 * Add logging in chrome Webinspector via [ChromePHP](http://www.chromephp.com/)
 * Add [PHPError](http://phperror.net/), alternative PHP Error reporting
 
 = 2.1.10 (11/19/2012) =
-* Mninor Fixes, PHP Warnings and Notice
+* Minor Fixes, PHP Warnings and Notice
 * Add "Super Var Dump" project
 
 = 2.1.9 =
@@ -204,10 +204,10 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 = 2.1.6 =
 * Fix on activation for add the custom table
 * Add content of cron
-* ToDo: remove i18n possibility; to slow for faster debuggging
+* ToDo: remove i18n possibility; to slow for faster debugging
 
 = 2.1.5 =
-* Add Tab for all deaclared classes and subclasses
+* Add Tab for all declared classes and subclasses
 * Add Tab for all defined functions
 * Small change on style
 
@@ -222,14 +222,14 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 = 2.1.2 =
 * Fix for use an private method
 * Fix for cache and debug mode
-* Change load time, if dont view items; many faster now
+* Change load time, if dont view items; much faster now
 
 = 2.1.1 =
 * Fix check for PHP version
 
 = 2.1.0 =
-* Add tab for theme and template informations
-* small fix with externel plugin-folder
+* Add tab for theme and template information
+* small fix with external plugin-folder
 
 = 2.0.2 =
 * fix settings on use in Multisite
@@ -237,7 +237,7 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 * change init for all class to use the plugin also on PHP smaller 5.3
 
 = 2.0.1 =
-* Add Memory informations, Load Time, included Files
+* Add Memory information, Load Time, included Files
 * Change query output with small changes; view queries bigger 0.5 and 1.0 ms in other color for fast identification
 * Add fix on warp to include unknown functions for PHP smaller 5.3 (hope)
 * Further complement the phpdoc
@@ -258,7 +258,7 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
  
 = v1.0.3 (03/23/2011) =
 * changes for the plugin Debug Queries
-* small changes fpr WP Codex and notice of WP 3.1
+* small changes for WP Codex and notice of WP 3.1
 * Add bulgarian translation
 
 = v1.0.2 (03/06/2011)) =
@@ -277,7 +277,7 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 * Small fix for search plugin Debug Queries
 
 = v0.2 (17/12/2009) =
-* also view all contens in backend of WordPress
+* also view all contents in backend of WordPress
 * small bugfixes on html-markup
 * 2 new constants for hook on frontend and backend; see the php-file
 
