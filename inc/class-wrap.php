@@ -61,7 +61,10 @@ class Debug_Objects_Wrap extends Debug_Objects {
 		) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+			add_action( 'login_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+			add_action( 'login_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'wp_footer', array( $this, 'get_content' ), 9999 );
+			add_action( 'login_footer', array( $this, 'get_content' ), 9999 );
 		}
 
 		if ( ! isset( $options[ 'backend' ] ) ) {
