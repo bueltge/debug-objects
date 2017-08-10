@@ -17,7 +17,7 @@ if ( ! function_exists( 'add_filter' ) ) {
 	exit;
 }
 
-class Debug_Objects_Html_Inspector {
+class Debug_Objects_Html_Inspector extends Debug_Objects {
 
 	protected static $classobj;
 
@@ -41,7 +41,9 @@ class Debug_Objects_Html_Inspector {
 	 */
 	public function __construct() {
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 

@@ -32,15 +32,18 @@ if ( ! class_exists( 'Debug_Objects_Theme' ) ) {
 		}
 		
 		public function __construct() {
-			
-			if ( ! current_user_can( '_debug_objects' ) )
+
+			parent::__construct();
+
+			if ( ! $this->get_capability() ) {
 				return;
-			
+			}
+
 			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 			add_action( 'admin_footer', array( $this, 'get_list_ids' ), 9999 );
 			add_action( 'wp_footer', array( $this, 'get_list_ids' ), 9999 );
 		}
-		
+
 		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 

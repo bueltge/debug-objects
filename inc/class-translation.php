@@ -19,7 +19,7 @@ if ( class_exists( 'Debug_Objects_Screen_Info' ) ) {
 	return NULL;
 }
 
-class Debug_Objects_Translation {
+class Debug_Objects_Translation extends Debug_Objects {
 
 	/**
 	 * The class object
@@ -55,12 +55,13 @@ class Debug_Objects_Translation {
 	 * Init function to register all used hooks
 	 *
 	 * @since   09/25/2013
-	 * @return \Debug_Objects_Translation
 	 */
 	public function __construct() {
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
-			return NULL;
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
+			return;
 		}
 
 		add_filter( 'override_load_textdomain', array( $this, 'log_file_load' ), 10, 3 );

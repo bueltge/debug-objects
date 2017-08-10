@@ -18,7 +18,7 @@ if ( class_exists( 'Debug_Objects_Memory' ) ) {
 	return;
 }
 
-class Debug_Objects_Memory {
+class Debug_Objects_Memory extends Debug_Objects {
 
 	private static $start_time;
 
@@ -36,9 +36,14 @@ class Debug_Objects_Memory {
 		return self::$classobj;
 	}
 
+	/**
+	 * Debug_Objects_Memory constructor.
+	 */
 	public function __construct() {
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 

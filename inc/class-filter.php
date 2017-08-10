@@ -18,7 +18,7 @@ if ( class_exists( 'Debug_Objects_Filter' ) ) {
 	return;
 }
 
-class Debug_Objects_Filter {
+class Debug_Objects_Filter extends Debug_Objects {
 
 	/**
 	 * The class object
@@ -49,7 +49,9 @@ class Debug_Objects_Filter {
 	 */
 	public function __construct() {
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 	}

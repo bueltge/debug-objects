@@ -16,7 +16,7 @@ if ( ! function_exists( 'add_filter' ) ) {
 if ( class_exists( 'Debug_Objects_Rewrites' ) )
 	return NULL;
 
-class Debug_Objects_Rewrites {
+class Debug_Objects_Rewrites extends Debug_Objects {
 	
 	/**
 	 * The class object
@@ -46,10 +46,13 @@ class Debug_Objects_Rewrites {
 	 * @since   09/25/2013
 	 */
 	public function __construct() {
-		
-		if ( ! current_user_can( '_debug_objects' ) )
-			return NULL;
-		
+
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
+			return;
+		}
+
 		add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 	}
 	

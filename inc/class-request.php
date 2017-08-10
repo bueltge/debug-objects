@@ -14,7 +14,7 @@
 /**
  * Class Debug_Objects_Woocommerce
  */
-class Debug_Objects_Request {
+class Debug_Objects_Request extends Debug_Objects {
 
 	/**
 	 * The class object
@@ -56,7 +56,9 @@ class Debug_Objects_Request {
 	 */
 	public function __construct() {
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 

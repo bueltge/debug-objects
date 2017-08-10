@@ -341,6 +341,22 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 		}
 
 		/**
+		 * Check the rights of the current logged in user.
+		 * Use the hook to change the return bool to use it also for non logged in users.
+		 *
+		 * @return bool
+		 */
+		public function get_capability() {
+
+			$view = false;
+			if ( current_user_can( '_debug_objects' ) ) {
+				$view = true;
+			}
+
+			return apply_filters( 'debug_objects_view', $view );
+		}
+
+		/**
 		 * Return plugin comment data
 		 *
 		 * @since   2.0.0

@@ -16,7 +16,7 @@ if ( ! function_exists( 'add_filter' ) ) {
 if ( class_exists( 'Debug_Objects_Shortcodes' ) )
 	return NULL;
 
-class Debug_Objects_Shortcodes {
+class Debug_Objects_Shortcodes extends Debug_Objects {
 	
 	protected static $classobj = NULL;
 
@@ -38,10 +38,13 @@ class Debug_Objects_Shortcodes {
 	 *
 	 */
 	public function __construct() {
-		
-		if ( ! current_user_can( '_debug_objects' ) )
-			return NULL;
-		
+
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
+			return;
+		}
+
 		add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 	}
 	

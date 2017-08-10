@@ -14,7 +14,7 @@
 /**
  * Class Debug_Objects_Woocommerce
  */
-class Debug_Objects_Woocommerce {
+class Debug_Objects_Woocommerce extends Debug_Objects {
 
 	/**
 	 * The class object
@@ -44,11 +44,13 @@ class Debug_Objects_Woocommerce {
 	 */
 	public function __construct() {
 
+		parent::__construct();
+
 		if ( ! class_exists( 'WooCommerce' ) ) {
 			return;
 		}
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 

@@ -13,7 +13,7 @@ if ( ! function_exists( 'add_filter' ) ) {
 	exit;
 }
 
-class Debug_Objects_Conditional_Tags {
+class Debug_Objects_Conditional_Tags extends Debug_Objects {
 
 	protected static $classobj;
 
@@ -42,7 +42,9 @@ class Debug_Objects_Conditional_Tags {
 	 */
 	public function __construct() {
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 

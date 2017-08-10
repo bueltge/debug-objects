@@ -19,7 +19,7 @@
 /**
  * Class Debug_Objects_Fields_API
  */
-class Debug_Objects_Fields_API {
+class Debug_Objects_Fields_API extends Debug_Objects {
 
 	/**
 	 * The class object
@@ -47,12 +47,14 @@ class Debug_Objects_Fields_API {
 	 */
 	public function __construct() {
 
+		parent::__construct();
+
 		// Bail if we're already in WP core (depending on the name used)
 		if ( ! class_exists( 'WP_Fields_API' ) && ! class_exists( 'Fields_API' ) ) {
 			return;
 		}
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 

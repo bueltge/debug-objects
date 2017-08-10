@@ -18,7 +18,7 @@ if ( ! function_exists( 'add_filter' ) ) {
 /**
  * Class Debug_Objects_Cron
  */
-class Debug_Objects_Cron {
+class Debug_Objects_Cron extends Debug_Objects {
 
 	/**
 	 * Holds all of the cron events.
@@ -86,7 +86,9 @@ class Debug_Objects_Cron {
 	 */
 	public function __construct() {
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 

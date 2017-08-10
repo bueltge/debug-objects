@@ -17,7 +17,7 @@ if ( class_exists( 'Debug_Objects_Classes' ) ) {
 	return NULL;
 }
 
-class Debug_Objects_Classes {
+class Debug_Objects_Classes extends Debug_Objects {
 
 	protected static $classobj;
 
@@ -34,9 +34,14 @@ class Debug_Objects_Classes {
 		return self::$classobj;
 	}
 
+	/**
+	 * Debug_Objects_Classes constructor.
+	 */
 	public function __construct() {
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 

@@ -19,7 +19,7 @@ if ( ! function_exists( 'add_filter' ) ) {
 /**
  * Class Debug_Objects_Php
  */
-class Debug_Objects_Php {
+class Debug_Objects_Php extends Debug_Objects {
 
 	/**
 	 * @var
@@ -66,12 +66,12 @@ class Debug_Objects_Php {
 
 	/**
 	 * Constructor
-	 *
-	 * @return \Debug_Objects_Php
 	 */
 	public function __construct() {
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 

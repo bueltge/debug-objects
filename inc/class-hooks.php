@@ -31,14 +31,20 @@ if ( ! class_exists( 'Debug_Objects_Hooks' ) ) {
 			return self::$classobj;
 		}
 
+		/**
+		 * Debug_Objects_Hooks constructor.
+		 */
 		public function __construct() {
-			
-			if ( ! current_user_can( '_debug_objects' ) )
+
+			parent::__construct();
+
+			if ( ! $this->get_capability() ) {
 				return;
-			
+			}
+
 			add_filter( 'debug_objects_tabs', array( $this, 'get_conditional_tab' ) );
 		}
-		
+
 		public function get_conditional_tab( $tabs ) {
 			
 			$tabs[] = array( 

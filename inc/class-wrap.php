@@ -46,8 +46,8 @@ class Debug_Objects_Wrap extends Debug_Objects {
 	public function __construct() {
 
 		parent::__construct();
-		// not enough right - back
-		if ( ! current_user_can( '_debug_objects' ) ) {
+
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 

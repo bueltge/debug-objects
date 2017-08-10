@@ -35,7 +35,7 @@ if ( SQL_FORMATTING ) {
 	require_once __DIR__ . '/SqlFormatter/SqlFormatter.php';
 }
 
-class Debug_Objects_Db_Query {
+class Debug_Objects_Db_Query extends Debug_Objects {
 
 	private $replaced_functions = array( 'require_once', 'require', 'include', 'include_once' );
 
@@ -72,9 +72,14 @@ class Debug_Objects_Db_Query {
 		return self::$classobj;
 	}
 
+	/**
+	 * Debug_Objects_Db_Query constructor.
+	 */
 	public function __construct() {
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 

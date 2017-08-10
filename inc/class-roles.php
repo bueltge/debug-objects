@@ -17,7 +17,7 @@ if ( ! function_exists( 'add_filter' ) ) {
 /**
  * Class Debug_Objects_Roles
  */
-class Debug_Objects_Roles {
+class Debug_Objects_Roles extends Debug_Objects {
 
 	/**
 	 * The class object
@@ -49,7 +49,9 @@ class Debug_Objects_Roles {
 	 */
 	public function __construct() {
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 

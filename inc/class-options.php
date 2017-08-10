@@ -14,7 +14,7 @@ if ( ! function_exists( 'add_filter' ) ) {
 	exit;
 }
 
-class Debug_Objects_Options {
+class Debug_Objects_Options extends Debug_Objects {
 
 	/**
 	 * The class object
@@ -54,7 +54,9 @@ class Debug_Objects_Options {
 	 */
 	public function __construct() {
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 

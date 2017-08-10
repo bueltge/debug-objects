@@ -30,12 +30,17 @@ if ( ! class_exists( 'Debug_Objects_All_Hooks' ) ) {
 			
 			return self::$classobj;
 		}
-		
+
+		/**
+		 * Debug_Objects_All_Hooks constructor.
+		 */
 		public function __construct() {
-			
-			if ( ! current_user_can( '_debug_objects' ) )
+
+			parent::__construct();
+
+			if ( ! $this->get_capability() ) {
 				return;
-			
+			}
 			// self :: control_schedule_record();
 			// add_action( 'record_hook_usage', array( 'Debug_Objects_Page_Hooks', 'control_record' ) );
 			

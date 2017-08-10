@@ -18,7 +18,7 @@ if ( class_exists( 'Debug_Objects_Page_Hooks' ) ) {
 	return;
 }
 
-class Debug_Objects_Page_Hooks {
+class Debug_Objects_Page_Hooks extends Debug_Objects {
 
 	protected static $classobj;
 
@@ -53,7 +53,9 @@ class Debug_Objects_Page_Hooks {
 	 */
 	public function __construct() {
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 

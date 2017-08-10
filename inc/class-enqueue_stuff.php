@@ -14,7 +14,7 @@ if ( ! function_exists( 'add_filter' ) ) {
 	exit;
 }
 
-class Debug_Objects_Enqueue_Stuff {
+class Debug_Objects_Enqueue_Stuff extends Debug_Objects {
 
 	protected static $classobj;
 
@@ -38,9 +38,14 @@ class Debug_Objects_Enqueue_Stuff {
 		return self::$classobj;
 	}
 
+	/**
+	 * Debug_Objects_Enqueue_Stuff constructor.
+	 */
 	public function __construct() {
 
-		if ( ! current_user_can( '_debug_objects' ) ) {
+		parent::__construct();
+
+		if ( ! $this->get_capability() ) {
 			return;
 		}
 

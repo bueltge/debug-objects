@@ -34,12 +34,18 @@ if ( ! class_exists( 'Debug_Objects_Post_Meta' ) ) {
 			
 			return self::$classobj;
 		}
-	
+
+		/**
+		 * Debug_Objects_Post_Meta constructor.
+		 */
 		public function __construct() {
-			
-			if ( ! current_user_can( '_debug_objects' ) )
+
+			parent::__construct();
+
+			if ( ! $this->get_capability() ) {
 				return;
-			
+			}
+
 			// get arguments of CPTs
 			add_action( 'registered_post_type', array( $this, 'get_args' ), 10, 2 );
 			// add tab to the plugin tabs list
