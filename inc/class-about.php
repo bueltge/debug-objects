@@ -65,7 +65,7 @@ class Debug_Objects_About extends Debug_Objects {
 	/**
 	 * Get information from plugin to easy red on the tab content
 	 *
-	 * @param   bool $echo
+	 * @param   bool   $echo
 	 *
 	 * @return  string $output
 	 */

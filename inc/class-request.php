@@ -118,7 +118,6 @@ class Debug_Objects_Request extends Debug_Objects {
 	public function print_stuff() {
 
 	?>
-	<div class="wrap">
 	<h4><?php esc_attr_e( 'WP Query data for this request.' ); ?></h4>
 	<table class="tablesorter">
 		<thead>
