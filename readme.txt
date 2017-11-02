@@ -1,10 +1,10 @@
 === Debug Objects ===
 Contributors: Bueltge, inpsyde
-Donate link: http://bueltge.de/wunschliste/
+Donate link: https://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, cron, cache, woocommerce, role, capability
 Requires at least: 3.3
 Tested up to: 4.8
-Stable tag: 2.4.1
+Stable tag: 2.5.0
 
 The Plugin Debug Objects provides a large number of information: query, cache, cron, constants, hooks, functions and many more.
 
@@ -94,6 +94,12 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 
 
 == Changelog ==
+= 2.5.0 (2017-11-02) =
+* Fixed error on save options without a selected option.
+* Added new tab 'Request' for listing WP query for the current request.
+* Fixed html error in Request Tab, because hide tabs below this tab.
+* All to display debug content without login, see the [Wiki](https://github.com/bueltge/debug-objects/wiki) on github.
+
 = 2.4.1 (2017-03-16) =
 * Remove alternative [PHP Error](http://phperror.net/)
 * Fixed error to set options.

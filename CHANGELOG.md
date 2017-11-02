@@ -1,10 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 2.5.0 (ToDo)
+## 2.5.0 (2017-11-02)
 * Fixed error on save options without a selected option.
 * Added new tab 'Request' for listing WP query for the current request.
 * Fixed html error in Request Tab, because hide tabs below this tab.
+* All to display debug content without login, see the [Wiki](https://github.com/bueltge/debug-objects/wiki) on github.
 
 ## 2.4.1 (2017-03-16)
 * Remove alternative [PHP Error](http://phperror.net/)
