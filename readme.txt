@@ -3,7 +3,7 @@ Contributors: Bueltge, inpsyde
 Donate link: http://bueltge.de/wunschliste/
 Tags: debug, sql, analyse, tuning, performance, database, queries, query, php, cron, cache, woocommerce, role, capability
 Requires at least: 3.3
-Tested up to: 4.7
+Tested up to: 4.8
 Stable tag: 2.4.1
 
 The Plugin Debug Objects provides a large number of information: query, cache, cron, constants, hooks, functions and many more.
@@ -57,9 +57,11 @@ The Plugin Debug Objects provides the user, which has the appropriate rights, no
 * WooCommerce, list current hooks and template arguments.
 * and many more ...
 
-
 The plugin does not filter values and should only be used for information and optimization, I don't recommended to use it on a live blog. For developers it can rapidly deliver data, which is useful in a development environment.
 There are no data in the database and there are no settings. Therefore, the installation is pretty simple: Just upload the Plugin in the Plugin directory or use the automatic installation of the backend to install and activate the Plugin. In the footer of the frontend of the blog, you can see the information.
+
+= Wiki, How to =
+The repository have an wiki to list helpful content, recurrent questions and similar. You find the [Wiki](https://github.com/bueltge/debug-objects/wiki) on github.
 
 = Bugs, technical hints or contribute =
 Please give us feedback, contribute and file technical bugs on [GitHub Repo](https://github.com/bueltge/Debug-Objects).
@@ -67,7 +69,7 @@ Please give us feedback, contribute and file technical bugs on [GitHub Repo](htt
 
 == Installation ==
 = Requirements =
-* WordPress (also Multisite) version 3.3 and later (tested at 4.7)
+* WordPress (also Multisite) version 3.3 and later (tested at 4.8)
 * PHP 5.6, Tested with PHP 7.1
 
 = Installation =
