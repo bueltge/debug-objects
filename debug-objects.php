@@ -621,7 +621,7 @@ if ( ! class_exists( 'Debug_Objects' ) ) {
 						$val = normalize_whitespace( $val );
 
 						if ( is_serialized_string( $val ) ) {
-							$obj = unserialize( $val );
+							$obj = unserialize( $val, false );
 						} else {
 							$obj = normalize_whitespace( $val );
 						}
