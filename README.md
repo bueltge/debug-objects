@@ -53,6 +53,8 @@ Values and content get displayed at the frontend and backend of the blog, to ana
 The plugin does not filter values and should only be used for information and optimization, I don't recommended to use it on a live blog. For developers it can rapidly deliver data, which is useful in a development environment.
 There are no data in the database and there are no settings. Therefore, the installation is pretty simple: Just upload the Plugin in the Plugin directory or use the automatic installation of the backend to install and activate the Plugin. In the footer of the frontend of the blog, you can see the information.
 
+## Wiki, How to
+The repository have an wiki to list helpful content, recurrent questions and similar. You find the [Wiki](https://github.com/bueltge/debug-objects/wiki) on github.
 
 ## Installation
 ### Requirements
