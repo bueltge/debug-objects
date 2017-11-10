@@ -6,7 +6,7 @@
  * @subpackage  Debug_Objects_Php
  * @author      Frank Bültge <frank@bueltge.de>
  * @license     http://opensource.org/licenses/gpl-license.php GNU Public License
- * @since       Version 2.0.0
+ * @since       Version 2.0.1-dev
  *
  * Php Version 5.3
  */
@@ -247,7 +247,7 @@ class Debug_Objects_Php extends Debug_Objects {
 	 *
 	 * @return Array $classes
 	 */
-	public function get_css_classes( $classes = '' ) {
+	public function get_css_classes( $classes = array() ) {
 
 		if ( count( $this->warnings ) ) {
 			$classes[ ] = ' debug_objects_php_warning';
