@@ -1,7 +1,7 @@
 {
   "name": "bueltge/debug-objects",
   "description": "WordPress Plugin for debugging and learning with and at the application.",
-  "license": "GPL-3+",
+  "license": "GPL-3.0-or-later",
   "keywords": ["wordpress", "plugin", "debug"],
   "type": "wordpress-plugin",
   "authors": [
