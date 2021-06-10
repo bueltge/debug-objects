@@ -159,13 +159,15 @@ if ( ! class_exists( 'Debug_Objects_All_Hooks' ) ) {
 					)
 				);
 				$str_replace = $doc_root . preg_replace('|https?://[^/]+|i', '', get_option('home') . '/' );
-				$file_name = addslashes( str_replace( $str_replace, '', $callstack[3]['file'] ) );
-				$line_num  = $callstack[3]['line'];
-				
+				$file_name = __( 'Unavailable file', parent :: get_plugin_data() );
+				if ( ! isset( $callstack[3]['file'] ) )
+					$file_name = addslashes( str_replace( $str_replace, '', $callstack[3]['file'] ) );
+				$file_num = __( 'Unavailable line', parent :: get_plugin_data() );
+				if ( ! isset( $callstack[3]['line'] ) )
+					$line_num  = $callstack[3]['line'];
+				$called_by = $callstack[4]['function'] . '()';
 				if ( ! isset( $callstack[4] ) )
 					$called_by = __( 'Undefinded', parent :: get_plugin_data() );
-				else
-					$called_by = $callstack[4]['function'] . '()';
 				
 				$wpdb -> query( "INSERT " . parent::$table . "
 					(first_call,called_by,hook_name,hook_type,arg_count,file_name,line_num)
